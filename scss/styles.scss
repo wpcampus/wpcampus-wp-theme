@@ -1,0 +1,53 @@
+//
+// These are the base styles for WordCampus.
+//
+// This framework is built on top of
+// Foundation by ZURB.
+// foundation.zurb.com
+// Licensed under MIT Open Source
+//
+
+// Make sure the charset is set appropriately
+@charset "UTF-8";
+
+// Include our settings
+@import "_settings";
+
+// Include our mixins
+@import "_mixins";
+
+// Normalize/reset everything
+@import '../../../foundation/scss/normalize';
+
+// Include all the things
+@import "_foundation";
+
+// Hide these elements visibly, but make sure they're still viewable by screen readers
+.screen-reader-text {
+    @include screen-reader-text();
+}
+
+// Stylize the "Skip To Content" link
+#skip-to-content {
+    display: block;
+    position: fixed;
+    left: -1000px;
+    top: -1000px;
+    width: 0;
+    height: 0;
+    text-align: left;
+    overflow: hidden;
+    z-index: 1000000;
+
+    &:focus, &:active, &:hover {
+        left: 0;
+        top: 0;
+        width: auto;
+        height: auto;
+        overflow: visible;
+        background: #eee;
+        color: $black;
+        padding: 10px;
+    }
+
+}

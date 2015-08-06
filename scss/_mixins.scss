@@ -1,0 +1,17 @@
+//
+// These are the base SASS mixins for WordCampus.
+//
+
+// Make sure the charset is set appropriately
+@charset "UTF-8";
+
+// Will convert the element to a screen reader element
+@mixin screen-reader-text() {
+    display: block;
+    width: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    text-indent: -9999px;
+}
