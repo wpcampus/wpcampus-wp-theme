@@ -22,6 +22,10 @@
 // Include all the things
 @import "_foundation";
 
+body {
+    height: auto;
+    padding: 40px;
+}
 // Hide these elements visibly, but make sure they're still viewable by screen readers
 .screen-reader-text {
     @include screen-reader-text();
@@ -48,6 +52,68 @@
         background: #eee;
         color: $black;
         padding: 10px;
+    }
+
+}
+
+// Style the interest page
+#wordcampus-show-me-the-interest {
+
+    .row {
+        max-width: 900px;
+    }
+
+    .form_header {
+        background: $wordcampus-blue;
+        color: $white;
+        margin: 25px 0 0 0;
+        padding: 15px;
+        text-align: center;
+        font-size: 1.8em;
+        font-weight: 300;
+    }
+
+    .gform_wrapper {
+        max-width: 100%;
+        background: $white;
+        margin: 0;
+        padding: 30px;
+
+        input[type="text"] {
+            margin: 0 0 0.5em 0;
+        }
+
+        input[type="radio"],
+        input[type="checkbox"] {
+            margin: 3px 0 8px .063em !important;
+        }
+
+        ul {
+
+            li {
+
+                &.gfield {
+                    margin: 0 0 1em 0;
+                }
+
+            }
+
+        }
+
+        .gform_footer {
+            padding: 0;
+            margin: 1.5em 0 0 0;
+
+            .gform_button {
+                background: $wordcampus-blue;
+                width: 100%;
+                text-align: center;
+                margin: 0;
+                text-transform: uppercase;
+                font-weight: 300;
+            }
+
+        }
     }
 
 }

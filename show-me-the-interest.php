@@ -4,11 +4,15 @@
 
 get_header();
 
-?><div class="row">
-    <div class="small-12 columns"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras risus urna, ullamcorper in ullamcorper in, dapibus vel leo. Nam diam odio, aliquam quis accumsan a, viverra non sem. Pellentesque non fringilla sapien.</p></div>
-    <div class="small-12 columns">
-        <?php echo do_shortcode( '[gravityform id="1" title="false" description="false" ajax="true"]' ); ?>
+?><div id="wordcampus-show-me-the-interest">
+    <div class="row">
+        <div class="small-12 columns">
+            <h1>We Need A Header</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras risus urna, ullamcorper in ullamcorper in, dapibus vel leo. Nam diam odio, aliquam quis accumsan a, viverra non sem. Pellentesque non fringilla sapien.</p>
+            <h2 class="form_header">Interested in WordCampus?</h2>
+            <?php echo do_shortcode( '[gravityform id="1" title="false" description="false" ajax="true"]' ); ?>
+        </div>
     </div>
-</div><?php
+</div> <!-- #wordcampus-interest --><?php
 
 get_footer();

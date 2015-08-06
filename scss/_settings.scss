@@ -20,8 +20,9 @@ $column-gutter: 40px;
 
 // COLORS
 // We use these as default colors throughout
-$body-bg: #fff;
+$body-bg: #eff4f5;
 $primary-color: #900;
+$wordcampus-blue: #54596b;
 //$secondary-color: #e6e6e6;
 // $alert-color: #f04124;
 // $success-color: #43AC6A;
@@ -39,9 +40,9 @@ $open_sans: 'Open Sans', sans-serif;
 $font-family-sans-serif: $open_sans !default;
 $body-font-family: $font-family-sans-serif !default;
 $body-font-color: #222;
-$base-font-size: 17px;
-$base-line-height: 150%;
-$rem-base: $base-font-size; // DO NOT OVERWRITE OR SET AS DEFAULT - LEAVE ALONE
+//$base-font-size: 17px;
+//$base-line-height: 150%;
+//$rem-base: $base-font-size; // DO NOT OVERWRITE OR SET AS DEFAULT - LEAVE ALONE
 
 // Headers
 //$header-font-family: $roboto;
