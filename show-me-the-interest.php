@@ -42,7 +42,7 @@ get_header();
                 <div class="addthis_sharing_toolbox"></div>
                 <h3>About The Photos</h3>
                 <div class="photos-hidden-message">
-                    <p>Well, actually, you can't see the photos because your screen is rather small and we thought it best to focus on the content instead.</p>
+                    <p>Well, actually, you can't see the photos because your screen is rather small and I thought it best to focus on the content instead.</p>
                     <p>If you view this page on a larger screen, you'll be able to see a lovely photo grid, filled with images of beautiful college campuses.</p>
                 </div>
                 <div class="photos-visible-message">
