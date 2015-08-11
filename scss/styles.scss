@@ -23,7 +23,7 @@
 @import "_foundation";
 
 body {
-    height: auto;
+    height: 100%;
 }
 // Hide these elements visibly, but make sure they're still viewable by screen readers
 .screen-reader-text {
@@ -57,11 +57,8 @@ body {
 
 // Style the interest page
 #wordcampus-show-me-the-interest-page {
-    background: url(../images/WordCampus-tile-BG.jpg) repeat 0 0 #fff;
-    /*-webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;*/
+    background: url(../images/WordCampus-tile-BG-small.jpg) repeat 0 0 #fff;
+    min-height: 100%;
 
     .container {
         max-width: $max-row-width;
@@ -111,6 +108,24 @@ body {
         .body {
             background: $white;
             padding: 30px 30px 50px 30px;
+
+            .addthis_sharing_toolbox {
+                position: relative;
+                z-index: 0;
+
+                &:before {
+                    content: '';
+                    background: #eee;
+                    position: absolute;
+                    left: 0;
+                    top: 16px;
+                    width: 100%;
+                    height: 1px;
+                    z-index: -1;
+                }
+
+            }
+
         }
 
         .addthis_sharing_toolbox {
@@ -202,6 +217,11 @@ body {
                 font-weight: 600;
             }
 
+            // Hide this message on small screens
+            .photos-visible-message {
+                @include screen-reader-text();
+            }
+
             .univ-for-photos {
                 overflow: auto;
                 padding-left: 2.5em;
@@ -211,6 +231,38 @@ body {
                     float: left;
                     width: 50%;
                     margin: 0 0 5px 0;
+                }
+
+            }
+
+        }
+
+    }
+
+}
+
+// When the screen is wide enough to see more than just the form
+@media #{$screen} and (min-width:#{$max-row-width}) {
+
+    // Load the bigger background image
+    #wordcampus-show-me-the-interest-page {
+        background: url(../images/WordCampus-tile-BG.jpg) repeat 0 0 #fff;
+
+        #wordcampus-main {
+
+            .footer {
+
+                // Hide this message
+                .photos-hidden-message {
+                    @include screen-reader-text();
+                }
+
+                // Show this message
+                .photos-visible-message {
+                    width: auto;
+                    height: auto;
+                    overflow: auto;
+                    text-indent: 0;
                 }
 
             }

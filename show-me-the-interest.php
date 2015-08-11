@@ -24,9 +24,7 @@ get_header();
     <div id="wordcampus-main">
         <div class="container">
 
-            <div class="body">
-
-                <div class="addthis_sharing_toolbox"></div><?php
+            <div class="body"><?php
 
                 if ( have_posts() ) {
                     while ( have_posts() ) {
@@ -43,27 +41,33 @@ get_header();
             <div class="footer">
                 <div class="addthis_sharing_toolbox"></div>
                 <h3>About The Photos</h3>
-                <p>The photos included on this page were given, with permission, by wonderful individuals in the higher ed community who wanted to help me show off the beauty of college campuses. Their presence does not imply that the pictured institutions are associated with this (possible) event but I definitely would not complain if they wanted to <a href="https://twitter.com/bamadesigner">reach out to me</a> to show their support or get involved.</p>
-                <p>With that said, I wanted to list which universities are included in the photo grid. I'd love to add more photos, specifically of universities that are using WordPress, so <a href="https://twitter.com/bamadesigner">let me know</a> if you'd like me to add a photo of your beautiful campus (and if you use WordPress) and I'll see what I can do.</p>
-                <p><em>Starting from the top left and going from left to right:</em></p>
-                <ol class="univ-for-photos">
-                    <li><a href="http://www.umw.edu/">University of Mary Washington</a></li>
-                    <li><a href="http://www.bu.edu/">Boston University</a></li>
-                    <li><a href="http://www.virginia.edu/">University of Virginia</a></li>
-                    <li><a href="http://www.syr.edu/">Syracuse University</a></li>
-                    <li><a href="http://ua.edu">The University of Alabama</a></li>
-                    <li><a href="http://www.ufl.edu/">The University of Florida</a></li>
-                    <li><a href="http://www.bu.edu/">Boston University</a></li>
-                    <li><a href="http://www.umw.edu/">University of Mary Washington</a></li>
-                    <li><a href="http://www.muw.edu/">Mississippi University for Women</a></li>
-                    <li><a href="http://www.bu.edu/">Boston University</a></li>
-                    <li><a href="http://www.fiu.edu/">Florida International University</a></li>
-                    <li><a href="http://www.umw.edu/">University of Mary Washington</a></li>
-                    <li><a href="http://www.hsu.edu/">Henderson State University</a></li>
-                    <li><a href="http://ua.edu">The University of Alabama</a></li>
-                    <li><a href="http://www.columbia.edu/">Columbia University</a></li>
-                    <li><a href="http://www.syr.edu/">Syracuse University</a></li>
-                </ol>
+                <div class="photos-hidden-message">
+                    <p>Well, actually, you can't see the photos because your screen is rather small and we thought it best to focus on the content instead.</p>
+                    <p>If you view this page on a larger screen, you'll be able to see a lovely photo grid, filled with images of beautiful college campuses.</p>
+                </div>
+                <div class="photos-visible-message">
+                    <p>The photos included on this page were given, with permission, by wonderful individuals in the higher ed community who wanted to help me show off the beauty of college campuses. Their presence does not imply that the pictured institutions are associated with this (possible) event but I definitely would not complain if they wanted to <a href="https://twitter.com/bamadesigner">reach out to me</a> to show their support or get involved.</p>
+                    <p>With that said, I wanted to list which universities are included in the photo grid. I'd love to add more photos, specifically of universities that are using WordPress, so <a href="https://twitter.com/bamadesigner">let me know</a> if you'd like me to add a photo of your beautiful campus (and if you use WordPress) and I'll see what I can do.</p>
+                    <p><em>Starting from the top left and going from left to right:</em></p>
+                    <ol class="univ-for-photos">
+                        <li><a href="http://www.umw.edu/">University of Mary Washington</a></li>
+                        <li><a href="http://www.bu.edu/">Boston University</a></li>
+                        <li><a href="http://www.virginia.edu/">University of Virginia</a></li>
+                        <li><a href="http://www.syr.edu/">Syracuse University</a></li>
+                        <li><a href="http://ua.edu">The University of Alabama</a></li>
+                        <li><a href="http://www.ufl.edu/">The University of Florida</a></li>
+                        <li><a href="http://www.bu.edu/">Boston University</a></li>
+                        <li><a href="http://www.umw.edu/">University of Mary Washington</a></li>
+                        <li><a href="http://www.muw.edu/">Mississippi University for Women</a></li>
+                        <li><a href="http://www.bu.edu/">Boston University</a></li>
+                        <li><a href="http://www.fiu.edu/">Florida International University</a></li>
+                        <li><a href="http://www.umw.edu/">University of Mary Washington</a></li>
+                        <li><a href="http://www.hsu.edu/">Henderson State University</a></li>
+                        <li><a href="http://ua.edu">The University of Alabama</a></li>
+                        <li><a href="http://www.columbia.edu/">Columbia University</a></li>
+                        <li><a href="http://www.syr.edu/">Syracuse University</a></li>
+                    </ol>
+                </div>
             </div>
 
         </div>
