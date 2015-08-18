@@ -63,11 +63,15 @@ get_header();
                         <li><a href="http://www.fiu.edu/">Florida International University</a></li>
                         <li><a href="http://www.umw.edu/">University of Mary Washington</a></li>
                         <li><a href="http://www.hsu.edu/">Henderson State University</a></li>
-                        <li><a href="http://ua.edu">The University of Alabama</a></li>
+                        <li><a href="http://www.champlain.edu/">Champlain College</a></li>
                         <li><a href="http://www.columbia.edu/">Columbia University</a></li>
-                        <li><a href="http://www.syr.edu/">Syracuse University</a></li>
+                        <li><a href="https://wayne.edu/">Wayne State University</a></li>
                     </ol>
                 </div>
+                <h3>About Me</h3>
+                <p>My name is Rachel Carden. I’m a web designer and developer for <a href="http://ua.edu/">The University of Alabama</a>. If you'd like to talk more about WordCampus, you can find me on Twitter <a href="https://twitter.com/bamadesigner">@bamadesigner</a>, send me an <a href="mailto:bamadesigner@gmail.com">email</a>, or visit me at <a href="http://bamadesigner.com/">http://bamadesigner.com</a>.</p>
+                <h3>About My Proposal</h3>
+                <p>For more details about my proposal, head over to Post Status and read <a href="https://poststatus.com/wordpress-higher-ed-conference-wordcampus/">A WordPress conference for higher education: coming to a campus near you?</a>. If you have any ideas, comments, or suggestions, I invite you to leave them in the comments.</p>
             </div>
 
         </div>

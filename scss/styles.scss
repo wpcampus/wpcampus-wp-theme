@@ -57,7 +57,7 @@ body {
 
 // Style the interest page
 #wordcampus-show-me-the-interest-page {
-    background: url(../images/WordCampus-tile-BG-small.jpg) repeat 0 0 #fff;
+    background: #fff;
     min-height: 100%;
 
     .container {
@@ -69,13 +69,19 @@ body {
     }
 
     #wordcampus-header {
-        background: rgba($black,0.4);
+        //background: rgba($black,0.4);
+        background: #222;
         color: $white;
         text-align: center;
+        border-bottom: 2px solid $white;
 
         .container {
-            background: rgba($black,0.6);
+            //background: rgba($black,0.6);
+            background: #222;
             padding: 35px 20px 25px 20px;
+            -moz-box-shadow: none;
+            -webkit-box-shadow: none;
+            box-shadow: none;
         }
         
         img {
@@ -99,15 +105,32 @@ body {
     }
 
     #wordcampus-main {
-        background: rgba( $white, 0.3 );
+        //background: url(../images/WordCampus-tile-BG-small.jpg) repeat center top #fff;
+        //background: rgba( $white, 0.3 );
+        min-height: 100%;
+        background: #fff;
+        overflow: hidden;
 
         .container {
             background: #eee;
+            margin-top: -40px;
+            padding-top: 32px;
         }
 
         .body {
             background: $white;
             padding: 30px 30px 50px 30px;
+
+            .post-status {
+                background: #2e3641;
+                color: $white;
+                padding: 20px;
+
+                a {
+                    color: inherit;
+                }
+
+            }
 
             .addthis_sharing_toolbox {
                 position: relative;
@@ -211,6 +234,10 @@ body {
                 line-height: inherit;
             }
 
+            > *:last-child {
+                margin-bottom: 0;
+            }
+
             .addthis_sharing_toolbox {
                 margin-top: -40px;
             }
@@ -230,7 +257,7 @@ body {
             .univ-for-photos {
                 overflow: auto;
                 padding-left: 2.5em;
-                margin: 0;
+                margin-left: 0;
 
                 li {
                     float: left;
@@ -249,11 +276,11 @@ body {
 // When the screen is wide enough to see more than just the form
 @media #{$screen} and (min-width:#{$max-row-width}) {
 
-    // Load the bigger background image
     #wordcampus-show-me-the-interest-page {
-        background: url(../images/WordCampus-tile-BG.jpg) repeat 0 0 #fff;
 
+        // Load the bigger background image
         #wordcampus-main {
+            background: url(../images/WordCampus-tile-BG.jpg) repeat center top #fff;
 
             .footer {
 
