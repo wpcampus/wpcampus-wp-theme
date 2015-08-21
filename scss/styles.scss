@@ -121,6 +121,17 @@ body {
             background: $white;
             padding: 30px 30px 50px 30px;
 
+            .the-wp-crowd {
+                background: #d0443c;
+                color: $white;
+                padding: 20px;
+
+                a {
+                    color: inherit;
+                }
+
+            }
+
             .post-status {
                 background: #2e3641;
                 color: $white;
