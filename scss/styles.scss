@@ -55,232 +55,225 @@ body {
 
 }
 
-// Style the interest page
-#wordcampus-show-me-the-interest-page {
-    background: #fff;
-    min-height: 100%;
+.container {
+    max-width: $max-row-width;
+    margin: 0 auto;
+    -moz-box-shadow: 0px 0px 20px #444;
+    -webkit-box-shadow: 0px 0px 20px #444;
+    box-shadow: 0px 0px 20px #444;
+}
+
+#wordcampus-header {
+    //background: rgba($black,0.4);
+    background: #222;
+    color: $white;
+    text-align: center;
+    border-bottom: 2px solid $white;
 
     .container {
-        max-width: $max-row-width;
-        margin: 0 auto;
-        -moz-box-shadow: 0px 0px 20px #444;
-        -webkit-box-shadow: 0px 0px 20px #444;
-        box-shadow: 0px 0px 20px #444;
-    }
-
-    #wordcampus-header {
-        //background: rgba($black,0.4);
+        //background: rgba($black,0.6);
         background: #222;
-        color: $white;
-        text-align: center;
-        border-bottom: 2px solid $white;
-
-        .container {
-            //background: rgba($black,0.6);
-            background: #222;
-            padding: 35px 20px 25px 20px;
-            -moz-box-shadow: none;
-            -webkit-box-shadow: none;
-            box-shadow: none;
-        }
-        
-        img {
-            display: block;
-            margin: 0 15px 10px 15px;
-        }
-
-        // Hide these elements visibly, but make sure they're still viewable by screen readers
-        .wordcampus-word {
-            @include screen-reader-text();
-        }
-
-        h2 {
-            color: inherit;
-            margin: 0;
-            font-size: 1.22em;
-            font-weight: 300;
-            text-transform: uppercase;
-        }
-
+        padding: 35px 20px 25px 20px;
+        -moz-box-shadow: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
     }
 
-    #wordcampus-main {
-        //background: url(../images/WordCampus-tile-BG-small.jpg) repeat center top #fff;
-        //background: rgba( $white, 0.3 );
-        min-height: 100%;
-        background: #fff;
-        overflow: hidden;
+    img {
+        display: block;
+        margin: 0 15px 10px 15px;
+    }
 
-        .container {
-            background: #eee;
-            margin-top: -40px;
-            padding-top: 32px;
+    // Hide these elements visibly, but make sure they're still viewable by screen readers
+    .wordcampus-word {
+        @include screen-reader-text();
+    }
+
+    h2 {
+        color: inherit;
+        margin: 0;
+        font-size: 1.22em;
+        font-weight: 300;
+        text-transform: uppercase;
+    }
+
+}
+
+#wordcampus-main {
+    //background: url(../images/WordCampus-tile-BG-small.jpg) repeat center top #fff;
+    //background: rgba( $white, 0.3 );
+    min-height: 100%;
+    background: #fff;
+    overflow: hidden;
+
+    .container {
+        background: #eee;
+        margin-top: -40px;
+        padding-top: 32px;
+    }
+
+    .body {
+        background: $white;
+        padding: 30px 30px 50px 30px;
+
+        .the-wp-crowd {
+            background: #d0443c;
+            color: $white;
+            padding: 20px;
+
+            a {
+                color: inherit;
+            }
+
         }
 
-        .body {
-            background: $white;
-            padding: 30px 30px 50px 30px;
+        .post-status {
+            background: #2e3641;
+            color: $white;
+            padding: 20px;
 
-            .the-wp-crowd {
-                background: #d0443c;
-                color: $white;
-                padding: 20px;
-
-                a {
-                    color: inherit;
-                }
-
-            }
-
-            .post-status {
-                background: #2e3641;
-                color: $white;
-                padding: 20px;
-
-                a {
-                    color: inherit;
-                }
-
-            }
-
-            .addthis_sharing_toolbox {
-                position: relative;
-                z-index: 0;
-
-                &:before {
-                    content: '';
-                    background: #eee;
-                    position: absolute;
-                    left: 0;
-                    top: 16px;
-                    width: 100%;
-                    height: 1px;
-                    z-index: -1;
-                }
-
+            a {
+                color: inherit;
             }
 
         }
 
         .addthis_sharing_toolbox {
-            text-align: center;
-            margin: 15px 0;
+            position: relative;
+            z-index: 0;
 
-            .at-share-tbx-element {
-                display: inline-block !important;
+            &:before {
+                content: '';
+                background: #eee;
+                position: absolute;
+                left: 0;
+                top: 16px;
+                width: 100%;
+                height: 1px;
+                z-index: -1;
             }
 
         }
 
-        .gform_confirmation_message {
-            background: rgba(0,255,0,0.2);
-            padding: 20px;
+    }
+
+    .addthis_sharing_toolbox {
+        text-align: center;
+        margin: 15px 0;
+
+        .at-share-tbx-element {
+            display: inline-block !important;
         }
 
-        .gform_wrapper {
-            max-width: 100%;
-            margin: 0;
+    }
+
+    .gform_confirmation_message {
+        background: rgba(0,255,0,0.2);
+        padding: 20px;
+    }
+
+    .gform_wrapper {
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
+
+        input[type="text"] {
+            margin: 0 0 0.5em 0;
+        }
+
+        input[type="radio"],
+        input[type="checkbox"] {
+            margin: 3px 0 8px .063em !important;
+        }
+
+        ul {
+
+            li {
+
+                &.gfield {
+                    margin: 0 0 1em 0;
+                }
+
+            }
+
+        }
+
+        // Style the country field
+        #input_1_18_6_container {
+            margin: 0.5em 0 0 0;
+        }
+
+        .gfield_label {
+            font-size: 1em;
+            line-height: 1.4;
+            font-weight: 600 !important;
+        }
+
+        .top_label {
+
+            .gfield_description {
+                padding: 0 0 .625em 0;
+            }
+
+        }
+
+        .gform_footer {
             padding: 0;
+            margin: 1.5em 0 0 0;
 
-            input[type="text"] {
-                margin: 0 0 0.5em 0;
+            .gform_button {
+                background: #444; //$wordcampus-blue;
+                width: 100%;
+                text-align: center;
+                margin: 0;
+                text-transform: uppercase;
+                font-weight: 300;
             }
 
-            input[type="radio"],
-            input[type="checkbox"] {
-                margin: 3px 0 8px .063em !important;
-            }
+        }
+    }
 
-            ul {
+    .footer {
+        background: #eee;
+        padding: 25px 20px;
+        color: #444;
+        font-size: 0.9em;
+        line-height: 1.7;
 
-                li {
-
-                    &.gfield {
-                        margin: 0 0 1em 0;
-                    }
-
-                }
-
-            }
-
-            // Style the country field
-            #input_1_18_6_container {
-                margin: 0.5em 0 0 0;
-            }
-
-            .gfield_label {
-                font-size: 1em;
-                line-height: 1.4;
-                font-weight: 600 !important;
-            }
-
-            .top_label {
-
-                .gfield_description {
-                    padding: 0 0 .625em 0;
-                }
-
-            }
-
-            .gform_footer {
-                padding: 0;
-                margin: 1.5em 0 0 0;
-
-                .gform_button {
-                    background: #444; //$wordcampus-blue;
-                    width: 100%;
-                    text-align: center;
-                    margin: 0;
-                    text-transform: uppercase;
-                    font-weight: 300;
-                }
-
-            }
+        * {
+            font-size: inherit;
+            line-height: inherit;
         }
 
-        .footer {
-            background: #eee;
-            padding: 25px 20px;
-            color: #444;
-            font-size: 0.9em;
-            line-height: 1.7;
+        > *:last-child {
+            margin-bottom: 0;
+        }
 
-            * {
-                font-size: inherit;
-                line-height: inherit;
-            }
+        .addthis_sharing_toolbox {
+            margin-top: -40px;
+        }
 
-            > *:last-child {
-                margin-bottom: 0;
-            }
+        h3 {
+            text-transform: uppercase;
+            margin: 0 0 3px 0;
+            color: #222;
+            font-weight: 600;
+        }
 
-            .addthis_sharing_toolbox {
-                margin-top: -40px;
-            }
+        // Hide this message on small screens
+        .photos-visible-message {
+            @include screen-reader-text();
+        }
 
-            h3 {
-                text-transform: uppercase;
-                margin: 0 0 3px 0;
-                color: #222;
-                font-weight: 600;
-            }
+        .univ-for-photos {
+            overflow: auto;
+            padding-left: 2.5em;
+            margin-left: 0;
 
-            // Hide this message on small screens
-            .photos-visible-message {
-                @include screen-reader-text();
-            }
-
-            .univ-for-photos {
-                overflow: auto;
-                padding-left: 2.5em;
-                margin-left: 0;
-
-                li {
-                    float: left;
-                    width: 50%;
-                    margin: 0 0 5px 0;
-                }
-
+            li {
+                float: left;
+                width: 50%;
+                margin: 0 0 5px 0;
             }
 
         }
@@ -292,27 +285,23 @@ body {
 // When the screen is wide enough to see more than just the form
 @media #{$screen} and (min-width:#{$max-row-width}) {
 
-    #wordcampus-show-me-the-interest-page {
+    // Load the bigger background image
+    #wordcampus-main {
+        background: url(../images/WordCampus-tile-BG.jpg) repeat center top #fff;
 
-        // Load the bigger background image
-        #wordcampus-main {
-            background: url(../images/WordCampus-tile-BG.jpg) repeat center top #fff;
+        .footer {
 
-            .footer {
+            // Hide this message
+            .photos-hidden-message {
+                @include screen-reader-text();
+            }
 
-                // Hide this message
-                .photos-hidden-message {
-                    @include screen-reader-text();
-                }
-
-                // Show this message
-                .photos-visible-message {
-                    width: auto;
-                    height: auto;
-                    overflow: auto;
-                    text-indent: 0;
-                }
-
+            // Show this message
+            .photos-visible-message {
+                width: auto;
+                height: auto;
+                overflow: auto;
+                text-indent: 0;
             }
 
         }
