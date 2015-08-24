@@ -13,15 +13,14 @@
 @import '../../../foundation/scss/foundation/_settings';
 
 // Set the row width - content will be 1160px wide with 20px left and right padding
-$max-row-width: 600px;
-$row-width: $max-row-width;
+$row-width: 1160px;
 
 // Widen the column gutter to 40px - default is 30
 $column-gutter: 40px;
 
 // COLORS
 // We use these as default colors throughout
-$body-bg: #fff; //#eff4f5;
+$body-bg: #eff4f5;
 $primary-color: #900;
 $wordcampus-blue: #54596b;
 //$secondary-color: #e6e6e6;

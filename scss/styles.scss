@@ -55,117 +55,85 @@ body {
 
 }
 
-.container {
-    max-width: $max-row-width;
-    margin: 0 auto;
-    -moz-box-shadow: 0px 0px 20px #444;
-    -webkit-box-shadow: 0px 0px 20px #444;
-    box-shadow: 0px 0px 20px #444;
-}
-
-#wordcampus-header {
-    //background: rgba($black,0.4);
-    background: #222;
-    color: $white;
+#wpcampus-header {
+    background: #222; //$white;
+    color: $white; //#444;
     text-align: center;
-    border-bottom: 2px solid $white;
-
-    .container {
-        //background: rgba($black,0.6);
-        background: #222;
-        padding: 35px 20px 25px 20px;
-        -moz-box-shadow: none;
-        -webkit-box-shadow: none;
-        box-shadow: none;
-    }
-
-    img {
-        display: block;
-        margin: 0 15px 10px 15px;
-    }
+    padding: 25px 0 22px 0;
+    border-bottom: 1px solid $white;
 
     // Hide these elements visibly, but make sure they're still viewable by screen readers
-    .wordcampus-word {
+    .wpcampus-word {
         @include screen-reader-text();
     }
 
-    h2 {
+    .wpcampus-logo {
+        display: block;
+        float: left;
+        width: 375px;
+        margin: 0 0 7px 0;
+    }
+
+    .wpcampus-tagline {
+        display: block;
+        clear: both;
+        float: left;
         color: inherit;
         margin: 0;
-        font-size: 1.22em;
+        font-size: 1.06em;
+        line-height: 1;
         font-weight: 300;
         text-transform: uppercase;
     }
 
 }
 
-#wordcampus-main {
-    //background: url(../images/WordCampus-tile-BG-small.jpg) repeat center top #fff;
-    //background: rgba( $white, 0.3 );
-    min-height: 100%;
-    background: #fff;
-    overflow: hidden;
+#wpcampus-hero {
+    background: url('../images/WordCampus-tile-BG.jpg') 0 0 repeat;
+    background-size: auto 600px;
+    height: 300px;
+    position: relative;
+    -moz-box-shadow:    inset 0 0 20px #000000;
+    -webkit-box-shadow: inset 0 0 20px #000000;
+    box-shadow:         inset 0 0 20px #000000;
 
-    .container {
-        background: #eee;
-        margin-top: -40px;
-        padding-top: 32px;
+    &:after {
+        content: '';
+        background: rgba( $black, 0.5 );
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
     }
+}
 
-    .body {
-        background: $white;
-        padding: 30px 30px 50px 30px;
+#wpcampus-main {
+    background: $white;
+    min-height: 200px;
+    padding: 30px 0;
 
-        .the-wp-crowd {
-            background: #d0443c;
-            color: $white;
-            padding: 20px;
+    /*.the-wp-crowd {
+        background: #d0443c;
+        color: $white;
+        padding: 20px;
 
-            a {
-                color: inherit;
-            }
-
-        }
-
-        .post-status {
-            background: #2e3641;
-            color: $white;
-            padding: 20px;
-
-            a {
-                color: inherit;
-            }
-
-        }
-
-        .addthis_sharing_toolbox {
-            position: relative;
-            z-index: 0;
-
-            &:before {
-                content: '';
-                background: #eee;
-                position: absolute;
-                left: 0;
-                top: 16px;
-                width: 100%;
-                height: 1px;
-                z-index: -1;
-            }
-
+        a {
+            color: inherit;
         }
 
     }
 
-    .addthis_sharing_toolbox {
-        text-align: center;
-        margin: 15px 0;
+    .post-status {
+        background: #2e3641;
+        color: $white;
+        padding: 20px;
 
-        .at-share-tbx-element {
-            display: inline-block !important;
+        a {
+            color: inherit;
         }
 
-    }
+    }*/
 
     .gform_confirmation_message {
         background: rgba(0,255,0,0.2);
@@ -233,49 +201,48 @@ body {
         }
     }
 
-    .footer {
-        background: #eee;
-        padding: 25px 20px;
-        color: #444;
-        font-size: 0.9em;
-        line-height: 1.7;
+}
 
-        * {
-            font-size: inherit;
-            line-height: inherit;
-        }
+#wpcampus-footer {
+    padding: 25px 20px;
+    color: #444;
+    font-size: 0.9em;
+    line-height: 1.7;
 
-        > *:last-child {
-            margin-bottom: 0;
-        }
+    * {
+        font-size: inherit;
+        line-height: inherit;
+    }
 
-        .addthis_sharing_toolbox {
-            margin-top: -40px;
-        }
+    > *:last-child {
+        margin-bottom: 0;
+    }
 
-        h3 {
-            text-transform: uppercase;
-            margin: 0 0 3px 0;
-            color: #222;
-            font-weight: 600;
-        }
+    .addthis_sharing_toolbox {
+        margin-top: -40px;
+    }
 
-        // Hide this message on small screens
-        .photos-visible-message {
-            @include screen-reader-text();
-        }
+    h3 {
+        text-transform: uppercase;
+        margin: 0 0 3px 0;
+        color: #222;
+        font-weight: 600;
+    }
 
-        .univ-for-photos {
-            overflow: auto;
-            padding-left: 2.5em;
-            margin-left: 0;
+    // Hide this message on small screens
+    .photos-visible-message {
+        @include screen-reader-text();
+    }
 
-            li {
-                float: left;
-                width: 50%;
-                margin: 0 0 5px 0;
-            }
+    .univ-for-photos {
+        overflow: auto;
+        padding-left: 2.5em;
+        margin-left: 0;
 
+        li {
+            float: left;
+            width: 50%;
+            margin: 0 0 5px 0;
         }
 
     }
@@ -283,10 +250,10 @@ body {
 }
 
 // When the screen is wide enough to see more than just the form
-@media #{$screen} and (min-width:#{$max-row-width}) {
+/*@media #{$screen} and (min-width:#{$max-row-width}) {
 
     // Load the bigger background image
-    #wordcampus-main {
+    #wpcampus-main {
         background: url(../images/WordCampus-tile-BG.jpg) repeat center top #fff;
 
         .footer {
@@ -308,4 +275,4 @@ body {
 
     }
 
-}
+}*/

@@ -12,17 +12,22 @@
 </head>
 <body <?php body_class(); ?>>
 
-    <div id="wordcampus-header">
-        <div class="container">
-            <a href="<?php echo get_bloginfo('url'); ?>">
-                <h1 class="wordcampus-word">WordCampus:</h1>
-                <img class="wordcampus-logo" src="<?php echo get_stylesheet_directory_uri(); ?>/images/wordcampus.svg" />
-            </a>
-            <h2>Using WordPress In The World of Higher Education</h2>
+    <div id="wpcampus-header">
+        <div class="row">
+            <div class="small-12 columns">
+                <a class="wpcampus-logo" href="<?php echo get_bloginfo('url'); ?>">
+                    <span class="wpcampus-word">WordCampus</span>
+                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/wordcampus.svg" />
+                </a>
+                <span class="wpcampus-tagline">Where WordPress Meets Higher Education</span>
+            </div>
         </div>
     </div>
 
-    <div id="wordcampus-main">
-        <div class="container">
+    <div id="wpcampus-hero"></div>
 
-            <div class="body">
+    <div id="wpcampus-main">
+        <div class="row">
+            <div class="small-12 columns">
+
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras risus urna, ullamcorper in ullamcorper in, dapibus vel leo. Nam diam odio, aliquam quis accumsan a, viverra non sem. Pellentesque non fringilla sapien.</p>
