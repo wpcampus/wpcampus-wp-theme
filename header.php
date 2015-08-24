@@ -12,19 +12,22 @@
 </head>
 <body <?php body_class(); ?>>
 
-    <div id="wpcampus-header">
+    <div id="wpcampus-banner"></div> <!-- #wpcampus-banner -->
+
+    <div id="wpcampus-hero">
         <div class="row">
             <div class="small-12 columns">
-                <a class="wpcampus-logo" href="<?php echo get_bloginfo('url'); ?>">
-                    <span class="wpcampus-word">WordCampus</span>
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/wordcampus.svg" />
-                </a>
-                <span class="wpcampus-tagline">Where WordPress Meets Higher Education</span>
+                <div class="wpcampus-header">
+                    <a class="wpcampus-logo" href="<?php echo get_bloginfo('url'); ?>">
+                        <span class="wpcampus-word">WordCampus</span>
+                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/wordcampus.svg" />
+                    </a>
+                    <span class="wpcampus-tagline">Where WordPress Meets Higher Education</span>
+                    <a class="button">Get Involved</a>
+                </div> <!-- .wpcampus-header -->
             </div>
         </div>
     </div>
-
-    <div id="wpcampus-hero"></div>
 
     <div id="wpcampus-main">
         <div class="row">

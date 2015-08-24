@@ -16,15 +16,9 @@
 // Include our mixins
 @import "_mixins";
 
-// Normalize/reset everything
-@import '../../../foundation/scss/normalize';
-
-// Include all the things
+// Include all the Foundation-y things
 @import "_foundation";
 
-body {
-    height: 100%;
-}
 // Hide these elements visibly, but make sure they're still viewable by screen readers
 .screen-reader-text {
     @include screen-reader-text();
@@ -55,12 +49,38 @@ body {
 
 }
 
-#wpcampus-header {
+#wpcampus-banner {
+    height: 40px;
     background: #222; //$white;
     color: $white; //#444;
     text-align: center;
-    padding: 25px 0 22px 0;
     border-bottom: 1px solid $white;
+}
+
+#wpcampus-hero {
+    background: url('../images/WordCampus-tile-BG.jpg') 0 0 repeat;
+    background-size: auto 600px;
+    height: 260px;
+    position: relative;
+    color: $white;
+    -moz-box-shadow:    inset 0 0 20px #000000;
+    -webkit-box-shadow: inset 0 0 20px #000000;
+    box-shadow:         inset 0 0 20px #000000;
+
+    &:before {
+        content: '';
+        background: rgba( $black, 0.6 );
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .columns {
+        height: 260px;
+        position: relative;
+    }
 
     // Hide these elements visibly, but make sure they're still viewable by screen readers
     .wpcampus-word {
@@ -69,43 +89,42 @@ body {
 
     .wpcampus-logo {
         display: block;
-        float: left;
-        width: 375px;
-        margin: 0 0 7px 0;
+        width: 800px;
+        max-width: 100%;
+        margin: 0 auto 8px auto;
     }
 
     .wpcampus-tagline {
         display: block;
-        clear: both;
-        float: left;
         color: inherit;
         margin: 0;
-        font-size: 1.06em;
-        line-height: 1;
+        font-size: 1.5em;
+        line-height: 1.3;
         font-weight: 300;
         text-transform: uppercase;
+        text-align: center;
     }
 
-}
-
-#wpcampus-hero {
-    background: url('../images/WordCampus-tile-BG.jpg') 0 0 repeat;
-    background-size: auto 600px;
-    height: 300px;
-    position: relative;
-    -moz-box-shadow:    inset 0 0 20px #000000;
-    -webkit-box-shadow: inset 0 0 20px #000000;
-    box-shadow:         inset 0 0 20px #000000;
-
-    &:after {
-        content: '';
-        background: rgba( $black, 0.5 );
-        position: absolute;
-        left: 0;
-        top: 0;
+    .wpcampus-header {
+        display: block;
+        text-align: center;
         width: 100%;
-        height: 100%;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        padding: 0 ( $column_gutter / 2 );
+        @include set-transform( translate(0, -50%) );
+
+        .button {
+            margin: 18px auto 0 auto;
+            padding: 15px 18px;
+            text-transform: uppercase;
+            font-size: 1.2em;
+            line-height: 1.2;
+        }
+
     }
+
 }
 
 #wpcampus-main {
@@ -190,7 +209,7 @@ body {
             margin: 1.5em 0 0 0;
 
             .gform_button {
-                background: #444; //$wordcampus-blue;
+                background: #444;
                 width: 100%;
                 text-align: center;
                 margin: 0;
@@ -199,6 +218,7 @@ body {
             }
 
         }
+
     }
 
 }
@@ -249,30 +269,20 @@ body {
 
 }
 
-// When the screen is wide enough to see more than just the form
-/*@media #{$screen} and (min-width:#{$max-row-width}) {
+@media #{$medium-up} {
 
-    // Load the bigger background image
-    #wpcampus-main {
-        background: url(../images/WordCampus-tile-BG.jpg) repeat center top #fff;
+    #wpcampus-hero {
+        height: 300px;
 
-        .footer {
+        .columns {
+            height: 300px;
+        }
 
-            // Hide this message
-            .photos-hidden-message {
-                @include screen-reader-text();
-            }
-
-            // Show this message
-            .photos-visible-message {
-                width: auto;
-                height: auto;
-                overflow: auto;
-                text-indent: 0;
-            }
-
+        .wpcampus-tagline {
+            font-size: 2.25em;
+            line-height: 1.2;
         }
 
     }
 
-}*/
+}

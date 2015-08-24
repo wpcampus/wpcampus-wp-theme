@@ -6,7 +6,8 @@ module.exports = function(grunt) {
                 options: {
                     style: 'compressed',
                     noCache: true,
-                    sourcemap: 'none'
+                    sourcemap: 'none',
+                    loadPath: 'bower_components/foundation/scss'
                 },
                 files: [{
                     expand: true,
