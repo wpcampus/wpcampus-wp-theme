@@ -23,7 +23,7 @@
                         <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/wordcampus.svg" />
                     </a>
                     <span class="wpcampus-tagline">Where WordPress Meets Higher Education</span>
-                    <a class="button">Get Involved</a>
+                    <?php /*<a class="button">Get Involved</a>*/ ?>
                 </div> <!-- .wpcampus-header -->
             </div>
         </div>
@@ -32,5 +32,3 @@
     <div id="wpcampus-main">
         <div class="row">
             <div class="small-12 columns">
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras risus urna, ullamcorper in ullamcorper in, dapibus vel leo. Nam diam odio, aliquam quis accumsan a, viverra non sem. Pellentesque non fringilla sapien.</p>
