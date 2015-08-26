@@ -17,6 +17,11 @@ add_action( 'wp_enqueue_scripts', function () {
 
 }, 10 );
 
+// Add the AddThis script to the footer
+add_action( 'wp_footer', function() {
+    ?><script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-55c7ed90ac8a8479" async="async"></script><?php
+});
+
 //! Load favicons
 add_action( 'wp_head', 'wordcampus_add_favicons' );
 add_action( 'admin_head', 'wordcampus_add_favicons' );
