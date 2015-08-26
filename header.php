@@ -1,4 +1,8 @@
-<!DOCTYPE html>
+<?php
+
+$blog_url = get_bloginfo('url');
+
+?><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -12,13 +16,18 @@
 </head>
 <body <?php body_class(); ?>>
 
-    <div id="wpcampus-banner"></div> <!-- #wpcampus-banner -->
+    <div id="wpcampus-banner">
+        <ul class="menu">
+            <li<?php echo is_front_page() ? ' class="current"' : null; ?>><a href="<?php echo $blog_url; ?>">Get Involved</a></li>
+            <li<?php echo is_page( 'contact' ) ? ' class="current"' : null; ?>><a href="<?php echo $blog_url; ?>/contact/">Contact Us</a></li>
+        </ul>
+    </div> <!-- #wpcampus-banner -->
 
     <div id="wpcampus-hero">
         <div class="row">
             <div class="small-12 columns">
                 <div class="wpcampus-header">
-                    <a class="wpcampus-logo" href="<?php echo get_bloginfo('url'); ?>">
+                    <a class="wpcampus-logo" href="<?php echo $blog_url; ?>">
                         <span class="wpcampus-word">WordCampus</span>
                         <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/wordcampus.svg" />
                     </a>

@@ -49,12 +49,59 @@
 
 }
 
+h1 {
+    text-transform: uppercase;
+    font-weight: 300;
+}
+
+$banner-menu-height: 40px;
 #wpcampus-banner {
-    height: 40px;
-    background: #222; //$white;
-    color: $white; //#444;
+    height: $banner-menu-height;
+    background: #222;
+    color: $white;
     text-align: center;
     border-bottom: 1px solid $white;
+
+    ul.menu {
+        height: $banner-menu-height;
+        display: inline-block;
+        list-style: none;
+        margin: 0;
+        color: $white;
+        font-size: 1em;
+        line-height: $banner-menu-height - 1;
+        text-transform: uppercase;
+
+        li {
+            height: $banner-menu-height;
+            display: block;
+            float: left;
+            color: inherit;
+            font-size: inherit;
+            line-height: inherit;
+            margin: 0;
+            padding: 0;
+
+            a {
+                height: $banner-menu-height;
+                display: block;
+                color: inherit;
+                font-size: inherit;
+                line-height: inherit;
+                text-decoration: none;
+                color: rgba( $white, 0.8 );
+                padding: 0 12px;
+            }
+
+            &.current a,
+            a:hover {
+                background: rgba( $white, 0.2 );
+            }
+
+        }
+
+    }
+
 }
 
 #wpcampus-hero {
