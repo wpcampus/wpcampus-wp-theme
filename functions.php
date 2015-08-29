@@ -103,7 +103,7 @@ add_action( 'init', function() {
     // Register private WordCampus interest CPT
     register_post_type( 'wpcampus_interest', array(
         'labels'             => array(
-            'name'               => 'WPCampus Interest',
+            'name'               => 'Interest',
         ),
         'public'                => false,
         'publicly_queryable'    => false,
@@ -111,6 +111,7 @@ add_action( 'init', function() {
         'show_ui'               => true,
         'show_in_nav_menus'     => false,
         'show_in_menu'          => true,
+        'menu_icon'             => 'dashicons-welcome-learn-more',
         'show_in_admin_bar'     => false,
         'capability_type'       => 'wpcampus_interest',
         'hierarchical'          => false,
