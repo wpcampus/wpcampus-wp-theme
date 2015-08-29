@@ -385,7 +385,7 @@ function wordcampus_get_geocode( $address ) {
         return false;
     }
 
-    // Build maps query
+    // Build maps query - needs Google API Server Key
     $maps_api_key = get_option( 'wordcampus_google_maps_api_key' );
     $query = "https://maps.googleapis.com/maps/api/geocode/json?address=" . urlencode( $address ) . "&key=" . $maps_api_key;
 
