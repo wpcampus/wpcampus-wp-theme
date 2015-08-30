@@ -18,10 +18,25 @@ module.exports = function(grunt) {
                 }]
             }
         },
+        uglify: {
+            options: {
+                mangle: false,
+                compress: false
+            },
+            wordcampus: {
+                files: [{
+                    expand: true,
+                    src: [ 'wordcampus-data.js' ],
+                    cwd: 'js',
+                    dest: 'js',
+                    ext: '.min.js'
+                }]
+            }
+        },
         watch: {
             wordcampus: {
                 files: [ '**/*' ],
-                tasks: [ 'newer:sass:wordcampus' ]
+                tasks: [ 'newer:sass:wordcampus', 'newer:uglify:wordcampus' ]
             }
         }
     });
@@ -29,10 +44,11 @@ module.exports = function(grunt) {
     // Load our dependencies
     grunt.loadNpmTasks( 'grunt-contrib-sass' );
     grunt.loadNpmTasks( 'grunt-contrib-watch' );
+    grunt.loadNpmTasks( 'grunt-contrib-uglify' );
     grunt.loadNpmTasks( 'grunt-newer' );
 
     // Register our tasks
-   	grunt.registerTask( 'default', [ 'newer:sass', 'watch' ] );
+   	grunt.registerTask( 'default', [ 'newer:sass', 'newer:uglify', 'watch' ] );
 
     // Register a watch function
     grunt.event.on( 'watch', function( action, filepath, target ) {

@@ -27,8 +27,8 @@ add_shortcode( 'wordcampus_data', function( $args, $content = NULL ) {
         case 'work_in_higher_ed':
             return format_wordcampus_data_set( wordcampus_get_work_in_higher_ed_count(), $args[ 'format' ] );
 
-        case 'work_at_company':
-            return format_wordcampus_data_set( wordcampus_get_work_at_company_count(), $args[ 'format' ] );
+        case 'work_for_company':
+            return format_wordcampus_data_set( wordcampus_get_work_for_company_count(), $args[ 'format' ] );
 
         case 'work_outside_higher_ed':
             return format_wordcampus_data_set( wordcampus_get_work_outside_higher_ed_count(), $args[ 'format' ] );

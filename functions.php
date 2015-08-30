@@ -3,6 +3,21 @@
 // Include shortcodes
 require_once( STYLESHEETPATH . '/includes/shortcodes.php' );
 
+// Setup the API
+add_action( 'rest_api_init', function () {
+    global $wordcampus_api_data;
+
+    // Load the class
+    require_once( STYLESHEETPATH . '/includes/class-api-data.php' );
+
+    // Initialize our class
+    $wordcampus_api_data = new WordCampus_API_Data();
+
+    // Register our routes
+    $wordcampus_api_data->register_routes();
+
+} );
+
 //! Setup styles and scripts
 add_action( 'wp_enqueue_scripts', function () {
 
@@ -17,6 +32,17 @@ add_action( 'wp_enqueue_scripts', function () {
 
     // Enqueue modernizr - goes in header
     wp_enqueue_script( 'modernizr', 'https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js' );
+
+    // Enqueue the data scripts
+    if ( is_page( 'data' ) ) {
+
+        // Register Google Charts script
+        wp_register_script( 'google-charts', 'https://www.google.com/jsapi' );
+
+        // Enqueue our data script
+        wp_enqueue_script('wordcampus-data', $wordcampus_dir . 'js/wordcampus-data.min.js', array('jquery', 'google-charts'), false);
+
+    }
 
 }, 10 );
 
@@ -149,7 +175,7 @@ function wordcampus_get_work_in_higher_ed_count() {
 }
 
 // Get number of interested who work for a company that supports higher ed
-function wordcampus_get_work_at_company_count() {
+function wordcampus_get_work_for_company_count() {
     $search_criteria = array( 'status' => 'active' );
     $search_criteria['field_filters'][] = array( 'key' => '5', 'operator' => 'contains', 'value' => 'I freelance or work for a company that supports higher ed' );
     return $counts = GFAPI::count_entries( 1, $search_criteria );
