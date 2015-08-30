@@ -19,81 +19,56 @@ add_shortcode( 'wordcampus_data', function( $args, $content = NULL ) {
             return wordcampus_get_interested_count();
 
         case 'attend_in_person':
-
-            // Get the count
-            $attend_in_person_count = wordcampus_get_attend_in_person_count();
-
-            switch( $args[ 'format' ] ) {
-
-                case 'number':
-                case 'both':
-                    $number = $attend_in_person_count;
-
-                    if ( 'number' == $args[ 'format' ] ) {
-                        return $number;
-                    }
-
-                case 'percent':
-                case 'both':
-
-                    // Get total
-                    $total = wordcampus_get_interested_count();
-
-                    // Add percentage
-                    $percent = round( ( $attend_in_person_count / $total ) * 100 ) . '%';
-
-                    if ( 'percent' == $args[ 'format' ] ) {
-                        return $percent;
-                    }
-
-                    return "{$number} ({$percent})";
-
-                default:
-                    return $attend_in_person_count;
-
-            }
-
-            break;
+            return format_wordcampus_data_set( wordcampus_get_attend_in_person_count(), $args[ 'format' ] );
 
         case 'attend_live_stream':
+            return format_wordcampus_data_set( wordcampus_get_attend_live_stream_count(), $args[ 'format' ] );
 
-            // Get the count
-            $attend_live_stream_count = wordcampus_get_attend_live_stream_count();
+        case 'work_in_higher_ed':
+            return format_wordcampus_data_set( wordcampus_get_work_in_higher_ed_count(), $args[ 'format' ] );
 
-            switch( $args[ 'format' ] ) {
+        case 'work_at_company':
+            return format_wordcampus_data_set( wordcampus_get_work_at_company_count(), $args[ 'format' ] );
 
-                case 'number':
-                case 'both':
-                    $number = $attend_live_stream_count;
-
-                    if ( 'number' == $args[ 'format' ] ) {
-                        return $number;
-                    }
-
-                case 'percent':
-                case 'both':
-
-                    // Get total
-                    $total = wordcampus_get_interested_count();
-
-                    // Add percentage
-                    $percent = round( ( $attend_live_stream_count / $total ) * 100 ) . '%';
-
-                    if ( 'percent' == $args[ 'format' ] ) {
-                        return $percent;
-                    }
-
-                    return "{$number} ({$percent})";
-
-                default:
-                    return $attend_live_stream_count;
-
-            }
-
-            break;
+        case 'work_outside_higher_ed':
+            return format_wordcampus_data_set( wordcampus_get_work_outside_higher_ed_count(), $args[ 'format' ] );
 
     }
 
     return $content;
 
 });
+
+function format_wordcampus_data_set( $count, $format = 'number' ) {
+
+    switch( $format ) {
+
+        case 'number':
+        case 'both':
+            $number = $count;
+
+            if ( 'number' == $args[ 'format' ] ) {
+                return $number;
+            }
+
+        case 'percent':
+        case 'both':
+
+            // Get total
+            $total = wordcampus_get_interested_count();
+
+            // Add percentage
+            $percent = round( ( $count / $total ) * 100 ) . '%';
+
+            if ( 'percent' == $args[ 'format' ] ) {
+                return $percent;
+            }
+
+            return "{$number} ({$percent})";
+
+        default:
+            return $count;
+
+    }
+
+}

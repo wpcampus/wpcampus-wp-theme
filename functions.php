@@ -141,6 +141,27 @@ function wordcampus_get_attend_live_stream_count() {
     return $counts = GFAPI::count_entries( 1, $search_criteria );
 }
 
+// Get number of interested who work in higher ed
+function wordcampus_get_work_in_higher_ed_count() {
+    $search_criteria = array( 'status' => 'active' );
+    $search_criteria['field_filters'][] = array( 'key' => '5', 'operator' => 'contains', 'value' => 'I work at a higher ed institution' );
+    return $counts = GFAPI::count_entries( 1, $search_criteria );
+}
+
+// Get number of interested who work for a company that supports higher ed
+function wordcampus_get_work_at_company_count() {
+    $search_criteria = array( 'status' => 'active' );
+    $search_criteria['field_filters'][] = array( 'key' => '5', 'operator' => 'contains', 'value' => 'I freelance or work for a company that supports higher ed' );
+    return $counts = GFAPI::count_entries( 1, $search_criteria );
+}
+
+// Get number of interested who work outside higher ed
+function wordcampus_get_work_outside_higher_ed_count() {
+    $search_criteria = array( 'status' => 'active' );
+    $search_criteria['field_filters'][] = array( 'key' => '5', 'operator' => 'contains', 'value' => 'I work outside higher ed but am interested in higher ed' );
+    return $counts = GFAPI::count_entries( 1, $search_criteria );
+}
+
 // Get interest location
 function wordcampus_get_interest_location( $post_id ) {
 
