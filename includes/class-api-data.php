@@ -7,7 +7,7 @@ class WordCampus_API_Data {
     public function register_routes( $routes ) {
 
         // Get WordCampus data
-        register_rest_route( 'wordcampus/data', '/set/(?P<set>[a-z\_]+)', array(
+        register_rest_route( 'wordcampus/data', '/set/(?P<set>[a-z\_\-]+)', array(
             'methods'   => WP_REST_Server::READABLE,
             'callback'  => array( $this, 'get_data_set' ),
             'permission_callback' => function () {
@@ -31,6 +31,13 @@ class WordCampus_API_Data {
                     'work_in_higher_ed' => wordcampus_get_work_in_higher_ed_count(),
                     'work_for_company' => wordcampus_get_work_for_company_count(),
                     'work_outside_higher_ed' => wordcampus_get_work_outside_higher_ed_count(),
+                );
+                break;
+
+            case 'attend-preference':
+                $response = array(
+                    'attend_in_person' => wordcampus_get_attend_in_person_count(),
+                    'attend_live_stream' => wordcampus_get_attend_live_stream_count(),
                 );
                 break;
 

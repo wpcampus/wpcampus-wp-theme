@@ -33,4 +33,32 @@
 
 	}
 
+	// Load attend preference chart
+	google.setOnLoadCallback(wpcampus_draw_attend_pref_chart);
+	function wpcampus_draw_attend_pref_chart() {
+
+		// Get the attend preference data
+		$.get( 'http://wpcampus.org/wp-json/wordcampus/data/set/attend-preference', function( $wpcampus_data ) {
+
+			// Set the data
+			var $data = google.visualization.arrayToDataTable([
+				[ 'Task', 'Attendance Preference' ],
+				[ 'Attend in person', parseInt( $wpcampus_data.attend_in_person) ],
+				[ 'Attend via live stream', parseInt( $wpcampus_data.attend_live_stream ) ],
+			]);
+
+			// Set the options
+			var $options = {
+				title: 'Attendance Preference',
+				pieHole: 0.4,
+			};
+
+			// Draw the chart
+			var $chart = new google.visualization.PieChart(document.getElementById('wpcampus-chart-attend-pref'));
+			$chart.draw( $data, $options );
+
+		});
+
+	}
+
 })( jQuery );
