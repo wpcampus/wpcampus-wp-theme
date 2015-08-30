@@ -122,6 +122,25 @@ add_filter( 'gmb_mashup_infowindow_content', function( $response, $marker_data, 
 
 }, 100, 3 );
 
+// Get number of interested
+function wordcampus_get_interested_count() {
+    return GFAPI::count_entries( 1, array( 'status' => 'active' ) );
+}
+
+// Get number of interested who want to attend in person
+function wordcampus_get_attend_in_person_count() {
+    $search_criteria = array( 'status' => 'active' );
+    $search_criteria['field_filters'][] = array( 'key' => '6', 'operator' => 'like', 'value' => 'Attend in person' );
+    return $counts = GFAPI::count_entries( 1, $search_criteria );
+}
+
+// Get number of interested who want to attend via live stream
+function wordcampus_get_attend_live_stream_count() {
+    $search_criteria = array( 'status' => 'active' );
+    $search_criteria['field_filters'][] = array( 'key' => '6', 'operator' => 'like', 'value' => 'Attend via live stream' );
+    return $counts = GFAPI::count_entries( 1, $search_criteria );
+}
+
 // Get interest location
 function wordcampus_get_interest_location( $post_id ) {
 
