@@ -21,6 +21,9 @@ add_shortcode( 'wordcampus_data', function( $args, $content = NULL ) {
         case 'attend_in_person':
             return format_wordcampus_data_set( wordcampus_get_attend_in_person_count(), $args[ 'format' ] );
 
+        case 'attend_has_location':
+            return format_wordcampus_data_set( wordcampus_get_interested_has_location_count(), $args[ 'format' ] );
+
         case 'attend_live_stream':
             return format_wordcampus_data_set( wordcampus_get_attend_live_stream_count(), $args[ 'format' ] );
 
@@ -47,7 +50,7 @@ function format_wordcampus_data_set( $count, $format = 'number' ) {
         case 'both':
             $number = $count;
 
-            if ( 'number' == $args[ 'format' ] ) {
+            if ( 'number' == $format ) {
                 return $number;
             }
 
@@ -60,7 +63,7 @@ function format_wordcampus_data_set( $count, $format = 'number' ) {
             // Add percentage
             $percent = round( ( $count / $total ) * 100 ) . '%';
 
-            if ( 'percent' == $args[ 'format' ] ) {
+            if ( 'percent' == $format ) {
                 return $percent;
             }
 

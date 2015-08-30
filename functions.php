@@ -188,6 +188,22 @@ function wordcampus_get_work_outside_higher_ed_count() {
     return $counts = GFAPI::count_entries( 1, $search_criteria );
 }
 
+// Get number of interested who provided their location
+function wordcampus_get_interested_has_location_count() {
+    global $wpdb;
+
+    // Build query
+    $query = "SELECT COUNT(posts.ID) AS count FROM {$wpdb->posts} posts";
+
+    foreach( array( 'city', 'state' ) as $meta_key ) {
+        $query .= " INNER JOIN {$wpdb->postmeta} {$meta_key} ON {$meta_key}.post_id = posts.ID AND {$meta_key}.meta_key = 'traveling_{$meta_key}' AND {$meta_key}.meta_value != ''";
+    }
+
+    $query .= " WHERE posts.post_type = 'wpcampus_interest' AND posts.post_status = 'publish'";
+
+    return $wpdb->get_var($query);
+}
+
 // Get interest location
 function wordcampus_get_interest_location( $post_id ) {
 
@@ -203,7 +219,6 @@ function wordcampus_get_interest_location( $post_id ) {
     }
 
     return false;
-
 }
 
 // Get interest location
@@ -228,7 +243,6 @@ function wordcampus_get_interest_location_count( $location = array() ) {
     $query .= " WHERE posts.post_type = 'wpcampus_interest' AND posts.post_status = 'publish'";
 
     return $wpdb->get_var($query);
-
 }
 
 // Register our interest CPT

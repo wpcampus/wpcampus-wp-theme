@@ -26,6 +26,10 @@ class WordCampus_API_Data {
 
         switch( $request['set'] ) {
 
+            case 'no-of-interested':
+                $response = wordcampus_get_interested_count();
+                break;
+
             case 'affiliation':
                 $response = array(
                     'work_in_higher_ed' => wordcampus_get_work_in_higher_ed_count(),
@@ -39,6 +43,10 @@ class WordCampus_API_Data {
                     'attend_in_person' => wordcampus_get_attend_in_person_count(),
                     'attend_live_stream' => wordcampus_get_attend_live_stream_count(),
                 );
+                break;
+
+            case 'attend-has-location':
+                $response = wordcampus_get_interested_has_location_count();
                 break;
 
         }
