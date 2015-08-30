@@ -49,6 +49,10 @@ class WordCampus_API_Data {
                 $response = wordcampus_get_interested_has_location_count();
                 break;
 
+            case 'attend-country':
+                $response = wordcampus_get_interest_by_country();
+                break;
+
         }
 
         // If no response, return an error

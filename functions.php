@@ -188,6 +188,12 @@ function wordcampus_get_work_outside_higher_ed_count() {
     return $counts = GFAPI::count_entries( 1, $search_criteria );
 }
 
+// Get number of interest by country
+function wordcampus_get_interest_by_country() {
+    global $wpdb;
+    return $wpdb->get_results( "SELECT meta_value AS country, COUNT(*) AS count FROM {$wpdb->postmeta} WHERE meta_key = 'traveling_country' AND meta_value != '' GROUP BY meta_value ORDER BY count DESC");
+};
+
 // Get number of interested who provided their location
 function wordcampus_get_interested_has_location_count() {
     global $wpdb;

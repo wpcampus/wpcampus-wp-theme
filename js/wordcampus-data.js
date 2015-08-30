@@ -2,7 +2,7 @@
 	'use strict';
 
 	// Load Google-ness
-	google.load("visualization", "1", {packages:["corechart"]});
+	google.load("visualization", "1", {packages:['corechart','geochart']});
 
 	// Load affiliation chart
 	google.setOnLoadCallback(wpcampus_draw_affiliation_chart);
@@ -56,6 +56,38 @@
 			// Draw the chart
 			var $chart = new google.visualization.PieChart(document.getElementById('wpcampus-chart-attend-pref'));
 			$chart.draw( $data, $options );
+
+		});
+
+	}
+
+	// Load regions map
+	google.setOnLoadCallback(wpcampus_draw_regions_map);
+	function wpcampus_draw_regions_map() {
+
+		// Get the attend preference data
+		$.get( 'http://wpcampus.org/wp-json/wordcampus/data/set/attend-country', function( $wpcampus_data ) {
+
+			// Create array
+			var $countries = [ ['Country', 'Interest'] ];
+			$.each( $wpcampus_data, function( $index, $value ) {
+				console.log($value);
+				$countries.push( [ $value.country, parseInt( $value.count ) ] );
+			});
+
+			console.log($countries);
+
+			// Set data
+			var $data = google.visualization.arrayToDataTable($countries);
+
+			// Set options
+			var $options = {
+				colorAxis: {minValue: 0,  colors: ['#ff9900', '#3366cc']}
+			};
+
+			// Draw the chart
+			var $chart = new google.visualization.GeoChart(document.getElementById('wpcampus-map-regions'));
+			$chart.draw($data, $options);
 
 		});
 
