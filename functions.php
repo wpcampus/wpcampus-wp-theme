@@ -137,6 +137,31 @@ function wordcampus_get_interest_location( $post_id ) {
 
 }
 
+// Get interest location
+function wordcampus_get_interest_location_count( $location = array() ) {
+    global $wpdb;
+
+    // Process args
+	$defaults = array(
+		'city' => null,
+		'state' => null,
+		'country' => 'United States',
+	);
+    $location = wp_parse_args( $location, $defaults );
+
+    // Build query
+    $query = "SELECT COUNT(posts.ID) AS count FROM {$wpdb->posts} posts";
+
+        foreach( $location as $meta_key => $meta_value ) {
+            $query .= " INNER JOIN {$wpdb->postmeta} {$meta_key} ON {$meta_key}.post_id = posts.ID AND {$meta_key}.meta_key = 'traveling_{$meta_key}' AND {$meta_key}.meta_value LIKE '{$meta_value}'";
+        }
+
+    $query .= " WHERE posts.post_type = 'wpcampus_interest' AND posts.post_status = 'publish'";
+
+    return $wpdb->get_var($query);
+
+}
+
 // Register our interest CPT
 add_action( 'init', function() {
 
