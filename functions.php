@@ -188,6 +188,39 @@ function wordcampus_get_work_outside_higher_ed_count() {
     return $counts = GFAPI::count_entries( 1, $search_criteria );
 }
 
+// Get interest by the best time of the year
+function wordcampus_get_interest_best_time_of_year() {
+
+    // Store counts - start with total
+    $counts = array(
+        'Total' => wordcampus_get_interested_count(),
+    );
+
+    // Set options
+    $options = array(
+        'Early Spring', 'Middle Spring', 'Late Spring',
+        'Early Summer', 'Middle Summer', 'Late Summer',
+        'Early Fall', 'Middle Fall', 'Late Fall'
+    );
+
+    // Get by option
+    foreach ( $options as $option ) {
+
+        // Setup search criteria
+        $search_criteria = array( 'status' => 'active' );
+
+        // Setup field filters
+        $search_criteria['field_filters'][] = array( 'key' => '13', 'operator' => 'contains', 'value' => $option );
+
+        // Get the count
+        $counts[ $option ] = GFAPI::count_entries( 1, $search_criteria );
+
+    }
+
+    return $counts;
+
+}
+
 // Get number of interest by country
 function wordcampus_get_interest_by_country() {
     global $wpdb;

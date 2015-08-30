@@ -53,6 +53,10 @@ class WordCampus_API_Data {
                 $response = wordcampus_get_interest_by_country();
                 break;
 
+            case 'best-time-of-year':
+                $response = wordcampus_get_interest_best_time_of_year();
+                break;
+
         }
 
         // If no response, return an error

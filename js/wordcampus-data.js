@@ -2,7 +2,7 @@
 	'use strict';
 
 	// Load Google-ness
-	google.load("visualization", "1", {packages:['corechart','geochart']});
+	google.load("visualization", "1", {packages:['corechart','geochart','bar']});
 
 	// Load affiliation chart
 	google.setOnLoadCallback(wpcampus_draw_affiliation_chart);
@@ -61,6 +61,49 @@
 
 	}
 
+	// Load best time of year chart
+	google.setOnLoadCallback(wpcampus_draw_best_time_of_year_chart);
+	function wpcampus_draw_best_time_of_year_chart() {
+
+		// Get the best time of year data
+		$.get( 'http://wpcampus.org/wp-json/wordcampus/data/set/best-time-of-year', function( $wpcampus_data ) {
+
+			// Create time array
+			var $total = 0;
+			var $time_data = [ ['Best Time of Year', 'Percentage'] ];
+			$.each( $wpcampus_data, function( $index, $value ) {
+				if ( 'Total' == $index ) {
+					$total = parseInt($value);
+					return;
+				}
+				$time_data.push( [ $index, parseInt($value) ] ); //Math.round( ( parseInt($value) / $total ) * 100 ) ] );
+			});
+
+			// Set data
+			var $data = new google.visualization.arrayToDataTable($time_data);
+
+			// Set options
+			var $options = {
+				legend: { position: 'none' },
+				bars: 'horizontal', // Required for Material Bar Charts.
+				axes: {
+					x: {
+						0: { // Top x-axis
+							side: 'top',
+							label: 'Number of Votes (Out of ' + $total + ')'
+						}
+					}
+				}
+			};
+
+			// Draw the chart
+			var $chart = new google.charts.Bar(document.getElementById('wpcampus-chart-best-time-of-year'));
+			$chart.draw($data, $options);
+
+		});
+
+	}
+
 	// Load regions map
 	google.setOnLoadCallback(wpcampus_draw_regions_map);
 	function wpcampus_draw_regions_map() {
@@ -71,11 +114,8 @@
 			// Create array
 			var $countries = [ ['Country', 'Interest'] ];
 			$.each( $wpcampus_data, function( $index, $value ) {
-				console.log($value);
 				$countries.push( [ $value.country, parseInt( $value.count ) ] );
 			});
-
-			console.log($countries);
 
 			// Set data
 			var $data = google.visualization.arrayToDataTable($countries);
