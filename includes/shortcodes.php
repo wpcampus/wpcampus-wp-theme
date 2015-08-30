@@ -16,10 +16,8 @@ add_shortcode( 'wordcampus_data', function( $args, $content = NULL ) {
 
         case 'no_of_interested':
 
-            if ( $counts = GFFormsModel::get_form_counts( 1 ) ) {
-                if ( isset( $counts[ 'total' ] ) ) {
-                    return $counts[ 'total' ];
-                }
+            if ( $counts = GFAPI::count_entries( 1, array( 'status' => 'active' ) ) ) {
+                return $counts;
             }
 
             break;
