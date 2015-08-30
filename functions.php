@@ -97,6 +97,46 @@ add_filter( 'qm/process', function( $show_qm, $is_admin_bar_showing ) {
     return $is_admin_bar_showing;
 });
 
+// Build our own map infowindow content
+add_filter( 'gmb_mashup_infowindow_content', function( $response, $marker_data, $post_id ) {
+
+    // Only for interest posts
+    if ( 'wpcampus_interest' != get_post_type( $marker_data['id'] ) ) {
+        return $response;
+    }
+
+    // Build new infowindow content
+    $response['infowindow'] = '<div id="infobubble-content" class="main-place-infobubble-content">';
+
+        // Get location
+        if ( $location = wordcampus_get_interest_location($post_id) ) {
+            $response['infowindow'] .= '<p class="place-title">' . $location . '</p>';
+		}
+
+    $response['infowindow'] .= '</div>';
+
+    return $response;
+
+}, 100, 3 );
+
+// Get interest location
+function wordcampus_get_interest_location( $post_id ) {
+
+    // Get data
+    $location = array();
+    foreach( array( 'traveling_city', 'traveling_state', 'traveling_country' ) as $meta_key ) {
+        $location[] = ucfirst( get_post_meta( $post_id, $meta_key, true ) );
+    }
+
+    // Build string
+    if ( $location = array_filter( $location ) ) {
+        return implode( ', ', $location );
+    }
+
+    return false;
+
+}
+
 // Register our interest CPT
 add_action( 'init', function() {
 
