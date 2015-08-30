@@ -1,5 +1,8 @@
 <?php
 
+// Include shortcodes
+require_once( STYLESHEETPATH . '/includes/shortcodes.php' );
+
 //! Setup styles and scripts
 add_action( 'wp_enqueue_scripts', function () {
 
