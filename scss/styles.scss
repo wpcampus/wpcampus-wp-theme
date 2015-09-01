@@ -220,13 +220,35 @@ $banner-menu-height: 40px;
     margin: -20px 0 35px 0;
 }
 
-.wpcampus-data-group {
+#wpcampus-data-group {
     background: rgba(0,0,0,0.05);
     text-align: center;
     font-size: 1.4em;
     text-transform: uppercase;
     color: rgba(0,0,0,0.9);
     padding: 20px;
+    margin-bottom: 0;
+}
+
+#wpcampus-involvement {
+    margin: 0 0 2em 3em;
+    overflow: auto;
+
+    li {
+        display: block;
+        float: left;
+        width: 50%;
+
+        &:before {
+            content: '-';
+            font-weight: bold;
+            padding: 0 8px 0 0;
+            font-size: 1.1em;
+            line-height: 1;
+        }
+
+    }
+
 }
 
 #wpcampus-main {
