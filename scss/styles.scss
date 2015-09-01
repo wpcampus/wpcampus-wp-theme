@@ -190,9 +190,9 @@ $banner-menu-height: 40px;
 .wpcampus-map {
     width: 100%;
     height: 450px;
-    border-top: 1px solid rgba(0,0,0,0.1);
-    border-bottom: 1px solid rgba(0,0,0,0.1);
+    border: 1px solid rgba($black,0.1);
     margin: 0 0 30px 0;
+    overflow: hidden;
 
     & + .wpcampus-chart,
     & + .wpcampus-map {
@@ -201,13 +201,13 @@ $banner-menu-height: 40px;
     }
 
     &.bar-chart {
-        padding: 40px 0;
+        padding: 40px;
     }
 
 }
 
 .wpcampus-map {
-    padding: 40px 0;
+    padding: 40px;
 }
 
 .google-maps-builder-wrap {
@@ -215,19 +215,21 @@ $banner-menu-height: 40px;
 }
 
 .maps-builder-pro-message {
-    background: rgba(0,0,0,0.05);
+    background: rgba($black,0.05);
     padding: 20px;
     margin: -20px 0 35px 0;
 }
 
 #wpcampus-data-group {
-    background: rgba(0,0,0,0.05);
+    background: rgba($black,0.02);
     text-align: center;
     font-size: 1.4em;
     text-transform: uppercase;
-    color: rgba(0,0,0,0.9);
+    color: rgba($black,0.9);
     padding: 20px;
     margin-bottom: 0;
+    border: 1px solid rgba($black,0.1);
+    border-bottom: 0;
 }
 
 #wpcampus-involvement {
@@ -249,6 +251,13 @@ $banner-menu-height: 40px;
 
     }
 
+}
+
+#wpcampus-main-page-title {
+    background: #eff4f5; //rgba($black,0.02);
+    padding: 25px 0;
+    margin: 0;
+    text-align: center;
 }
 
 #wpcampus-main {

@@ -36,8 +36,12 @@ $blog_url = get_bloginfo('url');
                 </div> <!-- .wpcampus-header -->
             </div>
         </div>
-    </div>
+    </div><?php
 
-    <div id="wpcampus-main">
+    if ( ! is_front_page() ) {
+        ?><h1 id="wpcampus-main-page-title"><?php the_title(); ?></h1><?php
+    }
+
+    ?><div id="wpcampus-main">
         <div class="row">
             <div class="small-12 columns">
