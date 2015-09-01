@@ -196,3 +196,26 @@ function wordcampus_get_interest_sessions() {
     return false;
 
 }
+
+function wordcampus_get_interest_universities() {
+    $search_criteria = array( 'status' => 'active' );
+    $search_criteria['field_filters'][] = array( 'key' => '5', 'operator' => 'contains', 'value' => 'I work at a higher ed institution' );
+    //$search_criteria['field_filters'][] = array( 'key' => '4', 'operator' => 'is not', 'value' => '' );
+    if ( $entries = GFAPI::get_entries( 1, $search_criteria ) ) {
+
+        $work = array();
+
+        // Go through and create list of where they work
+        foreach( $entries as $entry ) {
+            if ( $workplace = rgar( $entry, '4' ) ) {
+                $work[] = $workplace;
+            }
+        }
+
+        if ( ! empty( $work ) ) {
+            return $work;
+        }
+
+    }
+    return false;
+}

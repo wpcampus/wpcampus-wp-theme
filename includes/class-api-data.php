@@ -61,6 +61,10 @@ class WordCampus_API_Data {
                 $response = wordcampus_get_interest_sessions();
                 break;
 
+            case 'universities':
+                $response = wordcampus_get_interest_universities();
+                break;
+
         }
 
         // If no response, return an error
