@@ -191,7 +191,6 @@
 	}
 	
 	jQuery( window ).on( 'resize', function() {
-		console.log( 'Doing resize action now' );
 		wpcampus_draw_regions_map();
 		wpcampus_draw_best_time_of_year_chart();
 		wpcampus_draw_sessions_chart();

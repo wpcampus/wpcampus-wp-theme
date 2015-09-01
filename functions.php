@@ -44,7 +44,7 @@ add_action( 'wp_enqueue_scripts', function () {
         wp_register_script( 'google-charts', 'https://www.google.com/jsapi' );
 
         // Enqueue our data script
-        wp_enqueue_script('wordcampus-data', $wordcampus_dir . 'js/wordcampus-data.js', array('jquery', 'google-charts'), $wpcampus_version, false);
+        wp_enqueue_script( 'wordcampus-data', $wordcampus_dir . 'js/wordcampus-data.min.js', array('jquery', 'google-charts'), $wpcampus_version, false );
 
     }
 
