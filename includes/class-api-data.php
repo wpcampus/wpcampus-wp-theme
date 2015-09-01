@@ -57,6 +57,10 @@ class WordCampus_API_Data {
                 $response = wordcampus_get_interest_best_time_of_year();
                 break;
 
+            case 'sessions':
+                $response = wordcampus_get_interest_sessions();
+                break;
+
         }
 
         // If no response, return an error

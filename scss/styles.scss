@@ -254,7 +254,7 @@ $banner-menu-height: 40px;
 }
 
 #wpcampus-main-page-title {
-    background: #eff4f5; //rgba($black,0.02);
+    background: $body-bg;
     padding: 25px 0;
     margin: 0;
     text-align: center;

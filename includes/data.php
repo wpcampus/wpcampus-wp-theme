@@ -142,3 +142,57 @@ function wordcampus_get_group_count( $group ) {
     $search_criteria['field_filters'][] = array( 'key' => '7', 'operator' => 'contains', 'value' => $group );
     return $counts = GFAPI::count_entries( 1, $search_criteria );
 }
+
+function wordcampus_get_interest_sessions() {
+
+    // Get form in
+    if ( $form = GFAPI::get_form( 1 ) ) {
+
+        // Loop through each field
+        $field_id = 15;
+        foreach( $form['fields'] as $field ) {
+
+            // Only for our specific field id
+            if ( $field[ 'id' ] != $field_id ) {
+                continue;
+            }
+
+            // Make sure we have choices
+            if ( ! $field['choices'] ) {
+                return false;
+            }
+
+            // Store counts - start with total
+            $counts = array(
+                'Total' => wordcampus_get_interested_count(),
+            );
+
+            // Get by option
+            $choice_index = 1;
+            foreach ($field['choices'] as $choice) {
+
+                // Setup search criteria
+                $search_criteria = array('status' => 'active');
+
+                // Setup field filters
+                $search_criteria[ 'field_filters' ][] = array( 'key' => "{$field_id}.{$choice_index}", 'operator' => 'contains', 'value' => $choice['value'] );
+
+                // Get the count
+                $this_counts = GFAPI::count_entries(1, $search_criteria);
+
+                // Add to counts
+                $counts[ $choice['value']  ] = $this_counts;
+
+                $choice_index++;
+
+            }
+
+            return $counts;
+
+        }
+
+    }
+
+    return false;
+
+}

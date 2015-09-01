@@ -61,6 +61,49 @@
 
 	}
 
+	// Load sessions chart
+	google.setOnLoadCallback(wpcampus_draw_sessions_chart);
+	function wpcampus_draw_sessions_chart() {
+
+		// Get the sessions data
+		$.get( 'http://wpcampus.org/wp-json/wordcampus/data/set/sessions', function( $wpcampus_data ) {
+
+			// Create time array
+			var $total = 0;
+			var $time_data = [ ['Sessions', 'Votes'] ];
+			$.each( $wpcampus_data, function( $index, $value ) {
+				if ( 'Total' == $index ) {
+					$total = parseInt($value);
+					return;
+				}
+				$time_data.push( [ $index, parseInt($value) ] );
+			});
+
+			// Set data
+			var $data = new google.visualization.arrayToDataTable($time_data);
+
+			// Set options
+			var $options = {
+				legend: { position: 'none' },
+				bars: 'horizontal', // Required for Material Bar Charts.
+				axes: {
+					x: {
+						0: { // Top x-axis
+							side: 'top',
+							label: 'Number of Votes (Out of ' + $total + ')'
+						}
+					}
+				}
+			};
+
+			// Draw the chart
+			var $chart = new google.charts.Bar(document.getElementById('wpcampus-chart-sessions'));
+			$chart.draw($data, $options);
+
+		});
+
+	}
+
 	// Load best time of year chart
 	google.setOnLoadCallback(wpcampus_draw_best_time_of_year_chart);
 	function wpcampus_draw_best_time_of_year_chart() {
