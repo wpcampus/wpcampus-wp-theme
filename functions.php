@@ -23,6 +23,7 @@ add_action( 'rest_api_init', function () {
 
 //! Setup styles and scripts
 add_action( 'wp_enqueue_scripts', function () {
+	$wpcampus_version = '0.1.9';
 
     // Get the directory
     $wordcampus_dir = trailingslashit( get_stylesheet_directory_uri() );
@@ -31,7 +32,7 @@ add_action( 'wp_enqueue_scripts', function () {
     wp_enqueue_style( 'wordcampus-fonts', 'http://fonts.googleapis.com/css?family=Open+Sans:600,400,300' );
 
     // Enqueue the base styles
-    wp_enqueue_style( 'wordcampus', $wordcampus_dir . 'css/styles.min.css', array( 'wordcampus-fonts' ), false );
+    wp_enqueue_style( 'wordcampus', $wordcampus_dir . 'css/styles.min.css', array( 'wordcampus-fonts' ), $wpcampus_version, 'all' );
 
     // Enqueue modernizr - goes in header
     wp_enqueue_script( 'modernizr', 'https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js' );
@@ -43,7 +44,7 @@ add_action( 'wp_enqueue_scripts', function () {
         wp_register_script( 'google-charts', 'https://www.google.com/jsapi' );
 
         // Enqueue our data script
-        wp_enqueue_script('wordcampus-data', $wordcampus_dir . 'js/wordcampus-data.min.js', array('jquery', 'google-charts'), false);
+        wp_enqueue_script('wordcampus-data', $wordcampus_dir . 'js/wordcampus-data.js', array('jquery', 'google-charts'), $wpcampus_version, false);
 
     }
 

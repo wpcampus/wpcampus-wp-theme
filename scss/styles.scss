@@ -241,9 +241,10 @@ $banner-menu-height: 40px;
     overflow: auto;
 
     li {
-        display: block;
-        float: left;
-        width: 50%;
+        display: inline-block;
+        float: none;
+        width: 100%;
+
 
         &:before {
             content: '-';
@@ -428,6 +429,10 @@ $banner-menu-height: 40px;
 }
 
 @media #{$medium-up} {
+	
+	#wpcampus-involvement li {
+		width: 45%;
+	}
 
     #wpcampus-hero {
         height: 300px;

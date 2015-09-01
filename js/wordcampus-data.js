@@ -1,5 +1,11 @@
 (function( $ ) {
 	'use strict';
+	
+	// Make a reusable method to determine whether this is a narrow display or not
+	var WPCampusMobileWidth = 600;
+	function wpcampus_is_mobile() {
+		return jQuery( window ).innerWidth() <= WPCampusMobileWidth;
+	}
 
 	// Load Google-ness
 	google.load("visualization", "1", {packages:['corechart','geochart','bar']});
@@ -24,6 +30,10 @@
 				title: 'Affiliation',
 				pieHole: 0.4,
 			};
+			
+			if ( wpcampus_is_mobile() ) {
+				$options.legend = { 'position' : 'bottom' };
+			}
 
 			// Draw the chart
 			var $chart = new google.visualization.PieChart(document.getElementById('wpcampus-chart-affiliation'));
@@ -52,6 +62,10 @@
 				title: 'Attendance Preference',
 				pieHole: 0.4,
 			};
+			
+			if ( wpcampus_is_mobile() ) {
+				$options.legend = { 'position' : 'bottom' };
+			}
 
 			// Draw the chart
 			var $chart = new google.visualization.PieChart(document.getElementById('wpcampus-chart-attend-pref'));
@@ -95,7 +109,7 @@
 					}
 				}
 			};
-
+			
 			// Draw the chart
 			var $chart = new google.charts.Bar(document.getElementById('wpcampus-chart-sessions'));
 			$chart.draw($data, $options);
@@ -175,5 +189,13 @@
 		});
 
 	}
-
+	
+	jQuery( window ).on( 'resize', function() {
+		console.log( 'Doing resize action now' );
+		wpcampus_draw_regions_map();
+		wpcampus_draw_best_time_of_year_chart();
+		wpcampus_draw_sessions_chart();
+		wpcampus_draw_attend_pref_chart();
+		wpcampus_draw_affiliation_chart();
+	} );
 })( jQuery );
