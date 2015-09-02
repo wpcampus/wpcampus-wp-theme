@@ -8,31 +8,31 @@ require_once( STYLESHEETPATH . '/includes/shortcodes.php' );
 
 // Setup the API
 add_action( 'rest_api_init', function () {
-    global $wordcampus_api_data;
+    global $wpcampus_api_data;
 
     // Load the class
     require_once( STYLESHEETPATH . '/includes/class-api-data.php' );
 
     // Initialize our class
-    $wordcampus_api_data = new WordCampus_API_Data();
+    $wpcampus_api_data = new WordCampus_API_Data();
 
     // Register our routes
-    $wordcampus_api_data->register_routes();
+    $wpcampus_api_data->register_routes();
 
 } );
 
 //! Setup styles and scripts
 add_action( 'wp_enqueue_scripts', function () {
-	$wpcampus_version = '0.1.9';
+	$wpcampus_version = '0.55';
 
     // Get the directory
-    $wordcampus_dir = trailingslashit( get_stylesheet_directory_uri() );
+    $wpcampus_dir = trailingslashit( get_stylesheet_directory_uri() );
 
     // Load Fonts
     wp_enqueue_style( 'wordcampus-fonts', 'http://fonts.googleapis.com/css?family=Open+Sans:600,400,300' );
 
     // Enqueue the base styles
-    wp_enqueue_style( 'wordcampus', $wordcampus_dir . 'css/styles.min.css', array( 'wordcampus-fonts' ), $wpcampus_version, 'all' );
+    wp_enqueue_style( 'wordcampus', $wpcampus_dir . 'css/styles.min.css', array( 'wordcampus-fonts' ), $wpcampus_version, 'all' );
 
     // Enqueue modernizr - goes in header
     wp_enqueue_script( 'modernizr', 'https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js' );
@@ -41,10 +41,16 @@ add_action( 'wp_enqueue_scripts', function () {
     if ( is_page( 'data' ) ) {
 
         // Register Google Charts script
-        wp_register_script( 'google-charts', 'https://www.google.com/jsapi' );
+        wp_register_script( 'google-charts', 'https://www.google.com/jsapi', array('jquery' ) );
+
+        // Register Chartist script
+        wp_register_script( 'chartist', 'http://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js' );
+
+        // Enqueue Chartist styles
+        wp_enqueue_style( 'chartist', $wpcampus_dir . 'css/chartist.min.css', array(), $wpcampus_version, 'all' );
 
         // Enqueue our data script
-        wp_enqueue_script( 'wordcampus-data', $wordcampus_dir . 'js/wordcampus-data.min.js', array('jquery', 'google-charts'), $wpcampus_version, false );
+        wp_enqueue_script( 'wordcampus-data', $wpcampus_dir . 'js/wordcampus-data.min.js', array('jquery', 'google-charts', 'chartist'), $wpcampus_version, false );
 
     }
 
@@ -151,6 +157,90 @@ add_filter( 'gmb_mashup_infowindow_content', function( $response, $marker_data, 
     return $response;
 
 }, 100, 3 );
+
+// Get breadcrumbs
+function wordcampus_get_breadcrumbs_html() {
+    global $post;
+
+	// Build array of breadcrumbs
+	$breadcrumbs = array();
+
+    // Not for front page
+    if ( is_front_page() ) {
+        return false;
+    }
+
+    // Get ancestors
+    $post_ancestors = get_post_ancestors( $post->ID );
+
+    // Add home
+    $breadcrumbs[] = array(
+        'url'   => get_bloginfo( 'url' ),
+        'label' => 'Home',
+    );
+
+    // Add the ancestors
+    foreach( $post_ancestors as $post_ancestor_id ) {
+
+        // Add ancestor
+        $breadcrumbs[] = array(
+            'ID'	=> $post_ancestor_id,
+            'url'   => get_permalink( $post_ancestor_id ),
+            'label' => get_the_title( $post_ancestor_id ),
+        );
+
+    }
+
+    // Add current page - if not home page
+    $breadcrumbs[ 'current' ] = array(
+        'ID'      => $post->ID,
+        'url'     => get_permalink( $post ),
+        'label'   => get_the_title( $post->ID ),
+    );
+
+	// Build breadcrumbs HTML
+	$breadcrumbs_html = null;
+
+	foreach( $breadcrumbs as $crumb_key => $crumb ) {
+
+		// Make sure we have what we need
+		if ( empty( $crumb[ 'label' ] ) ) {
+			continue;
+		}
+
+		// If no string crumb key, set as ancestor
+		if ( ! $crumb_key || is_numeric( $crumb_key ) ) {
+			$crumb_key = 'ancestor';
+		}
+
+		// Setup classes
+		$crumb_classes = array( $crumb_key );
+
+		// Add if current
+		if ( isset( $crumb[ 'current' ] ) && $crumb[ 'current' ] ) {
+			$crumb_classes[] = 'current';
+		}
+
+		$breadcrumbs_html .= '<li role="menuitem"' . ( ! empty( $crumb_classes ) ? ' class="' . implode( ' ', $crumb_classes ) . '"' : null ) . '>';
+
+		// Add URL and label
+		if ( ! empty( $crumb[ 'url' ] ) ) {
+			$breadcrumbs_html .= '<a href="' . $crumb[ 'url' ] . '"' . ( ! empty( $crumb[ 'title' ] ) ? ' title="' . $crumb[ 'title' ] . '"' : null ) . '>' . $crumb[ 'label' ] . '</a>';
+		} else {
+			$breadcrumbs_html .= $crumb[ 'label' ];
+		}
+
+		$breadcrumbs_html .= '</li>';
+
+	}
+
+    // Wrap them in nav
+	$breadcrumbs_html = '<div class="breadcrumbs-wrapper"><nav class="breadcrumbs" role="menubar" aria-label="breadcrumbs">' . $breadcrumbs_html . '</nav></div>';
+
+	//  We change up the variable so it doesn't interfere with global variable
+	return $breadcrumbs_html;
+
+}
 
 // Register our interest CPT
 add_action( 'init', function() {

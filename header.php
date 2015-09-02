@@ -39,7 +39,16 @@ $blog_url = get_bloginfo('url');
     </div><?php
 
     if ( ! is_front_page() ) {
-        ?><h1 id="wpcampus-main-page-title"><?php the_title(); ?></h1><?php
+        ?><div id="wpcampus-main-page-title">
+            <h1><?php the_title(); ?></h1><?php
+
+            // Include breadcrumbs
+            if ( $breadcrumbs_html = wordcampus_get_breadcrumbs_html() ) {
+                echo $breadcrumbs_html;
+            }
+
+        ?></div><?php
+
     }
 
     ?><div id="wpcampus-main">

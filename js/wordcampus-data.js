@@ -75,91 +75,99 @@
 
 	}
 
-	// Load sessions chart
-	google.setOnLoadCallback(wpcampus_draw_sessions_chart);
-	function wpcampus_draw_sessions_chart() {
+	// Get the sessions data
+	$.get( 'http://wpcampus.org/wp-json/wordcampus/data/set/sessions', function( $wpcampus_data ) {
 
-		// Get the sessions data
-		$.get( 'http://wpcampus.org/wp-json/wordcampus/data/set/sessions', function( $wpcampus_data ) {
+		// Get labels, data, and highest value
+		var $high = 0;
+		var $labels = [];
+		var $data = [];
 
-			// Create time array
-			var $total = 0;
-			var $time_data = [ ['Sessions', 'Votes'] ];
-			$.each( $wpcampus_data, function( $index, $value ) {
-				if ( 'Total' == $index ) {
-					$total = parseInt($value);
-					return;
-				}
-				$time_data.push( [ $index, parseInt($value) ] );
-			});
+		// Sort data
+		$.each( $wpcampus_data, function( $index, $value ) {
 
-			// Set data
-			var $data = new google.visualization.arrayToDataTable($time_data);
+			// Not using
+			if ( 'Total' == $index ) {
+				return;
+			}
 
-			// Set options
-			var $options = {
-				legend: { position: 'none' },
-				bars: 'horizontal', // Required for Material Bar Charts.
-				axes: {
-					x: {
-						0: { // Top x-axis
-							side: 'top',
-							label: 'Number of Votes (Out of ' + $total + ')'
-						}
-					}
-				}
-			};
-			
-			// Draw the chart
-			var $chart = new google.charts.Bar(document.getElementById('wpcampus-chart-sessions'));
-			$chart.draw($data, $options);
+			// Convert the value to an integer
+			$value = parseInt($value);
+
+			// Push to sets
+			$labels.push( $index );
+			$data.push( $value );
+
+			// Find highest value
+			if ( $value > $high ) {
+				$high = $value;
+			}
 
 		});
 
-	}
+		// Load best time of year chart
+		new Chartist.Bar('#wpcampus-chart-sessions', {
+			labels: $labels,
+			series: [ $data ]
+		}, {
+			seriesBarDistance: 25,
+			reverseData: true,
+			horizontalBars: true,
+			low: 0,
+			high: $high,
+			axisY: {
+				offset: 70
+			}
+		});
 
-	// Load best time of year chart
-	google.setOnLoadCallback(wpcampus_draw_best_time_of_year_chart);
-	function wpcampus_draw_best_time_of_year_chart() {
+	});
 
-		// Get the best time of year data
-		$.get( 'http://wpcampus.org/wp-json/wordcampus/data/set/best-time-of-year', function( $wpcampus_data ) {
+	// Get the best time of year data
+	$.get( 'http://wpcampus.org/wp-json/wordcampus/data/set/best-time-of-year', function( $wpcampus_data ) {
 
-			// Create time array
-			var $total = 0;
-			var $time_data = [ ['Best Time of Year', 'Percentage'] ];
-			$.each( $wpcampus_data, function( $index, $value ) {
-				if ( 'Total' == $index ) {
-					$total = parseInt($value);
-					return;
-				}
-				$time_data.push( [ $index, parseInt($value) ] ); //Math.round( ( parseInt($value) / $total ) * 100 ) ] );
-			});
+		// Get labels, data, and highest value
+		var $high = 0;
+		var $labels = [];
+		var $data = [];
 
-			// Set data
-			var $data = new google.visualization.arrayToDataTable($time_data);
+		// Sort data
+		$.each( $wpcampus_data, function( $index, $value ) {
 
-			// Set options
-			var $options = {
-				legend: { position: 'none' },
-				bars: 'horizontal', // Required for Material Bar Charts.
-				axes: {
-					x: {
-						0: { // Top x-axis
-							side: 'top',
-							label: 'Number of Votes (Out of ' + $total + ')'
-						}
-					}
-				}
-			};
+			// Not using
+			if ( 'Total' == $index ) {
+				return;
+			}
 
-			// Draw the chart
-			var $chart = new google.charts.Bar(document.getElementById('wpcampus-chart-best-time-of-year'));
-			$chart.draw($data, $options);
+			// Convert the value to an integer
+			$value = parseInt($value);
+
+			// Push to sets
+			$labels.push( $index );
+			$data.push( $value );
+
+			// Find highest value
+			if ( $value > $high ) {
+				$high = $value;
+			}
 
 		});
 
-	}
+		// Load best time of year chart
+		new Chartist.Bar('#wpcampus-chart-best-time-of-year', {
+			labels: $labels,
+			series: [ $data ]
+		}, {
+			seriesBarDistance: 25,
+			reverseData: true,
+			horizontalBars: true,
+			low: 0,
+			high: $high,
+			axisY: {
+				offset: 70
+			}
+		});
+
+	});
 
 	// Load regions map
 	google.setOnLoadCallback(wpcampus_draw_regions_map);
@@ -192,8 +200,6 @@
 	
 	jQuery( window ).on( 'resize', function() {
 		wpcampus_draw_regions_map();
-		wpcampus_draw_best_time_of_year_chart();
-		wpcampus_draw_sessions_chart();
 		wpcampus_draw_attend_pref_chart();
 		wpcampus_draw_affiliation_chart();
 	} );

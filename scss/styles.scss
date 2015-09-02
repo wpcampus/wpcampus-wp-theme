@@ -201,7 +201,7 @@ $banner-menu-height: 40px;
     }
 
     &.bar-chart {
-        padding: 40px;
+        padding: 20px;
     }
 
 }
@@ -257,11 +257,41 @@ $banner-menu-height: 40px;
 
 }
 
+.breadcrumbs-wrapper {
+    text-align: center;
+
+    .breadcrumbs {
+        display: inline-block;
+        width: auto;
+        background: none;
+        margin: 0;
+    }
+
+}
+
+.panel {
+
+    &.coming-soon {
+        font-style: italic;
+
+        p {
+            margin-bottom: 0;
+        }
+
+    }
+
+}
+
 #wpcampus-main-page-title {
     background: $body-bg;
     padding: 25px 0;
     margin: 0;
     text-align: center;
+
+    h1 {
+        margin: 0;
+    }
+
 }
 
 #wpcampus-main {
@@ -428,6 +458,15 @@ $banner-menu-height: 40px;
 }
 
 @media #{$medium-up} {
+
+    .wpcampus-chart,
+    .wpcampus-map {
+
+        &.bar-chart {
+            padding: 40px;
+        }
+
+    }
 	
 	#wpcampus-involvement {
         margin-left: 3em;
