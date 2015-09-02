@@ -237,14 +237,13 @@ $banner-menu-height: 40px;
 }
 
 #wpcampus-involvement {
-    margin: 0 0 2em 3em;
+    margin: 0 0 2em 2em;
     overflow: auto;
 
     li {
         display: inline-block;
         float: none;
         width: 100%;
-
 
         &:before {
             content: '-';
@@ -430,8 +429,13 @@ $banner-menu-height: 40px;
 
 @media #{$medium-up} {
 	
-	#wpcampus-involvement li {
-		width: 45%;
+	#wpcampus-involvement {
+        margin-left: 3em;
+
+        li {
+            width: 45%;
+        }
+
 	}
 
     #wpcampus-hero {
