@@ -175,7 +175,8 @@ function wordcampus_get_interest_sessions() {
                 $search_criteria = array('status' => 'active');
 
                 // Setup field filters
-                $search_criteria[ 'field_filters' ][] = array( 'key' => "{$field_id}.{$choice_index}", 'operator' => 'contains', 'value' => $choice['value'] );
+				// Modified to match checkbox filter sample in get_entries(), per https://www.gravityhelp.com/documentation/article/api-functions/#get_entries
+                $search_criteria[ 'field_filters' ][] = array( 'key' => "{$field_id}", 'operator' => 'in', 'value' => array( $choice['value'] ) );
 
                 // Get the count
                 $this_counts = GFAPI::count_entries(1, $search_criteria);
