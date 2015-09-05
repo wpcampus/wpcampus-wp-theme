@@ -23,7 +23,7 @@ add_action( 'rest_api_init', function () {
 
 //! Setup styles and scripts
 add_action( 'wp_enqueue_scripts', function () {
-	$wpcampus_version = '0.55';
+	$wpcampus_version = '0.58';
 
     // Get the directory
     $wpcampus_dir = trailingslashit( get_stylesheet_directory_uri() );
@@ -45,12 +45,14 @@ add_action( 'wp_enqueue_scripts', function () {
 
         // Register Chartist script
         wp_register_script( 'chartist', 'http://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js' );
-
+		
         // Enqueue Chartist styles
         wp_enqueue_style( 'chartist', $wpcampus_dir . 'css/chartist.min.css', array(), $wpcampus_version, 'all' );
 
         // Enqueue our data script
-        wp_enqueue_script( 'wordcampus-data', $wpcampus_dir . 'js/wordcampus-data.min.js', array('jquery', 'google-charts', 'chartist'), $wpcampus_version, false );
+		// Set a var so that we can automatically use the non-minified script on staging, but the minified script on prod
+		$min = stristr( $_SERVER['HTTP_HOST'], '.staging' ) ? '' : '.min';
+        wp_enqueue_script( 'wordcampus-data', $wpcampus_dir . 'js/wordcampus-data' . $min . '.js', array('jquery', 'google-charts', 'chartist'), $wpcampus_version, false );
 
     }
 

@@ -74,99 +74,103 @@
 		});
 
 	}
-
-	// Get the sessions data
-	$.get( 'http://wpcampus.org/wp-json/wordcampus/data/set/sessions', function( $wpcampus_data ) {
-
-		// Get labels, data, and highest value
-		var $high = 0;
-		var $labels = [];
-		var $data = [];
-
-		// Sort data
-		$.each( $wpcampus_data, function( $index, $value ) {
-
-			// Not using
-			if ( 'Total' == $index ) {
-				return;
-			}
-
-			// Convert the value to an integer
-			$value = parseInt($value);
-
-			// Push to sets
-			$labels.push( $index );
-			$data.push( $value );
-
-			// Find highest value
-			if ( $value > $high ) {
-				$high = $value;
-			}
-
+	
+	$(document).on( 'ready', function() {
+		// Get the sessions data
+		$.get( 'http://wpcampus.org/wp-json/wordcampus/data/set/sessions', function( $wpcampus_data ) {
+	
+			// Get labels, data, and highest value
+			var $high = 0;
+			var $labels = [];
+			var $data = [];
+	
+			// Sort data
+			$.each( $wpcampus_data, function( $index, $value ) {
+	
+				// Not using
+				if ( 'Total' == $index ) {
+					return;
+				}
+	
+				// Convert the value to an integer
+				$value = parseInt($value);
+	
+				// Push to sets
+				$labels.push( $index );
+				$data.push( $value );
+	
+				// Find highest value
+				if ( $value > $high ) {
+					$high = $value;
+				}
+	
+			});
+	
+			// Load best time of year chart
+			new Chartist.Bar('#wpcampus-chart-sessions', {
+				labels: $labels,
+				series: [ $data ]
+			}, {
+				seriesBarDistance: 25,
+				reverseData: true,
+				horizontalBars: true,
+				low: 0,
+				high: $high,
+				axisY: {
+					offset: 70
+				}
+			});
+	
 		});
-
-		// Load best time of year chart
-		new Chartist.Bar('#wpcampus-chart-sessions', {
-			labels: $labels,
-			series: [ $data ]
-		}, {
-			seriesBarDistance: 25,
-			reverseData: true,
-			horizontalBars: true,
-			low: 0,
-			high: $high,
-			axisY: {
-				offset: 70
-			}
-		});
-
 	});
-
-	// Get the best time of year data
-	$.get( 'http://wpcampus.org/wp-json/wordcampus/data/set/best-time-of-year', function( $wpcampus_data ) {
-
-		// Get labels, data, and highest value
-		var $high = 0;
-		var $labels = [];
-		var $data = [];
-
-		// Sort data
-		$.each( $wpcampus_data, function( $index, $value ) {
-
-			// Not using
-			if ( 'Total' == $index ) {
-				return;
-			}
-
-			// Convert the value to an integer
-			$value = parseInt($value);
-
-			// Push to sets
-			$labels.push( $index );
-			$data.push( $value );
-
-			// Find highest value
-			if ( $value > $high ) {
-				$high = $value;
-			}
-
+	
+	$(document).on( 'ready', function() {
+		// Get the best time of year data
+		$.get( 'http://wpcampus.org/wp-json/wordcampus/data/set/best-time-of-year', function( $wpcampus_data ) {
+	
+			// Get labels, data, and highest value
+			var $high = 0;
+			var $labels = [];
+			var $data = [];
+	
+			// Sort data
+			$.each( $wpcampus_data, function( $index, $value ) {
+	
+				// Not using
+				if ( 'Total' == $index ) {
+					return;
+				}
+	
+				// Convert the value to an integer
+				$value = parseInt($value);
+	
+				// Push to sets
+				$labels.push( $index );
+				$data.push( $value );
+	
+				// Find highest value
+				if ( $value > $high ) {
+					$high = $value;
+				}
+	
+			});
+	
+			// Load best time of year chart
+			new Chartist.Bar('#wpcampus-chart-best-time-of-year', {
+				labels: $labels,
+				series: [ $data ]
+			}, {
+				seriesBarDistance: 25,
+				reverseData: true,
+				horizontalBars: true,
+				low: 0,
+				high: $high,
+				axisY: {
+					offset: 70
+				}
+			});
+	
 		});
-
-		// Load best time of year chart
-		new Chartist.Bar('#wpcampus-chart-best-time-of-year', {
-			labels: $labels,
-			series: [ $data ]
-		}, {
-			seriesBarDistance: 25,
-			reverseData: true,
-			horizontalBars: true,
-			low: 0,
-			high: $high,
-			axisY: {
-				offset: 70
-			}
-		});
-
 	});
 
 	// Load regions map
