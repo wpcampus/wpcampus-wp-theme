@@ -3,6 +3,9 @@
 // Include data functionality
 require_once( STYLESHEETPATH . '/includes/data.php' );
 
+// Include university functionality
+require_once( STYLESHEETPATH . '/includes/universities.php' );
+
 // Include shortcodes
 require_once( STYLESHEETPATH . '/includes/shortcodes.php' );
 
