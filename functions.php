@@ -1,6 +1,6 @@
 <?php
 
-// Include data
+// Include data functionality
 require_once( STYLESHEETPATH . '/includes/data.php' );
 
 // Include shortcodes
@@ -244,7 +244,7 @@ function wordcampus_get_breadcrumbs_html() {
 
 }
 
-// Register our interest CPT
+// Register our CPTs
 add_action( 'init', function() {
 
     // Register private WordCampus interest CPT
@@ -258,7 +258,7 @@ add_action( 'init', function() {
         'show_ui'               => true,
         'show_in_nav_menus'     => false,
         'show_in_menu'          => true,
-        'menu_icon'             => 'dashicons-welcome-learn-more',
+        'menu_icon'             => 'dashicons-star-filled',
         'show_in_admin_bar'     => false,
         'capability_type'       => 'wpcampus_interest',
         'hierarchical'          => false,
@@ -267,6 +267,54 @@ add_action( 'init', function() {
         'rewrite'               => false,
         //'query_var'             => false,
         'can_export'            => false,
+    ) );
+
+    // Register the universities CPT
+    register_post_type( 'universities', array(
+        'labels'                => array(
+            'name'              => 'Universities',
+            'singular_name'     => 'University',
+            'add_new'           => 'Add New',
+            'add_new_item'      => 'Add New University',
+            'edit_item'         => 'Edit University',
+            'new_item'          => 'New University',
+            'all_items'         => 'All Universities',
+            'view_item'         => 'View University',
+            'search_items'      => 'Search Universities',
+            'not_found'         => 'No universities found',
+            'not_found_in_trash'=> 'No universities found in trash',
+            'parent_item_colon' => 'Parent University',
+        ),
+        'public'                => false,
+        'hierarchical'          => false,
+        'supports'              => array( 'title', 'editor' ),
+        'has_archive'           => false,
+        'show_ui'               => true,
+        'show_in_menu'          => true,
+        'menu_icon'             => 'dashicons-welcome-learn-more',
+        'show_in_nav_menus'     => false,
+        'show_in_admin_bar'     => true,
+        'publicly_queryable'    => false,
+        'exclude_from_search'   => true,
+        'capabilities'          => array(
+            'edit_post'         => 'edit_university',
+            'edit_posts'        => 'edit_universities',
+            'edit_others_posts' => 'edit_others_universities',
+            'edit_private_posts'=> 'edit_private_universities',
+            'edit_published_posts' => 'edit_published_universities',
+            'read'              => 'read_university',
+            'read_post'         => 'read_university',
+            'read_private_posts'=> 'read_private_universities',
+            'delete_post'       => 'delete_university',
+            'delete_posts'      => 'delete_universities',
+            'delete_private_posts' => 'delete_private_universities',
+            'delete_published_posts' => 'delete_published_universities',
+            'delete_others_posts' => 'delete_others_universities',
+            'publish_posts'     => 'publish_universities',
+            'create_posts'      => 'edit_universities'
+        ),
+        'rewrite'               => false,
+        'can_export'            => true,
     ) );
 
 });
