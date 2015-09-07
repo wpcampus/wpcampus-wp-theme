@@ -282,6 +282,31 @@ $banner-menu-height: 40px;
 
 }
 
+.google-maps-info-content {
+
+    .info-title {
+        font-size: 17px;
+        line-height: 20px;
+        margin: 5px 0 3px 0;
+        font-weight: 600;
+    }
+
+    p {
+        font-size: 13px;
+        line-height: 19px;
+
+        &.website {
+            margin-bottom: 2px;
+        }
+
+    }
+
+    *:last-child {
+        margin-bottom: 6px;
+    }
+
+}
+
 #wpcampus-main-page-title {
     background: $body-bg;
     padding: 25px 0;

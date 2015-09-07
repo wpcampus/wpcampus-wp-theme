@@ -1,5 +1,67 @@
 <?php
 
+// Build the university infowindow content
+add_filter( 'gmb_mashup_infowindow_content', function( $response, $marker_data, $post_id ) {
+
+    // Only for university posts
+    if ( 'universities' != get_post_type( $marker_data['id'] ) ) {
+        return $response;
+    }
+
+    // Get the title
+    $post_title = get_the_title( $post_id );
+
+    // Get website
+    $website = get_post_meta( $post_id, 'website', true );
+
+    // Build new infowindow content
+    $response['infowindow'] = '<div class="google-maps-info-content info-universities">';
+
+    // Add title
+    if ( $website ) {
+        $response['infowindow'] .= '<h3 class="info-title"><a href="' . $website . '" target="_blank">' . $post_title . '</a></h3>';
+    } else {
+        $response['infowindow'] .= '<h3 class="info-title">' . $post_title . '</h3>';
+    }
+
+    // Display location
+    if ( $location_data = wordcampus_get_university_location( $post_id ) ) {
+
+        // Print address
+        if ( ! empty( $location_data[ 'city' ] ) ) {
+
+            // Build location string
+            $location = $location_data[ 'city' ];
+
+            if ( ! empty( $location_data[ 'state' ] ) ) {
+                if ( ! empty( $location_data[ 'city' ] ) ) {
+                    $location .= ', ';
+                } else {
+                    $location .= '<br />';
+                }
+                $location .= $location_data[ 'state' ];
+
+            }
+
+            if ( ! empty( $location_data[ 'country' ] ) ) {
+                $location .= "<br />{$location_data[ 'country' ]}";
+            }
+
+            // Add location string
+            if ( $location ) {
+                $response[ 'infowindow' ] .= '<p class="location">' . $location . '</p>';
+            }
+
+        }
+
+    }
+
+    $response['infowindow'] .= '</div>';
+
+    return $response;
+
+}, 100, 3 );
+
 // Get saved university info before ACF runs
 add_action( 'acf/save_post', function( $post_id ) {
     global $saved_university_location;
@@ -10,7 +72,7 @@ add_action( 'acf/save_post', function( $post_id ) {
     }
 
     // Get saved location before ACF updates the info
-    $saved_university_location = wordcampus_get_university_location( $post_id );
+    $saved_university_location = wordcampus_get_university_location_string( $post_id );
 
 }, 1 );
 
@@ -24,7 +86,7 @@ add_action( 'acf/save_post', function( $post_id ) {
     }
 
     // Get updated location
-    $updated_university_location = wordcampus_get_university_location( $post_id );
+    $updated_university_location = wordcampus_get_university_location_string( $post_id );
 
     // If updated is not different than saved, then no point
     if ( $updated_university_location == $saved_university_location ) {
@@ -52,17 +114,23 @@ add_action( 'acf/save_post', function( $post_id ) {
 
 }, 1000 );
 
-// Get university location string
+// Get university location array
 function wordcampus_get_university_location( $post_id ) {
 
     // Get data
     $location = array();
     foreach( array( 'address_1', 'address_2', 'city', 'state', 'zip_code', 'country' ) as $meta_key ) {
-        $location[] = ucfirst( get_post_meta( $post_id, $meta_key, true ) );
+        $location[ $meta_key ] = ucfirst( get_post_meta( $post_id, $meta_key, true ) );
     }
 
-    // Build string
-    if ( $location = array_filter( $location ) ) {
+    return $location;
+}
+
+// Get university location string
+function wordcampus_get_university_location_string( $post_id ) {
+
+    // Get/build string
+    if ( $location = array_filter( wordcampus_get_university_location( $post_id ) ) ) {
         return preg_replace( '/[\s]{2,}/i', ' ', implode( ' ', $location ) );
     }
 
