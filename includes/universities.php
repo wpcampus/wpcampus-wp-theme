@@ -63,7 +63,7 @@ function wordcampus_get_university_location( $post_id ) {
 
     // Build string
     if ( $location = array_filter( $location ) ) {
-        return preg_replace( '/[\s]{2,}/i', ' ', implode( ', ', $location ) );
+        return preg_replace( '/[\s]{2,}/i', ' ', implode( ' ', $location ) );
     }
 
     return false;
