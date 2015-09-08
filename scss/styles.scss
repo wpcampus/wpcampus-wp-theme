@@ -54,6 +54,31 @@ h1 {
     font-weight: 300;
 }
 
+ul {
+
+    &.column-two {
+        margin-left: 2em;
+        overflow: auto;
+
+        li {
+            display: inline-block;
+            float: none;
+            width: 100%;
+
+            &:before {
+                content: '-';
+                font-weight: bold;
+                padding: 0 8px 0 0;
+                font-size: 1.1em;
+                line-height: 1;
+            }
+
+        }
+
+    }
+
+}
+
 $banner-menu-height: 40px;
 #wpcampus-banner {
     height: $banner-menu-height;
@@ -234,27 +259,6 @@ $banner-menu-height: 40px;
 
 #wpcampus-chart-sessions {
     height: 600px;
-}
-
-#wpcampus-involvement {
-    margin: 0 0 2em 2em;
-    overflow: auto;
-
-    li {
-        display: inline-block;
-        float: none;
-        width: 100%;
-
-        &:before {
-            content: '-';
-            font-weight: bold;
-            padding: 0 8px 0 0;
-            font-size: 1.1em;
-            line-height: 1;
-        }
-
-    }
-
 }
 
 .breadcrumbs-wrapper {
@@ -492,15 +496,19 @@ $banner-menu-height: 40px;
         }
 
     }
-	
-	#wpcampus-involvement {
-        margin-left: 3em;
 
-        li {
-            width: 45%;
+    ul {
+
+        &.column-two {
+            margin-left: 3em;
+
+            li {
+                width: 45%;
+            }
+
         }
 
-	}
+    }
 
     #wpcampus-hero {
         height: 300px;
