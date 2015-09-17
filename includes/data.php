@@ -220,3 +220,52 @@ function wordcampus_get_interest_universities() {
     }
     return false;
 }
+
+// Get the total number of votes for the vote on our new name
+function wordcampus_get_vote_on_new_name_count( $group ) {
+    return GFAPI::count_entries( 6, array( 'status' => 'active' ) );
+}
+
+// Get the count by choice for the vote on our new name
+function wordcampus_get_vote_on_new_name() {
+
+    // Set the form ID
+    $form_id = 6;
+
+    // Build response
+    $response = array();
+
+    // Get form
+    if ( ( $form = GFAPI::get_form( $form_id ) )
+        && ( $fields = $form['fields'] ) ) {
+
+        foreach( $fields as $field ) {
+
+            // Get our specific field
+            if ( 'Vote on New Name' == $field->adminLabel ) {
+
+                foreach( $field->choices as $choice ) {
+
+                    // Get the count
+                    $search_criteria = array( 'status' => 'active' );
+                    $search_criteria['field_filters'][] = array( 'key' => $field->id, 'operator' => '=', 'value' => $choice['value'] );
+                    $choice_count = GFAPI::count_entries( $form_id, $search_criteria );
+
+                    // Add to response
+                    $response[] = array(
+                        'text'  => $choice['text'],
+                        'count' => $choice_count,
+                    );
+
+                }
+
+                break;
+
+            }
+
+        }
+
+    }
+
+    return $response;
+}

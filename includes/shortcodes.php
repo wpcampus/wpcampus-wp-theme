@@ -51,6 +51,10 @@ add_shortcode( 'wordcampus_data', function( $args, $content = NULL ) {
             return format_wordcampus_data_set( wordcampus_get_group_count( preg_replace( '/^group\_/i', '', $args['set'] ) ), $args[ 'format' ] );
             break;
 
+        case 'no_of_votes_on_new_name':
+            return format_wordcampus_data_set( wordcampus_get_vote_on_new_name_count() );
+            break;
+
     }
 
     return $content;

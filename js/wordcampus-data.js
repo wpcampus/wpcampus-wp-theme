@@ -10,6 +10,55 @@
 	// Load Google-ness
 	google.load("visualization", "1", {packages:['corechart','geochart','bar']});
 
+	// Load "Vote On New Name" chart
+	google.setOnLoadCallback(wpcampus_draw_vote_on_name_chart);
+	function wpcampus_draw_vote_on_name_chart() {
+
+		// Get the affiliation data
+		$.get( 'http://wpcampus.org/wp-json/wordcampus/data/set/vote-on-new-name', function( $wpcampus_data ) {
+
+			// Create array for data table
+			var $data_table = [];
+
+			// Keep up with total
+			var $total = 0;
+
+			// Sort data
+			$.each( $wpcampus_data, function( $index, $value ) {
+
+				// Convert the count to an integer
+				var $count = parseInt($value.count);
+				$total += $count;
+
+				// Push to sets
+				$data_table.push( [ $value.text + ' (' + $count + ')', $count ] );
+
+			});
+
+			// Add title to data
+			$data_table.unshift( [ 'Task', 'Vote On Our New Name (' + $total + ' votes)' ] );
+
+			// Set the data
+			var $data = google.visualization.arrayToDataTable( $data_table );
+
+			// Set the options
+			var $options = {
+				title: 'Vote On Our New Name (' + $total + ' votes)',
+				pieHole: 0.4,
+			};
+
+			if ( wpcampus_is_mobile() ) {
+				$options.legend = { 'position' : 'bottom' };
+			}
+
+			// Draw the chart
+			var $chart = new google.visualization.PieChart(document.getElementById('wpcampus-chart-vote-on-new-name'));
+			$chart.draw( $data, $options );
+
+		});
+
+	}
+
 	// Load affiliation chart
 	google.setOnLoadCallback(wpcampus_draw_affiliation_chart);
 	function wpcampus_draw_affiliation_chart() {

@@ -65,6 +65,10 @@ class WordCampus_API_Data {
                 $response = wordcampus_get_interest_universities();
                 break;
 
+            case 'vote-on-new-name':
+                $response = wordcampus_get_vote_on_new_name();
+                break;
+
         }
 
         // If no response, return an error
