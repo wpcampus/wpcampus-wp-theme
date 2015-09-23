@@ -76,14 +76,14 @@ function wordcampus_add_favicons() {
     $favicons_folder = get_stylesheet_directory_uri() . '/images/favicons/';
 
     // Print the default icons
-    ?><link rel="shortcut icon" href="<?php echo $favicons_folder; ?>wordcampus-favicon-60.png"/>
-    <link rel="apple-touch-icon" href="<?php echo $favicons_folder; ?>wordcampus-favicon-60.png"/><?php
+    ?><link rel="shortcut icon" href="<?php echo $favicons_folder; ?>wpcampus-favicon-60.png"/>
+    <link rel="apple-touch-icon" href="<?php echo $favicons_folder; ?>wpcampus-favicon-60.png"/><?php
 
     // Set the image sizes
     $image_sizes = array( 57, 72, 76, 114, 120, 144, 152 );
 
     foreach( $image_sizes as $size ) {
-        ?><link rel="apple-touch-icon" sizes="<?php echo "{$size}x{$size}"; ?>" href="<?php echo $favicons_folder; ?>wordcampus-favicon-<?php echo $size; ?>.png"/><?php
+        ?><link rel="apple-touch-icon" sizes="<?php echo "{$size}x{$size}"; ?>" href="<?php echo $favicons_folder; ?>wpcampus-favicon-<?php echo $size; ?>.png"/><?php
     }
 
 }
@@ -94,7 +94,7 @@ add_action( 'login_head', function() {
     ?><style type="text/css">
     #login h1 a {
         display: block;
-        background: url( "<?php echo get_stylesheet_directory_uri(); ?>/images/wordcampus-black.svg" ) center bottom no-repeat;
+        background: url( "<?php echo get_stylesheet_directory_uri(); ?>/images/wpcampus-black.svg" ) center bottom no-repeat;
         background-size: 100% auto;
         width: 90%;
         height: 50px;

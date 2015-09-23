@@ -29,7 +29,7 @@ $blog_url = get_bloginfo('url');
                 <div class="wpcampus-header">
                     <a class="wpcampus-logo" href="<?php echo $blog_url; ?>">
                         <span class="wpcampus-word">WordCampus</span>
-                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/wordcampus.svg" />
+                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/wpcampus-white.svg" />
                     </a>
                     <span class="wpcampus-tagline">Where WordPress Meets Higher Education</span>
                     <?php /*<a class="button">Get Involved</a>*/ ?>
