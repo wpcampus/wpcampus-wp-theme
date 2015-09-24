@@ -40,7 +40,16 @@ $blog_url = get_bloginfo('url');
 
     if ( ! is_front_page() ) {
         ?><div id="wpcampus-main-page-title">
-            <h1><?php the_title(); ?></h1><?php
+            <h1><?php
+
+                // Had to write in because events plugin was overwriting the 'post_type_archive_title' filter
+                if ( is_post_type_archive('tribe_events') || is_singular('tribe_events') ) {
+                    echo 'Events';
+                } else {
+                    the_title();
+                }
+
+            ?></h1><?php
 
             // Include breadcrumbs
             if ( $breadcrumbs_html = wordcampus_get_breadcrumbs_html() ) {

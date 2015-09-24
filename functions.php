@@ -1,5 +1,8 @@
 <?php
 
+// Include filters
+require_once( STYLESHEETPATH . '/includes/filters.php' );
+
 // Include data functionality
 require_once( STYLESHEETPATH . '/includes/data.php' );
 
@@ -131,37 +134,10 @@ add_action( 'login_head', function() {
 
 });
 
-//! Filter login logo URL
-add_filter( 'login_headerurl', function( $login_header_url ) {
-    return get_bloginfo( 'url' );
-});
-
 //! Hide Query Monitor if admin bar isn't showing
 add_filter( 'qm/process', function( $show_qm, $is_admin_bar_showing ) {
     return $is_admin_bar_showing;
-});
-
-// Build our own map infowindow content
-add_filter( 'gmb_mashup_infowindow_content', function( $response, $marker_data, $post_id ) {
-
-    // Only for interest posts
-    if ( 'wpcampus_interest' != get_post_type( $marker_data['id'] ) ) {
-        return $response;
-    }
-
-    // Build new infowindow content
-    $response['infowindow'] = '<div id="infobubble-content" class="main-place-infobubble-content">';
-
-        // Get location
-        if ( $location = wordcampus_get_interest_location($post_id) ) {
-            $response['infowindow'] .= '<p class="place-title">' . $location . '</p>';
-		}
-
-    $response['infowindow'] .= '</div>';
-
-    return $response;
-
-}, 100, 3 );
+}, 10, 2 );
 
 // Get breadcrumbs
 function wordcampus_get_breadcrumbs_html() {
@@ -183,6 +159,16 @@ function wordcampus_get_breadcrumbs_html() {
         'url'   => get_bloginfo( 'url' ),
         'label' => 'Home',
     );
+
+    // Add archive(s)
+
+    // Had to write in because events plugin was overwriting the 'post_type_archive_title' filter
+    if ( is_post_type_archive( 'tribe_events' ) || is_singular('tribe_events') ) {
+        $breadcrumbs[] = array(
+            'url'   => get_post_type_archive_link( 'tribe_events' ),
+            'label' => 'Events',
+        );
+    }
 
     // Add the ancestors
     foreach( $post_ancestors as $post_ancestor_id ) {
