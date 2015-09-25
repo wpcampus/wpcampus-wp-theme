@@ -1,6 +1,7 @@
 <?php
 
 $blog_url = get_bloginfo('url');
+$stylesheet_dir = get_stylesheet_directory_uri();
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -20,6 +21,7 @@ $blog_url = get_bloginfo('url');
         <ul class="menu">
             <li<?php echo is_front_page() ? ' class="current"' : null; ?>><a href="<?php echo $blog_url; ?>">Get Involved</a></li>
             <li<?php echo is_page( 'contact' ) ? ' class="current"' : null; ?>><a href="<?php echo $blog_url; ?>/contact/">Contact Us</a></li>
+            <li class="twitter"><a href="https://twitter.com/wpcampusorg"><img src="<?php echo $stylesheet_dir; ?>/images/twitter-white.svg" /></a></li>
         </ul>
     </div> <!-- #wpcampus-banner -->
 
@@ -29,7 +31,7 @@ $blog_url = get_bloginfo('url');
                 <div class="wpcampus-header">
                     <a class="wpcampus-logo" href="<?php echo $blog_url; ?>">
                         <span class="wpcampus-word">WordCampus</span>
-                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/wpcampus-white.svg" />
+                        <img src="<?php echo $stylesheet_dir; ?>/images/wpcampus-white.svg" />
                     </a>
                     <span class="wpcampus-tagline">Where WordPress Meets Higher Education</span>
                     <?php /*<a class="button">Get Involved</a>*/ ?>
