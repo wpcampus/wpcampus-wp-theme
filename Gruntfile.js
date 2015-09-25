@@ -26,7 +26,7 @@ module.exports = function(grunt) {
             wordcampus: {
                 files: [{
                     expand: true,
-                    src: [ 'wordcampus-data.js' ],
+                    src: [ 'wpcampus.js', 'wordcampus-data.js' ],
                     cwd: 'js',
                     dest: 'js',
                     ext: '.min.js'
