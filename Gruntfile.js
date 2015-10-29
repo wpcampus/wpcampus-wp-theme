@@ -34,9 +34,13 @@ module.exports = function(grunt) {
             }
         },
         watch: {
-            wordcampus: {
-                files: [ '**/*' ],
-                tasks: [ 'newer:sass:wordcampus', 'newer:uglify:wordcampus' ]
+            wordcampussass: {
+                files: [ 'scss/*' ],
+                tasks: [ 'sass:wordcampus' ]
+            },
+            wordcampusjs: {
+                files: [ 'js/*' ],
+                tasks: [ 'newer:uglify:wordcampus' ]
             }
         }
     });
