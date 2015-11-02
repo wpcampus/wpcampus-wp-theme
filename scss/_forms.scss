@@ -81,6 +81,28 @@
 		background: #f6f6f6;
 		padding: 20px;
 		margin: 30px 0 0 0;
+
+		.gform_fields {
+
+			li {
+
+				&.gsection {
+					margin-top: 35px;
+					border-top: 3px solid #ccc;
+					padding-top: 35px;
+
+					&:first-child {
+						margin-top: 0;
+						padding-top: 0;
+						border-top: 0;
+					}
+					
+				}
+
+			}
+
+		}
+
 	}
 
 }

@@ -21,6 +21,7 @@ $is_events_page = is_post_type_archive('tribe_events') || is_singular('tribe_eve
     <div id="wpcampus-banner">
         <ul class="menu">
             <li<?php echo is_front_page() ? ' class="current"' : null; ?>><a href="<?php echo $blog_url; ?>">Get Involved</a></li>
+            <li<?php echo is_page( 'apply-to-host' ) ? ' class="current"' : null; ?>><a href="<?php echo $blog_url; ?>/apply-to-host/">Apply To Host</a></li>
             <li<?php echo $is_events_page ? ' class="current"' : null; ?>><a href="<?php echo $blog_url; ?>/events/">Events</a></li>
             <li<?php echo is_page( 'contact' ) ? ' class="current"' : null; ?>><a href="<?php echo $blog_url; ?>/contact/">Contact Us</a></li>
             <li class="twitter"><a href="https://twitter.com/wpcampusorg"><img src="<?php echo $stylesheet_dir; ?>/images/twitter-white.svg" /></a></li>
