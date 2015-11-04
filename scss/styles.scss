@@ -210,6 +210,16 @@ $banner-menu-height: 40px;
             text-transform: uppercase;
             font-size: 1.2em;
             line-height: 1.2;
+
+            &.royal-blue {
+                background: $royal-blue;
+
+                &:hover {
+                    background: darken( $royal-blue, 10% );
+                }
+
+            }
+
         }
 
     }
@@ -292,6 +302,16 @@ $banner-menu-height: 40px;
 }
 
 .panel {
+    padding: 20px;
+
+    &.dark {
+        color: $white;
+
+        * {
+            color: inherit;
+        }
+
+    }
 
     &.coming-soon {
         font-style: italic;
@@ -304,6 +324,18 @@ $banner-menu-height: 40px;
 
     &.vote-on-new-name {
         padding: 25px;
+    }
+
+    &.peach {
+        background: $peach;
+    }
+
+    &.royal-blue {
+        background: $royal-blue;
+    }
+
+    &.dark-blue {
+        background: $dark-blue;
     }
 
 }
@@ -362,28 +394,6 @@ $banner-menu-height: 40px;
             width: 100%;
             height: 1px;
             z-index: -1;
-        }
-
-    }
-
-    .the-wp-crowd {
-        background: #d0443c;
-        color: $white;
-        padding: 20px;
-
-        a {
-            color: inherit;
-        }
-
-    }
-
-    .post-status {
-        background: #2e3641;
-        color: $white;
-        padding: 20px;
-
-        a {
-            color: inherit;
         }
 
     }

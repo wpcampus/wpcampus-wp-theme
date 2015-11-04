@@ -2,7 +2,9 @@
 
 $blog_url = get_bloginfo('url');
 $stylesheet_dir = get_stylesheet_directory_uri();
+$is_front_page = is_front_page();
 $is_events_page = is_post_type_archive('tribe_events') || is_singular('tribe_events');
+$is_apply_to_host_page = is_page( 'apply-to-host' );
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -20,8 +22,8 @@ $is_events_page = is_post_type_archive('tribe_events') || is_singular('tribe_eve
 
     <div id="wpcampus-banner">
         <ul class="menu">
-            <li<?php echo is_front_page() ? ' class="current"' : null; ?>><a href="<?php echo $blog_url; ?>">Get Involved</a></li>
-            <li<?php echo is_page( 'apply-to-host' ) ? ' class="current"' : null; ?>><a href="<?php echo $blog_url; ?>/apply-to-host/">Apply To Host</a></li>
+            <li<?php echo $is_front_page ? ' class="current"' : null; ?>><a href="<?php echo $blog_url; ?>">Get Involved</a></li>
+            <li<?php echo $is_apply_to_host_page ? ' class="current"' : null; ?>><a href="<?php echo $blog_url; ?>/apply-to-host/">Apply To Host</a></li>
             <li<?php echo $is_events_page ? ' class="current"' : null; ?>><a href="<?php echo $blog_url; ?>/events/">Events</a></li>
             <li<?php echo is_page( 'contact' ) ? ' class="current"' : null; ?>><a href="<?php echo $blog_url; ?>/contact/">Contact Us</a></li>
             <li class="twitter"><a href="https://twitter.com/wpcampusorg"><img src="<?php echo $stylesheet_dir; ?>/images/twitter-white.svg" /></a></li>
@@ -36,14 +38,20 @@ $is_events_page = is_post_type_archive('tribe_events') || is_singular('tribe_eve
                         <span class="wpcampus-word">WordCampus</span>
                         <img src="<?php echo $stylesheet_dir; ?>/images/wpcampus-white.svg" />
                     </a>
-                    <span class="wpcampus-tagline">Where WordPress Meets Higher Education</span>
-                    <?php /*<a class="button">Get Involved</a>*/ ?>
-                </div> <!-- .wpcampus-header -->
+                    <span class="wpcampus-tagline">Where WordPress Meets Higher Education</span><?php
+
+                    if ( ! $is_apply_to_host_page ) {
+                        ?><a href="<?php echo $blog_url; ?>/apply-to-host/" class="button royal-blue">Apply To Host WPCampus</a><?php
+                    } /*else if ( ! $is_front_page ) {
+                        ?><a href="<?php echo $blog_url; ?>" class="button royal-blue">Get Involved With WPCampus</a><?php
+                    }*/
+
+                ?></div> <!-- .wpcampus-header -->
             </div>
         </div>
     </div><?php
 
-    if ( ! is_front_page() ) {
+    if ( ! $is_front_page ) {
         ?><div id="wpcampus-main-page-title">
             <h1><?php
 
