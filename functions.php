@@ -35,7 +35,7 @@ add_action( 'wp_enqueue_scripts', function () {
     $wpcampus_dir = trailingslashit( get_stylesheet_directory_uri() );
 
     // Load Fonts
-    wp_enqueue_style( 'wordcampus-fonts', 'http://fonts.googleapis.com/css?family=Open+Sans:600,400,300' );
+    wp_enqueue_style( 'wordcampus-fonts', 'https://fonts.googleapis.com/css?family=Open+Sans:600,400,300' );
 
     // Enqueue the base styles
     wp_enqueue_style( 'wordcampus', $wpcampus_dir . 'css/styles.min.css', array( 'wordcampus-fonts' ), $wpcampus_version, 'all' );
@@ -53,7 +53,7 @@ add_action( 'wp_enqueue_scripts', function () {
         wp_register_script( 'google-charts', 'https://www.google.com/jsapi', array('jquery' ) );
 
         // Register Chartist script
-        wp_register_script( 'chartist', 'http://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js' );
+        wp_register_script( 'chartist', 'https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js' );
 		
         // Enqueue Chartist styles
         wp_enqueue_style( 'chartist', $wpcampus_dir . 'css/chartist.min.css', array(), $wpcampus_version, 'all' );

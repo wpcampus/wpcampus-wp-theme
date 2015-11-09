@@ -15,7 +15,7 @@
 	function wpcampus_draw_vote_on_name_chart() {
 
 		// Get the affiliation data
-		$.get( 'http://wpcampus.org/wp-json/wordcampus/data/set/vote-on-new-name', function( $wpcampus_data ) {
+		$.get( 'https://wpcampus.org/wp-json/wordcampus/data/set/vote-on-new-name', function( $wpcampus_data ) {
 
 			// Create array for data table
 			var $data_table = [];
@@ -64,7 +64,7 @@
 	function wpcampus_draw_affiliation_chart() {
 
 		// Get the affiliation data
-		$.get( 'http://wpcampus.org/wp-json/wordcampus/data/set/affiliation', function( $wpcampus_data ) {
+		$.get( 'https://wpcampus.org/wp-json/wordcampus/data/set/affiliation', function( $wpcampus_data ) {
 
 			// Set the data
 			var $data = google.visualization.arrayToDataTable([
@@ -97,7 +97,7 @@
 	function wpcampus_draw_attend_pref_chart() {
 
 		// Get the attend preference data
-		$.get( 'http://wpcampus.org/wp-json/wordcampus/data/set/attend-preference', function( $wpcampus_data ) {
+		$.get( 'https://wpcampus.org/wp-json/wordcampus/data/set/attend-preference', function( $wpcampus_data ) {
 
 			// Set the data
 			var $data = google.visualization.arrayToDataTable([
@@ -126,7 +126,7 @@
 	
 	$(document).on( 'ready', function() {
 		// Get the sessions data
-		$.get( 'http://wpcampus.org/wp-json/wordcampus/data/set/sessions', function( $wpcampus_data ) {
+		$.get( 'https://wpcampus.org/wp-json/wordcampus/data/set/sessions', function( $wpcampus_data ) {
 	
 			// Get labels, data, and highest value
 			var $high = 0;
@@ -175,7 +175,7 @@
 	
 	$(document).on( 'ready', function() {
 		// Get the best time of year data
-		$.get( 'http://wpcampus.org/wp-json/wordcampus/data/set/best-time-of-year', function( $wpcampus_data ) {
+		$.get( 'https://wpcampus.org/wp-json/wordcampus/data/set/best-time-of-year', function( $wpcampus_data ) {
 	
 			// Get labels, data, and highest value
 			var $high = 0;
@@ -227,7 +227,7 @@
 	function wpcampus_draw_regions_map() {
 
 		// Get the attend preference data
-		$.get( 'http://wpcampus.org/wp-json/wordcampus/data/set/attend-country', function( $wpcampus_data ) {
+		$.get( 'https://wpcampus.org/wp-json/wordcampus/data/set/attend-country', function( $wpcampus_data ) {
 
 			// Create array
 			var $countries = [ ['Country', 'Interest'] ];
