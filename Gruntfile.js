@@ -2,7 +2,7 @@ module.exports = function(grunt) {
 
     grunt.initConfig({
         sass: {
-            wordcampus: {
+            wpcampus: {
                 options: {
                     style: 'compressed',
                     noCache: true,
@@ -23,10 +23,10 @@ module.exports = function(grunt) {
                 mangle: false,
                 compress: false
             },
-            wordcampus: {
+            wpcampus: {
                 files: [{
                     expand: true,
-                    src: [ 'wpcampus.js', 'wordcampus-data.js' ],
+                    src: [ 'wpcampus.js', 'wpcampus-data.js' ],
                     cwd: 'js',
                     dest: 'js',
                     ext: '.min.js'
@@ -34,13 +34,13 @@ module.exports = function(grunt) {
             }
         },
         watch: {
-            wordcampussass: {
+            wpcampussass: {
                 files: [ 'scss/*' ],
-                tasks: [ 'sass:wordcampus' ]
+                tasks: [ 'sass:wpcampus' ]
             },
-            wordcampusjs: {
+            wpcampusjs: {
                 files: [ 'js/*' ],
-                tasks: [ 'newer:uglify:wordcampus' ]
+                tasks: [ 'newer:uglify:wpcampus' ]
             }
         }
     });

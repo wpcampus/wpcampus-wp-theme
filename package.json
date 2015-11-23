@@ -1,7 +1,7 @@
 {
-  "name": "wordcampus",
+  "name": "wpcampus",
   "version": "1.0.0",
-  "description": "The WordPress theme for the WordCampus website at https://wpcampus.org.",
+  "description": "The WordPress theme for the WPCampus website at https://wpcampus.org.",
   "license": "GPL",
   "repository": {
     "type": "git",

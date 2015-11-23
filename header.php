@@ -35,7 +35,7 @@ $is_apply_to_host_page = is_page( 'apply-to-host' );
             <div class="small-12 columns">
                 <div class="wpcampus-header">
                     <a class="wpcampus-logo" href="<?php echo $blog_url; ?>">
-                        <span class="wpcampus-word">WordCampus</span>
+                        <span class="wpcampus-word">WPCampus</span>
                         <img src="<?php echo $stylesheet_dir; ?>/images/wpcampus-white.svg" />
                     </a>
                     <span class="wpcampus-tagline">Where WordPress Meets Higher Education</span><?php
@@ -65,7 +65,7 @@ $is_apply_to_host_page = is_page( 'apply-to-host' );
             ?></h1><?php
 
             // Include breadcrumbs
-            if ( $breadcrumbs_html = wordcampus_get_breadcrumbs_html() ) {
+            if ( $breadcrumbs_html = wpcampus_get_breadcrumbs_html() ) {
                 echo $breadcrumbs_html;
             }
 

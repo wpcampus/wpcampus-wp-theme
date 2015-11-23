@@ -1,3 +1,3 @@
-# WordCampus - WordPress Theme
+# WPCampus - WordPress Theme
 
-This is the WordPress theme used to power the WordCampus website at https://wpcampus.org/.
+This is the WordPress theme used to power the WPCampus website at https://wpcampus.org/.

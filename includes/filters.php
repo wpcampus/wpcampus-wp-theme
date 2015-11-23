@@ -17,7 +17,7 @@ add_filter( 'gmb_mashup_infowindow_content', function( $response, $marker_data, 
 	$response['infowindow'] = '<div id="infobubble-content" class="main-place-infobubble-content">';
 
 	// Get location
-	if ( $location = wordcampus_get_interest_location($post_id) ) {
+	if ( $location = wpcampus_get_interest_location($post_id) ) {
 		$response['infowindow'] .= '<p class="place-title">' . $location . '</p>';
 	}
 

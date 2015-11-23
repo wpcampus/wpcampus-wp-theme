@@ -1,7 +1,7 @@
 <?php
 
-// Return WordCampus data
-add_shortcode( 'wordcampus_data', function( $args, $content = NULL ) {
+// Return WPCampus data
+add_shortcode( 'wpcampus_data', function( $args, $content = NULL ) {
 
     // Process args
     $defaults = array(
@@ -16,31 +16,31 @@ add_shortcode( 'wordcampus_data', function( $args, $content = NULL ) {
     switch( $args['set'] ) {
 
         case 'no_of_interested':
-            return wordcampus_get_interested_count();
+            return wpcampus_get_interested_count();
             break;
 
         case 'attend_in_person':
-            return format_wordcampus_data_set( wordcampus_get_attend_in_person_count(), $args[ 'format' ] );
+            return format_wpcampus_data_set( wpcampus_get_attend_in_person_count(), $args[ 'format' ] );
             break;
 
         case 'attend_has_location':
-            return format_wordcampus_data_set( wordcampus_get_interested_has_location_count(), $args[ 'format' ] );
+            return format_wpcampus_data_set( wpcampus_get_interested_has_location_count(), $args[ 'format' ] );
             break;
 
         case 'attend_live_stream':
-            return format_wordcampus_data_set( wordcampus_get_attend_live_stream_count(), $args[ 'format' ] );
+            return format_wpcampus_data_set( wpcampus_get_attend_live_stream_count(), $args[ 'format' ] );
             break;
 
         case 'work_in_higher_ed':
-            return format_wordcampus_data_set( wordcampus_get_work_in_higher_ed_count(), $args[ 'format' ] );
+            return format_wpcampus_data_set( wpcampus_get_work_in_higher_ed_count(), $args[ 'format' ] );
             break;
 
         case 'work_for_company':
-            return format_wordcampus_data_set( wordcampus_get_work_for_company_count(), $args[ 'format' ] );
+            return format_wpcampus_data_set( wpcampus_get_work_for_company_count(), $args[ 'format' ] );
             break;
 
         case 'work_outside_higher_ed':
-            return format_wordcampus_data_set( wordcampus_get_work_outside_higher_ed_count(), $args[ 'format' ] );
+            return format_wpcampus_data_set( wpcampus_get_work_outside_higher_ed_count(), $args[ 'format' ] );
             break;
 
         case 'group_attending':
@@ -48,11 +48,11 @@ add_shortcode( 'wordcampus_data', function( $args, $content = NULL ) {
         case 'group_planning':
         case 'group_speaking':
         case 'group_sponsoring':
-            return format_wordcampus_data_set( wordcampus_get_group_count( preg_replace( '/^group\_/i', '', $args['set'] ) ), $args[ 'format' ] );
+            return format_wpcampus_data_set( wpcampus_get_group_count( preg_replace( '/^group\_/i', '', $args['set'] ) ), $args[ 'format' ] );
             break;
 
         case 'no_of_votes_on_new_name':
-            return format_wordcampus_data_set( wordcampus_get_vote_on_new_name_count() );
+            return format_wpcampus_data_set( wpcampus_get_vote_on_new_name_count() );
             break;
 
     }
@@ -61,7 +61,7 @@ add_shortcode( 'wordcampus_data', function( $args, $content = NULL ) {
 
 });
 
-function format_wordcampus_data_set( $count, $format = 'number' ) {
+function format_wpcampus_data_set( $count, $format = 'number' ) {
 
     switch( $format ) {
 
@@ -77,7 +77,7 @@ function format_wordcampus_data_set( $count, $format = 'number' ) {
         case 'both':
 
             // Get total
-            $total = wordcampus_get_interested_count();
+            $total = wpcampus_get_interested_count();
 
             // Add percentage
             $percent = round( ( $count / $total ) * 100 ) . '%';

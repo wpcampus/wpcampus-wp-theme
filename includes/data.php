@@ -1,51 +1,51 @@
 <?php
 
 // Get number of interested
-function wordcampus_get_interested_count() {
+function wpcampus_get_interested_count() {
     return GFAPI::count_entries( 1, array( 'status' => 'active' ) );
 }
 
 // Get number of interested who want to attend in person
-function wordcampus_get_attend_in_person_count() {
+function wpcampus_get_attend_in_person_count() {
     $search_criteria = array( 'status' => 'active' );
     $search_criteria['field_filters'][] = array( 'key' => '6', 'operator' => 'like', 'value' => 'Attend in person' );
     return $counts = GFAPI::count_entries( 1, $search_criteria );
 }
 
 // Get number of interested who want to attend via live stream
-function wordcampus_get_attend_live_stream_count() {
+function wpcampus_get_attend_live_stream_count() {
     $search_criteria = array( 'status' => 'active' );
     $search_criteria['field_filters'][] = array( 'key' => '6', 'operator' => 'like', 'value' => 'Attend via live stream' );
     return $counts = GFAPI::count_entries( 1, $search_criteria );
 }
 
 // Get number of interested who work in higher ed
-function wordcampus_get_work_in_higher_ed_count() {
+function wpcampus_get_work_in_higher_ed_count() {
     $search_criteria = array( 'status' => 'active' );
     $search_criteria['field_filters'][] = array( 'key' => '5', 'operator' => 'contains', 'value' => 'I work at a higher ed institution' );
     return $counts = GFAPI::count_entries( 1, $search_criteria );
 }
 
 // Get number of interested who work for a company that supports higher ed
-function wordcampus_get_work_for_company_count() {
+function wpcampus_get_work_for_company_count() {
     $search_criteria = array( 'status' => 'active' );
     $search_criteria['field_filters'][] = array( 'key' => '5', 'operator' => 'contains', 'value' => 'I freelance or work for a company that supports higher ed' );
     return $counts = GFAPI::count_entries( 1, $search_criteria );
 }
 
 // Get number of interested who work outside higher ed
-function wordcampus_get_work_outside_higher_ed_count() {
+function wpcampus_get_work_outside_higher_ed_count() {
     $search_criteria = array( 'status' => 'active' );
     $search_criteria['field_filters'][] = array( 'key' => '5', 'operator' => 'contains', 'value' => 'I work outside higher ed but am interested in higher ed' );
     return $counts = GFAPI::count_entries( 1, $search_criteria );
 }
 
 // Get interest by the best time of the year
-function wordcampus_get_interest_best_time_of_year() {
+function wpcampus_get_interest_best_time_of_year() {
 
     // Store counts - start with total
     $counts = array(
-        'Total' => wordcampus_get_interested_count(),
+        'Total' => wpcampus_get_interested_count(),
     );
 
     // Set options
@@ -74,13 +74,13 @@ function wordcampus_get_interest_best_time_of_year() {
 }
 
 // Get number of interest by country
-function wordcampus_get_interest_by_country() {
+function wpcampus_get_interest_by_country() {
     global $wpdb;
     return $wpdb->get_results( "SELECT meta_value AS country, COUNT(*) AS count FROM {$wpdb->postmeta} WHERE meta_key = 'traveling_country' AND meta_value != '' GROUP BY meta_value ORDER BY count DESC");
 };
 
 // Get number of interested who provided their location
-function wordcampus_get_interested_has_location_count() {
+function wpcampus_get_interested_has_location_count() {
     global $wpdb;
 
     // Build query
@@ -96,7 +96,7 @@ function wordcampus_get_interested_has_location_count() {
 }
 
 // Get interest location
-function wordcampus_get_interest_location( $post_id ) {
+function wpcampus_get_interest_location( $post_id ) {
 
     // Get data
     $location = array();
@@ -113,7 +113,7 @@ function wordcampus_get_interest_location( $post_id ) {
 }
 
 // Get interest location
-function wordcampus_get_interest_location_count( $location = array() ) {
+function wpcampus_get_interest_location_count( $location = array() ) {
     global $wpdb;
 
     // Process args
@@ -137,13 +137,13 @@ function wordcampus_get_interest_location_count( $location = array() ) {
 }
 
 // Get group count
-function wordcampus_get_group_count( $group ) {
+function wpcampus_get_group_count( $group ) {
     $search_criteria = array( 'status' => 'active' );
     $search_criteria['field_filters'][] = array( 'key' => '7', 'operator' => 'contains', 'value' => $group );
     return $counts = GFAPI::count_entries( 1, $search_criteria );
 }
 
-function wordcampus_get_interest_sessions() {
+function wpcampus_get_interest_sessions() {
 
     // Get form in
     if ( $form = GFAPI::get_form( 1 ) ) {
@@ -164,7 +164,7 @@ function wordcampus_get_interest_sessions() {
 
             // Store counts - start with total
             $counts = array(
-                'Total' => wordcampus_get_interested_count(),
+                'Total' => wpcampus_get_interested_count(),
             );
 
             // Get by option
@@ -198,7 +198,7 @@ function wordcampus_get_interest_sessions() {
 
 }
 
-function wordcampus_get_interest_universities() {
+function wpcampus_get_interest_universities() {
     $search_criteria = array( 'status' => 'active' );
     $search_criteria['field_filters'][] = array( 'key' => '5', 'operator' => 'contains', 'value' => 'I work at a higher ed institution' );
     //$search_criteria['field_filters'][] = array( 'key' => '4', 'operator' => 'is not', 'value' => '' );
@@ -222,12 +222,12 @@ function wordcampus_get_interest_universities() {
 }
 
 // Get the total number of votes for the vote on our new name
-function wordcampus_get_vote_on_new_name_count( $group ) {
+function wpcampus_get_vote_on_new_name_count( $group ) {
     return GFAPI::count_entries( 6, array( 'status' => 'active' ) );
 }
 
 // Get the count by choice for the vote on our new name
-function wordcampus_get_vote_on_new_name() {
+function wpcampus_get_vote_on_new_name() {
 
     // Set the form ID
     $form_id = 6;

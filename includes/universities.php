@@ -25,7 +25,7 @@ add_filter( 'gmb_mashup_infowindow_content', function( $response, $marker_data, 
     }
 
     // Display location
-    if ( $location_data = wordcampus_get_university_location( $post_id ) ) {
+    if ( $location_data = wpcampus_get_university_location( $post_id ) ) {
 
         // Print address
         if ( ! empty( $location_data[ 'city' ] ) ) {
@@ -72,7 +72,7 @@ add_action( 'acf/save_post', function( $post_id ) {
     }
 
     // Get saved location before ACF updates the info
-    $saved_university_location = wordcampus_get_university_location_string( $post_id );
+    $saved_university_location = wpcampus_get_university_location_string( $post_id );
 
 }, 1 );
 
@@ -86,7 +86,7 @@ add_action( 'acf/save_post', function( $post_id ) {
     }
 
     // Get updated location
-    $updated_university_location = wordcampus_get_university_location_string( $post_id );
+    $updated_university_location = wpcampus_get_university_location_string( $post_id );
 
     // If updated is not different than saved, then no point
     if ( $updated_university_location == $saved_university_location ) {
@@ -98,7 +98,7 @@ add_action( 'acf/save_post', function( $post_id ) {
     delete_post_meta( $post_id, 'longitude' );
 
     // Get latitude and longitude
-    if ( $location_lat_long = wordcampus_get_lat_long( $updated_university_location ) ) {
+    if ( $location_lat_long = wpcampus_get_lat_long( $updated_university_location ) ) {
 
         // Add latitude
         if ( $latitude = isset( $location_lat_long->lat ) ? $location_lat_long->lat : false ) {
@@ -115,7 +115,7 @@ add_action( 'acf/save_post', function( $post_id ) {
 }, 1000 );
 
 // Get university location array
-function wordcampus_get_university_location( $post_id ) {
+function wpcampus_get_university_location( $post_id ) {
 
     // Get data
     $location = array();
@@ -127,10 +127,10 @@ function wordcampus_get_university_location( $post_id ) {
 }
 
 // Get university location string
-function wordcampus_get_university_location_string( $post_id ) {
+function wpcampus_get_university_location_string( $post_id ) {
 
     // Get/build string
-    if ( $location = array_filter( wordcampus_get_university_location( $post_id ) ) ) {
+    if ( $location = array_filter( wpcampus_get_university_location( $post_id ) ) ) {
         return preg_replace( '/[\s]{2,}/i', ' ', implode( ' ', $location ) );
     }
 

@@ -20,7 +20,7 @@ add_action( 'rest_api_init', function () {
     require_once( STYLESHEETPATH . '/includes/class-api-data.php' );
 
     // Initialize our class
-    $wpcampus_api_data = new WordCampus_API_Data();
+    $wpcampus_api_data = new WPCampus_API_Data();
 
     // Register our routes
     $wpcampus_api_data->register_routes();
@@ -35,10 +35,10 @@ add_action( 'wp_enqueue_scripts', function () {
     $wpcampus_dir = trailingslashit( get_stylesheet_directory_uri() );
 
     // Load Fonts
-    wp_enqueue_style( 'wordcampus-fonts', 'https://fonts.googleapis.com/css?family=Open+Sans:600,400,300' );
+    wp_enqueue_style( 'wpcampus-fonts', 'https://fonts.googleapis.com/css?family=Open+Sans:600,400,300' );
 
     // Enqueue the base styles
-    wp_enqueue_style( 'wordcampus', $wpcampus_dir . 'css/styles.min.css', array( 'wordcampus-fonts' ), $wpcampus_version, 'all' );
+    wp_enqueue_style( 'wpcampus', $wpcampus_dir . 'css/styles.min.css', array( 'wpcampus-fonts' ), $wpcampus_version, 'all' );
 
     // Enqueue modernizr - goes in header
     wp_enqueue_script( 'modernizr', 'https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js' );
@@ -61,13 +61,13 @@ add_action( 'wp_enqueue_scripts', function () {
         // Enqueue our data script
 		// Set a var so that we can automatically use the non-minified script on staging, but the minified script on prod
 		$min = stristr( $_SERVER['HTTP_HOST'], '.staging' ) ? '' : '.min';
-        wp_enqueue_script( 'wordcampus-data', $wpcampus_dir . 'js/wordcampus-data' . $min . '.js', array('jquery', 'google-charts', 'chartist'), $wpcampus_version, false );
+        wp_enqueue_script( 'wpcampus-data', $wpcampus_dir . 'js/wpcampus-data' . $min . '.js', array('jquery', 'google-charts', 'chartist'), $wpcampus_version, false );
 
     }
 
     // Enqueue the events styles
     if ( is_post_type_archive( 'tribe_events' ) || is_singular( 'tribe_events' ) ) {
-        wp_enqueue_style( 'wpcampus-events', $wpcampus_dir . 'css/tribe-events.min.css', array( 'wordcampus' ), $wpcampus_version, 'all' );
+        wp_enqueue_style( 'wpcampus-events', $wpcampus_dir . 'css/tribe-events.min.css', array( 'wpcampus' ), $wpcampus_version, 'all' );
     }
 
 }, 10 );
@@ -78,10 +78,10 @@ add_action( 'wp_footer', function() {
 });
 
 //! Load favicons
-add_action( 'wp_head', 'wordcampus_add_favicons' );
-add_action( 'admin_head', 'wordcampus_add_favicons' );
-add_action( 'login_head', 'wordcampus_add_favicons' );
-function wordcampus_add_favicons() {
+add_action( 'wp_head', 'wpcampus_add_favicons' );
+add_action( 'admin_head', 'wpcampus_add_favicons' );
+add_action( 'login_head', 'wpcampus_add_favicons' );
+function wpcampus_add_favicons() {
 
     // Set the images folder
     $favicons_folder = get_stylesheet_directory_uri() . '/images/favicons/';
@@ -148,7 +148,7 @@ add_filter( 'qm/process', function( $show_qm, $is_admin_bar_showing ) {
 }, 10, 2 );
 
 // Get breadcrumbs
-function wordcampus_get_breadcrumbs_html() {
+function wpcampus_get_breadcrumbs_html() {
     global $post;
 
 	// Build array of breadcrumbs
@@ -244,7 +244,7 @@ function wordcampus_get_breadcrumbs_html() {
 // Register our CPTs and taxonomies
 add_action( 'init', function() {
 
-    // Register private WordCampus interest CPT
+    // Register private WPCampus interest CPT
     register_post_type( 'wpcampus_interest', array(
         'labels'             => array(
             'name'               => 'Interest',
@@ -351,7 +351,7 @@ add_action( 'init', function() {
 add_action( 'gform_after_submission_1', function( $entry, $form ) {
 
     // Convert this entry to a post
-    wordcampus_convert_entry_to_post( $entry, $form );
+    wpcampus_convert_entry_to_post( $entry, $form );
 
 }, 10, 2 );
 
@@ -380,7 +380,7 @@ add_action( 'admin_init', function() {
         foreach( $entries as $entry ) {
 
             // Convert this entry to a post
-            wordcampus_convert_entry_to_post( $entry, $form );
+            wpcampus_convert_entry_to_post( $entry, $form );
 
         }
 
@@ -390,7 +390,7 @@ add_action( 'admin_init', function() {
 
 // Process specific form entry to convert to CPT
 // Can pass entry or form object or entry or form ID
-function wordcampus_convert_entry_to_post( $entry, $form ) {
+function wpcampus_convert_entry_to_post( $entry, $form ) {
 
     // If ID, get the entry
     if ( is_numeric( $entry ) && $entry > 0 ) {
@@ -411,7 +411,7 @@ function wordcampus_convert_entry_to_post( $entry, $form ) {
     $entry_id = $entry['id'];
 
     // First, check to see if the entry has already been processed
-    $entry_post = wordcampus_get_entry_post( $entry_id );
+    $entry_post = wpcampus_get_entry_post( $entry_id );
 
     // If this entry has already been processed, then skip
     if ( $entry_post && isset( $entry_post->ID ) ) {
@@ -519,7 +519,7 @@ function wordcampus_convert_entry_to_post( $entry, $form ) {
                 $traveling_string = preg_replace( '/[\s]{2,}/i', ' ', implode( ' ', ${$admin_label} ) );
 
                 // Get latitude and longitude
-                if ( $traveling_lat_long = wordcampus_get_lat_long( $traveling_string ) ) {
+                if ( $traveling_lat_long = wpcampus_get_lat_long( $traveling_string ) ) {
 
                     // Store data (will be stored in post meta later)
                     $traveling_latitude = isset( $traveling_lat_long->lat ) ? $traveling_lat_long->lat : false;
@@ -577,10 +577,10 @@ function wordcampus_convert_entry_to_post( $entry, $form ) {
 }
 
 // Takes the address and returns location lat and long from Google
-function wordcampus_get_lat_long( $address ) {
+function wpcampus_get_lat_long( $address ) {
 
     // Get Geocode data
-    if ( $geocode = wordcampus_get_geocode( $address ) ) {
+    if ( $geocode = wpcampus_get_geocode( $address ) ) {
 
         // Get the geometry
         if ( $geometry = isset( $geocode->geometry ) ? $geocode->geometry : false ) {
@@ -601,7 +601,7 @@ function wordcampus_get_lat_long( $address ) {
 }
 
 // Takes the address and returns geocode data from Google
-function wordcampus_get_geocode( $address ) {
+function wpcampus_get_geocode( $address ) {
 
     // Make sure we have an address
     if ( ! trim( $address ) ) {
@@ -609,7 +609,7 @@ function wordcampus_get_geocode( $address ) {
     }
 
     // Build maps query - needs Google API Server Key
-    $maps_api_key = get_option( 'wordcampus_google_maps_api_key' );
+    $maps_api_key = get_option( 'wpcampus_google_maps_api_key' );
     $query = "https://maps.googleapis.com/maps/api/geocode/json?address=" . urlencode( $address ) . "&key=" . $maps_api_key;
 
     // If data is returned...
@@ -633,7 +633,7 @@ function wordcampus_get_geocode( $address ) {
 }
 
 // Get post created from entry
-function wordcampus_get_entry_post( $entry_id ) {
+function wpcampus_get_entry_post( $entry_id ) {
     global $wpdb;
     return $wpdb->get_row( "SELECT posts.*, meta.meta_value AS gf_entry_id FROM {$wpdb->posts} posts INNER JOIN {$wpdb->postmeta} meta ON meta.post_id = posts.ID AND meta.meta_key = 'gf_entry_id' AND meta.meta_value = '{$entry_id}' WHERE posts.post_type ='wpcampus_interest'" );
 }
