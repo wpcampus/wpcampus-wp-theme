@@ -222,7 +222,7 @@ function wpcampus_get_interest_universities() {
 }
 
 // Get the total number of votes for the vote on our new name
-function wpcampus_get_vote_on_new_name_count( $group ) {
+function wpcampus_get_vote_on_new_name_count() {
     return GFAPI::count_entries( 6, array( 'status' => 'active' ) );
 }
 
