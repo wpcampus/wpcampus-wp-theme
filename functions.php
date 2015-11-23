@@ -65,6 +65,11 @@ add_action( 'wp_enqueue_scripts', function () {
 
     }
 
+    // Enqueue the events styles
+    if ( is_post_type_archive( 'tribe_events' ) || is_singular( 'tribe_events' ) ) {
+        wp_enqueue_style( 'wpcampus-events', $wpcampus_dir . 'css/tribe-events.min.css', array( 'wordcampus' ), $wpcampus_version, 'all' );
+    }
+
 }, 10 );
 
 // Add the AddThis script to the footer
