@@ -43,7 +43,7 @@
         height: auto;
         overflow: visible;
         background: #eee;
-        color: $black;
+        color: #000;
         padding: 10px;
     }
 
@@ -83,16 +83,16 @@ $banner-menu-height: 40px;
 #wpcampus-banner {
     height: $banner-menu-height;
     background: #222;
-    color: $white;
+    color: #fff;
     text-align: center;
-    border-bottom: 1px solid $white;
+    border-bottom: 1px solid #fff;
 
     ul.menu {
         height: $banner-menu-height;
         display: inline-block;
         list-style: none;
         margin: 0;
-        color: $white;
+        color: #fff;
         font-size: 1em;
         line-height: $banner-menu-height - 1;
         text-transform: uppercase;
@@ -114,7 +114,7 @@ $banner-menu-height: 40px;
                 font-size: inherit;
                 line-height: inherit;
                 text-decoration: none;
-                color: rgba( $white, 0.8 );
+                color: rgba( #fff, 0.8 );
                 padding: 0 12px;
             }
 
@@ -137,7 +137,7 @@ $banner-menu-height: 40px;
 
             &.current a,
             a:hover {
-                background: rgba( $white, 0.2 );
+                background: rgba( #fff, 0.2 );
             }
 
         }
@@ -151,14 +151,14 @@ $banner-menu-height: 40px;
     background-size: auto 600px;
     height: 260px;
     position: relative;
-    color: $white;
+    color: #fff;
     -moz-box-shadow:    inset 0 0 20px #000000;
     -webkit-box-shadow: inset 0 0 20px #000000;
     box-shadow:         inset 0 0 20px #000000;
 
     &:before {
         content: '';
-        background: rgba( $black, 0.6 );
+        background: rgba( #000, 0.6 );
         position: absolute;
         left: 0;
         top: 0;
@@ -240,10 +240,10 @@ $banner-menu-height: 40px;
 
 .wpcampus-chart,
 .wpcampus-map {
-    background: $white;
+    background: #fff;
     width: 100%;
     height: 450px;
-    border: 1px solid rgba($black,0.1);
+    border: 1px solid rgba(#000,0.1);
     margin: 0 0 30px 0;
     overflow: hidden;
 
@@ -268,20 +268,20 @@ $banner-menu-height: 40px;
 }
 
 .maps-builder-pro-message {
-    background: rgba($black,0.05);
+    background: rgba(#000,0.05);
     padding: 20px;
     margin: -20px 0 35px 0;
 }
 
 #wpcampus-data-group {
-    background: rgba($black,0.02);
+    background: rgba(#000,0.02);
     text-align: center;
     font-size: 1.4em;
     text-transform: uppercase;
-    color: rgba($black,0.9);
+    color: rgba(#000,0.9);
     padding: 20px;
     margin-bottom: 0;
-    border: 1px solid rgba($black,0.1);
+    border: 1px solid rgba(#000,0.1);
     border-bottom: 0;
 }
 
@@ -305,7 +305,7 @@ $banner-menu-height: 40px;
     padding: 20px;
 
     &.dark {
-        color: $white;
+        color: #fff;
 
         * {
             color: inherit;
@@ -378,7 +378,7 @@ $banner-menu-height: 40px;
 }
 
 #wpcampus-main {
-    background: $white;
+    background: #fff;
     min-height: 200px;
     padding: 30px 0 50px 0;
 
