@@ -54,6 +54,17 @@ h1 {
     font-weight: 300;
 }
 
+// Images
+img {
+
+    &.aligncenter {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+}
+
 ul {
 
     &.column-two {
@@ -209,7 +220,7 @@ $banner-menu-height: 40px;
             padding: 15px 18px;
             text-transform: uppercase;
             font-size: 1.2em;
-            line-height: 1.2;
+            line-height: 1.3;
 
             &.royal-blue {
                 background: $royal-blue;
@@ -218,6 +229,10 @@ $banner-menu-height: 40px;
                     background: darken( $royal-blue, 10% );
                 }
 
+            }
+
+            & + .button {
+                margin-left: 10px;
             }
 
         }
@@ -336,6 +351,12 @@ $banner-menu-height: 40px;
 
     &.dark-blue {
         background: $dark-blue;
+    }
+
+    &.wpcampus-phil-tshirt {
+        background: #fff;
+        border: 20px solid $panel-bg;
+        margin-right: -20px;
     }
 
 }
