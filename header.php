@@ -41,7 +41,7 @@ $is_apply_to_host_page = is_page( 'apply-to-host' );
                     <span class="wpcampus-tagline">Where WordPress Meets Higher Education</span><?php
 
                     if ( ! $is_apply_to_host_page ) {
-                        ?><a href="<?php echo $blog_url; ?>/apply-to-host/" class="button royal-blue">Apply To Host WPCampus</a><?php
+                        ?><a href="<?php echo $blog_url; ?>/apply-to-host/" class="button royal-blue">Apply To Host WPCampus<br /><span style="font-weight:300;">Deadline Today</span></a><?php
                     } /*else if ( ! $is_front_page ) {
                         ?><a href="<?php echo $blog_url; ?>" class="button royal-blue">Get Involved With WPCampus</a><?php
                     }*/
