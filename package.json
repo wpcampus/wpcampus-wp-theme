@@ -5,7 +5,7 @@
   "license": "GPL",
   "repository": {
     "type": "git",
-    "url": "https://github.com/bamadesigner/wordcampus-wp-theme.git"
+    "url": "https://github.com/wpcampus/wpcampus-wp-theme.git"
   },
   "author": "Rachel Carden",
   "devDependencies": {
