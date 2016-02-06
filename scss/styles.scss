@@ -133,10 +133,10 @@ $banner-menu-height: 40px;
                 display: block;
             }
 
-            &.twitter {
+            &.icon {
 
                 a {
-                    padding: 12px 10px 0 10px;
+                    padding: 11px 10px 0 10px;
                 }
 
                 img {
@@ -532,18 +532,16 @@ $banner-menu-height: 40px;
             height: 300px;
         }
 
-        .wpcampus-header {
+        .wpcampus-logo {
 
-            .wpcampus-logo {
-
-                .wpcampus-tagline {
-                    font-size: 2.25em;
-                    line-height: 1.2;
-                }
-
+            .wpcampus-tagline {
+                font-size: 2.25em;
+                line-height: 1.2;
             }
 
         }
+
+
 
     }
 
