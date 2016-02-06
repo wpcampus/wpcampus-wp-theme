@@ -24,22 +24,29 @@ $is_events_page = is_post_type_archive('tribe_events') || is_singular('tribe_eve
             <li<?php echo is_page( 'get-involved' ) ? ' class="current"' : null; ?>><a href="<?php echo $blog_url; ?>/get-involved/">Get Involved</a></li>
             <li<?php echo $is_events_page ? ' class="current"' : null; ?>><a href="<?php echo $blog_url; ?>/events/">Events</a></li>
             <li<?php echo is_page( 'contact' ) ? ' class="current"' : null; ?>><a href="<?php echo $blog_url; ?>/contact/">Contact Us</a></li>
-            <li class="twitter"><a href="https://twitter.com/wpcampusorg"><img src="<?php echo $stylesheet_dir; ?>/images/twitter-white.svg" /></a></li>
+            <li class="twitter"><a href="https://twitter.com/wpcampusorg"><img src="<?php echo $stylesheet_dir; ?>/images/twitter-white.svg" alt="Follow WPCampus on Twitter" /></a></li>
         </ul>
     </div> <!-- #wpcampus-banner -->
 
     <div id="wpcampus-hero">
         <div class="row">
             <div class="small-12 columns">
-                <div class="wpcampus-header">
-                    <a class="wpcampus-logo" href="<?php echo $blog_url; ?>">
-                        <span class="wpcampus-word">WPCampus</span>
-                        <img src="<?php echo $stylesheet_dir; ?>/images/wpcampus-white.svg" />
-                    </a>
-                    <span class="wpcampus-tagline">Where WordPress Meets Higher Education</span><?php
+                <div class="wpcampus-header"><?php
+
+                    // If home, add a <h1>
+                    echo $is_front_page ? '<h1>' : null;
+
+                    ?><a class="wpcampus-logo" href="<?php echo $blog_url; ?>">
+                        <span class="screen-reader-text">WPCampus</span>
+                        <img src="<?php echo $stylesheet_dir; ?>/images/wpcampus-white.svg" alt="" />
+                        <span class="wpcampus-tagline">Where WordPress Meets Higher Education</span>
+                    </a><?php
+
+                    // If home, close the <h1>
+                    echo $is_front_page ? '</h1>' : null;
 
                     if ( ! is_page( 'get-involved' ) ) {
-                        ?><a href="<?php echo $blog_url; ?>" class="button royal-blue">Get Involved With WPCampus</a><?php
+                        ?><a href="<?php echo $blog_url; ?>/get-involved/" class="button royal-blue">Get Involved With WPCampus</a><?php
                     }
 
                 ?></div> <!-- .wpcampus-header -->
