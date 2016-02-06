@@ -1,5 +1,50 @@
 <?php
 
+//! Include columns in content
+add_shortcode( 'columns', function( $args, $content = NULL ) {
+
+    // Make sure there's content to wrap
+    if ( ! $content )
+        return NULL;
+
+    // Process for more levels of shortcode, wrap in row and return
+    return '<div class="row">' . do_shortcode( $content ) . '</div>';
+
+});
+
+//! Include columns in content
+add_shortcode( 'col', function( $args, $content = NULL ) {
+
+    // Make sure there's content to wrap
+    if ( ! $content )
+        return NULL;
+
+    // Process args
+    $defaults = array(
+        'small' => '12',
+        'medium' => false,
+        'large' => false,
+    );
+    extract( wp_parse_args( $args, $defaults ), EXTR_OVERWRITE );
+
+    // Setup column classes
+    $column_classes = array();
+
+    foreach( array( 'small', 'medium', 'large' ) as $size ) {
+
+        // If a value was passed, make sure its a number
+        if ( isset( ${$size} ) && ! is_numeric( ${$size} ) && ! is_int( ${$size} ) )
+            continue;
+
+        // Add the class
+        $column_classes[] = "{$size}-${$size}";
+
+    }
+
+    return '<div class="' . implode( ' ', $column_classes ) . ' columns">' . do_shortcode( $content ) . '</div>';
+
+});
+
 // Return WPCampus data
 add_shortcode( 'wpcampus_data', function( $args, $content = NULL ) {
 
