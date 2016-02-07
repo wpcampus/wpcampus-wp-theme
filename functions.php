@@ -160,7 +160,7 @@ function wpcampus_get_breadcrumbs_html() {
     }
 
     // Get ancestors
-    $post_ancestors = get_post_ancestors( $post->ID );
+    $post_ancestors = isset( $post ) ? get_post_ancestors( $post->ID ) : array();
 
     // Add home
     $breadcrumbs[] = array(
@@ -191,11 +191,13 @@ function wpcampus_get_breadcrumbs_html() {
     }
 
     // Add current page - if not home page
-    $breadcrumbs[ 'current' ] = array(
-        'ID'      => $post->ID,
-        'url'     => get_permalink( $post ),
-        'label'   => get_the_title( $post->ID ),
-    );
+    if ( isset( $post ) ) {
+        $breadcrumbs[ 'current' ] = array(
+            'ID' => $post->ID,
+            'url' => get_permalink( $post ),
+            'label' => get_the_title( $post->ID ),
+        );
+    }
 
 	// Build breadcrumbs HTML
 	$breadcrumbs_html = null;
