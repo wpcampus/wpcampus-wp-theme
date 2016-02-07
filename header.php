@@ -59,10 +59,17 @@ $is_events_page = is_post_type_archive('tribe_events') || is_singular('tribe_eve
         ?><div id="wpcampus-main-page-title">
             <h1><?php
 
+                // For 404s
+                if ( is_404() ) {
+                    echo 'Page Not Found';
+                }
+
                 // Had to write in because events plugin was overwriting the 'post_type_archive_title' filter
-                if ( $is_events_page ) {
+                else if ( $is_events_page ) {
                     echo 'Events';
-                } else {
+                }
+
+                else {
                     the_title();
                 }
 
