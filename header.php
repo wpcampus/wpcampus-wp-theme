@@ -21,14 +21,26 @@ $is_events_page = is_post_type_archive('tribe_events') || is_singular('tribe_eve
     <a href="#wpcampus-main" id="skip-to-content">Skip to Content</a>
 
     <div id="wpcampus-banner">
-        <ul class="menu">
-            <li class="icon home<?php echo $is_front_page ? ' current' : null; ?>"><a href="<?php echo $blog_url; ?>"><img src="<?php echo $stylesheet_dir; ?>/images/home-white.svg" alt="Visit the WPCampus home page" /></a></li>
-            <li<?php echo is_page( 'get-involved' ) ? ' class="current"' : null; ?>><a href="<?php echo $blog_url; ?>/get-involved/">Get Involved</a></li>
-            <li<?php echo $is_events_page ? ' class="current"' : null; ?>><a href="<?php echo $blog_url; ?>/events/">Events</a></li>
-            <li<?php echo is_page( 'contact' ) ? ' class="current"' : null; ?>><a href="<?php echo $blog_url; ?>/contact/">Contact Us</a></li>
-            <li class="icon twitter"><a href="https://twitter.com/wpcampusorg"><img src="<?php echo $stylesheet_dir; ?>/images/twitter-white.svg" alt="Follow WPCampus on Twitter" /></a></li>
-            <li class="icon github"><a href="https://github.com/wpcampus/"><img src="<?php echo $stylesheet_dir; ?>/images/github-white.svg" alt="Follow WPCampus on GitHub" /></a></li>
-        </ul>
+        <div class="toggle-main-menu">
+            <div class="toggle-icon">
+                <div class="bar one"></div>
+                <div class="bar two"></div>
+                <div class="bar three"></div>
+            </div>
+            <div class="open-menu-label">Menu</div>
+            <div class="close-menu-label">Close</div>
+        </div>
+        <div id="wpcampus-main-menu" class="menu">
+            <ul>
+                <li class="icon has-icon-alt home<?php echo $is_front_page ? ' current' : null; ?>"><a href="<?php echo $blog_url; ?>"><img src="<?php echo $stylesheet_dir; ?>/images/home-white.svg" alt="Visit the WPCampus home page" /><span class="icon-alt">Home</span></a></li>
+                <li<?php echo is_page( 'get-involved' ) ? ' class="current"' : null; ?>><a href="<?php echo $blog_url; ?>/get-involved/">Get Involved</a></li>
+                <li><a href="https://2016.wpcampus.org/">Conference</a></li>
+                <li<?php echo $is_events_page ? ' class="current"' : null; ?>><a href="<?php echo $blog_url; ?>/events/">Events</a></li>
+                <li<?php echo is_page( 'contact' ) ? ' class="current"' : null; ?>><a href="<?php echo $blog_url; ?>/contact/">Contact Us</a></li>
+                <li class="icon twitter"><a href="https://twitter.com/wpcampusorg"><img src="<?php echo $stylesheet_dir; ?>/images/twitter-white.svg" alt="Follow WPCampus on Twitter" /></a></li>
+                <li class="icon github"><a href="https://github.com/wpcampus/"><img src="<?php echo $stylesheet_dir; ?>/images/github-white.svg" alt="Follow WPCampus on GitHub" /></a></li>
+            </ul>
+        </div>
     </div> <!-- #wpcampus-banner -->
 
     <div id="wpcampus-hero">

@@ -43,8 +43,8 @@ add_action( 'wp_enqueue_scripts', function () {
     // Enqueue modernizr - goes in header
     wp_enqueue_script( 'modernizr', 'https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js' );
 
-    // Enqueue the main script file - goes in header
-    wp_enqueue_script( 'wpcampus', $wpcampus_dir . 'js/wpcampus.min.js', array( 'jquery', 'modernizr' ), $wpcampus_version );
+    // Enqueue the main script file - goes in footer
+    wp_enqueue_script( 'wpcampus', $wpcampus_dir . 'js/wpcampus.min.js', array( 'jquery', 'modernizr' ), $wpcampus_version, true );
 
     // Enqueue the data scripts
     if ( is_page( 'data' ) ) {
