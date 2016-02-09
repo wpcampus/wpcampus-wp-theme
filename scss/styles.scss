@@ -638,7 +638,8 @@ body {
     padding: 25px 20px 35px 20px;
     color: #444;
     font-size: 0.9em;
-    line-height: 1.7;
+    line-height: 1.8;
+    text-align: center;
 
     * {
         font-size: inherit;
@@ -650,16 +651,29 @@ body {
     }
 
     .addthis_sharing_toolbox {
-        margin: -40px 0 15px 0;
+        margin: -40px 0 22px 0;
     }
-    
+
+    .wpc-logo {
+        display: block;
+        opacity: $wpc-footer-opacity;
+        margin: 0 0 15px 0;
+
+        img {
+            height: 50px;
+        }
+
+        &:hover {
+            opacity: $wpc-footer-opacity-hover;
+        }
+
+    }
+
     .github-message {
         font-style: italic;
-        text-align: center;
     }
 
     .icons {
-        text-align: center;
 
         img {
             width: auto;
@@ -668,11 +682,11 @@ body {
         
         a {
             display: inline-block;
-            opacity: 0.4;
+            opacity: $wpc-footer-opacity;
             margin: 0 3px;
 
             &:hover {
-                opacity: 0.8;
+                opacity: $wpc-footer-opacity-hover;
             }
 
         }
