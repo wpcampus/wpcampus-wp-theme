@@ -572,6 +572,22 @@ body {
         margin-right: -20px;
     }
 
+    &.wpc-announce {
+        padding: 30px;
+
+        h2 {
+            text-transform: uppercase;
+            font-size: 1.8em;
+            line-height: 1;
+            text-align: center;
+        }
+
+    }
+
+    *:last-child {
+        margin-bottom: 0;
+    }
+
 }
 
 .google-maps-info-content {
