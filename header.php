@@ -60,8 +60,15 @@ $is_events_page = is_post_type_archive('tribe_events') || is_singular('tribe_eve
                     // If home, close the <h1>
                     echo $is_front_page ? '</h1>' : null;
 
-                    if ( ! is_page( 'get-involved' ) ) {
-                        ?><a href="<?php echo $blog_url; ?>/get-involved/" class="button royal-blue">Get Involved With WPCampus</a><?php
+                    // Create buttons
+                    $get_involved_button = '<a href="' . $blog_url . '/get-involved/" class="button royal-blue">Get Involved</a>';
+                    $conference_button = '<a href="https://2016.wpcampus.org/" class="button royal-blue">Learn about our conference</a>';
+
+                    // Print buttons
+                    if ( is_page( 'get-involved' ) ) {
+                        echo $conference_button;
+                    } else {
+                       echo "{$conference_button} {$get_involved_button}";
                     }
 
                 ?></div> <!-- .wpcampus-header -->
