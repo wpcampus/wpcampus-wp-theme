@@ -35,6 +35,7 @@ $is_events_page = is_post_type_archive('tribe_events') || is_singular('tribe_eve
                 <li class="icon has-icon-alt home<?php echo $is_front_page ? ' current' : null; ?>"><a href="<?php echo $blog_url; ?>"><img src="<?php echo $stylesheet_dir; ?>/images/home-white.svg" alt="Visit the WPCampus home page" /><span class="icon-alt">Home</span></a></li>
                 <li<?php echo is_page( 'get-involved' ) ? ' class="current"' : null; ?>><a href="<?php echo $blog_url; ?>/get-involved/">Get Involved</a></li>
                 <li><a href="https://2016.wpcampus.org/">Conference</a></li>
+                <li<?php echo is_page( 'podcast' ) ? ' class="current"' : null; ?>><a href="<?php echo $blog_url; ?>/podcast/">Podcast</a></li>
                 <li<?php echo $is_events_page ? ' class="current"' : null; ?>><a href="<?php echo $blog_url; ?>/events/">Events</a></li>
                 <li<?php echo is_page( 'contact' ) ? ' class="current"' : null; ?>><a href="<?php echo $blog_url; ?>/contact/">Contact Us</a></li>
                 <li class="icon twitter"><a href="https://twitter.com/wpcampusorg"><img src="<?php echo $stylesheet_dir; ?>/images/twitter-white.svg" alt="Follow WPCampus on Twitter" /></a></li>

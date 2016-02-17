@@ -296,7 +296,7 @@ body {
 }
 
 // Expand the banner
-@media screen and (min-width: 650px) {
+@media screen and (min-width: 700px) {
 
     #wpcampus-banner {
 
@@ -523,6 +523,10 @@ body {
 .panel {
     padding: 20px;
 
+    &.center {
+        text-align: center;
+    }
+
     &.dark {
         color: #fff;
 
@@ -551,10 +555,22 @@ body {
 
     &.royal-blue {
         background: $royal-blue;
+        color: #fff;
+
+        * {
+            color: inherit;
+        }
+
     }
 
     &.dark-blue {
         background: $dark-blue;
+        color: #fff;
+
+        * {
+            color: inherit;
+        }
+
     }
 
     &.wpcampus-phil-tshirt {
