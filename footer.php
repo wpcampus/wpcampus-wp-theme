@@ -12,6 +12,7 @@
                 <span class="github-message">This site is powered by <a href="https://wordpress.org/">WordPress</a>. You can view, and contribute to, the theme on <a href="https://github.com/wpcampus/wpcampus-wp-theme">GitHub</a>.</span></p>
                 <p class="icons">
                     <a class="twitter" href="https://twitter.com/wpcampusorg"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/twitter-black.svg" alt="Follow WPCampus on Twitter" /></a>
+                    <a class="youtube" href="https://www.youtube.com/wpcampusorg"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/youtube-black.svg" alt="Follow WPCampus on YouTube" /></a>
                     <a class="github" href="https://github.com/wpcampus/"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/github-black.svg" alt="Follow WPCampus on GitHub" /></a>
                 </p>
             </div>
