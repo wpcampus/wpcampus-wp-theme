@@ -1,5 +1,22 @@
 <?php
 
+// Filter the page title
+add_filter( 'wpcampus_page_title', function( $page_title ) {
+
+	// Change the title for events pages
+	// Had to write in because events plugin was overwriting the 'post_type_archive_title' filter
+	if ( is_post_type_archive('tribe_events') || is_singular('tribe_events') ) {
+		return 'Events';
+	}
+
+	// Change the title for podcast pages
+	else if ( is_post_type_archive('podcast') ) {
+		return 'WPCampus Podcast';
+	}
+
+	return $page_title;
+});
+
 //! Filter login logo URL
 add_filter( 'login_headerurl', function( $login_header_url ) {
 	return get_bloginfo( 'url' );

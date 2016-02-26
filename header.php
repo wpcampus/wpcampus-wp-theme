@@ -87,13 +87,9 @@ $is_events_page = is_post_type_archive('tribe_events') || is_singular('tribe_eve
                     echo 'Page Not Found';
                 }
 
-                // Had to write in because events plugin was overwriting the 'post_type_archive_title' filter
-                else if ( $is_events_page ) {
-                    echo 'Events';
-                }
-
+                // Print a title we can filter
                 else {
-                    the_title();
+                    echo apply_filters( 'wpcampus_page_title', get_the_title() );
                 }
 
             ?></h1><?php
