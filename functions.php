@@ -181,7 +181,6 @@ function wpcampus_get_post_type_archive_title( $post_type = '' ) {
 
 // Get breadcrumbs
 function wpcampus_get_breadcrumbs_html() {
-    global $post;
 
 	// Build array of breadcrumbs
 	$breadcrumbs = array();
@@ -191,8 +190,13 @@ function wpcampus_get_breadcrumbs_html() {
         return false;
     }
 
-    // Get ancestors
-    $post_ancestors = isset( $post ) ? get_post_ancestors( $post->ID ) : array();
+    // Get post type
+    $post_type = get_query_var( 'post_type' );
+
+    // Make sure its not an array
+    if ( is_array( $post_type ) ) {
+        $post_type = reset( $post_type );
+    }
 
     // Add home
     $breadcrumbs[] = array(
@@ -201,34 +205,58 @@ function wpcampus_get_breadcrumbs_html() {
     );
 
     // Add archive(s)
+    if ( is_archive() ) {
 
-    // Had to write in because events plugin was overwriting the 'post_type_archive_title' filter
-    if ( is_post_type_archive( 'tribe_events' ) || is_singular('tribe_events') ) {
-        $breadcrumbs[] = array(
-            'url'   => get_post_type_archive_link( 'tribe_events' ),
-            'label' => 'Events',
-        );
-    }
+        // Add the archive breadcrumb
+        if ( is_post_type_archive() ) {
 
-    // Add the ancestors
-    foreach( $post_ancestors as $post_ancestor_id ) {
+            // Get the info
+            $post_type_archive_link = get_post_type_archive_link( $post_type );
+            $post_type_archive_title = wpcampus_get_post_type_archive_title( $post_type );
 
-        // Add ancestor
-        $breadcrumbs[] = array(
-            'ID'	=> $post_ancestor_id,
-            'url'   => get_permalink( $post_ancestor_id ),
-            'label' => get_the_title( $post_ancestor_id ),
-        );
+            // Add the breadcrumb
+            if ( $post_type_archive_link && $post_type_archive_title ) {
+                $breadcrumbs[] = array( 'url' => $post_type_archive_link, 'label' => $post_type_archive_title );
+            }
 
-    }
+        }
 
-    // Add current page - if not home page
-    if ( isset( $post ) ) {
-        $breadcrumbs[ 'current' ] = array(
-            'ID' => $post->ID,
-            'url' => get_permalink( $post ),
-            'label' => get_the_title( $post->ID ),
-        );
+    } else {
+
+        // Add links to archive
+        if ( is_singular() ) {
+
+            // Get the information
+            $post_type_archive_link = get_post_type_archive_link( $post_type );
+            $post_type_archive_title = wpcampus_get_post_type_archive_title( $post_type );
+
+            if ( $post_type_archive_link ) {
+                $breadcrumbs[] = array( 'url' => $post_type_archive_link, 'label' => $post_type_archive_title );
+            }
+
+        }
+
+        // Print info for the current post
+        if ( ( $post = get_queried_object() ) && is_a( $post, 'WP_Post' ) ) {
+
+            // Get ancestors
+            $post_ancestors = isset( $post ) ? get_post_ancestors( $post->ID ) : array();
+
+            // Add the ancestors
+            foreach ( $post_ancestors as $post_ancestor_id ) {
+
+                // Add ancestor
+                $breadcrumbs[] = array( 'ID' => $post_ancestor_id, 'url' => get_permalink( $post_ancestor_id ), 'label' => get_the_title( $post_ancestor_id ), );
+
+            }
+
+            // Add current page - if not home page
+            if ( isset( $post ) ) {
+                $breadcrumbs[ 'current' ] = array( 'ID' => $post->ID, 'url' => get_permalink( $post ), 'label' => get_the_title( $post->ID ), );
+            }
+
+        }
+
     }
 
 	// Build breadcrumbs HTML
