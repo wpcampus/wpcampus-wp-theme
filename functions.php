@@ -147,6 +147,38 @@ add_filter( 'qm/process', function( $show_qm, $is_admin_bar_showing ) {
     return $is_admin_bar_showing;
 }, 10, 2 );
 
+// Get the post type archive title
+function wpcampus_get_post_type_archive_title( $post_type = '' ) {
+
+    // Make sure we have a post type
+    if ( ! $post_type ) {
+        $post_type = get_query_var( 'post_type' );
+    }
+
+    // Get post type archive title
+    if ( $post_type ) {
+
+        // Make sure its not an array
+        if ( is_array( $post_type ) ) {
+            $post_type = reset( $post_type );
+        }
+
+        // Get the post type data
+        if ( $post_type_obj = get_post_type_object( $post_type ) ) {
+
+            // Get the title
+            $title = apply_filters( 'post_type_archive_title', $post_type_obj->labels->name, $post_type );
+
+            // Return the title
+            return apply_filters( 'wpcampus_post_type_archive_title', $title, $post_type );
+
+        }
+
+    }
+
+    return null;
+}
+
 // Get breadcrumbs
 function wpcampus_get_breadcrumbs_html() {
     global $post;
