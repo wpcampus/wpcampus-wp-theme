@@ -9,9 +9,14 @@ add_filter( 'wpcampus_page_title', function( $page_title ) {
 		return 'Events';
 	}
 
-	// Change the title for podcast pages
+	// Change the title for the main podcast page
 	else if ( is_post_type_archive('podcast') ) {
 		return 'WPCampus Podcast';
+	}
+
+	// Prefix the title for the single podcast pages
+	else if ( is_singular('podcast') ) {
+		return '<span class="fade">Podcast:</span> ' . $page_title;
 	}
 
 	return $page_title;
