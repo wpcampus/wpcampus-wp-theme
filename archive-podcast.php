@@ -4,7 +4,14 @@ get_header();
 
 ?><p>The WPCampus Podcast is a weekly show where members of the community come together to discuss relevant topics, unique ways that WordPress is being used in higher education, share tutorials and walkthroughs, and more.</p>
 
-<div class="panel royal-blue center" style=margin-bottom:30px;">Our podcast is broadcasted live every Wednesday at 12 p.m. EST.</div><?php
+<div class="panel dark-blue center" style=margin-bottom:20px;">The WPCampus Podcast is broadcasted live every Wednesday at 12 p.m. EST.</div>
+
+<div style="text-align: center">
+	<ul class="button-group">
+		<li><a href="https://itun.es/i6YF9HH" class="button">Listen on iTunes</a></li>
+		<li><a href="<?php echo get_bloginfo('url'); ?>/feed/podcast" class="button">View the RSS feed</a></li>
+	</ul>
+</div><?php
 
 if ( ! have_posts() ) {
 
@@ -16,7 +23,7 @@ if ( ! have_posts() ) {
         the_post();
 
 	    ?><hr />
-	    <h2><?php the_title(); ?></h2><?php
+	    <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2><?php
         the_content();
 
     }
