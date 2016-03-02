@@ -11,7 +11,16 @@ if ( ! have_posts() ) {
     while ( have_posts() ) {
         the_post();
 
-	    the_content();
+	    ?><div class="wpcampus-podcast-single"><?php
+
+		    // Print the date
+		    if ( $date = get_the_date( 'l, F j, Y', get_the_ID() ) ) {
+			    ?><p class="podcast-meta">Recorded <?php echo $date; ?></p><?php
+		    }
+
+		    the_content();
+
+	    ?></div><?php
 
     }
 }

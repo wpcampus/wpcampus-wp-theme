@@ -19,14 +19,28 @@ if ( ! have_posts() ) {
 	<p>If you can't find what you're looking for in the menu, please <a href="<?php echo get_bloginfo('url'); ?>/contact/">reach out to us</a> and let us know. We'd be happy to help.</p><?php
 
 } else {
-    while ( have_posts() ) {
-        the_post();
 
-	    ?><hr />
-	    <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2><?php
-        the_content();
+	?><div class="wpcampus-podcasts"><?php
 
-    }
+	    while ( have_posts() ) {
+	        the_post();
+
+		    // Get the date
+		    $date = get_the_date( 'l, F j, Y', get_the_ID() );
+
+		    ?><hr />
+			<div class="wpcampus-podcast">
+		        <h2 class="podcast-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2><?php
+		        if ( $date ) {
+			        ?><p class="podcast-meta">Recorded <?php echo $date; ?></p><?php
+		        }
+	            the_content();
+			?></div><?php
+
+	    }
+
+	?></div><!--.wpcampus-podcasts--><?php
+
 }
 
 get_footer();
