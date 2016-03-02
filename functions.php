@@ -12,6 +12,11 @@ require_once( STYLESHEETPATH . '/includes/universities.php' );
 // Include shortcodes
 require_once( STYLESHEETPATH . '/includes/shortcodes.php' );
 
+// We only need admin functionality in the admin
+if ( is_admin() ) {
+    require_once( STYLESHEETPATH . '/includes/admin.php' );
+}
+
 // Setup the API
 add_action( 'rest_api_init', function () {
     global $wpcampus_api_data;
