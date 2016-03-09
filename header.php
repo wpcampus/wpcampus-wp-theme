@@ -76,7 +76,11 @@ $is_events_page = is_post_type_archive('tribe_events') || is_singular('tribe_eve
                 ?></div> <!-- .wpcampus-header -->
             </div>
         </div>
-    </div><?php
+    </div>
+
+    <div id="wpc-notification">
+        <p><strong>The <a href="https://2016.wpcampus.org/speakers/">WPCampus 2016 call for speakers</a> is open and will close at 12 midnight EST on March 21, 2016.</strong></p>
+    </div> <!-- #wpc-notification --><?php
 
     if ( ! $is_front_page ) {
         ?><div id="wpcampus-main-page-title">
