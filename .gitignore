@@ -1,3 +1,6 @@
-node_modules/*
-*.map
 bower_components/*
+css
+*.map
+node_modules/*
+wpcampus.min.js
+wpcampus-data.min.js
