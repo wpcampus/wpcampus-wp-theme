@@ -64,13 +64,14 @@ $is_events_page = is_post_type_archive('tribe_events') || is_singular('tribe_eve
 
                     // Create buttons
                     $get_involved_button = '<a href="' . $blog_url . '/get-involved/" class="button royal-blue">Get Involved</a>';
+                    $survey_button = '<a href="https://www.surveymonkey.com/r/WPCampus2016" class="button royal-blue">Take Survey</a>';
                     $conference_button = '<a href="https://2016.wpcampus.org/" class="button royal-blue">Learn about our conference</a>';
 
                     // Print buttons
                     if ( is_page( 'get-involved' ) ) {
-                        echo $conference_button;
+                        echo "{$conference_button} {$survey_button}";
                     } else {
-                       echo "{$conference_button} {$get_involved_button}";
+                       echo "{$conference_button} {$survey_button} {$get_involved_button}";
                     }
 
                 ?></div> <!-- .wpcampus-header -->
