@@ -37,7 +37,8 @@ $is_events_page = is_post_type_archive('tribe_events') || is_singular('tribe_eve
                 <li><a href="https://2016.wpcampus.org/">Conference</a></li>
                 <li<?php echo is_post_type_archive('podcast') || is_singular('podcast') ? ' class="current"' : null; ?>><a href="<?php echo $blog_url; ?>/podcast/">Podcast</a></li>
                 <li<?php echo $is_events_page ? ' class="current"' : null; ?>><a href="<?php echo $blog_url; ?>/events/">Events</a></li>
-                <li<?php echo is_page( 'contact' ) ? ' class="current"' : null; ?>><a href="<?php echo $blog_url; ?>/contact/">Contact Us</a></li>
+                <li><a href="https://www.surveymonkey.com/r/WPCampus2016">Survey</a></li>
+                <li<?php echo is_page( 'contact' ) ? ' class="current"' : null; ?>><a href="<?php echo $blog_url; ?>/contact/">Contact</a></li>
                 <li class="icon twitter"><a href="https://twitter.com/wpcampusorg"><img src="<?php echo $stylesheet_dir; ?>/images/twitter-white.svg" alt="Follow WPCampus on Twitter" /></a></li>
                 <li class="icon youtube"><a href="https://www.youtube.com/wpcampusorg"><img src="<?php echo $stylesheet_dir; ?>/images/youtube-white.svg" alt="Follow WPCampus on YouTube" /></a></li>
                 <li class="icon github"><a href="https://github.com/wpcampus/"><img src="<?php echo $stylesheet_dir; ?>/images/github-white.svg" alt="Follow WPCampus on GitHub" /></a></li>
