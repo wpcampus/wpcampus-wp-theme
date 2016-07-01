@@ -2,9 +2,9 @@
 
 get_header();
 
-?><p>The WPCampus Podcast is a weekly show where members of the community come together to discuss relevant topics, unique ways that WordPress is being used in higher education, share tutorials and walkthroughs, and more.</p>
+?><p>The WPCampus Podcast is a monthly show where members of the community come together to discuss relevant topics, unique ways that WordPress is being used in higher education, share tutorials and walkthroughs, and more.</p>
 
-<div class="panel dark-blue center" style=margin-bottom:20px;">The WPCampus Podcast is broadcasted live every other Wednesday at 12 p.m. EST.</div>
+<div class="panel dark-blue center" style=margin-bottom:20px;">New episodes of The WPCampus Podcast are released every month.</div>
 
 <div style="text-align: center">
 	<ul class="button-group">
