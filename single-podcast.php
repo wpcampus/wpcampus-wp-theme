@@ -25,7 +25,7 @@ if ( ! have_posts() ) {
     }
 }
 
-?><div class="panel dark-blue center" style=margin-bottom:20px;"><a href="<?php echo get_bloginfo('url'); ?>/podcast/">The WPCampus Podcast</a> is broadcasted live every other Wednesday at 12 p.m. EST.</div>
+?><div class="panel dark-blue center" style=margin-bottom:20px;">New episodes of <a href="<?php echo get_bloginfo('url'); ?>/podcast/">The WPCampus Podcast</a> are released every month.</div>
 
 <div style="text-align: center">
 	<ul class="button-group">
