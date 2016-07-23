@@ -6,9 +6,9 @@ $is_front_page = is_front_page();
 $is_events_page = is_post_type_archive('tribe_events') || is_singular('tribe_events');
 
 ?><!DOCTYPE html>
-<html lang="en">
+<html <?php language_attributes(); ?> class="no-js">
 <head>
-    <meta charset="utf-8">
+    <meta charset="<?php bloginfo( 'charset' ); ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
