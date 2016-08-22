@@ -116,6 +116,10 @@ body {
     width: 100%;
     z-index: 1000;
 
+    & body.admin-bar {
+        top: 32px;
+    }
+
     .toggle-main-menu {
         display: block;
         height: $wpc-banner-height;
