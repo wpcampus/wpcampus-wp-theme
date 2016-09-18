@@ -50,6 +50,11 @@ add_action( 'wp_enqueue_scripts', function () {
 
     // Enqueue the main script file - goes in footer
     wp_enqueue_script( 'wpcampus', $wpcampus_dir . 'js/wpcampus.min.js', array( 'jquery', 'modernizr' ), $wpcampus_version, true );
+    
+    // Enqueue the application styles
+    if ( is_page( 'apply-to-host' ) ) {
+	    wp_enqueue_style( 'wpcampus-host-application', $wpcampus_dir . 'css/application.css', array(), $wpcampus_version, 'all' );
+    }
 
     // Enqueue the data scripts
     if ( is_page( 'data' ) ) {
