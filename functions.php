@@ -6,6 +6,9 @@ require_once( STYLESHEETPATH . '/includes/filters.php' );
 // Include data functionality
 require_once( STYLESHEETPATH . '/includes/data.php' );
 
+// Include form functionality
+require_once( STYLESHEETPATH . '/includes/forms.php' );
+
 // Include university functionality
 require_once( STYLESHEETPATH . '/includes/universities.php' );
 
@@ -416,6 +419,39 @@ add_action( 'init', function() {
             'assign_terms'  => 'edit_universities',
         )
     ));
+
+	// Add subjects taxonomy
+    register_taxonomy( 'subjects', array( 'post' ), array(
+        'label'					    => __( 'Subjects' ),
+        'labels'                    => array(
+	        'name'                      => _x( 'Subjects', 'Taxonomy General Name' ),
+	        'singular_name'             => _x( 'Subject', 'Taxonomy Singular Name' ),
+	        'menu_name'                 => __( 'Subjects' ),
+	        'all_items'                 => __( 'All Subjects' ),
+	        'parent_item'               => __( 'Parent Subject' ),
+	        'parent_item_colon'         => __( 'Parent Subject:' ),
+	        'new_item_name'             => __( 'New Subject Name' ),
+	        'add_new_item'              => __( 'Add New Subject' ),
+	        'edit_item'                 => __( 'Edit Subject' ),
+	        'update_item'               => __( 'Update Subject' ),
+	        'view_item'                 => __( 'View Subject' ),
+	        'separate_items_with_commas'=> __( 'Separate subjects with commas' ),
+	        'add_or_remove_items'       => __( 'Add or remove subjects' ),
+	        'choose_from_most_used'     => __( 'Choose from the most used' ),
+	        'popular_items'             => __( 'Popular Subjects' ),
+	        'search_items'              => __( 'Search Subjects' ),
+	        'not_found'                 => __( 'Not Found' ),
+	        'no_terms'                  => __( 'No subjects' ),
+	        'items_list'                => __( 'Subjects list' ),
+	        'items_list_navigation'     => __( 'Subjects list' ),
+        ),
+        'hierarchical'              => true,
+        'public'                    => true,
+        'show_ui'                   => true,
+        'show_admin_column'         => true,
+        'show_in_nav_menus'         => false,
+        'show_tagcloud'             => false,
+    ) );
 
 });
 
