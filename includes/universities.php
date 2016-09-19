@@ -97,20 +97,26 @@ add_action( 'acf/save_post', function( $post_id ) {
     delete_post_meta( $post_id, 'latitude' );
     delete_post_meta( $post_id, 'longitude' );
 
-    // Get latitude and longitude
-    if ( $location_lat_long = wpcampus_get_lat_long( $updated_university_location ) ) {
+    // Make sure our plugin is activated
+	if ( function_exists( 'wpcampus_plugin' ) ) {
 
-        // Add latitude
-        if ( $latitude = isset( $location_lat_long->lat ) ? $location_lat_long->lat : false ) {
-            add_post_meta($post_id, 'latitude', $latitude, true);
-        }
+		// Get latitude and longitude
+		$location_lat_long = wpcampus_plugin()->get_lat_long( $updated_university_location );
+	    if ( ! empty( $location_lat_long ) ) {
 
-        // Add longitude
-        if ( $longitude = isset( $location_lat_long->lng ) ? $location_lat_long->lng : false ) {
-            add_post_meta($post_id, 'longitude', $longitude, true);
-        }
+		    // Add latitude
+		    if ( $latitude = isset( $location_lat_long->lat ) ? $location_lat_long->lat : false ) {
+			    add_post_meta($post_id, 'latitude', $latitude, true);
+		    }
 
-    }
+		    // Add longitude
+		    if ( $longitude = isset( $location_lat_long->lng ) ? $location_lat_long->lng : false ) {
+			    add_post_meta($post_id, 'longitude', $longitude, true);
+		    }
+
+	    }
+
+	}
 
 }, 1000 );
 
