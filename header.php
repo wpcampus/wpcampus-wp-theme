@@ -64,15 +64,18 @@ $is_events_page = is_post_type_archive('tribe_events') || is_singular('tribe_eve
 
                     // Create buttons
                     $get_involved_button = '<a href="' . $blog_url . '/get-involved/" class="button royal-blue">Get Involved</a>';
-                    $conference_button = '<a href="/apply-to-host/" class="button royal-blue">Apply to host 2017 conference</a>';
+                    $member_survey_button = '<a href="' . $blog_url . '/member-survey/" class="button royal-blue">Member Survey</a>';
+                    $apply_button = '<a href="/apply-to-host/" class="button royal-blue">Apply to host 2017 conference</a>';
 
                     // Print buttons
                     if ( is_page( 'apply-to-host' ) ) {
-                        echo $get_involved_button;
+                        echo "{$get_involved_button} {$member_survey_button}";
                     } else if ( is_page( 'get-involved' ) ) {
-                        echo $conference_button;
+                        echo "{$apply_button} {$member_survey_button}";
+                    } else if ( is_page( 'member-survey' ) ) {
+	                    echo "{$apply_button} {$get_involved_button}";
                     } else {
-                       echo "{$conference_button} {$get_involved_button}";
+                       echo "{$apply_button} {$member_survey_button}";
                     }
 
                 ?></div> <!-- .wpcampus-header -->
