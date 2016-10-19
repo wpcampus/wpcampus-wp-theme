@@ -1,5 +1,4 @@
 bower_components/*
-css
 *.map
 node_modules/*
 wpcampus.min.js
