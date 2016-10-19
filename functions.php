@@ -89,7 +89,7 @@ add_action( 'login_head', 'wpcampus_add_favicons' );
 function wpcampus_add_favicons() {
 
     // Set the images folder
-    $favicons_folder = get_stylesheet_directory_uri() . '/images/favicons/';
+    $favicons_folder = get_stylesheet_directory_uri() . '/assets/images/favicons/';
 
     // Print the default icons
     ?><link rel="shortcut icon" href="<?php echo $favicons_folder; ?>wpcampus-favicon-60.png"/>
@@ -110,7 +110,7 @@ add_action( 'login_head', function() {
     ?><style type="text/css">
     #login h1 a {
         display: block;
-        background: url( "<?php echo get_stylesheet_directory_uri(); ?>/images/wpcampus-black.svg" ) center bottom no-repeat;
+        background: url( "<?php echo get_stylesheet_directory_uri(); ?>/assets/images/wpcampus-black.svg" ) center bottom no-repeat;
         background-size: 100% auto;
         width: 90%;
         height: 50px;

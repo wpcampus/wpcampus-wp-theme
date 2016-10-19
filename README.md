@@ -1,6 +1,6 @@
 # WPCampus - WordPress Theme
 
-This is the WordPress theme used to power the main WPCampus website at [https://wpcampus.org](https://wpcampus.org).
+The WordPress theme for the main WPCampus website at [https://wpcampus.org](https://wpcampus.org).
 
 ## Disclaimer
 
