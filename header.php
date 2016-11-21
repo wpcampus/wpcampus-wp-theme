@@ -33,11 +33,16 @@ $is_events_page = is_post_type_archive('tribe_events') || is_singular('tribe_eve
         <div id="wpcampus-main-menu" class="menu">
             <ul>
                 <li class="icon has-icon-alt home<?php echo $is_front_page ? ' current' : null; ?>"><a href="<?php echo $blog_url; ?>"><img src="<?php echo $stylesheet_dir; ?>/images/home-white.svg" alt="Visit the WPCampus home page" /><span class="icon-alt">Home</span></a></li>
-                <li<?php echo is_page( 'get-involved' ) ? ' class="current"' : null; ?>><a href="<?php echo $blog_url; ?>/get-involved/">Get Involved</a></li>
+                <li class="has-submenu<?php echo is_page( 'get-involved' ) || is_page( 'member-survey' ) ? ' current' : null; ?>">
+	                <a href="<?php echo $blog_url; ?>/get-involved/">Get Involved</a>
+	                <ul>
+		                <li><a href="/get-involved/">Get Involved</a></li>
+		                <li><a href="/member-survey/">Member Survey</a></li>
+	                </ul>
+                </li>
                 <li class="has-submenu"><a href="<?php echo $blog_url; ?>/conferences/">Conferences</a>
                     <ul>
 	                    <li><a href="<?php echo $blog_url; ?>/online/">WPCampus Online</a></li>
-	                    <li><a href="<?php echo $blog_url; ?>/apply-to-host/">Apply to host 2017</a></li>
                         <li><a href="https://2016.wpcampus.org/">WPCampus 2016</a></li>
                     </ul>
                 </li>
@@ -69,19 +74,19 @@ $is_events_page = is_post_type_archive('tribe_events') || is_singular('tribe_eve
                     echo $is_front_page ? '</h1>' : null;
 
                     // Create buttons
-                    $get_involved_button = '<a href="' . $blog_url . '/get-involved/" class="button royal-blue">Get Involved</a>';
-                    $member_survey_button = '<a href="' . $blog_url . '/member-survey/" class="button royal-blue">Member Survey</a>';
-                    $apply_button = '<a href="/apply-to-host/" class="button royal-blue">Apply to host 2017 conference</a>';
+                    $get_involved_button = '<a href="/get-involved/" class="button royal-blue">Get Involved</a>';
+                    $member_survey_button = '<a href="/member-survey/" class="button royal-blue">Member Survey</a>';
+                    $attending_wcus_button = '<a href="/attending-wcus/" class="button royal-blue">Attending WCUS?</a>';
 
                     // Print buttons
-                    if ( is_page( 'apply-to-host' ) ) {
-                        echo "{$get_involved_button} {$member_survey_button}";
+                    if ( is_page( 'online/call-for-speakers' ) ) {
+                        echo "{$get_involved_button} {$attending_wcus_button}";
                     } else if ( is_page( 'get-involved' ) ) {
-                        echo "{$apply_button} {$member_survey_button}";
-                    } else if ( is_page( 'member-survey' ) ) {
-	                    echo "{$apply_button} {$get_involved_button}";
+                        echo $attending_wcus_button;
+                    } else if ( is_page( 'attending-wcus' ) ) {
+	                    echo $get_involved_button;
                     } else {
-                       echo "{$apply_button} {$member_survey_button}";
+                       echo "{$get_involved_button} {$attending_wcus_button}";
                     }
 
                 ?></div> <!-- .wpcampus-header -->
