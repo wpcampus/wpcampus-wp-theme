@@ -14,13 +14,15 @@ var sassIncludes = [].concat(normalize, bourbon, neat);
 
 // Define the source paths for each file type
 var src = {
-    scss: ['assets/scss/**/*','!assets/scss/components']
+    scss: ['assets/scss/**/*','!assets/scss/components'],
+	js: ['assets/js/**/*','!assets/js/**/*.min.js', '!assets/js/chartist.min.js']
 };
 
 // Define the destination paths for each file type
 var dest = {
-	scss: './assets/css'
-}
+	scss: 'assets/css',
+	js: 'assets/js'
+};
 
 // Sass is pretty awesome, right?
 gulp.task('sass', function() {
@@ -41,23 +43,31 @@ gulp.task('sass', function() {
 });
 
 // We don't need this... yet
-/*gulp.task('compress', function() {
+gulp.task('js', function() {
     gulp.src(src.js)
         .pipe(minify({
-            exclude: ['tasks'],
-            mangle: false
+            mangle: false,
+	        ext:{
+		        min:'.min.js'
+	        }
         }))
         .pipe(gulp.dest(dest.js))
-});*/
-
-// I've got my eyes on you(r file changes)
-gulp.task('watch', function() {
-	gulp.watch(src.scss, ['sass']);
-	//gulp.watch(src.js, ['compress']);
 });
 
 // Let's get this party started
 gulp.task('default',[
-	'sass',
+	'compile',
 	'watch'
 ]);
+
+// Compile all the things
+gulp.task('compile',[
+	'sass',
+	'js'
+]);
+
+// I've got my eyes on you(r file changes)
+gulp.task('watch', function() {
+	gulp.watch(src.scss, ['sass']);
+	gulp.watch(src.js, ['js']);
+});
