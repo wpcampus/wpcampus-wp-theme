@@ -3,6 +3,7 @@ var gulp = require('gulp');
 var watch = require('gulp-watch');
 var minify = require('gulp-minify');
 var sass = require('gulp-sass');
+var rename = require("gulp-rename");
 var autoprefixer = require('gulp-autoprefixer');
 var normalize = require('node-normalize-scss').includePaths;
 var bourbon = require('bourbon').includePaths;
@@ -13,7 +14,7 @@ var sassIncludes = [].concat(normalize, bourbon, neat);
 
 // Define the source paths for each file type
 var src = {
-    scss: './assets/scss/**/*'
+    scss: ['assets/scss/**/*','!assets/scss/components']
 };
 
 // Define the destination paths for each file type
@@ -33,6 +34,9 @@ gulp.task('sass', function() {
         	browsers: ['last 2 versions'],
 			cascade: false
 		}))
+	    .pipe(rename({
+	    	suffix: '.min'
+	    }))
 		.pipe(gulp.dest(dest.scss));
 });
 
