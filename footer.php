@@ -2,7 +2,7 @@
         </div> <!-- .row -->
     </div> <!-- #wpcampus-main -->
 
-    <div id="wpcampus-footer">
+    <div id="wpc-footer">
         <div class="row">
             <div class="small-12 columns">
                 <div class="addthis_sharing_toolbox"></div>
@@ -21,7 +21,7 @@
                 </p>
             </div>
         </div>
-    </div> <!-- #wpcampus-footer -->
+    </div> <!-- #wpc-footer -->
 
     <?php wp_footer(); ?>
 

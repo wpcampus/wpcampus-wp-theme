@@ -104,49 +104,6 @@ function wpcampus_add_favicons() {
 
 }
 
-// Add login styles
-add_action( 'login_head', function() {
-
-    ?><style type="text/css">
-    #login h1 a {
-        display: block;
-        background: url( "<?php echo get_stylesheet_directory_uri(); ?>/assets/images/wpcampus-black.svg" ) center bottom no-repeat;
-        background-size: 100% auto;
-        width: 90%;
-        height: 50px;
-    }
-    .login form {
-        padding-bottom: 35px;
-    }
-    .login form .forgetmenot {
-        float: none;
-    }
-    #login form p.submit {
-        display: block;
-        clear: both;
-        margin: 20px 0 0 0;
-    }
-    .login form .button {
-        display: block;
-        background: #555;
-        float: none;
-        width: 100%;
-        height: auto !important;
-        border: 0;
-        color: #fff;
-        cursor: pointer;
-        padding: 12px 0 12px 0 !important;
-        font-size: 1.1em;
-        line-height: 1em !important;
-        text-transform: uppercase;
-    }
-    .login form .button:hover {
-        background: #222;
-    }
-    </style><?php
-
-});
-
 // Get the post type archive title
 function wpcampus_get_post_type_archive_title( $post_type = '' ) {
 

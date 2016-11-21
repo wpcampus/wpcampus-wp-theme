@@ -1,0 +1,251 @@
+#wpcampus-banner {
+	height: $wpc-banner-height;
+	background: $wpc-banner-bg-color;
+	color: #fff;
+	text-align: center;
+	border-bottom: 1px solid #fff;
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	z-index: 1000;
+
+	& body.admin-bar {
+		top: 32px;
+	}
+
+	.toggle-main-menu {
+		display: block;
+		height: $wpc-banner-height;
+		background: none;
+		color: rgba( #fff, 0.9 );
+		text-transform: uppercase;
+		font-size: 1em;
+		line-height: $wpc-banner-height;
+		padding: 0 20px;
+		cursor: pointer;
+		overflow: hidden;
+
+		.open-menu-label,
+		.close-menu-label {
+			display: block;
+			float: left;
+			text-transform: uppercase;
+			height: $wpc-banner-height;
+			line-height: $wpc-banner-height;
+		}
+
+		.close-menu-label {
+			display: none;
+		}
+
+		.toggle-icon {
+			display: block;
+			float: left;
+			width: 22px;
+			height: 18px;
+			cursor: pointer;
+			position: relative;
+			margin: 15px 12px 0 0;
+
+			.bar {
+				background: rgba( #fff, 0.8 );
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 2px;
+				margin: 0;
+				opacity: 1;
+				-webkit-transition: all 200ms ease-out;
+				-moz-transition: all 200ms ease-out;
+				-ms-transition: all 200ms ease-out;
+				-o-transition: all 200ms ease-out;
+				transition: all 200ms ease-out;
+
+				&.two {
+					margin-top: 8px;
+				}
+
+				&.three {
+					margin-top: 16px;
+				}
+			}
+		}
+	}
+
+	.menu {
+		display: none;
+		background: $wpc-banner-bg-color;
+		z-index: 10000;
+		border-bottom: 1px solid #fff;
+		padding: 0 0 5px 0;
+
+		ul {
+			@include reset-ul();
+			color: #fff;
+			font-size: 1em;
+			line-height:1;
+			text-transform: uppercase;
+
+			li {
+				color: inherit;
+				font-size: inherit;
+				line-height: inherit;
+
+				a {
+					display: block;
+					color: inherit;
+					font-size: inherit;
+					line-height: inherit;
+					text-decoration: none;
+					padding: 15px 10px;
+				}
+
+				img {
+					display: block;
+				}
+
+				&.icon {
+					display: inline-block;
+
+					a {
+						padding: 10px 7px;
+					}
+
+					img {
+						height: 15px;
+						opacity: 0.7;
+					}
+
+					&.has-icon-alt {
+						display: block;
+
+						a {
+							padding: 15px 10px;
+						}
+
+						img {
+							display: none;
+						}
+					}
+
+					&.github {
+
+						img {
+							height: 18px;
+						}
+					}
+				}
+
+				&.current a,
+				a:hover {
+					background: rgba(#fff, 0.2);
+				}
+			}
+		}
+	}
+
+	&.open-menu {
+
+		.toggle-main-menu {
+			background: none;
+
+			&:hover {
+				background: none;
+			}
+
+			.toggle-icon {
+
+				.bar {
+
+					&.one {
+						margin-top: 8px;
+						-webkit-transform: rotate(45deg);
+						-moz-transform: rotate(45deg);
+						-ms-transform: rotate(45deg);
+						-o-transform: rotate(45deg);
+						transform: rotate(45deg);
+					}
+
+					&.two {
+						opacity: 0;
+					}
+
+					&.three {
+						margin-top: 8px;
+						-webkit-transform: rotate(-45deg);
+						-moz-transform: rotate(-45deg);
+						-ms-transform: rotate(-45deg);
+						-o-transform: rotate(-45deg);
+						transform: rotate(-45deg);
+					}
+				}
+			}
+
+			.open-menu-label {
+				display: none;
+			}
+
+			.close-menu-label {
+				display: block;
+			}
+		}
+	}
+}
+
+// Expand the banner
+@media screen and (min-width: 700px) {
+
+	#wpcampus-banner {
+
+		.toggle-main-menu {
+			display: none !important;
+		}
+
+		.menu {
+			display: block !important;
+			height: $wpc-banner-height;
+			background: none !important;
+
+			ul {
+				display: inline-block !important;
+				height: $wpc-banner-height;
+				line-height: $wpc-banner-height - 1;
+
+				li {
+					float: left;
+					height: $wpc-banner-height;
+
+					a {
+						height: $wpc-banner-height;
+						padding: 0 12px;
+					}
+
+					&.icon {
+						display: block;
+
+						a {
+							padding: 16px 10px 0 10px;
+						}
+
+						img {
+							display: block !important;
+						}
+
+						.icon-alt {
+							@include screen-reader-text();
+						}
+
+						&.github {
+
+							a {
+								padding-top: 15px;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

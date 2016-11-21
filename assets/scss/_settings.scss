@@ -1,17 +1,3 @@
-//
-// These are the base Foundation
-// SASS settings for WPCampus.
-//
-// These settings will override the default
-// Foundation SASS settings.
-//
-
-// Make sure the charset is set appropriately
-@charset "UTF-8";
-
-// Include Foundation settings to reuse them
-@import '../../../foundation/scss/foundation/_settings';
-
 // Set the row width - this includes side padding
 $row-width: 920px;
 
