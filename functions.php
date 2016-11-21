@@ -44,7 +44,7 @@ add_action( 'wp_enqueue_scripts', function () {
     wp_enqueue_script( 'modernizr', 'https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js' );
 
     // Enqueue the main script file - goes in footer
-    wp_enqueue_script( 'wpcampus', $wpcampus_dir . 'js/wpcampus.min.js', array( 'jquery', 'modernizr' ), $wpcampus_version, true );
+    wp_enqueue_script( 'wpcampus', $wpcampus_dir . 'assets/js/wpcampus.min.js', array( 'jquery', 'modernizr' ), $wpcampus_version, true );
 
     // Enqueue the data scripts
     if ( is_page( 'data' ) ) {
@@ -58,10 +58,14 @@ add_action( 'wp_enqueue_scripts', function () {
         // Enqueue Chartist styles
         wp_enqueue_style( 'chartist', $wpcampus_dir . 'assets/css/chartist.min.css', array(), $wpcampus_version, 'all' );
 
-        // Enqueue our data script
-		// Set a var so that we can automatically use the non-minified script on staging, but the minified script on prod
+        /*
+         * Enqueue our data script.
+         *
+         * Set a var so that we can automatically use the non-minified
+         * script on staging but the minified script on prod.
+         */
 		$min = stristr( $_SERVER['HTTP_HOST'], '.staging' ) ? '' : '.min';
-        wp_enqueue_script( 'wpcampus-data', $wpcampus_dir . 'js/wpcampus-data' . $min . '.js', array('jquery', 'google-charts', 'chartist'), $wpcampus_version, false );
+        wp_enqueue_script( 'wpcampus-data', $wpcampus_dir . 'assets/js/wpcampus-data' . $min . '.js', array( 'jquery', 'google-charts', 'chartist' ), $wpcampus_version, false );
 
     }
 

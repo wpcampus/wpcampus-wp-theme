@@ -15,7 +15,7 @@ var sassIncludes = [].concat(normalize, bourbon, neat);
 // Define the source paths for each file type
 var src = {
     scss: ['assets/scss/**/*','!assets/scss/components'],
-	js: ['assets/js/**/*','!assets/js/**/*.min.js', '!assets/js/chartist.min.js']
+	js: ['assets/js/**/*','!assets/js/**/*.min.js']
 };
 
 // Define the destination paths for each file type

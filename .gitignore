@@ -3,4 +3,3 @@ bower_components/*
 *.map
 node_modules/*
 *.min.js
-!chartist.min.js
