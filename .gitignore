@@ -2,5 +2,5 @@
 bower_components/*
 *.map
 node_modules/*
-wpcampus.min.js
-wpcampus-data.min.js
+*.min.js
+!chartist.min.js
