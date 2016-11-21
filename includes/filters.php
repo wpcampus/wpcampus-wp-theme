@@ -1,4 +1,16 @@
 <?php
+	
+/**
+ * Remove the auto <p> when needed.
+ */
+function wpcampus_remove_filters() {
+	
+	// Remove on order t-shirt page
+	if ( is_page( 'order-wpcampus-shirt' ) ) {
+		remove_filter( 'the_content', 'wpautop' );
+	}
+}
+add_action( 'wp', 'wpcampus_remove_filters' );
 
 /**
  * Filter the page title.
