@@ -1,20 +1,108 @@
-#wpcampus-banner {
-	height: $wpc-banner-height;
-	background: $wpc-banner-bg-color;
-	color: #fff;
-	text-align: center;
-	border-bottom: 1px solid #fff;
+#wpc-banner {
+	background: $wpc-dark-blue;
+	color: $wpc-banner-color;
 	position: fixed;
 	left: 0;
 	top: 0;
 	width: 100%;
+	height: $wpc-banner-height;
 	z-index: 1000;
+	overflow: visible;
+	//border-bottom: 1px solid #fff;
 
 	& body.admin-bar {
 		top: 32px;
 	}
 
-	.toggle-main-menu {
+	a {
+		color: inherit;
+	}
+
+	.shadow {
+		position: absolute;
+		left: -15%;
+		top: 0;
+		width: 120%;
+		height: 20px;
+		box-shadow: 0 10px 35px 45px rgba(0,0,0,0.5);
+		background: rgba(0,0,0,0.5);
+		z-index: -1;
+	}
+
+	.wpc-logo {
+		display: block;
+		background: url( '../images/wpcampus-white.svg' ) center center no-repeat;
+		background-size: auto 100%;
+		position: absolute;
+		left: $wpc-banner-padding-side;
+		top: ( $wpc-banner-height - $wpc-banner-logo-height ) / 2;
+		width: $wpc-banner-logo-width;
+		height: $wpc-banner-logo-height;
+	}
+
+	.buttons {
+		position: absolute;
+		right: $wpc-banner-padding-side;
+		top: ( $wpc-banner-height - $wpc-banner-button-height ) / 2;
+
+		.button {
+			display: block;
+			float: right;
+			height: $wpc-banner-button-height;
+			text-align: center;
+			font-size: 0.9rem;
+			line-height: $wpc-banner-button-height;
+			padding: 0 15px;
+			text-decoration: none;
+			text-transform: uppercase;
+			border-radius: 5px;
+			margin: 0 0 0 7px;
+
+			&.primary {
+				background: $wpc-royal-blue;
+				color: #fff;
+			}
+
+			&.secondary {
+				background: #ddd;
+				color: #222;
+			}
+		}
+	}
+
+	ul.wpc-primary-menu {
+		display: inline-block;
+		margin: 0;
+		padding: 0;
+		text-align: center;
+		overflow: auto;
+
+		li {
+			display: block;
+			float: left;
+			list-style: none;
+			margin: 0;
+			padding: 0;
+			line-height: $wpc-banner-height;
+			text-transform: uppercase;
+
+			a {
+				display: block;
+				padding: 0 20px;
+				text-decoration: none;
+			}
+		}
+		
+		ul.sub-menu {
+			display: none;
+		}
+	}
+
+	.wpc-primary-menu-wrapper {
+		text-align: center;
+	}
+
+	/*.toggle-main-menu {
 		display: block;
 		height: $wpc-banner-height;
 		background: none;
@@ -192,12 +280,9 @@
 			}
 		}
 	}
-}
 
-// Expand the banner
-@media screen and (min-width: 700px) {
-
-	#wpcampus-banner {
+	// Expand the banner
+	@media screen and (min-width: 700px) {
 
 		.toggle-main-menu {
 			display: none !important;
@@ -234,7 +319,7 @@
 						}
 
 						.icon-alt {
-							@include screen-reader-text();
+							@include for-screen-reader();
 						}
 
 						&.github {
@@ -247,5 +332,5 @@
 				}
 			}
 		}
-	}
+	}*/
 }

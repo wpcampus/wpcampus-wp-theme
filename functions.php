@@ -1,18 +1,18 @@
 <?php
 
-// Include filters
+// Include filters.
 require_once( STYLESHEETPATH . '/includes/filters.php' );
 
-// Include data functionality
+// Include data functionality.
 require_once( STYLESHEETPATH . '/includes/data.php' );
 
-// Include university functionality
+// Include university functionality.
 require_once( STYLESHEETPATH . '/includes/universities.php' );
 
-// Include shortcodes
+// Include shortcodes.
 require_once( STYLESHEETPATH . '/includes/shortcodes.php' );
 
-// Setup the API
+// Setup the API.
 add_action( 'rest_api_init', function () {
     global $wpcampus_api_data;
 
@@ -27,12 +27,24 @@ add_action( 'rest_api_init', function () {
 
 } );
 
-//! Setup styles and scripts
+// Add theme supports.
+add_theme_support( 'title-tag' );
+
+// Register menu locations.
+function wpc_theme_register_menus() {
+	register_nav_menus( array(
+		'primary' => __( 'Primary Menu', 'wpcampus' ),
+		'footer' => __( 'Footer Menu', 'wpcampus' ),
+	));
+}
+add_action( 'init', 'wpc_theme_register_menus' );
+
+// Setup styles and scripts.
 add_action( 'wp_enqueue_scripts', function () {
 	$wpcampus_version = '0.58';
 
     // Get the directory
-    $wpcampus_dir = trailingslashit( get_stylesheet_directory_uri() );
+    $wpcampus_dir = trailingslashit( get_template_directory_uri() );
 
     // Load Fonts
     wp_enqueue_style( 'wpcampus-fonts', 'https://fonts.googleapis.com/css?family=Open+Sans:600,400,300' );
@@ -76,19 +88,14 @@ add_action( 'wp_enqueue_scripts', function () {
 
 }, 10 );
 
-// Add the AddThis script to the footer
-add_action( 'wp_footer', function() {
-    ?><script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-55c7ed90ac8a8479" async="async"></script><?php
-});
-
-//! Load favicons
-add_action( 'wp_head', 'wpcampus_add_favicons' );
-add_action( 'admin_head', 'wpcampus_add_favicons' );
-add_action( 'login_head', 'wpcampus_add_favicons' );
-function wpcampus_add_favicons() {
+// Load favicons
+add_action( 'wp_head', 'wpc_theme_add_favicons' );
+add_action( 'admin_head', 'wpc_theme_add_favicons' );
+add_action( 'login_head', 'wpc_theme_add_favicons' );
+function wpc_theme_add_favicons() {
 
     // Set the images folder
-    $favicons_folder = get_stylesheet_directory_uri() . '/assets/images/favicons/';
+    $favicons_folder = trailingslashit( get_template_directory_uri() ) . 'assets/images/favicons/';
 
     // Print the default icons
     ?><link rel="shortcut icon" href="<?php echo $favicons_folder; ?>wpcampus-favicon-60.png"/>

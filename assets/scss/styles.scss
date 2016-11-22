@@ -9,9 +9,36 @@
 // Include our mixins
 @import "mixins";
 
+html, body {
+	font-size: 100%;
+}
+
+body {
+	background: #fff;
+	color: #222;
+	cursor: auto;
+	font-family: $open_sans;
+	font-style: normal;
+	font-weight: normal;
+	line-height: 1.5;
+	margin: 0;
+	padding: 0;
+	position: relative;
+}
+
+.inside {
+    @include outer-container;
+	padding: 0 $wpc-inside-padding-side;
+
+	&.from-left {
+		max-width: none;
+		padding: 0 $wpc-inside-padding-left;
+	}
+}
+
 // Hide these elements visibly, but make sure they're still viewable by screen readers
-.screen-reader-text {
-    @include screen-reader-text();
+.for-screen-reader {
+    @include for-screen-reader();
 }
 
 // Stylize the "Skip To Content" link
@@ -38,67 +65,28 @@
     }
 }
 
-h1 {
-    text-transform: uppercase;
-    font-weight: 300;
-}
-
-h1, h2 {
-
-	.fade {
-        opacity: 0.7;
-    }
-    .narrow {
-        font-weight: 300;
-    }
-}
-
 // Images
 img {
 
-    &.aligncenter {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-    }
+	&.aligncenter {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+	}
 }
 
-ul {
-
-    &.column-two {
-        margin-left: 2em;
-        overflow: auto;
-
-        li {
-            display: inline-block;
-            float: none;
-            width: 100%;
-
-            &:before {
-                content: '-';
-                font-weight: bold;
-                padding: 0 8px 0 0;
-                font-size: 1.1em;
-                line-height: 1;
-            }
-        }
-    }
-}
-
-// Make padding for the banner {
-body {
-    padding-top: $wpc-banner-height;
-}
+// Include basic typography styles
+@import "components/typography";
 
 // Include our banner
 @import "components/banner";
 
-// Include our header
-@import "components/header";
+// Include our hero
+@import "components/hero";
 
 // The main notification
-#wpc-notification {
-    background-color: rgba( $royal-blue, 0.1 );
+/*#wpc-notification {
+    background-color: rgba( $wpc-royal-blue, 0.1 );
     padding: 20px;
     text-align: center;
     font-size: 1.1em;
@@ -111,7 +99,7 @@ body {
             margin-bottom: 0;
         }
     }
-}
+}*/
 
 .podcast-iframe {
     width: 100%;
@@ -138,17 +126,6 @@ body {
         font-size: 1.1em;
         color: rgba(#1159bd,0.8);
         text-align: center;
-    }
-}
-
-.addthis_sharing_toolbox {
-    position: relative;
-    z-index: 0;
-    text-align: center;
-    margin: 0;
-
-    .at-share-tbx-element {
-        display: inline-block !important;
     }
 }
 
@@ -246,7 +223,7 @@ body {
     }
 
     &.royal-blue {
-        background: $royal-blue;
+        background: $wpc-royal-blue;
         color: #fff;
 
         * {
@@ -255,7 +232,7 @@ body {
     }
 
     &.dark-blue {
-        background: $dark-blue;
+        background: $wpc-dark-blue;
         color: #fff;
 
         * {
@@ -319,32 +296,14 @@ body {
     }
 }
 
-#wpcampus-main {
-    background: #fff;
-    min-height: 200px;
-    padding: 30px 0 50px 0;
-
-    .addthis_sharing_toolbox {
-        margin: 15px 0;
-
-        &:before {
-            content: '';
-            background: #eee;
-            position: absolute;
-            left: 0;
-            top: 16px;
-            width: 100%;
-            height: 1px;
-            z-index: -1;
-        }
-    }
-}
+// Include the main styles
+@import "components/main";
 
 // Include our footer
 @import "components/footer";
 
 // Should be medium up
-/*@media screen and (min-width: 40em) {
+/*@media screen and (min-width: $medium-up) {
 
     .wpcampus-chart,
     .wpcampus-map {
@@ -361,41 +320,6 @@ body {
 
             li {
                 width: 45%;
-            }
-        }
-    }
-
-    #wpcampus-hero {
-        background-image: url('../assets/images/wpcampus-tile-BG.jpg');
-        background-size: auto 300px;
-        height: 300px;
-
-        .columns {
-            height: 300px;
-        }
-
-        .wpcampus-header {
-            position: absolute;
-            top: 50%;
-            left: 0;
-            padding: 0 ( $column_gutter / 2 );
-            @include set-transform( translate(0, -50%) );
-
-            .wpcampus-logo {
-
-                .wpcampus-tagline {
-                    font-size: 2.25em;
-                    line-height: 1.2;
-                }
-            }
-
-            .button {
-                display: inline-block;
-                margin-top: 18px;
-
-                & + .button {
-                    margin-left: 10px;
-                }
             }
         }
     }

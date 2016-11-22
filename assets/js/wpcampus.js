@@ -11,7 +11,7 @@
 	}
 
 	// Get the banner and main menu
-	var $banner = jQuery( '#wpcampus-banner' );
+	var $banner = jQuery( '#wpc-banner' );
 	var $main_menu = jQuery( '#wpcampus-main-menu' );
 
 	// Add listener to all elements who have the class to toggle the main menu

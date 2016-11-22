@@ -1,0 +1,25 @@
+p, ul {
+	margin: 1.8rem 0;
+}
+
+ul {
+
+	&.column-two {
+		margin-left: 2em;
+		overflow: auto;
+
+		li {
+			display: inline-block;
+			float: none;
+			width: 100%;
+
+			&:before {
+				content: '-';
+				font-weight: bold;
+				padding: 0 8px 0 0;
+				font-size: 1.1em;
+				line-height: 1;
+			}
+		}
+	}
+}

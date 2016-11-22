@@ -1,8 +1,75 @@
+#wpc-get-involved {
+	background: $wpc-get-involved-bg;
+	text-align: center;
+	line-height: $wpc-get-involved-height;
+	padding: 25px 0 18px 0;
+	overflow: auto;
+	position: relative;
+
+	&:before {
+		content: '';
+		position: absolute;
+		left: 50%;
+		top: 0;
+		width: 2px;
+		height: 100%;
+		background: rgba(0,0,0,0.15);
+	}
+
+	.social {
+		float: left;
+		width: 50%;
+		opacity: 0.75;
+
+		.message {
+			font-size: 24px;
+			line-height: $wpc-get-involved-height;
+			text-transform: uppercase;
+			margin: 0 10px 0 0;
+		}
+
+		ul.icons {
+			display: inline-block;
+			margin: 0;
+			padding: 0;
+			text-align: center;
+			overflow: auto;
+			vertical-align: middle;
+			line-height: $wpc-get-involved-height;
+
+			li {
+				display: block;
+				float: left;
+				list-style: none;
+				margin: 0 15px;
+				padding: 0;
+				line-height: $wpc-get-involved-height;
+
+				a {
+					display: block;
+				}
+
+				img {
+					width: auto;
+					height: $wpc-get-involved-height;
+					line-height: $wpc-get-involved-height;
+				}
+			}
+		}
+	}
+
+	.mailing {
+		float: right;
+		width: 50%;
+	}
+}
+
 #wpc-footer {
-	padding: 25px 20px 35px 20px;
-	color: #444;
-	font-size: 0.9em;
-	line-height: 1.8;
+	background: $wpc-footer-bg-color;
+	padding: 40px 0;
+	color: $wpc-footer-color;
+	font-size: $wpc-footer-font-size;
+	line-height: $wpc-footer-line-height;
 	text-align: center;
 
 	* {
@@ -10,71 +77,60 @@
 		line-height: inherit;
 	}
 
-	.columns *:last-child {
-		margin-bottom: 0;
+	a {
+		color: inherit;
 	}
 
-	.addthis_sharing_toolbox {
-		margin: -40px 0 22px 0;
+	p {
+		margin: 10px 0 0 0;
 	}
 
 	.wpc-logo {
 		display: block;
-		opacity: $wpc-footer-opacity;
-		margin: 0 0 15px 0;
+		background: url( '../images/wpcampus-white-logo-tagline.svg' );
+		background-size: auto 100%;
+		width: 300px;
+		height: 50px;
+		margin: 0 auto 15px auto;
 
 		img {
 			height: 50px;
 		}
-
-		&:hover {
-			opacity: $wpc-footer-opacity-hover;
-		}
 	}
 
-	.github-message {
-		font-style: italic;
-	}
+	.wpc-footer-menu {
+		display: inline-block;
+		margin: 0;
+		padding: 0;
+		text-align: center;
+		overflow: auto;
 
-	.icons {
+		li {
+			display: block;
+			float: left;
+			list-style: none;
+			margin: 0;
+			padding: 0;
 
-		img {
-			width: auto;
-			height: 30px;
-		}
+			a {
+				color: inherit;
+			}
 
-		a {
-			display: inline-block;
-			opacity: $wpc-footer-opacity;
-			margin: 0 5px;
+			&:before {
+				content: '-';
+				padding: 0 5px;
+			}
 
-			&:hover {
-				opacity: $wpc-footer-opacity-hover;
+			&:first-child:before {
+				display: none;
 			}
 		}
 	}
 
-	h3 {
-		text-transform: uppercase;
-		margin: 0 0 3px 0;
-		color: #222;
-		font-weight: 600;
-	}
-
-	// Hide this message on small screens
-	.photos-visible-message {
-		@include screen-reader-text();
-	}
-
-	.univ-for-photos {
-		overflow: auto;
-		padding-left: 2.5em;
-		margin-left: 0;
-
-		li {
-			float: left;
-			width: 50%;
-			margin: 0 0 5px 0;
-		}
+	.copyright {
+		font-size: 0.8rem;
+		line-height: 1;
+		margin-top: 20px;
+		opacity: 0.8;
 	}
 }

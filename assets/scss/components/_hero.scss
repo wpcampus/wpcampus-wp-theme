@@ -1,0 +1,67 @@
+#wpc-hero {
+	background: url('../images/wpcampus-tile-BG-small.jpg') 0 0 repeat;
+	background-size: auto 400px;
+	color: $wpc-hero-color;
+	box-shadow: inset 0 0 20px #000;
+	position: relative;
+	z-index: 0;
+
+	a {
+		color: inherit;
+		text-decoration: none;
+	}
+
+	&:before {
+		content: '';
+		background: rgba( #000, 0.6 );
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		z-index: -1;
+	}
+
+	// Should be medium up
+	@media screen and (min-width: $medium-up) {
+		background-image: url('../images/wpcampus-tile-BG.jpg');
+		background-size: auto $wpc-hero-height-desktop;
+		min-height: $wpc-hero-height-desktop;
+
+		.inside {
+			min-height: $wpc-hero-height-desktop;
+			max-width: none;
+		}
+
+		.wpc-hero-text {
+			padding: ( $wpc-banner-height + 80px ) 0 80px 0;
+			font-size: 3.8rem;
+			line-height: 1.35;
+			text-align: left;
+			text-transform: uppercase;
+			font-weight: 300;
+
+			.digit {
+				font-weight: 600;
+			}
+
+			.tagline {
+				font-size: 1.75rem;
+				line-height: 2;
+				text-transform: none;
+			}
+		}
+
+		.eduwapuu {
+			position: absolute;
+			right: 40px;
+			bottom: -38px;
+			width: 115px;
+			height: auto;
+
+			img {
+				width: 100%;
+			}
+		}
+	}
+}

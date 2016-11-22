@@ -1,16 +1,19 @@
 // Set the row width - this includes side padding
-$row-width: 920px;
+//$row-width: 920px;
 
 // Widen the column gutter to 40px - default is 30
-$column-gutter: 40px;
+//$column-gutter: 40px;
+
+// Breakpoints
+$medium-up: 40em;
 
 // COLORS
 // We use these as default colors throughout
-$royal-blue: #1159bd;
-$dark-blue: #2e3641;
+$wpc-royal-blue: #1159bd;
+$wpc-dark-blue: #2e3641;
 $peach: #d0443c;
 $body-bg: #fafafa; //#eff4f5;
-$primary-color: $royal-blue;
+$primary-color: $wpc-royal-blue;
 
 // FONTS
 $open_sans: 'Open Sans', sans-serif;
@@ -20,9 +23,22 @@ $font-family-sans-serif: $open_sans !default;
 $body-font-family: $font-family-sans-serif !default;
 $body-font-color: #222;
 
+// Containers
+$wpc-inside-padding-side: 40px;
+$wpc-inside-padding-left: 100px;
+
 // Banner
-$wpc-banner-bg-color: #222;
-$wpc-banner-height: 50px;
+$wpc-banner-padding-side: 40px;
+$wpc-banner-bg-color: #ddd;
+$wpc-banner-height: 60px;
+$wpc-banner-color: #fff;
+$wpc-banner-logo-width: 219px;
+$wpc-banner-logo-height: 24px;
+$wpc-banner-button-height: 32px;
+
+// Hero
+$wpc-hero-height-desktop: 400px;
+$wpc-hero-color: #fff;
 
 // Headers
 $h1-font-size: rem-calc(38); // Bring down to 2.375rem
@@ -46,6 +62,12 @@ $panel-border-size: 0;
 $crumb-border-size: 0;
 $crumb-padding: 0;
 
+// Get Involved bar
+$wpc-get-involved-bg: #eee;
+$wpc-get-involved-height: 30px;
+
 // Footer
-$wpc-footer-opacity: 0.65;
-$wpc-footer-opacity-hover: 0.8;
+$wpc-footer-bg-color: $wpc-dark-blue;
+$wpc-footer-color: #fff;
+$wpc-footer-font-size: 0.9em;
+$wpc-footer-line-height: 1.8;
