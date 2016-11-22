@@ -17,5 +17,5 @@ $institutions = 324;
 			<div class="tagline"><?php printf( __( 'Where %s Meets Higher Education', 'wpcampus' ), 'WordPress' ); ?></div>
 		</div>
 	</div><!-- .inside -->
-	<a class="eduwapuu" href="#"><img src="<?php echo $theme_dir; ?>assets/images/eduwapuu.png" /></a>
+	<?php wpc_theme_print_eduwapuu(); ?>
 </div><!-- #wpc-hero -->
