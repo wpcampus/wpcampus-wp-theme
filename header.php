@@ -43,12 +43,11 @@ $is_events_page = is_post_type_archive( 'tribe_events' ) || is_singular( 'tribe_
 
 		get_template_part( 'partials/hero' );
 
+		get_template_part( 'partials/notification' );
+
 		// Include breadcrumbs.
 		//echo wpcampus_get_breadcrumbs_html();
 
-		/*<div id="wpc-notification">
-			<p><strong>The <a href="https://2016.wpcampus.org/speakers/">WPCampus 2016 call for speakers</a> is open and will close at 12 midnight EST on March 21, 2016.</strong></p>
-		</div><!-- #wpc-notification --><?php */
-
 		?><div id="wpc-main">
 			<div class="inside from-left">
+				<div class="wpc-content">

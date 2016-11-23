@@ -36,16 +36,16 @@ class WPCampus_API_Data {
 
 			case 'affiliation':
 				$response = array(
-					'work_in_higher_ed'         => wpcampus_get_work_in_higher_ed_count(),
-					'work_for_company'          => wpcampus_get_work_for_company_count(),
-					'work_outside_higher_ed'    => wpcampus_get_work_outside_higher_ed_count(),
+					'work_in_higher_ed' => wpcampus_get_work_in_higher_ed_count(),
+					'work_for_company' => wpcampus_get_work_for_company_count(),
+					'work_outside_higher_ed' => wpcampus_get_work_outside_higher_ed_count(),
 				);
 				break;
 
 			case 'attend-preference':
 				$response = array(
-					'attend_in_person'      => wpcampus_get_attend_in_person_count(),
-					'attend_live_stream'    => wpcampus_get_attend_live_stream_count(),
+					'attend_in_person' => wpcampus_get_attend_in_person_count(),
+					'attend_live_stream' => wpcampus_get_attend_live_stream_count(),
 				);
 				break;
 
@@ -77,7 +77,11 @@ class WPCampus_API_Data {
 
 		// If no response, return an error.
 		if ( ! $response ) {
-			return new WP_Error( 'wpcampus', 'This data set is either invalid or does not contain information.', array( 'status' => 404 ) );
+			return new WP_Error(
+				'wpcampus',
+				__( 'This data set is either invalid or does not contain information.', 'wpcampus' ),
+				array( 'status' => 404 )
+			);
 		} else {
 
 			// Return a response object.

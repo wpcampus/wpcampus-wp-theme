@@ -81,25 +81,11 @@ img {
 // Include our banner
 @import "components/banner";
 
-// Include our hero
+// Include our hero styles
 @import "components/hero";
 
-// The main notification
-/*#wpc-notification {
-    background-color: rgba( $wpc-royal-blue, 0.1 );
-    padding: 20px;
-    text-align: center;
-    font-size: 1.1em;
-    line-height: 1.2;
-
-    * {
-        font-size: inherit;
-
-        &:last-child {
-            margin-bottom: 0;
-        }
-    }
-}*/
+// Include our notification styles
+@import "components/notifications";
 
 .podcast-iframe {
     width: 100%;

@@ -1,0 +1,31 @@
+#wpc-notification {
+	background: $wpc-light-gray;
+	padding: $wpc-notif-padding-vert 0 $wpc-notif-padding-vert ( $wpc-notif-icon-width + 15px );
+	min-height: $wpc-notif-icon-height;
+	position: relative;
+	z-index: -1;
+
+	* {
+		font-size: inherit;
+
+		&:first-child {
+			margin-top: 0;
+		}
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	&:before {
+		content: '';
+		width: $wpc-notif-icon-width;
+		height: $wpc-notif-icon-height;
+		position: absolute;
+		left: $wpc-inside-padding-left;
+		top: $wpc-notif-padding-vert;
+		background: url( '../images/information.png' ) 0 0 no-repeat;
+		background-size: auto $wpc-notif-icon-height;
+		opacity: 0.7;
+	}
+}

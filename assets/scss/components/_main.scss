@@ -2,4 +2,14 @@
 	background: #fff;
 	min-height: 200px;
 	padding: 40px 0 50px 0;
+
+	.wpc-content {
+		min-height: 1px;
+		@include span-columns(9);
+	}
+
+	.wpc-sidebar {
+		min-height: 1px;
+		@include span-columns(3);
+	}
 }
