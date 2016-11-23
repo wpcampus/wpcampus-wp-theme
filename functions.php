@@ -58,10 +58,8 @@ add_action( 'wp_enqueue_scripts', function () {
     // Enqueue the main script file - goes in footer
     wp_enqueue_script( 'wpcampus', $wpcampus_dir . 'assets/js/wpcampus.min.js', array( 'jquery', 'modernizr' ), $wpcampus_version, true );
 
-	// Enqueue eduwapuu on the home page.
-	if ( is_front_page() ) {
-		wp_enqueue_script( 'eduwapuu', $wpcampus_dir . 'assets/js/eduwapuu.min.js', array( 'jquery' ), $wpcampus_version, true );
-	}
+	// Enqueue eduwapuu script.
+	wp_enqueue_script( 'eduwapuu', $wpcampus_dir . 'assets/js/eduwapuu.min.js', array( 'jquery' ), $wpcampus_version, true );
 
     // Enqueue the data scripts
     if ( is_page( 'data' ) ) {

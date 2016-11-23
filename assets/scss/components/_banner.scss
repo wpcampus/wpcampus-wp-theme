@@ -1,5 +1,9 @@
+body {
+	padding-top: $wpc-banner-height;
+}
+
 #wpc-banner {
-	background: $wpc-dark-blue;
+	background: $wpc-banner-bg-color;
 	color: $wpc-banner-color;
 	position: fixed;
 	left: 0;
@@ -8,7 +12,7 @@
 	height: $wpc-banner-height;
 	z-index: 1000;
 	overflow: visible;
-	//border-bottom: 1px solid #fff;
+	border-bottom: 2px solid #fff;
 
 	& body.admin-bar {
 		top: 32px;
@@ -18,16 +22,16 @@
 		color: inherit;
 	}
 
-	.shadow {
+	/*.shadow {
 		position: absolute;
 		left: -15%;
 		top: 0;
 		width: 120%;
 		height: 20px;
-		box-shadow: 0 10px 35px 45px rgba(0,0,0,0.5);
-		background: rgba(0,0,0,0.5);
+		box-shadow: 0 10px 35px 45px rgba( #000, 0.5 );
+		background: rgba( #000, 0.5 );
 		z-index: -1;
-	}
+	}*/
 
 	.wpc-logo {
 		display: block;
@@ -64,7 +68,7 @@
 			}
 
 			&.secondary {
-				background: #ddd;
+				background: $wpc-light-gray;
 				color: #222;
 			}
 		}
@@ -164,7 +168,6 @@
 
 	.menu {
 		display: none;
-		background: $wpc-banner-bg-color;
 		z-index: 10000;
 		border-bottom: 1px solid #fff;
 		padding: 0 0 5px 0;

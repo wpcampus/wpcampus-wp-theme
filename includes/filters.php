@@ -11,18 +11,18 @@ add_filter( 'wpcampus_page_title', function( $page_title ) {
 	 * Had to write in because events plugin was
 	 * overwriting the 'post_type_archive_title' filter.
 	 */
-	if ( is_post_type_archive('tribe_events') || is_singular('tribe_events') ) {
-		return 'Events';
+	if ( is_post_type_archive( 'tribe_events' ) || is_singular( 'tribe_events' ) ) {
+		return __( 'Events', 'wpcampus' );
 	}
 
-	// Change the title for the main podcast page
-	else if ( is_post_type_archive('podcast') ) {
-		return 'WPCampus Podcast';
+	// Change the title for the main podcast page.
+	else if ( is_post_type_archive( 'podcast' ) ) {
+		return sprintf( __( '%s Podcast', 'wpcampus' ), 'WPCampus' );
 	}
 
-	// Prefix the title for the single podcast pages
-	else if ( is_singular('podcast') ) {
-		return '<span class="fade">Podcast:</span> ' . $page_title;
+	// Prefix the title for the single podcast pages.
+	else if ( is_singular( 'podcast' ) ) {
+		return '<span class="fade">' . __( 'Podcast', 'wpcampus' ) . ':</span> ' . $page_title;
 	}
 
 	return $page_title;

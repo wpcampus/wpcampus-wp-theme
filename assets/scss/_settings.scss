@@ -8,12 +8,12 @@
 $medium-up: 40em;
 
 // COLORS
-// We use these as default colors throughout
 $wpc-royal-blue: #1159bd;
-$wpc-dark-blue: #2e3641;
+$wpc-dark-blue: darken( #2e3641, 5% );
 $peach: #d0443c;
 $body-bg: #fafafa; //#eff4f5;
 $primary-color: $wpc-royal-blue;
+$wpc-light-gray: #eee;
 
 // FONTS
 $open_sans: 'Open Sans', sans-serif;
@@ -29,7 +29,7 @@ $wpc-inside-padding-left: 100px;
 
 // Banner
 $wpc-banner-padding-side: 40px;
-$wpc-banner-bg-color: #ddd;
+$wpc-banner-bg-color: $wpc-dark-blue;
 $wpc-banner-height: 60px;
 $wpc-banner-color: #fff;
 $wpc-banner-logo-width: 219px;
@@ -37,19 +37,14 @@ $wpc-banner-logo-height: 24px;
 $wpc-banner-button-height: 32px;
 
 // Hero
-$wpc-hero-height-desktop: 400px;
-$wpc-hero-color: #fff;
-
-// Headers
-$h1-font-size: rem-calc(38); // Bring down to 2.375rem
-
-// Links (Anchors)
-$anchor-text-decoration: underline;
-$anchor-text-decoration-hover: underline;
+$wpc-hero-bg-color: $wpc-light-gray;
+$wpc-hero-color: #222;
+$wpc-hero-home-height-desktop: 400px;
+$wpc-hero-home-color: #fff;
 
 // Paragraphs
 $paragraph-line-height: 1.8;
-$paragraph-margin-bottom: rem-calc(20);
+$paragraph-margin-vert: 1.8rem;
 
 // Lists
 $list-side-margin: 2.3em;
@@ -63,11 +58,11 @@ $crumb-border-size: 0;
 $crumb-padding: 0;
 
 // Get Involved bar
-$wpc-get-involved-bg: #eee;
+$wpc-get-involved-bg: $wpc-light-gray;
 $wpc-get-involved-height: 30px;
 
 // Footer
-$wpc-footer-bg-color: $wpc-dark-blue;
+$wpc-footer-bg-color: #333;
 $wpc-footer-color: #fff;
 $wpc-footer-font-size: 0.9em;
 $wpc-footer-line-height: 1.8;

@@ -1,5 +1,18 @@
+a {
+	color: $wpc-royal-blue;
+	text-decoration: underline;
+}
+
+h1 {
+	font-size: 3.2rem;
+	line-height: 1;
+	font-weight: 300;
+	text-transform: uppercase;
+}
+
 p, ul {
-	margin: 1.8rem 0;
+	line-height: $paragraph-line-height;
+	margin: $paragraph-margin-vert 0;
 }
 
 ul {
