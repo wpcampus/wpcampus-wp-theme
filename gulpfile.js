@@ -8,6 +8,7 @@ var autoprefixer = require('gulp-autoprefixer');
 var normalize = require('node-normalize-scss').includePaths;
 var bourbon = require('bourbon').includePaths;
 var neat = require('bourbon-neat').includePaths;
+var phpcs = require('gulp-phpcs');
 
 // Define our SASS includes
 var sassIncludes = [].concat(normalize, bourbon, neat);
@@ -15,7 +16,8 @@ var sassIncludes = [].concat(normalize, bourbon, neat);
 // Define the source paths for each file type
 var src = {
     scss: ['assets/scss/**/*','!assets/scss/components'],
-	js: ['assets/js/eduwapuu.js','assets/js/wpcampus.js','assets/js/wpcampus-data.js']
+	js: ['assets/js/eduwapuu.js','assets/js/wpcampus.js','assets/js/wpcampus-data.js'],
+	php: ['**/*.php','!vendor/**','!node_modules/**']
 };
 
 // Define the destination paths for each file type
@@ -54,6 +56,16 @@ gulp.task('js', function() {
         .pipe(gulp.dest(dest.js))
 });
 
+// Sniff our code
+gulp.task('php', function () {
+	return gulp.src(src.php)
+		.pipe(phpcs({
+			standard: 'WordPress-Core'
+		}))
+		// Log all problems that was found
+		.pipe(phpcs.reporter('log'));
+});
+
 // Let's get this party started
 gulp.task('default',[
 	'compile',
@@ -70,4 +82,5 @@ gulp.task('compile',[
 gulp.task('watch', function() {
 	gulp.watch(src.scss, ['sass']);
 	gulp.watch(src.js, ['js']);
+	gulp.watch(src.php, ['php']);
 });

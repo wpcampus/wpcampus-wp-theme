@@ -36,12 +36,12 @@ if ( $is_front_page ) {
 			?>
 			<h1><?php
 
-				// Print title.
-				if ( is_404() ) {
-					_e( 'Page Not Found', 'wpcampus' );
-				} else {
-					echo apply_filters( 'wpcampus_page_title', get_the_title() );
-				}
+			// Print title.
+			if ( is_404() ) {
+				_e( 'Page Not Found', 'wpcampus' );
+			} else {
+				echo apply_filters( 'wpcampus_page_title', get_the_title() );
+			}
 
 			?></h1>
 			<?php

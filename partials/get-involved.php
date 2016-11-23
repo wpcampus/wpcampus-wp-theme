@@ -15,5 +15,5 @@ $theme_dir = trailingslashit( get_template_directory_uri() );
 			<li><a class="github" href="https://github.com/wpcampus/"><img src="<?php echo $theme_dir; ?>assets/images/github-black.svg" alt="<?php printf( __( 'Follow %1$s on %2$s', 'wpcampus' ), 'WPCampus', 'GitHub' ); ?>" /></a></li>
 		</ul>
 	</div><!-- .social -->
-	<div class="mailing">Sign up for our mailing list</div><!-- .mailing -->
+	<div class="mailing"><?php _e( 'Sign up for our mailing list', 'wpcampus' ); ?></div><!-- .mailing -->
 </div><!-- #wpc-get-involved -->

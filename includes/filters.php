@@ -6,22 +6,16 @@
 add_filter( 'wpcampus_page_title', function( $page_title ) {
 
 	/**
-	 * Change the title for events pages.
+	 * Change the title for various pages.
 	 *
 	 * Had to write in because events plugin was
 	 * overwriting the 'post_type_archive_title' filter.
 	 */
 	if ( is_post_type_archive( 'tribe_events' ) || is_singular( 'tribe_events' ) ) {
 		return __( 'Events', 'wpcampus' );
-	}
-
-	// Change the title for the main podcast page.
-	else if ( is_post_type_archive( 'podcast' ) ) {
+	} elseif ( is_post_type_archive( 'podcast' ) ) {
 		return sprintf( __( '%s Podcast', 'wpcampus' ), 'WPCampus' );
-	}
-
-	// Prefix the title for the single podcast pages.
-	else if ( is_singular( 'podcast' ) ) {
+	} elseif ( is_singular( 'podcast' ) ) {
 		return '<span class="fade">' . __( 'Podcast', 'wpcampus' ) . ':</span> ' . $page_title;
 	}
 
@@ -33,13 +27,13 @@ add_filter( 'wpcampus_page_title', function( $page_title ) {
  */
 add_filter( 'wpcampus_post_type_archive_title', function( $title, $post_type ) {
 
-	// Had to write in because events plugin was overwriting the 'post_type_archive_title' filter
-	if ( is_post_type_archive('tribe_events') || is_singular('tribe_events') ) {
-		return 'Events';
+	// Had to write in because events plugin was overwriting the 'post_type_archive_title' filter.
+	if ( is_post_type_archive( 'tribe_events' ) || is_singular( 'tribe_events' ) ) {
+		return __( 'Events', 'wpcampus' );
 	}
 
-	if ( is_post_type_archive('podcast') ) {
-		return 'Podcast';
+	if ( is_post_type_archive( 'podcast' ) ) {
+		return __( 'Podcast', 'wpcampus' );
 	}
 
 	return $title;
@@ -50,21 +44,21 @@ add_filter( 'wpcampus_post_type_archive_title', function( $title, $post_type ) {
  */
 add_filter( 'gmb_mashup_infowindow_content', function( $response, $marker_data, $post_id ) {
 
-	// Only for interest posts
+	// Only for interest posts.
 	if ( 'wpcampus_interest' != get_post_type( $marker_data['id'] ) ) {
 		return $response;
 	}
 
-	// Build new infowindow content
+	// Build new infowindow content.
 	$response['infowindow'] = '<div id="infobubble-content" class="main-place-infobubble-content">';
 
-	// Get location
+	// Get location.
 	$location = wpcampus_get_interest_location( $post_id );
 	if ( ! empty( $location ) ) {
 		$response['infowindow'] .= '<p class="place-title">' . $location . '</p>';
 	}
 
-	// Close the window element
+	// Close the window element.
 	$response['infowindow'] .= '</div>';
 
 	return $response;

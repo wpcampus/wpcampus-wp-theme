@@ -3,3 +3,4 @@ bower_components/*
 *.map
 node_modules/*
 *.min.js
+/vendor/
