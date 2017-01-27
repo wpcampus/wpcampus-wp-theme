@@ -1,5 +1,14 @@
+// Move the content down for the banner and WP admin bar.
 body {
 	padding-top: $wpc-banner-height;
+
+	body.admin-bar & {
+		padding-top: $wpc-banner-height + $wpc-admin-bar-height;
+
+		@media screen and (min-width: $wpc-admin-bar-breakpoint) {
+			padding-top: $wpc-banner-height + $wpc-admin-bar-height-desktop;
+		}
+	}
 }
 
 #wpc-banner {
@@ -14,8 +23,13 @@ body {
 	overflow: visible;
 	border-bottom: 2px solid #fff;
 
-	& body.admin-bar {
-		top: 32px;
+	// Move the banner down for the WP admin bar.
+	body.admin-bar & {
+		top: $wpc-admin-bar-height;
+
+		@media screen and (min-width: $wpc-admin-bar-breakpoint) {
+			top: $wpc-admin-bar-height-desktop;
+		}
 	}
 
 	a {

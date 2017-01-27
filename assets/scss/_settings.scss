@@ -4,6 +4,11 @@
 // Widen the column gutter to 40px - default is 30
 //$column-gutter: 40px;
 
+// WordPress info
+$wpc-admin-bar-height: 46px;
+$wpc-admin-bar-height-desktop: 32px;
+$wpc-admin-bar-breakpoint: 782px;
+
 // Breakpoints
 $medium-up: 40em;
 
