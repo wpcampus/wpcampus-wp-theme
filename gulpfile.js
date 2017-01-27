@@ -11,7 +11,7 @@ var neat = require('bourbon-neat').includePaths;
 var phpcs = require('gulp-phpcs');
 
 // Define our SASS includes
-var sassIncludes = [].concat(normalize, bourbon, neat);
+var sassIncludes = [].concat(normalize,bourbon,neat);
 
 // Define the source paths for each file type
 var src = {
@@ -27,13 +27,13 @@ var dest = {
 };
 
 // Sass is pretty awesome, right?
-gulp.task('sass', function() {
+gulp.task('sass',function() {
     return gulp.src(src.scss)
         .pipe(sass({
 			includePaths: sassIncludes,
 			outputStyle: 'compressed'
 		})
-		.on('error', sass.logError))
+		.on('error',sass.logError))
         .pipe(autoprefixer({
         	browsers: ['last 2 versions'],
 			cascade: false
@@ -45,7 +45,7 @@ gulp.task('sass', function() {
 });
 
 // We don't need this... yet
-gulp.task('js', function() {
+gulp.task('js',function() {
     gulp.src(src.js)
         .pipe(minify({
             mangle: false,
@@ -57,9 +57,10 @@ gulp.task('js', function() {
 });
 
 // Sniff our code
-gulp.task('php', function () {
+gulp.task('php',function () {
 	return gulp.src(src.php)
 		.pipe(phpcs({
+			bin: 'vendor/bin/phpcs',
 			standard: 'WordPress-Core'
 		}))
 		// Log all problems that was found
@@ -67,20 +68,17 @@ gulp.task('php', function () {
 });
 
 // Let's get this party started
-gulp.task('default',[
-	'compile',
-	'watch'
-]);
+gulp.task('default',['compile','test']);
 
 // Compile all the things
-gulp.task('compile',[
-	'sass',
-	'js'
-]);
+gulp.task('compile',['sass','js']);
+
+// Test all the things
+gulp.task('test',['php']);
 
 // I've got my eyes on you(r file changes)
-gulp.task('watch', function() {
-	gulp.watch(src.scss, ['sass']);
-	gulp.watch(src.js, ['js']);
-	gulp.watch(src.php, ['php']);
+gulp.task('watch',function() {
+	gulp.watch(src.scss,['sass']);
+	gulp.watch(src.js,['js']);
+	gulp.watch(src.php,['php']);
 });
