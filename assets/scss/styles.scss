@@ -9,6 +9,10 @@
 // Include our mixins
 @import "mixins";
 
+* {
+	box-sizing: inherit;
+}
+
 html, body {
 	font-size: 100%;
 }
@@ -77,6 +81,9 @@ img {
 
 // Include basic typography styles
 @import "components/typography";
+
+// Include our eduwapuu styles
+@import "components/eduwapuu";
 
 // Include our banner
 @import "components/banner";

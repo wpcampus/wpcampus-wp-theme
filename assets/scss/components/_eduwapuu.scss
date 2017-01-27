@@ -1,0 +1,23 @@
+.eduwapuu-wrapper {
+	width: 200px;
+	height: auto;
+
+	a {
+		display: block;
+	}
+
+	img, svg {
+		width: 100%;
+	}
+
+	.eduwapuu {
+		display: block;
+		width: auto;
+		height: 100%;
+		margin: 0 auto;
+
+		.mouth-dropped {
+			display: none;
+		}
+	}
+}

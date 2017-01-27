@@ -2,6 +2,7 @@
 	background: $wpc-hero-bg-color;
 	color: $wpc-hero-color;
 	padding: 50px 0;
+	border-bottom: 2px solid #fff;
 	position: relative;
 
 	a {
@@ -19,14 +20,6 @@
 		bottom: -38px;
 		width: 115px;
 		height: auto;
-
-		a {
-			display: block;
-		}
-
-		img, svg {
-			width: 100%;
-		}
 	}
 
 	&.home {
