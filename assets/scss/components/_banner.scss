@@ -1,14 +1,13 @@
 // Move the content down for the banner and WP admin bar.
 body {
 	padding-top: $wpc-banner-height;
+}
 
-	body.admin-bar & {
-		padding-top: $wpc-banner-height + $wpc-admin-bar-height;
-
-		@media screen and (min-width: $wpc-admin-bar-breakpoint) {
-			padding-top: $wpc-banner-height + $wpc-admin-bar-height-desktop;
-		}
-	}
+// Modify the WP admin bar
+#wpadminbar {
+	background: $wpc-banner-bg-color;
+	padding: 5px 33px;
+	position: fixed !important;
 }
 
 #wpc-banner {

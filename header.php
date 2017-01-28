@@ -38,7 +38,6 @@ $is_events_page = is_post_type_archive( 'tribe_events' ) || is_singular( 'tribe_
 				</div>
 			</div><!-- .inside -->
 		</div><!-- #wpc-banner -->
-
 		<?php
 
 		get_template_part( 'partials/hero' );
@@ -48,6 +47,7 @@ $is_events_page = is_post_type_archive( 'tribe_events' ) || is_singular( 'tribe_
 		// Include breadcrumbs.
 		//echo wpcampus_get_breadcrumbs_html();
 
-		?><div id="wpc-main">
+		?>
+		<div id="wpc-main">
 			<div class="inside from-left">
 				<div class="wpc-content">
