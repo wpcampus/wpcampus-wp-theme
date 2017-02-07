@@ -17,6 +17,7 @@ if ( $is_front_page ) {
 
 ?>
 <div id="wpc-hero"<?php echo ! empty( $hero_classes ) ? ' class="' . implode( ' ', $hero_classes ) . '"' : ''; ?>>
+	<div id="wpc-hero-bg"></div>
 	<div class="inside from-left">
 		<?php
 
