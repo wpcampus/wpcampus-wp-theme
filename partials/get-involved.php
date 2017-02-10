@@ -17,7 +17,7 @@ $theme_dir = trailingslashit( get_template_directory_uri() );
 	</div><!-- .social -->
 	<div class="column mailing"><?php
 
-		echo do_shortcode( '[gravityform id="18" title="false" description="false"]' );
+		echo do_shortcode( '[gravityform id="22" title="false" description="false"]' );
 
 	?></div><!-- .mailing -->
 </div><!-- #wpc-get-involved -->
