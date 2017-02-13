@@ -337,6 +337,12 @@ function wpcampus_get_breadcrumbs_html() {
 /**
  * Print the eduwapuu.
  */
-function wpc_theme_print_eduwapuu() {
-	require( TEMPLATEPATH . '/partials/eduwapuu.html' );
+function wpc_theme_print_eduwapuu( $animate = true ) {
+
+	?>
+	<div class="eduwapuu-wrapper<?php echo $animate ? ' animate' : ''; ?>">
+		<?php require( TEMPLATEPATH . '/partials/eduwapuu.html' ); ?>
+	</div><!-- .eduwapuu-wrapper -->
+	<?php
+
 }

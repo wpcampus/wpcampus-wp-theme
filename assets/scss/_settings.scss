@@ -33,7 +33,8 @@ $body-font-family: $font-family-sans-serif !default;
 $body-font-color: #222;
 
 // Containers
-$wpc-inside-padding-side: 40px;
+$wpc-inside-padding-side: 25px;
+$wpc-inside-padding-side-desktop: 40px;
 $wpc-inside-padding-left: 100px;
 
 // Banner
@@ -41,9 +42,14 @@ $wpc-banner-padding-side: 40px;
 $wpc-banner-bg-color: $wpc-dark-blue;
 $wpc-banner-height: 60px;
 $wpc-banner-color: #fff;
-$wpc-banner-logo-width: 224px;
-$wpc-banner-logo-height: 24px;
-$wpc-banner-button-height: 32px;
+$wpc-banner-eduwapuu-width: 38px;
+$wpc-banner-eduwapuu-height: 45px;
+$wpc-banner-logo-width: 270px;
+$wpc-banner-logo-height: 45px;
+$wpc-banner-logo-width-desktop: 224px;
+$wpc-banner-logo-height-desktop: 24px;
+$wpc-banner-button-height: 40px;
+$wpc-banner-button-height-desktop: 32px;
 
 // Hero
 $wpc-hero-bg-color: $wpc-light-gray;

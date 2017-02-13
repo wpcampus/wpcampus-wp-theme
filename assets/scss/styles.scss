@@ -34,9 +34,13 @@ body {
     @include outer-container;
 	padding: 0 $wpc-inside-padding-side;
 
-	&.from-left {
-		max-width: none;
-		padding: 0 $wpc-inside-padding-left;
+	@media screen and (min-width: $small-up) {
+		padding: 0 $wpc-inside-padding-side-desktop;
+
+		&.from-left {
+			max-width: none;
+			padding: 0 $wpc-inside-padding-left;
+		}
 	}
 }
 
@@ -72,7 +76,7 @@ body {
 // Images
 img {
 	display: block;
-	margin: $paragraph-margin-vert 0;
+	margin: 2.2rem 0;
 
 	&.aligncenter {
 		display: block;

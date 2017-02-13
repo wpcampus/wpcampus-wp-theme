@@ -39,11 +39,16 @@
 	}
 
 	.eduwapuu-wrapper {
+		display: none;
 		position: absolute;
 		right: 40px;
 		bottom: -38px;
 		width: 115px;
 		height: auto;
+
+		@media screen and (min-width: $medium-up) {
+			display: block;
+		}
 	}
 
 	&.home {

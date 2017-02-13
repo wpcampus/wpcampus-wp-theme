@@ -9,6 +9,9 @@
 
 	.wpc-sidebar {
 		min-height: 1px;
+		margin: 3rem 0 0 0;
+		padding: 2.6rem 0 0 0;
+		border-top: 1px solid #eee;
 
 		.widget-title {
 			margin: 0 0 1rem 0;
@@ -31,6 +34,10 @@
 			.tribe-events-list-widget {
 
 			}
+
+			&:first-child {
+				margin-top: 0;
+			}
 		}
 	}
 
@@ -44,6 +51,9 @@
 
 			.wpc-sidebar {
 				@include span-columns(3);
+				margin: 0;
+				border: 0;
+				padding: 0;
 			}
 		}
 	}

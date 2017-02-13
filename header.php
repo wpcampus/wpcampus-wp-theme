@@ -19,7 +19,7 @@ $is_events_page = is_post_type_archive( 'tribe_events' ) || is_singular( 'tribe_
 	<div id="wpc-wrapper">
 		<div id="wpc-banner">
 			<div class="inside">
-				<a class="wpc-logo" href="<?php echo $blog_url; ?>"><span class="for-screen-reader"><?php printf( __( '%1$s: Where %2$s Meets Higher Education', 'wpcampus' ), 'WPCampus', 'WordPress' ); ?></span></a>
+				<a class="wpc-logo" href="<?php echo $blog_url; ?>"><?php wpc_theme_print_eduwapuu( false ); ?><span class="for-screen-reader"><?php printf( __( '%1$s: Where %2$s Meets Higher Education', 'wpcampus' ), 'WPCampus', 'WordPress' ); ?></span></a>
 				<?php
 
 				// Print the main menu.

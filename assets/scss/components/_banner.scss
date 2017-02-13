@@ -1,6 +1,8 @@
 // Move the content down for the banner and WP admin bar.
-body {
-	padding-top: $wpc-banner-height;
+@media screen and (min-width: $small-up) {
+	body {
+		padding-top: $wpc-banner-height;
+	}
 }
 
 // Modify the WP admin bar
@@ -13,14 +15,10 @@ body {
 #wpc-banner {
 	background: $wpc-banner-bg-color;
 	color: $wpc-banner-color;
-	position: fixed;
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: $wpc-banner-height;
 	z-index: 1000;
 	overflow: visible;
 	border-bottom: 2px solid #fff;
+	padding: 20px 0 0 0;
 
 	// Move the banner down for the WP admin bar.
 	body.admin-bar & {
@@ -46,25 +44,36 @@ body {
 		z-index: -1;
 	}*/
 
+	.inside {
+		padding: 0;
+	}
+
+	.eduwapuu-wrapper {
+		display: block;
+		width: $wpc-banner-eduwapuu-width;
+		height: $wpc-banner-eduwapuu-height;
+
+		@media screen and (min-width: $medium-up) {
+			display: none;
+		}
+	}
+
 	.wpc-logo {
 		display: block;
-		background: url( '../images/wpcampus-white.svg' ) center center no-repeat;
-		background-size: auto 100%;
-		position: absolute;
-		left: $wpc-banner-padding-side;
-		top: ( $wpc-banner-height - $wpc-banner-logo-height ) / 2;
-		width: $wpc-banner-logo-width;
+		background: url( '../images/wpcampus-white-logo-tagline.svg' ) ( $wpc-banner-eduwapuu-width + 10px ) center no-repeat;
+		background-size: $wpc-banner-logo-width $wpc-banner-logo-height;
+		width: $wpc-banner-logo-width + ( $wpc-banner-eduwapuu-width + 10px );
 		height: $wpc-banner-logo-height;
+		margin: 0 auto 20px auto;
 	}
 
 	.buttons {
-		position: absolute;
-		right: $wpc-banner-padding-side;
-		top: ( $wpc-banner-height - $wpc-banner-button-height ) / 2;
+		text-align: center;
 
 		.button {
 			display: block;
 			float: right;
+			width: 50%;
 			height: $wpc-banner-button-height;
 			text-align: center;
 			font-size: 0.9rem;
@@ -72,8 +81,7 @@ body {
 			padding: 0 15px;
 			text-decoration: none;
 			text-transform: uppercase;
-			border-radius: 5px;
-			margin: 0 0 0 7px;
+			margin: 0;
 
 			&.primary {
 				background: $wpc-royal-blue;
@@ -88,7 +96,7 @@ body {
 	}
 
 	ul.wpc-primary-menu {
-		display: inline-block;
+		display: block;
 		margin: 0;
 		padding: 0;
 		text-align: center;
@@ -359,4 +367,46 @@ body {
 			}
 		}
 	}*/
+
+	@media screen and (min-width: $small-up) {
+		position: fixed;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: $wpc-banner-height;
+		padding: 0;
+
+		.inside {
+			padding: 0 $wpc-inside-padding-side;
+		}
+
+		.wpc-logo {
+			background: url( '../images/wpcampus-white.svg' ) center center no-repeat;
+			background-size: auto 100%;
+			position: absolute;
+			left: $wpc-banner-padding-side;
+			top: ( $wpc-banner-height - $wpc-banner-logo-height-desktop ) / 2;
+			width: $wpc-banner-logo-width-desktop;
+			height: $wpc-banner-logo-height-desktop;
+			margin: 0;
+		}
+
+		.buttons {
+			position: absolute;
+			right: $wpc-banner-padding-side;
+			top: ( $wpc-banner-height - $wpc-banner-button-height-desktop ) / 2;
+
+			.button {
+				width: auto;
+				height: $wpc-banner-button-height-desktop;
+				line-height: $wpc-banner-button-height-desktop;
+				border-radius: 5px;
+				margin: 0 0 0 7px;
+			}
+		}
+
+		ul.wpc-primary-menu {
+			display: inline-block;
+		}
+	}
 }

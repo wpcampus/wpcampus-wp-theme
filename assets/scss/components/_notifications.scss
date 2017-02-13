@@ -22,10 +22,17 @@
 		width: $wpc-notif-icon-width;
 		height: $wpc-notif-icon-height;
 		position: absolute;
-		left: $wpc-inside-padding-left;
+		left: $wpc-inside-padding-side;
 		top: $wpc-notif-padding-vert;
 		background: url( '../images/information.png' ) 0 0 no-repeat;
 		background-size: auto $wpc-notif-icon-height;
 		opacity: 0.7;
+	}
+
+	@media screen and (min-width: $small-up) {
+
+		&:before {
+			left: $wpc-inside-padding-left;
+		}
 	}
 }
