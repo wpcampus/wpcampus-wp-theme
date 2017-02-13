@@ -54,10 +54,11 @@
 	mouth_smile.push( 'M115,75.2c0,0-10.4,11.4-24,4.4c0,0-10.8,8.8-19,1.6' );
 
 	// Will be true if we want to just go in a loop.
-	var eduwapuu_in_loop = false;
+	var eduwapuu_in_loop = true;
 
 	// If 404, show shock.
 	if ( eduwapuu.is_404 ) {
+		eduwapuu_in_loop = false;
 		eduwapuu_mouth_drop();
 	} else {
 
