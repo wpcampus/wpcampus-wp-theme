@@ -6,7 +6,8 @@ $theme_dir = trailingslashit( get_template_directory_uri() );
 $is_front_page = is_front_page();
 $is_events_page = is_post_type_archive( 'tribe_events' ) || is_singular( 'tribe_events' );
 
-?><!DOCTYPE html>
+?>
+<!DOCTYPE html>
 <html <?php language_attributes(); ?> class="no-js">
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
@@ -29,7 +30,7 @@ $is_events_page = is_post_type_archive( 'tribe_events' ) || is_singular( 'tribe_
 					'menu_id'           => 'wpc-primary-menu',
 					'menu_class'        => 'wpc-primary-menu',
 					'fallback_cb'       => false,
-				) );
+				));
 
 				?>
 				<div class="buttons">

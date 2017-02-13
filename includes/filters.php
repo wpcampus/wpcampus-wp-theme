@@ -1,11 +1,27 @@
 <?php
 
 /**
+ * Filter the <body> class.
+ */
+function wpc_filter_body_class( $classes, $class ) {
+
+	// See if there is a sidebar.
+	$sidebar_id = wpc_get_current_sidebar();
+	if ( $sidebar_id ) {
+		$classes[] = 'has-sidebar';
+		$classes[] = 'has-sidebar-' . preg_replace( '/^wpc\-sidebar\-/i', '', $sidebar_id );
+	}
+
+	return $classes;
+}
+add_filter( 'body_class', 'wpc_filter_body_class', 10, 2 );
+
+/**
  * Filter the page title.
  */
-add_filter( 'wpcampus_page_title', function( $page_title ) {
+function wpc_filter_page_title( $page_title ) {
 
-	/**
+	/*
 	 * Change the title for various pages.
 	 *
 	 * Had to write in because events plugin was
@@ -20,14 +36,18 @@ add_filter( 'wpcampus_page_title', function( $page_title ) {
 	}
 
 	return $page_title;
-});
+}
+add_filter( 'wpcampus_page_title', 'wpc_filter_page_title' );
 
 /**
  * Filter the post type archive title.
  */
-add_filter( 'wpcampus_post_type_archive_title', function( $title, $post_type ) {
+function wpc_filter_post_type_archive_title( $title, $post_type ) {
 
-	// Had to write in because events plugin was overwriting the 'post_type_archive_title' filter.
+	/*
+	 * Had to write in because events plugin was
+	 * overwriting the 'post_type_archive_title' filter.
+	 */
 	if ( is_post_type_archive( 'tribe_events' ) || is_singular( 'tribe_events' ) ) {
 		return __( 'Events', 'wpcampus' );
 	}
@@ -37,12 +57,13 @@ add_filter( 'wpcampus_post_type_archive_title', function( $title, $post_type ) {
 	}
 
 	return $title;
-}, 100, 2 );
+}
+add_filter( 'wpcampus_post_type_archive_title', 'wpc_filter_post_type_archive_title', 100, 2 );
 
 /**
  * Filter/build our own map infowindow content.
  */
-add_filter( 'gmb_mashup_infowindow_content', function( $response, $marker_data, $post_id ) {
+function wpc_filter_gmb_mashup_infowindow( $response, $marker_data, $post_id ) {
 
 	// Only for interest posts.
 	if ( 'wpcampus_interest' != get_post_type( $marker_data['id'] ) ) {
@@ -63,4 +84,5 @@ add_filter( 'gmb_mashup_infowindow_content', function( $response, $marker_data, 
 
 	return $response;
 
-}, 100, 3 );
+}
+add_filter( 'gmb_mashup_infowindow_content', 'wpc_filter_gmb_mashup_infowindow', 100, 3 );

@@ -45,6 +45,40 @@ function wpc_theme_register_menus() {
 add_action( 'init', 'wpc_theme_register_menus' );
 
 /**
+ * Register sidebars.
+ */
+function wpc_register_sidebars() {
+
+	// Register the main sidebar.
+	register_sidebar( array(
+		'name'          => __( 'Main Sidebar', 'wpcampus' ),
+		'id'            => 'wpc-sidebar-main',
+		'description'   => __( 'Widgets in this area will be the default shown on all posts and pages.', 'wpcampus' ),
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h3 class="widget-title">',
+		'after_title'   => '</h3>',
+	));
+}
+add_action( 'widgets_init', 'wpc_register_sidebars' );
+
+/**
+ * Define which sidebar to use.
+ */
+function wpc_get_current_sidebar() {
+	global $wpc_sidebar_id;
+
+	// See if sidebar ID is already set.
+	if ( isset( $wpc_sidebar_id ) ) {
+		return $wpc_sidebar_id;
+	}
+
+	$wpc_sidebar_id = 'wpc-sidebar-main';
+
+	return $wpc_sidebar_id;
+}
+
+/**
  * Setup styles and scripts.
  */
 function wpc_enqueue_scripts() {

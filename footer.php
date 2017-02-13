@@ -5,7 +5,7 @@ $blog_url = get_bloginfo( 'url' );
 
 ?>
 					</div><!-- .wpc-content -->
-					<div class="wpc-sidebar"></div><!-- .wpc-sidebar -->
+					<?php get_sidebar(); ?>
 				</div><!-- .inside -->
 			</div><!-- #wpc-main -->
 			<?php
