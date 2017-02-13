@@ -71,6 +71,8 @@ body {
 
 // Images
 img {
+	display: block;
+	margin: $paragraph-margin-vert 0;
 
 	&.aligncenter {
 		display: block;
