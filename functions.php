@@ -102,6 +102,11 @@ function wpc_enqueue_scripts() {
 	// Enqueue eduwapuu script.
 	wp_enqueue_script( 'eduwapuu', $wpcampus_dir . 'assets/js/eduwapuu.min.js', array( 'jquery' ), $wpcampus_version, true );
 
+	// Pass info to eduwapuu script.
+	wp_localize_script( 'eduwapuu', 'eduwapuu', array(
+		'is_404' => is_404(),
+	));
+
 	// Enqueue the data scripts.
 	if ( is_page( 'data' ) ) {
 

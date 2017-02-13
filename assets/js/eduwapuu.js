@@ -53,8 +53,18 @@
 	// The final smile position.
 	mouth_smile.push( 'M115,75.2c0,0-10.4,11.4-24,4.4c0,0-10.8,8.8-19,1.6' );
 
-	// Start by reading to the right.
-	setTimeout( eduwapuu_read_right, 3000 );
+	// Will be true if we want to just go in a loop.
+	var eduwapuu_in_loop = false;
+
+	// If 404, show shock.
+	if ( eduwapuu.is_404 ) {
+		eduwapuu_mouth_drop();
+	} else {
+
+		// Otherwise, start by reading to the right.
+		setTimeout( eduwapuu_read_right, 3000 );
+
+	}
 
 	// Will determine where the eyes are and continue reading.
 	function eduwapuu_continue_reading() {
@@ -89,8 +99,9 @@
 
 				read_right++;
 
-				setTimeout( eduwapuu_read_left, 3000 );
-
+				if ( eduwapuu_in_loop ) {
+					setTimeout( eduwapuu_read_left, 3000 );
+				}
 			}
 		});
 
@@ -120,12 +131,13 @@
 
 				read_left++;
 
-				if ( 0 !== ( read_left % 2 ) ) {
-					eduwapuu_mouth_drop();
-				} else {
-					setTimeout( eduwapuu_read_right, 3000 );
+				if ( eduwapuu_in_loop ) {
+					if ( 0 !== ( read_left % 2 ) ) {
+						eduwapuu_mouth_drop();
+					} else {
+						setTimeout( eduwapuu_read_right, 3000 );
+					}
 				}
-
 			}
 		});
 	}
@@ -140,7 +152,9 @@
 
 		$eduwapuu_mouth.attr( 'd', mouth_smile[ mouth_smile.length - 1 ] );
 
-		setTimeout( eduwapuu_unsmile, 3000 );
+		if ( eduwapuu_in_loop ) {
+			setTimeout( eduwapuu_unsmile, 3000 );
+		}
 
 		// Set the height of the mouth really low and show the mouth.
 		//$eduwapuu_mouth_dropped.attr( 'ry', mouth_dropped_close_ry ).attr( 'cy', mouth_dropped_close_y ).show();
@@ -172,8 +186,9 @@
 		// Reset the smile.
 		$eduwapuu_mouth.attr( 'd', mouth_smile[0] );
 
-		setTimeout( eduwapuu_continue_reading, 3000 );
-
+		if ( eduwapuu_in_loop ) {
+			setTimeout( eduwapuu_continue_reading, 3000 );
+		}
 	}
 
 	// Drop the eduwapuu's mouth.
@@ -214,9 +229,9 @@
 				// Mouth is dropped.
 				mouth_dropped = true;
 
-				// Close the mouth in 3 seconds.
-				setTimeout( eduwapuu_mouth_close, 3000 );
-
+				if ( eduwapuu_in_loop ) {
+					setTimeout( eduwapuu_mouth_close, 3000 );
+				}
 			}
 		});
 
@@ -260,9 +275,9 @@
 				// Mouth is no longer dropped.
 				mouth_dropped = false;
 
-				// Make it smile.
-				eduwapuu_smile();
-
+				if ( eduwapuu_in_loop ) {
+					eduwapuu_smile();
+				}
 			}
 		});
 

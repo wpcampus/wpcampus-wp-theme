@@ -16,7 +16,7 @@ var sassIncludes = [].concat(normalize,bourbon,neat);
 // Define the source paths for each file type
 var src = {
     scss: ['assets/scss/**/*','!assets/scss/components'],
-	js: ['assets/js/eduwapuu.js','assets/js/wpcampus.js','assets/js/wpcampus-data.js'],
+	js: ['assets/js/**/*','!assets/js/*.min.js'],
 	php: ['**/*.php','!vendor/**','!node_modules/**']
 };
 
