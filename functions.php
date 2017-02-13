@@ -15,7 +15,7 @@ require_once( STYLESHEETPATH . '/includes/shortcodes.php' );
 /**
  * Setup the API.
  */
-add_action( 'rest_api_init', function () {
+function wpc_setup_api() {
 	global $wpcampus_api_data;
 
 	// Load the class.
@@ -27,7 +27,8 @@ add_action( 'rest_api_init', function () {
 	// Register our routes.
 	$wpcampus_api_data->register_routes();
 
-} );
+}
+add_action( 'rest_api_init', 'wpc_setup_api' );
 
 // Add theme supports.
 add_theme_support( 'title-tag' );
@@ -46,7 +47,7 @@ add_action( 'init', 'wpc_theme_register_menus' );
 /**
  * Setup styles and scripts.
  */
-add_action( 'wp_enqueue_scripts', function () {
+function wpc_enqueue_scripts() {
 	$wpcampus_version = '0.58';
 
 	// Get the directory.
@@ -94,14 +95,13 @@ add_action( 'wp_enqueue_scripts', function () {
 	if ( is_post_type_archive( 'tribe_events' ) || is_singular( 'tribe_events' ) ) {
 		wp_enqueue_style( 'wpcampus-events', $wpcampus_dir . 'assets/css/tribe-events.min.css', array( 'wpcampus' ), $wpcampus_version, 'all' );
 	}
-}, 10 );
+
+}
+add_action( 'wp_enqueue_scripts', 'wpc_enqueue_scripts', 10 );
 
 /**
  * Load favicons.
  */
-add_action( 'wp_head', 'wpc_theme_add_favicons' );
-add_action( 'admin_head', 'wpc_theme_add_favicons' );
-add_action( 'login_head', 'wpc_theme_add_favicons' );
 function wpc_theme_add_favicons() {
 
 	// Set the images folder.
@@ -123,6 +123,9 @@ function wpc_theme_add_favicons() {
 	}
 
 }
+add_action( 'wp_head', 'wpc_theme_add_favicons' );
+add_action( 'admin_head', 'wpc_theme_add_favicons' );
+add_action( 'login_head', 'wpc_theme_add_favicons' );
 
 /**
  * Get the post type archive title.
