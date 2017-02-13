@@ -62,8 +62,8 @@
 			}
 		}
 
-		// Should be medium up
-		@media screen and (min-width: $medium-up) {
+		// Should be small up
+		@media screen and (min-width: $small-up) {
 			min-height: $wpc-hero-home-height-desktop;
 
 			#wpc-hero-bg {

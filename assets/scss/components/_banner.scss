@@ -94,6 +94,10 @@ body {
 		text-align: center;
 		overflow: auto;
 
+		ul.sub-menu {
+			display: none;
+		}
+
 		li {
 			display: block;
 			float: left;
@@ -107,11 +111,17 @@ body {
 				display: block;
 				padding: 0 20px;
 				text-decoration: none;
+				font-weight: inherit;
 			}
-		}
-		
-		ul.sub-menu {
-			display: none;
+
+			&.current-menu-item,
+			&:hover {
+				background: rgba( 255, 255, 255, 0.1 );
+			}
+
+			&.current-menu-item {
+				font-weight: bold;
+			}
 		}
 	}
 

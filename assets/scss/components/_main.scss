@@ -15,6 +15,7 @@
 		}
 
 		ol, ul {
+			margin-left: 0;
 
 			li {
 				display: block;
@@ -33,14 +34,17 @@
 		}
 	}
 
-	body.has-sidebar & {
+	@media screen and (min-width: $medium-up) {
 
-		.wpc-content {
-			@include span-columns(9);
-		}
+		body.has-sidebar & {
 
-		.wpc-sidebar {
-			@include span-columns(3);
+			.wpc-content {
+				@include span-columns(9);
+			}
+
+			.wpc-sidebar {
+				@include span-columns(3);
+			}
 		}
 	}
 }

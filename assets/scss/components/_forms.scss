@@ -13,6 +13,12 @@
 		margin: 0;
 		padding: 0;
 
+		input[type="text"],
+		textarea,
+		select {
+			border: 1px solid #eee;
+		}
+
 		input[type="text"] {
 			margin: 0 0 0.5em 0;
 
@@ -63,12 +69,15 @@
 			margin: 1.5em 0 0 0;
 
 			.gform_button {
-				background: #444;
+				background: $wpc-royal-blue;
 				width: 100%;
 				text-align: center;
-				margin: 0;
 				text-transform: uppercase;
 				font-weight: 300;
+				color: #fff;
+				border: 0;
+				margin: 0;
+				padding: 15px;
 			}
 
 		}
