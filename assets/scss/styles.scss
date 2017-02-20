@@ -36,12 +36,15 @@ body {
 
 	@media screen and (min-width: $small-up) {
 		padding: 0 $wpc-inside-padding-side-desktop;
-
-		&.from-left {
-			max-width: none;
-			padding: 0 $wpc-inside-padding-left;
-		}
 	}
+
+    @media screen and (min-width: $medium-up) {
+
+        &.from-left {
+            max-width: none;
+            padding: 0 $wpc-inside-padding-left;
+        }
+    }
 }
 
 // Hide these elements visibly, but make sure they're still viewable by screen readers

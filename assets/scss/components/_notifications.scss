@@ -32,7 +32,18 @@
 	@media screen and (min-width: $small-up) {
 
 		&:before {
+			left: $wpc-inside-padding-side-desktop;
+		}
+	}
+
+	@media screen and (min-width: $medium-up) {
+
+		&:before {
 			left: $wpc-inside-padding-left;
+		}
+
+		.inside.from-left {
+			padding-right: $wpc-inside-padding-left + 50px;
 		}
 	}
 }

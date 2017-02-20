@@ -6,7 +6,7 @@ if ( have_posts() ) :
 	while ( have_posts() ) :
 		the_post();
 
-		/*// Get post information.
+		// Get post information.
 		$post_id = get_the_ID();
 
 		?>
@@ -18,9 +18,7 @@ if ( have_posts() ) :
 
 			?>
 		</article>
-		<?php*/
-
-		the_content();
+		<?php
 
 	endwhile;
 endif;
