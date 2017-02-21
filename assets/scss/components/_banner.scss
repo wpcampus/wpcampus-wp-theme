@@ -17,7 +17,7 @@
 	color: $wpc-banner-color;
 	z-index: 1000;
 	overflow: visible;
-	border-bottom: 2px solid #fff;
+	border-bottom: $wpc-banner-border-height solid #fff;
 	padding: 20px 0 0 0;
 
 	// Move the banner down for the WP admin bar.
@@ -60,7 +60,7 @@
 
 	.wpc-logo {
 		display: block;
-		background: url( '../images/wpcampus-white-logo-tagline.svg' ) ( $wpc-banner-eduwapuu-width + 10px ) center no-repeat;
+		background: url('../images/wpcampus-white-logo-tagline.svg') ($wpc-banner-eduwapuu-width + 10px) center no-repeat;
 		background-size: $wpc-banner-logo-width $wpc-banner-logo-height;
 		width: $wpc-banner-logo-width + ( $wpc-banner-eduwapuu-width + 10px );
 		height: $wpc-banner-logo-height;
@@ -95,6 +95,32 @@
 		}
 	}
 
+	.wpc-search-wrapper {
+		position: relative;
+
+		.wpc-search-wrapper-bg {
+			display: none;
+			background: $wpc-dark-blue;
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			z-index: -1;
+		}
+
+		.wpc-search-icon {
+			background: url('../images/magnifying-glass-white.png') left center no-repeat;
+			background-size: $wpc-banner-search-icon-width-desktop $wpc-banner-search-icon-height-desktop;
+			cursor: pointer;
+
+			img {
+				display: block;
+				margin: 0;
+			}
+		}
+	}
+
 	ul.wpc-primary-menu {
 		display: block;
 		margin: 0;
@@ -112,7 +138,7 @@
 			list-style: none;
 			margin: 0;
 			padding: 0;
-			line-height: $wpc-banner-height;
+			line-height: normal;
 			text-transform: uppercase;
 
 			a {
@@ -124,7 +150,7 @@
 
 			&.current-menu-item,
 			&:hover {
-				background: rgba( 255, 255, 255, 0.1 );
+				background: rgba(255, 255, 255, 0.1);
 			}
 
 			&.current-menu-item {
@@ -180,10 +206,6 @@
 				height: 2px;
 				margin: 0;
 				opacity: 1;
-				-webkit-transition: all 200ms ease-out;
-				-moz-transition: all 200ms ease-out;
-				-ms-transition: all 200ms ease-out;
-				-o-transition: all 200ms ease-out;
 				transition: all 200ms ease-out;
 
 				&.two {
@@ -381,7 +403,7 @@
 		}
 
 		.wpc-logo {
-			background: url( '../images/wpcampus-white.svg' ) center center no-repeat;
+			background: url('../images/wpcampus-white.svg') center center no-repeat;
 			background-size: auto 100%;
 			position: absolute;
 			left: $wpc-banner-padding-side;
@@ -391,9 +413,26 @@
 			margin: 0;
 		}
 
+		.wpc-search-wrapper {
+			position: absolute;
+			right: 0;
+			top: 0;
+			width: $wpc-banner-search-icon-width-desktop + $wpc-banner-padding-side;
+			height: $wpc-banner-height - $wpc-banner-border-height;
+
+			.wpc-search-icon {
+				width: 100%;
+				height: $wpc-banner-height - $wpc-banner-border-height;
+			}
+
+			.searchform {
+				display: none;
+			}
+		}
+
 		.buttons {
 			position: absolute;
-			right: $wpc-banner-padding-side;
+			right: $wpc-banner-padding-side + $wpc-banner-search-icon-width-desktop + $wpc-banner-search-buttons-padding;
 			top: ( $wpc-banner-height - $wpc-banner-button-height-desktop ) / 2;
 
 			.button {
@@ -401,12 +440,95 @@
 				height: $wpc-banner-button-height-desktop;
 				line-height: $wpc-banner-button-height-desktop;
 				border-radius: 5px;
-				margin: 0 0 0 7px;
+				margin: 0 0 0 $wpc-banner-button-padding;
 			}
 		}
 
 		ul.wpc-primary-menu {
 			display: inline-block;
+
+			li {
+				line-height: $wpc-banner-height;
+			}
+		}
+
+		&.search-open-transition,
+		&.search-open {
+
+			.wpc-search-wrapper {
+				z-index: 1000;
+			}
+
+			.wpc-search-wrapper-bg {
+				display: block;
+			}
+
+			.wpc-search-icon {
+				background-position: right center;
+				width: $wpc-banner-search-icon-width-desktop + $wpc-banner-padding-side;
+				position: absolute;
+				left: 0;
+				top: 0;
+				z-index: 1002;
+			}
+
+			.searchform {
+				display: block;
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				z-index: 1001;
+
+				div {
+					position: absolute;
+					left: 0;
+					top: 50%;
+					transform: translate(0, -50%);
+					width: 100%;
+					height: $wpc-banner-search-icon-height-desktop;
+					padding: 0 ($wpc-banner-padding-side + $wpc-banner-search-button-width + $wpc-banner-search-button-padding) 0 ($wpc-banner-search-icon-width-desktop + $wpc-banner-padding-side + $wpc-banner-search-input-padding );
+
+					input {
+						display: block;
+						height: 100%;
+						margin: 0;
+						border: 0;
+						padding: 0;
+						line-height: $wpc-banner-search-icon-height-desktop;
+
+						&[type="text"] {
+							width: 100%;
+							padding: 0 5px;
+						}
+
+						&[type="submit"] {
+							position: absolute;
+							right: $wpc-banner-padding-side;
+							top: 0;
+							background: #ddd;
+							color: #444;
+							width: $wpc-banner-search-button-width;
+							font-size: 0.8rem;
+							font-weight: bold;
+							text-transform: uppercase;
+						}
+					}
+				}
+			}
+		}
+
+		&.search-open {
+
+			.wpc-search-wrapper {
+				right: 0;
+				width: 100%;
+
+				.wpc-search-icon {
+					background-image: url('../images/close-white.png');
+				}
+			}
 		}
 	}
 }

@@ -37,6 +37,11 @@ $is_events_page = is_post_type_archive( 'tribe_events' ) || is_singular( 'tribe_
 					<a class="button primary" href="<?php echo $blog_url; ?>/get-involved/"><?php _e( 'Get Involved', 'wpcampus' ); ?></a>
 					<a class="button secondary" href="<?php echo $blog_url; ?>/members/"><?php _e( 'Members', 'wpcampus' ); ?></a>
 				</div>
+				<div class="wpc-search-wrapper">
+					<div class="wpc-search-wrapper-bg"></div>
+					<?php get_search_form(); ?>
+					<div class="wpc-search-icon"></div>
+				</div>
 			</div><!-- .inside -->
 		</div><!-- #wpc-banner -->
 		<?php

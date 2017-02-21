@@ -19,6 +19,7 @@ $medium-up: 55em;
 // COLORS
 $wpc-royal-blue: #1159bd;
 $wpc-dark-blue: darken( #2e3641, 5% );
+$wpc-teal: #00709c;
 $peach: #d0443c;
 $body-bg: #fafafa; //#eff4f5;
 $primary-color: $wpc-royal-blue;
@@ -42,14 +43,22 @@ $wpc-banner-padding-side: 40px;
 $wpc-banner-bg-color: $wpc-dark-blue;
 $wpc-banner-height: 60px;
 $wpc-banner-color: #fff;
+$wpc-banner-border-height: 2px;
 $wpc-banner-eduwapuu-width: 38px;
 $wpc-banner-eduwapuu-height: 45px;
 $wpc-banner-logo-width: 270px;
 $wpc-banner-logo-height: 45px;
 $wpc-banner-logo-width-desktop: 224px;
 $wpc-banner-logo-height-desktop: 24px;
+$wpc-banner-search-icon-width-desktop: 25px;
+$wpc-banner-search-icon-height-desktop: 25px;
+$wpc-banner-search-button-width: 100px;
+$wpc-banner-search-button-padding: 10px;
+$wpc-banner-search-buttons-padding: 12px;
+$wpc-banner-search-input-padding: 20px;
 $wpc-banner-button-height: 40px;
 $wpc-banner-button-height-desktop: 32px;
+$wpc-banner-button-padding: 7px;
 
 // Hero
 $wpc-hero-bg-color: $wpc-light-gray;
