@@ -13,9 +13,24 @@
 	// Open/close search.
 	var $banner = $( '#wpc-banner' );
 	var $search_wrapper = $banner.find( '.wpc-search-wrapper' );
-	var $search_wrapper_orig_width = parseInt( $search_wrapper.width() );
-	var $search_wrapper_orig_right = parseInt( $search_wrapper.css( 'right' ) );
+	var $search_wrapper_orig_width = 65;
+	var $search_wrapper_full_width = '100%';
 	var $search_icon = $search_wrapper.find( '.wpc-search-icon' );
+	var $search_icon_open_left = 40;
+
+	// If banner is " pre-opened".
+	if ( $banner.hasClass( 'search-open' ) ) {
+
+		// Set up the search wrapper.
+		$search_wrapper.css({'width':$search_wrapper_full_width});
+		$search_icon.css({'left':$search_icon_open_left+'px'});
+
+		// Close search if ESC key.
+		$( 'body' ).bind( 'keypress', wpc_banner_search_keypress_handler );
+
+	}
+
+	// When clicking the search icon...
 	$search_icon.on( 'touchstart click', function( $event ) {
 
 		if ( $banner.hasClass( 'search-open' ) ) {
@@ -37,16 +52,16 @@
 	function wpc_open_banner_search() {
 
 		// Start the transition.
-		$banner.addClass( 'search-open-transition' );
+		$banner.addClass( 'search-open-transition' ).removeClass( 'search-close' );
+
+		// Move the icon a little to make sure the banner has side padding.
+		$search_icon.animate({
+			left: $search_icon_open_left
+		}, { duration: 800, queue: false });
 
 		// Animate the search wrapper.
 		$search_wrapper.animate({
-			right: 0
-		}, { duration: 500, queue: false });
-
-		// Animate the search wrapper.
-		$search_wrapper.animate({
-			width: $( window ).width()
+			width: $search_wrapper_full_width
 		}, { duration: 800, queue: false, complete: function() {
 
 			// Add the open and remove the transition class.
@@ -66,16 +81,13 @@
 	 */
 	function wpc_close_banner_search() {
 
-		// Remove the open-ness.
-		$banner.removeClass( 'search-open' );
-
 		// Start the transition.
-		$banner.addClass( 'search-open-transition' );
+		$banner.addClass( 'search-close-transition search-close' ).removeClass( 'search-open' );
 
-		// Animate the search wrapper.
-		$search_wrapper.animate({
-			right: $search_wrapper_orig_right
-		}, { duration: 500, queue: false });
+		// Move the icon a little to make sure the banner has side padding.
+		$search_icon.animate({
+			left: 0
+		}, { duration: 800, queue: false });
 
 		// Animate the search wrapper.
 		$search_wrapper.animate({
@@ -83,7 +95,7 @@
 		}, { duration: 800, queue: false, complete: function() {
 
 			// Remove the transition class.
-			$banner.removeClass( 'search-open-transition' );
+			$banner.removeClass( 'search-close-transition search-close' );
 
 		}});
 

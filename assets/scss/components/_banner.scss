@@ -33,17 +33,6 @@
 		color: inherit;
 	}
 
-	/*.shadow {
-		position: absolute;
-		left: -15%;
-		top: 0;
-		width: 120%;
-		height: 20px;
-		box-shadow: 0 10px 35px 45px rgba( #000, 0.5 );
-		background: rgba( #000, 0.5 );
-		z-index: -1;
-	}*/
-
 	.inside {
 		padding: 0;
 	}
@@ -102,7 +91,7 @@
 			display: none;
 			background: $wpc-dark-blue;
 			position: absolute;
-			left: 0;
+			right: 0;
 			top: 0;
 			width: 100%;
 			height: 100%;
@@ -110,13 +99,30 @@
 		}
 
 		.wpc-search-icon {
-			background: url('../images/magnifying-glass-white.png') left center no-repeat;
-			background-size: $wpc-banner-search-icon-width-desktop $wpc-banner-search-icon-height-desktop;
 			cursor: pointer;
 
-			img {
+			.wpc-search-magnifying,
+			.wpc-search-close {
 				display: block;
-				margin: 0;
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				background-size: $wpc-banner-search-icon-width-desktop $wpc-banner-search-icon-height-desktop;
+				background-position: left center;
+				background-repeat: no-repeat;
+				transition: opacity 0.8s ease;
+			}
+
+			.wpc-search-magnifying {
+				background-image: url('../images/magnifying-glass-white.png');
+				opacity: 1;
+			}
+
+			.wpc-search-close {
+				background-image: url('../images/close-white.png');
+				opacity: 0;
 			}
 		}
 	}
@@ -421,69 +427,26 @@
 			height: $wpc-banner-height - $wpc-banner-border-height;
 
 			.wpc-search-icon {
-				width: 100%;
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: $wpc-banner-search-icon-width-desktop + ( $wpc-banner-search-input-padding / 2 );
 				height: $wpc-banner-height - $wpc-banner-border-height;
 			}
 
 			.searchform {
-				display: none;
-			}
-		}
-
-		.buttons {
-			position: absolute;
-			right: $wpc-banner-padding-side + $wpc-banner-search-icon-width-desktop + $wpc-banner-search-buttons-padding;
-			top: ( $wpc-banner-height - $wpc-banner-button-height-desktop ) / 2;
-
-			.button {
-				width: auto;
-				height: $wpc-banner-button-height-desktop;
-				line-height: $wpc-banner-button-height-desktop;
-				border-radius: 5px;
-				margin: 0 0 0 $wpc-banner-button-padding;
-			}
-		}
-
-		ul.wpc-primary-menu {
-			display: inline-block;
-
-			li {
-				line-height: $wpc-banner-height;
-			}
-		}
-
-		&.search-open-transition,
-		&.search-open {
-
-			.wpc-search-wrapper {
-				z-index: 1000;
-			}
-
-			.wpc-search-wrapper-bg {
-				display: block;
-			}
-
-			.wpc-search-icon {
-				background-position: right center;
-				width: $wpc-banner-search-icon-width-desktop + $wpc-banner-padding-side;
-				position: absolute;
-				left: 0;
-				top: 0;
-				z-index: 1002;
-			}
-
-			.searchform {
 				display: block;
 				position: absolute;
-				left: 0;
+				right: 0;
 				top: 0;
 				width: 100%;
 				height: 100%;
-				z-index: 1001;
+				opacity: 0;
+				transition: opacity 0.8s ease;
 
 				div {
 					position: absolute;
-					left: 0;
+					right: 0;
 					top: 50%;
 					transform: translate(0, -50%);
 					width: 100%;
@@ -519,6 +482,60 @@
 			}
 		}
 
+		.buttons {
+			position: absolute;
+			right: $wpc-banner-padding-side + $wpc-banner-search-icon-width-desktop + $wpc-banner-search-buttons-padding;
+			top: ( $wpc-banner-height - $wpc-banner-button-height-desktop ) / 2;
+
+			.button {
+				width: auto;
+				height: $wpc-banner-button-height-desktop;
+				line-height: $wpc-banner-button-height-desktop;
+				border-radius: 5px;
+				margin: 0 0 0 $wpc-banner-button-padding;
+			}
+		}
+
+		ul.wpc-primary-menu {
+			display: inline-block;
+
+			li {
+				line-height: $wpc-banner-height;
+			}
+		}
+
+		&.search-open-transition,
+		&.search-close-transition,
+		&.search-open,
+		&.search-close {
+
+			.wpc-search-wrapper {
+				z-index: 1000;
+			}
+
+			.wpc-search-wrapper-bg {
+				display: block;
+			}
+		}
+
+		&.search-open-transition {
+
+			.wpc-search-icon {
+
+				.wpc-search-magnifying {
+					opacity: 0;
+				}
+
+				.wpc-search-close {
+					opacity: 1;
+				}
+			}
+
+			.searchform {
+				opacity: 1;
+			}
+		}
+
 		&.search-open {
 
 			.wpc-search-wrapper {
@@ -526,8 +543,45 @@
 				width: 100%;
 
 				.wpc-search-icon {
-					background-image: url('../images/close-white.png');
+					left: $wpc-banner-padding-side;
+
+					.wpc-search-magnifying {
+						opacity: 0;
+					}
+
+					.wpc-search-close {
+						opacity: 1;
+					}
 				}
+			}
+
+			.searchform {
+				opacity: 1;
+			}
+		}
+
+		&.search-close-transition {
+
+			.wpc-search-icon {
+
+				.wpc-search-magnifying {
+					opacity: 1;
+				}
+
+				.wpc-search-close {
+					opacity: 0;
+				}
+			}
+
+			.searchform {
+				opacity: 0;
+			}
+		}
+
+		&.search-close {
+
+			.searchform {
+				opacity: 0;
 			}
 		}
 	}
