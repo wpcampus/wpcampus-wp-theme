@@ -3,7 +3,13 @@
 // Get current sidebar.
 $sidebar_id = wpc_get_current_sidebar();
 
+// Make sure we have a sidebar ID.
 if ( ! $sidebar_id ) {
+	return false;
+}
+
+// Make sure the sidebar is active.
+if ( ! is_active_sidebar( $sidebar_id ) ) {
 	return false;
 }
 

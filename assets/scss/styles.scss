@@ -9,12 +9,20 @@
 // Include our mixins
 @import "mixins";
 
-* {
-	box-sizing: inherit;
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
 }
 
-html, body {
-	font-size: 100%;
+html,
+body {
+    font-size: 100%;
+    height: 100%;
+}
+
+html{
+    box-sizing: border-box;
 }
 
 body {
