@@ -1,6 +1,6 @@
 // Move the content down for the banner and WP admin bar.
 @media screen and (min-width: $small-up) {
-	body.admin-bar {
+	body {
 		padding-top: $wpc-banner-height;
 	}
 }
@@ -426,7 +426,7 @@
 				height: $wpc-banner-height - $wpc-banner-border-height;
 			}
 
-			.searchform {
+			.search-form {
 				display: block;
 				position: absolute;
 				right: 0;
@@ -523,7 +523,7 @@
 				}
 			}
 
-			.searchform {
+			.search-form {
 				opacity: 1;
 			}
 		}
@@ -547,7 +547,7 @@
 				}
 			}
 
-			.searchform {
+			.search-form {
 				opacity: 1;
 			}
 		}
@@ -565,14 +565,14 @@
 				}
 			}
 
-			.searchform {
+			.search-form {
 				opacity: 0;
 			}
 		}
 
 		&.search-close {
 
-			.searchform {
+			.search-form {
 				opacity: 0;
 			}
 		}
