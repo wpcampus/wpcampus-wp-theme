@@ -12,22 +12,16 @@
 
 	// Open/close search.
 	var $banner = $( '#wpc-banner' );
+	var $banner_logo = $( '#wpc-banner-logo' );
 	var $search_wrapper = $banner.find( '.wpc-search-wrapper' );
 	var $search_wrapper_orig_width = 65;
-	var $search_wrapper_full_width = '100%';
+	var $search_wrapper_full_width = wpc_get_open_banner_search_width();
 	var $search_icon = $search_wrapper.find( '.wpc-search-icon' );
 	var $search_icon_open_left = 40;
 
-	// If banner is " pre-opened".
+	// If banner is "pre-opened", then setup banner search.
 	if ( $banner.hasClass( 'search-open' ) ) {
-
-		// Set up the search wrapper.
-		$search_wrapper.css({'width':$search_wrapper_full_width});
-		$search_icon.css({'left':$search_icon_open_left+'px'});
-
-		// Close search if ESC key.
-		$( 'body' ).bind( 'keypress', wpc_banner_search_keypress_handler );
-
+		wpc_init_open_banner_search();
 	}
 
 	// When clicking the search icon...
@@ -45,6 +39,27 @@
 
 		}
 	});
+
+	/**
+	 * Returns the open width for the banner search.
+	 */
+	function wpc_get_open_banner_search_width() {
+		return $banner.width() - ( $banner_logo.offset().left + $banner_logo.outerWidth() );
+	}
+
+	/**
+	 * Setup the banner search to be open.
+	 */
+	function wpc_init_open_banner_search() {
+
+		// Set up the search wrapper.
+		$search_wrapper.css({ 'width': $search_wrapper_full_width });
+		$search_icon.css({ 'left': $search_icon_open_left+'px' });
+
+		// Close search if ESC key.
+		$( document ).bind( 'keyup', wpc_banner_search_keypress_handler );
+
+	}
 
 	/**
 	 * Open the banner search.
@@ -70,10 +85,10 @@
 		}});
 
 		// Give focus to search input.
-		$banner.find( '#s' ).focus();
+		$banner.find( '.search-field' ).focus();
 
 		// Close search if ESC key.
-		$( 'body' ).bind( 'keypress', wpc_banner_search_keypress_handler );
+		$( document ).bind( 'keyup', wpc_banner_search_keypress_handler );
 	}
 
 	/**
@@ -100,7 +115,7 @@
 		}});
 
 		// Remove ESC bind.
-		$( "body" ).unbind( 'keypress', wpc_banner_search_keypress_handler );
+		$( document ).unbind( 'keyup', wpc_banner_search_keypress_handler );
 
 	}
 

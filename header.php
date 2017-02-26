@@ -32,7 +32,7 @@ $search_query = is_search() ? get_search_query() : '';
 		?>
 		<div id="wpc-banner"<?php echo $banner_class ? ' class="' . implode( ' ', $banner_class ) . '"' : ''; ?>>
 			<div class="inside">
-				<a class="wpc-logo" href="<?php echo $blog_url; ?>"><?php wpc_theme_print_eduwapuu( false ); ?><span class="for-screen-reader"><?php printf( __( '%1$s: Where %2$s Meets Higher Education', 'wpcampus' ), 'WPCampus', 'WordPress' ); ?></span></a>
+				<a id="wpc-banner-logo" class="wpc-logo" href="<?php echo $blog_url; ?>"><?php wpc_theme_print_eduwapuu( false ); ?><span class="for-screen-reader"><?php printf( __( '%1$s: Where %2$s Meets Higher Education', 'wpcampus' ), 'WPCampus', 'WordPress' ); ?></span></a>
 				<?php
 
 				// Print the main menu.
@@ -52,7 +52,9 @@ $search_query = is_search() ? get_search_query() : '';
 				</div>
 				<div class="wpc-search-wrapper">
 					<div class="wpc-search-wrapper-bg"></div>
-					<?php get_search_form(); ?>
+					<div class="wpc-search-form-wrapper">
+						<?php get_search_form(); ?>
+					</div>
 					<div class="wpc-search-icon">
 						<div class="wpc-search-magnifying"></div>
 						<div class="wpc-search-close"></div>

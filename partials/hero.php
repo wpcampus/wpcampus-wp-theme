@@ -40,6 +40,8 @@ if ( $is_front_page ) {
 			// Print title.
 			if ( is_404() ) {
 				_e( 'Page Not Found', 'wpcampus' );
+			} else if ( is_search() ) {
+				_e( 'Search Results', 'wpcampus' );
 			} else {
 				echo apply_filters( 'wpcampus_page_title', get_the_title() );
 			}

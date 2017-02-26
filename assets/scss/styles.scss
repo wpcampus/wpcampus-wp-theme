@@ -56,7 +56,8 @@ body {
 }
 
 // Hide these elements visibly, but make sure they're still viewable by screen readers
-.for-screen-reader {
+.for-screen-reader,
+.screen-reader-text {
     @include for-screen-reader();
 }
 

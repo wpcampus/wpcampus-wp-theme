@@ -34,6 +34,8 @@
 	}
 
 	.inside {
+		width: 100%;
+		height: $wpc-banner-height;
 		padding: 0;
 	}
 
@@ -426,7 +428,7 @@
 				height: $wpc-banner-height - $wpc-banner-border-height;
 			}
 
-			.search-form {
+			.wpc-search-form-wrapper {
 				display: block;
 				position: absolute;
 				right: 0;
@@ -436,7 +438,8 @@
 				opacity: 0;
 				transition: opacity 0.8s ease;
 
-				div {
+				.search-form {
+					display: block;
 					position: absolute;
 					right: 0;
 					top: 50%;
@@ -453,12 +456,12 @@
 						padding: 0;
 						line-height: $wpc-banner-search-icon-height-desktop;
 
-						&[type="text"] {
+						&.search-field {
 							width: 100%;
 							padding: 0 5px;
 						}
 
-						&[type="submit"] {
+						&.search-submit {
 							position: absolute;
 							right: $wpc-banner-padding-side;
 							top: 0;
@@ -523,7 +526,7 @@
 				}
 			}
 
-			.search-form {
+			.wpc-search-form-wrapper {
 				opacity: 1;
 			}
 		}
@@ -547,7 +550,7 @@
 				}
 			}
 
-			.search-form {
+			.wpc-search-form-wrapper {
 				opacity: 1;
 			}
 		}
@@ -565,14 +568,14 @@
 				}
 			}
 
-			.search-form {
+			.wpc-search-form-wrapper {
 				opacity: 0;
 			}
 		}
 
 		&.search-close {
 
-			.search-form {
+			.wpc-search-form-wrapper {
 				opacity: 0;
 			}
 		}
