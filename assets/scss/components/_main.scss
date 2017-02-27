@@ -3,8 +3,85 @@
 	min-height: 200px;
 	padding: 40px 0 50px 0;
 
+	.callout {
+		background: $wpc-light-gray;
+		padding: 20px;
+		margin: $paragraph-margin-vert 0;
+
+		* {
+			color: inherit;
+		}
+
+		&.primary {
+			background: $wpc-royal-blue;
+			color: #fff;
+		}
+
+		/*&.dark {
+	        color: #fff;
+	    }
+
+	    &.royal-blue {
+	        background: $wpc-royal-blue;
+	        color: #fff;
+	    }
+
+	    &.dark-blue {
+	        background: $wpc-dark-blue;
+	        color: #fff;
+	    }*/
+
+		&.center {
+			text-align: center;
+		}
+
+		> *:first-child {
+			margin-top: 0;
+		}
+
+		> *:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	.wpc-articles {
+		margin-top: 30px;
+
+		article {
+			border-top: 1px solid $wpc-light-gray;
+			padding-top: 35px;
+			margin-top: 45px;
+
+			&:first-child {
+				border-top: 0;
+				padding-top: 0;
+				margin-top: 0;
+			}
+		}
+	}
+
+	.wpc-search-result-message {
+		font-style: italic;
+
+		.search-term {
+			font-weight: bold;
+		}
+	}
+
 	.wpc-content {
 		min-height: 1px;
+
+		.columns {
+			overflow: auto;
+
+			.column.two {
+				@include span-columns(6);
+			}
+		}
+
+		> *:first-child {
+			margin-top: 0;
+		}
 	}
 
 	.wpc-sidebar {
@@ -12,11 +89,20 @@
 		margin: 3rem 0 0 0;
 		padding: 2.6rem 0 0 0;
 		border-top: 1px solid #eee;
+		font-size: 0.9rem;
 
 		.widget-title {
+			font-size: 1.3em;
+			font-weight: 400;
+			color: #444;
+			text-transform: uppercase;
 			margin: 0 0 0.8rem 0;
 		}
 
+		h4 {
+			font-weight: normal;
+		}
+		
 		ol, ul {
 			margin-left: 0;
 
@@ -35,12 +121,11 @@
 		.widget {
 			margin: $paragraph-margin-vert 0;
 
-			.tribe-events-list-widget {
+			&.tribe-events-list-widget {
 
 				.tribe-event-title {
 					margin: 0;
 				}
-
 			}
 
 			&:first-child {

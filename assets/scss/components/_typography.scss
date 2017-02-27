@@ -4,13 +4,23 @@ a {
 }
 
 h1 {
-	font-size: 3.2rem;
-	line-height: 1;
+	font-size: 2.8rem;
+	line-height: 1.2;
 	font-weight: 300;
 	text-transform: uppercase;
 }
 
+h2 {
+	font-size: 2.2rem;
+	line-height: 2.8rem;
+	font-weight: 300;
+	margin: 0 0 1rem 0;
+}
+
 h3 {
+	font-size: 1.4rem;
+	line-height: 2rem;
+	font-weight: 700;
 	margin: 0 0 1rem 0;
 }
 
@@ -22,6 +32,7 @@ hr {
 }
 
 p, ol, ul {
+	font-size: $paragraph-font-size;
 	line-height: $paragraph-line-height;
 	margin: $paragraph-margin-vert 0;
 }
@@ -39,6 +50,11 @@ ol, ul {
 
 	p + & {
 		margin-top: -0.5rem;
+	}
+
+	ol, ul {
+		margin-top: 0.8rem;
+		margin-bottom: 0.8rem
 	}
 }
 
@@ -65,6 +81,10 @@ ul {
 }
 
 p, ol, ul {
+
+	h2 + & {
+		margin-top: 0;
+	}
 
 	h3 + & {
 		margin-top: 0;

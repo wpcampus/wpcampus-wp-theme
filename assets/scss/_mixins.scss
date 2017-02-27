@@ -23,7 +23,6 @@
         padding: 0;
         list-style: none;
     }
-
 }
 
 // Will set placeholder color
@@ -50,23 +49,4 @@
     &:-ms-input-placeholder {
         color: $color;
     }
-
-}
-
-// Will set transition values
-@mixin set-transition( $transition... ) {
-    -webkit-transition: $transition;
-    -moz-transition: $transition;
-    -ms-transition: $transition;
-    -o-transition: $transition;
-    transition: $transition;
-}
-
-// Will set transform values
-@mixin set-transform( $transform... ) {
-    -webkit-transform: $transform;
-    -moz-transform: $transform;
-    -ms-transform: $transform;
-    -o-transform: $transform;
-    transform: $transform;
 }

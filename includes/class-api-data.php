@@ -31,7 +31,7 @@ class WPCampus_API_Data {
 		switch ( $request['set'] ) {
 
 			case 'no-of-interested':
-				$response = wpcampus_get_interested_count();
+				$response = wpcampus_get_involved_count();
 				break;
 
 			case 'affiliation':
@@ -66,7 +66,7 @@ class WPCampus_API_Data {
 				break;
 
 			case 'universities':
-				$response = wpcampus_get_interest_universities();
+				$response = wpcampus_get_involved_universities();
 				break;
 
 			case 'vote-on-new-name':

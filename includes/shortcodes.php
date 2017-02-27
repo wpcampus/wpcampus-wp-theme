@@ -89,7 +89,7 @@ add_shortcode( 'wpcampus_data', function( $args, $content = null ) {
 	switch ( $args['set'] ) {
 
 		case 'no_of_interested':
-			return wpcampus_get_interested_count();
+			return wpcampus_get_involved_count();
 
 		case 'attend_in_person':
 			return format_wpcampus_data_set( wpcampus_get_attend_in_person_count(), $args['format'] );
@@ -141,7 +141,7 @@ function format_wpcampus_data_set( $count, $format = 'number' ) {
 		case 'both':
 
 			// Get total.
-			$total = wpcampus_get_interested_count();
+			$total = wpcampus_get_involved_count();
 
 			// Add percentage.
 			$percent = round( ( $count / $total ) * 100 ) . '%';

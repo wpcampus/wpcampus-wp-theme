@@ -5,8 +5,8 @@ $theme_dir = trailingslashit( get_template_directory_uri() );
 $is_front_page = is_front_page();
 
 // Get the counts.
-$members = 580;
-$institutions = 324;
+$members = wpcampus_get_involved_count();
+$institutions = count( wpcampus_get_involved_universities() );
 
 // Build hero classes.
 $hero_classes = array();
@@ -34,21 +34,26 @@ if ( $is_front_page ) {
 
 		else :
 
-			?>
-			<h1><?php
+			// Print title
+			if ( is_single() ) :
+				?><div class="wpc-hero-title"><?php printf( __( 'The %s Blog', 'wpcampus' ), 'WPCampus' ); ?></div><?php
+			else :
 
-			// Print title.
-			if ( is_404() ) {
-				_e( 'Page Not Found', 'wpcampus' );
-			} else if ( is_search() ) {
-				_e( 'Search Results', 'wpcampus' );
-			} else {
-				echo apply_filters( 'wpcampus_page_title', get_the_title() );
-			}
+				?><h1 class="wpc-hero-title"><?php
 
-			?></h1>
-			<?php
+				if ( is_home() ) :
+					printf( __( 'The %s Blog', 'wpcampus' ), 'WPCampus' );
+				elseif ( is_404() ) :
+					_e( 'Page Not Found', 'wpcampus' );
+				elseif ( is_search() ) :
+					_e( 'Search Results', 'wpcampus' );
+				else :
+					echo apply_filters( 'wpcampus_page_title', get_the_title() );
+				endif;
 
+				?></h1><?php
+
+			endif;
 		endif;
 
 		?>

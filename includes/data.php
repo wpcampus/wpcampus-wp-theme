@@ -3,73 +3,147 @@
 /**
  * Get number of interested.
  */
-function wpcampus_get_interested_count() {
-	return GFAPI::count_entries( 1, array( 'status' => 'active' ) );
+function wpcampus_get_involved_count() {
+	if ( class_exists( 'GFAPI' ) ) {
+		return GFAPI::count_entries( 1, array( 'status' => 'active' ) );
+	}
+	return 0;
 }
 
 /**
  * Get number of interested who want to attend in person.
  */
 function wpcampus_get_attend_in_person_count() {
-	$search_criteria = array( 'status' => 'active' );
+
+	// Make sure GFAPI exists.
+	if ( ! class_exists( 'GFAPI' ) ) {
+		return 0;
+	}
+
+	// Setup search criteria.
+	$search_criteria = array(
+		'status' => 'active',
+	);
+
+	// Add filters.
 	$search_criteria['field_filters'][] = array(
 		'key'       => '6',
 		'operator'  => 'like',
 		'value'     => 'Attend in person',
 	);
-	return $counts = GFAPI::count_entries( 1, $search_criteria );
+
+	// Return the count.
+	return GFAPI::count_entries( 1, $search_criteria );
 }
 
 /**
  * Get number of interested who want to attend via live stream.
  */
 function wpcampus_get_attend_live_stream_count() {
-	$search_criteria = array( 'status' => 'active' );
+
+	// Make sure GFAPI exists.
+	if ( ! class_exists( 'GFAPI' ) ) {
+		return 0;
+	}
+
+	// Setup search criteria.
+	$search_criteria = array(
+		'status' => 'active',
+	);
+
+	// Add filters.
 	$search_criteria['field_filters'][] = array(
 		'key'       => '6',
 	    'operator'  => 'like',
 	    'value'     => 'Attend via live stream',
 	);
-	return $counts = GFAPI::count_entries( 1, $search_criteria );
+
+	// Return the count.
+	return GFAPI::count_entries( 1, $search_criteria );
 }
 
 /**
  * Get number of interested who work in higher ed.
  */
 function wpcampus_get_work_in_higher_ed_count() {
-	$search_criteria = array( 'status' => 'active' );
+
+	// Make sure GFAPI exists.
+	if ( ! class_exists( 'GFAPI' ) ) {
+		return 0;
+	}
+
+	// Setup search criteria.
+	$search_criteria = array(
+		'status' => 'active',
+	);
+
+	// Add filters.
 	$search_criteria['field_filters'][] = array(
 		'key'       => '5',
-		'operator'  => 'contains',
-		'value'     => 'I work at a higher ed institution',
+		'operator'  => 'in',
+		'value'     => array( 'I work at a higher ed institution', 'Yes, I work at a higher ed institution.' ),
 	);
-	return $counts = GFAPI::count_entries( 1, $search_criteria );
+
+	// Return the count.
+	return GFAPI::count_entries( 1, $search_criteria );
 }
 
 /**
  * Get number of interested who work for a company that supports higher ed.
  */
 function wpcampus_get_work_for_company_count() {
-	$search_criteria = array( 'status' => 'active' );
+
+	// Make sure GFAPI exists.
+	if ( ! class_exists( 'GFAPI' ) ) {
+		return 0;
+	}
+
+	// Setup search criteria.
+	$search_criteria = array(
+		'status' => 'active',
+	);
+
+	// Add filters.
 	$search_criteria['field_filters'][] = array(
 		'key'       => '5',
-		'operator'  => 'contains',
-		'value'     => 'I freelance or work for a company that supports higher ed',
+		'operator'  => 'in',
+		'value'     => array(
+			'I freelance or work for a company that supports higher ed',
+			'No, but I freelance or work for a company that supports higher ed.',
+		),
 	);
-	return $counts = GFAPI::count_entries( 1, $search_criteria );
+
+	// Return the count.
+	return GFAPI::count_entries( 1, $search_criteria );
 }
 
 /**
  * Get number of interested who work outside higher ed.
  */
 function wpcampus_get_work_outside_higher_ed_count() {
-	$search_criteria = array( 'status' => 'active' );
+
+	// Make sure GFAPI exists.
+	if ( ! class_exists( 'GFAPI' ) ) {
+		return 0;
+	}
+
+	// Setup search criteria.
+	$search_criteria = array(
+		'status' => 'active',
+	);
+
+	// Add filters.
 	$search_criteria['field_filters'][] = array(
 		'key'       => '5',
-		'operator'  => 'contains',
-		'value'     => 'I work outside higher ed but am interested in higher ed',
+		'operator'  => 'in',
+		'value'     => array(
+			'I work outside higher ed but am interested in higher ed',
+			'No, I work outside higher ed but am interested in higher ed.',
+		),
 	);
-	return $counts = GFAPI::count_entries( 1, $search_criteria );
+
+	// Return the count.
+	return GFAPI::count_entries( 1, $search_criteria );
 }
 
 /**
@@ -79,7 +153,7 @@ function wpcampus_get_interest_best_time_of_year() {
 
 	// Store counts - start with total.
 	$counts = array(
-		'Total' => wpcampus_get_interested_count(),
+		'Total' => wpcampus_get_involved_count(),
 	);
 
 	// Set options.
@@ -109,12 +183,11 @@ function wpcampus_get_interest_best_time_of_year() {
 		);
 
 		// Get the count.
-		$counts[ $option ] = GFAPI::count_entries( 1, $search_criteria );
+		$counts[ $option ] = class_exists( 'GFAPI' ) ? GFAPI::count_entries( 1, $search_criteria ) : 0;
 
 	}
 
 	return $counts;
-
 }
 
 /**
@@ -193,16 +266,34 @@ function wpcampus_get_interest_location_count( $location = array() ) {
  * Get group count.
  */
 function wpcampus_get_group_count( $group ) {
-	$search_criteria = array( 'status' => 'active' );
+
+	// Make sure GFAPI exists.
+	if ( ! class_exists( 'GFAPI' ) ) {
+		return 0;
+	}
+
+	// Setup search criteria.
+	$search_criteria = array(
+		'status' => 'active'
+	);
+
+	// Add filters.
 	$search_criteria['field_filters'][] = array(
 		'key'       => '7',
 		'operator'  => 'contains',
 		'value'     => $group,
 	);
-	return $counts = GFAPI::count_entries( 1, $search_criteria );
+
+	// Return the count.
+	return GFAPI::count_entries( 1, $search_criteria );
 }
 
 function wpcampus_get_interest_sessions() {
+
+	// Make sure GFAPI exists.
+	if ( ! class_exists( 'GFAPI' ) ) {
+		return array();
+	}
 
 	// Get form in.
 	if ( $form = GFAPI::get_form( 1 ) ) {
@@ -223,7 +314,7 @@ function wpcampus_get_interest_sessions() {
 
 			// Store counts - start with total.
 			$counts = array(
-				'Total' => wpcampus_get_interested_count(),
+				'Total' => wpcampus_get_involved_count(),
 			);
 
 			// Get by option.
@@ -261,39 +352,74 @@ function wpcampus_get_interest_sessions() {
 		}
 	}
 
-	return false;
-
+	return array();
 }
 
-function wpcampus_get_interest_universities() {
+/**
+ * Returns list of universities
+ * from "Get Involved" form.
+ *
+ * @return array
+ */
+function wpcampus_get_involved_universities() {
 
-	$search_criteria = array( 'status' => 'active' );
-	$search_criteria['field_filters'][] = array( 'key' => '5', 'operator' => 'contains', 'value' => 'I work at a higher ed institution' );
+	// Check transient first so we only run once a day.
+	$transient_name = 'wpc_get_involved_univ';
+	$transient_univ = get_transient( $transient_name );
+	if ( false !== $transient_univ ) {
+		return $transient_univ;
+	}
 
-	if ( $entries = GFAPI::get_entries( 1, $search_criteria ) ) {
+	// Will hold universities.
+	$universities = array();
 
-		$work = array();
+	// Make sure GFAPI exists.
+	if ( ! class_exists( 'GFAPI' ) ) {
+		return $universities;
+	}
+
+	// Build search criteria.
+	$search_criteria = array(
+		'status' => 'active',
+	);
+
+	// Add filters.
+	$search_criteria['field_filters'][] = array(
+		'key'       => '5',
+		'operator'  => 'in',
+		'value'     => array( 'I work at a higher ed institution', 'Yes, I work at a higher ed institution.' ),
+	);
+
+	// Get the entries.
+	$entries = GFAPI::get_entries( 1, $search_criteria, array(), array( 'offset' => 0, 'page_size' => 1000 ) );
+	if ( $entries ) {
 
 		// Go through and create list of where they work.
 		foreach ( $entries as $entry ) {
 			if ( $workplace = rgar( $entry, '4' ) ) {
-				$work[] = $workplace;
+				$universities[] = $workplace;
 			}
 		}
 
-		if ( ! empty( $work ) ) {
-			return $work;
-		}
+		// Remove duplicate universities.
+		$universities = array_unique( $universities );
+
 	}
 
-	return false;
+	// Store universities in transient for a day.
+	set_transient( $transient_name, $universities, DAY_IN_SECONDS );
+
+	return $universities;
 }
 
 /**
  * Get the total number of votes for the vote on our new name.
  */
 function wpcampus_get_vote_on_new_name_count() {
-	return GFAPI::count_entries( 6, array( 'status' => 'active' ) );
+	if ( class_exists( 'GFAPI' ) ) {
+		return GFAPI::count_entries( 6, array( 'status' => 'active' ) );
+	}
+	return 0;
 }
 
 /**
@@ -306,6 +432,11 @@ function wpcampus_get_vote_on_new_name() {
 
 	// Build response.
 	$response = array();
+
+	// Make sure GFAPI exists.
+	if ( ! class_exists( 'GFAPI' ) ) {
+		return $response;
+	}
 
 	// Get form.
 	if ( ( $form = GFAPI::get_form( $form_id ) )

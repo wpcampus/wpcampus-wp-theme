@@ -1,6 +1,22 @@
 <?php
 
 /**
+ * Tweak the excerpt length.
+ */
+function wpc_filter_excerpt_length( $excerpt_length ) {
+	return 70;
+}
+add_filter( 'excerpt_length', 'wpc_filter_excerpt_length' );
+
+/**
+ * Tweak the excerpt more.
+ */
+function wpc_filter_excerpt_more( $excerpt_more ) {
+	return ' &hellip;';
+}
+add_filter( 'excerpt_more', 'wpc_filter_excerpt_more' );
+
+/**
  * Filter the <body> class.
  */
 function wpc_filter_body_class( $classes, $class ) {

@@ -26,7 +26,7 @@ $blog_url = get_bloginfo( 'url' );
 						'menu_id'           => 'wpc-footer-menu',
 						'menu_class'        => 'wpc-footer-menu',
 						'fallback_cb'       => false,
-					) );
+					));
 
 					?>
 					<p><strong>WPCampus is a community of networking, resources, and events for those using WordPress in the world of higher education.</strong><br />
