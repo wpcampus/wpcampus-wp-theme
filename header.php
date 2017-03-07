@@ -75,27 +75,26 @@ $is_events_page = is_post_type_archive('tribe_events') || is_singular('tribe_eve
                     echo $is_front_page ? '</h1>' : null;
 
                     // Create buttons
-                    $get_involved_button = '<a href="/get-involved/" class="button royal-blue">Get Involved</a>';
-                    $member_survey_button = '<a href="/member-survey/" class="button royal-blue">Member Survey</a>';
-                    $wpc_online_button = '<a href="https://online.wpcampus.org/watch/" class="button royal-blue">Watch WPCampus Online</a>';
+                    $get_involved_button = '<a href="/get-involved/" class="button royal-blue">' . __( 'Get Involved', 'wpcampus' ) . '</a>';
+                    $member_survey_button = '<a href="/member-survey/" class="button royal-blue">' . __( 'Member Survey', 'wpcampus' ) . '</a>';
+                    //$wpc_online_button = '<a href="https://online.wpcampus.org/watch/" class="button royal-blue">' . sprintf( __( 'Watch %s Online', 'wpcampus' ), 'WPCampus' ) . '</a>';
+                    $wpc_2017_button = '<a href="https://2017.wpcampus.org/call-for-speakers/" class="button royal-blue">' . __( 'Call for Speakers', 'wpcampus' ) . '</a>';
 
                     // Print buttons
-                    if ( is_page( 'online' ) ) {
-                        echo "{$get_involved_button} {$member_survey_button}";
-                    } else if ( is_page( 'get-involved' ) ) {
-                        echo "{$member_survey_button} {$wpc_online_button}";
+                    if ( is_page( 'get-involved' ) ) {
+                        echo "{$member_survey_button} {$wpc_2017_button}";
                     } else {
-                       echo "{$get_involved_button}{$wpc_online_button}";
+                       echo "{$get_involved_button}{$wpc_2017_button}";
                     }
 
-                ?></div> <!-- .wpcampus-header -->
+                ?></div><!-- .wpcampus-header -->
             </div>
         </div>
     </div>
     <div id="wpc-online-details">
         <div class="row">
             <div class="small-12 columns centered">
-                <p><strong>The inaugural WPCampus Online has wrapped!</strong> <a href="https://online.wpcampus.org/thank-you/">Thank you</a> to everyone who brought it to life. <a class="wpc-details-action" href="https://online.wpcampus.org/watch/"><strong>Watch the recorded sessions</strong></a></p>
+	            <p><strong>The WPCampus 2017 <a href="https://2017.wpcampus.org/call-for-speakers/">call for speakers</a> is open until March 24, 2017.</strong><br />Share your WordPress and higher ed knowledge with our community. <a class="wpc-details-action" href="https://2017.wpcampus.org/call-for-speakers/"><strong>Apply to speak at WPCampus 2017</strong></a></p>
             </div>
         </div>
     </div>				
