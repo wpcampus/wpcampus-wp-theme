@@ -78,7 +78,7 @@ $is_events_page = is_post_type_archive('tribe_events') || is_singular('tribe_eve
                     $get_involved_button = '<a href="/get-involved/" class="button royal-blue">' . __( 'Get Involved', 'wpcampus' ) . '</a>';
                     $member_survey_button = '<a href="/member-survey/" class="button royal-blue">' . __( 'Member Survey', 'wpcampus' ) . '</a>';
                     //$wpc_online_button = '<a href="https://online.wpcampus.org/watch/" class="button royal-blue">' . sprintf( __( 'Watch %s Online', 'wpcampus' ), 'WPCampus' ) . '</a>';
-                    $wpc_2017_button = '<a href="https://2017.wpcampus.org/call-for-speakers/" class="button royal-blue">' . __( 'Call for Speakers', 'wpcampus' ) . '</a>';
+                    $wpc_2017_button = '<a href="https://2017.wpcampus.org/" class="button royal-blue">' . __( 'WPCampus 2017 Conference', 'wpcampus' ) . '</a>';
 
                     // Print buttons
                     if ( is_page( 'get-involved' ) ) {
