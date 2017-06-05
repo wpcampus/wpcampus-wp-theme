@@ -1,11 +1,12 @@
-//
-// These are the base styles for the WPCampus calendar of events.
-//
+/*
+ * These are the base styles for
+ * the WPCampus calendar of events.
+ */
 
-// Make sure the charset is set appropriately
+// Make sure the charset is set appropriately.
 @charset "UTF-8";
 
-// Include our settings
+// Include our settings.
 @import "_settings";
 
 #tribe-events .tribe-events-button,
@@ -25,5 +26,4 @@
     p {
         margin: 0 0 $paragraph-margin-bottom 0 !important;
     }
-
 }

@@ -1,30 +1,30 @@
-//
-// These are the base styles for WPCampus.
-//
-// This framework is built on top of
-// Foundation by ZURB.
-// foundation.zurb.com
-// Licensed under MIT Open Source
-//
+/*
+ * These are the base styles for WPCampus.
+ *
+ * This framework is built on top of
+ * Foundation by ZURB.
+ * foundation.zurb.com
+ * Licensed under MIT Open Source
+ */
 
-// Make sure the charset is set appropriately
+// Make sure the charset is set appropriately.
 @charset "UTF-8";
 
-// Include our settings
+// Include our settings.
 @import "_settings";
 
-// Include our mixins
+// Include our mixins.
 @import "_mixins";
 
-// Include all the Foundation-y things
+// Include all the Foundation-y things.
 @import "_foundation";
 
-// Hide these elements visibly, but make sure they're still viewable by screen readers
+// Hide these elements visibly, but make sure they're still viewable by screen readers.
 .screen-reader-text {
     @include screen-reader-text();
 }
 
-// Stylize the "Skip To Content" link
+// Stylize the "Skip To Content" link.
 #skip-to-content {
     display: block;
     position: fixed;
@@ -46,7 +46,6 @@
         color: #000;
         padding: 10px;
     }
-
 }
 
 h1 {
@@ -63,7 +62,6 @@ h1, h2 {
     }
 }
 
-// Images
 img {
 
     &.aligncenter {
@@ -91,14 +89,11 @@ ul {
                 font-size: 1.1em;
                 line-height: 1;
             }
-
         }
-
     }
-
 }
 
-// Make padding for the banner {
+// Make padding for the banner.
 body {
     padding-top: $wpc-banner-height;
 }
@@ -175,11 +170,8 @@ body {
                 &.three {
                     margin-top: 16px;
                 }
-
             }
-
         }
-
     }
 
     .menu {
@@ -236,7 +228,6 @@ body {
                         img {
                             display: none;
                         }
-
                     }
 
                     &.github {
@@ -244,20 +235,15 @@ body {
                         img {
                             height: 18px;
                         }
-
                     }
-
                 }
 
                 &.current a,
                 a:hover {
                     background: rgba(#fff, 0.2);
                 }
-
             }
-
         }
-
     }
 
     &.open-menu {
@@ -294,9 +280,7 @@ body {
                         -o-transform: rotate(-45deg);
                         transform: rotate(-45deg);
                     }
-
                 }
-
             }
 
             .open-menu-label {
@@ -306,14 +290,11 @@ body {
             .close-menu-label {
                 display: block;
             }
-
         }
-
     }
-
 }
 
-// Expand the banner
+// Expand the banner.
 @media screen and (min-width: 700px) {
 
     #wpcampus-banner {
@@ -361,19 +342,12 @@ body {
                             a {
                                 padding-top: 15px;
                             }
-
                         }
-
                     }
-
                 }
-
             }
-
         }
-
     }
-
 }
 
 #wpcampus-hero {
@@ -437,7 +411,6 @@ body {
                 text-transform: uppercase;
                 text-align: center;
             }
-
         }
 
         .button {
@@ -454,16 +427,12 @@ body {
                 &:hover {
                     background: darken( $royal-blue, 10% );
                 }
-
             }
-
         }
-
     }
-
 }
 
-// The main notification
+// The main notification.
 #wpc-notification {
     background-color: rgba( $royal-blue, 0.1 );
     padding: 20px;
@@ -477,9 +446,7 @@ body {
         &:last-child {
             margin-bottom: 0;
         }
-
     }
-
 }
 
 .podcast-iframe {
@@ -497,9 +464,7 @@ body {
             font-size: 1.1em;
             color: rgba(#1159bd,0.8);
         }
-
     }
-
 }
 
 .wpcampus-podcast-single {
@@ -510,7 +475,6 @@ body {
         color: rgba(#1159bd,0.8);
         text-align: center;
     }
-
 }
 
 .addthis_sharing_toolbox {
@@ -522,7 +486,6 @@ body {
     .at-share-tbx-element {
         display: inline-block !important;
     }
-
 }
 
 .wpcampus-chart,
@@ -543,7 +506,6 @@ body {
     &.bar-chart {
         padding: 20px;
     }
-
 }
 
 .wpcampus-map {
@@ -585,7 +547,6 @@ body {
         background: none;
         margin: 0;
     }
-
 }
 
 .panel {
@@ -601,7 +562,6 @@ body {
         * {
             color: inherit;
         }
-
     }
 
     &.coming-soon {
@@ -610,7 +570,6 @@ body {
         p {
             margin-bottom: 0;
         }
-
     }
 
     &.vote-on-new-name {
@@ -629,7 +588,6 @@ body {
         * {
             color: inherit;
         }
-
     }
 
     &.dark-blue {
@@ -639,7 +597,6 @@ body {
         * {
             color: inherit;
         }
-
     }
 
     &.wpcampus-phil-tshirt {
@@ -657,13 +614,11 @@ body {
             line-height: 1;
             text-align: center;
         }
-
     }
 
     *:last-child {
         margin-bottom: 0;
     }
-
 }
 
 .google-maps-info-content {
@@ -682,13 +637,11 @@ body {
         &.website {
             margin-bottom: 2px;
         }
-
     }
 
     *:last-child {
         margin-bottom: 6px;
     }
-
 }
 
 #wpcampus-main-page-title {
@@ -700,7 +653,6 @@ body {
     h1 {
         margin: 0;
     }
-
 }
 
 #wpcampus-main {
@@ -721,9 +673,7 @@ body {
             height: 1px;
             z-index: -1;
         }
-
     }
-
 }
 
 #wpcampus-footer {
@@ -758,7 +708,6 @@ body {
         &:hover {
             opacity: $wpc-footer-opacity-hover;
         }
-
     }
 
     .github-message {
@@ -780,9 +729,7 @@ body {
             &:hover {
                 opacity: $wpc-footer-opacity-hover;
             }
-
         }
-
     }
 
     h3 {
@@ -792,7 +739,7 @@ body {
         font-weight: 600;
     }
 
-    // Hide this message on small screens
+    // Hide this message on small screens.
     .photos-visible-message {
         @include screen-reader-text();
     }
@@ -807,9 +754,7 @@ body {
             width: 50%;
             margin: 0 0 5px 0;
         }
-
     }
-
 }
 
 @media #{$medium-up} {
@@ -820,7 +765,6 @@ body {
         &.bar-chart {
             padding: 40px;
         }
-
     }
 
     ul {
@@ -831,9 +775,7 @@ body {
             li {
                 width: 45%;
             }
-
         }
-
     }
 
     #wpcampus-hero {
@@ -858,7 +800,6 @@ body {
                     font-size: 2.25em;
                     line-height: 1.2;
                 }
-
             }
 
             .button {
@@ -868,14 +809,10 @@ body {
                 & + .button {
                     margin-left: 10px;
                 }
-
             }
-
         }
-
     }
-
 }
 
-// Include form styles
+// Include form styles.
 @import "_forms";
