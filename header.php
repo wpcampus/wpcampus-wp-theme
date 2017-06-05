@@ -5,7 +5,8 @@ $stylesheet_dir = get_stylesheet_directory_uri();
 $is_front_page = is_front_page();
 $is_events_page = is_post_type_archive('tribe_events') || is_singular('tribe_events');
 
-?><!DOCTYPE html>
+?>
+<!DOCTYPE html>
 <html <?php language_attributes(); ?> class="no-js">
 <head>
     <meta charset="<?php bloginfo( 'charset' ); ?>">
@@ -19,7 +20,6 @@ $is_events_page = is_post_type_archive('tribe_events') || is_singular('tribe_eve
 </head>
 <body <?php body_class(); ?>>
     <a href="#wpcampus-main" id="skip-to-content">Skip to Content</a>
-
     <div id="wpcampus-banner">
         <div class="toggle-main-menu">
             <div class="toggle-icon">
@@ -94,21 +94,32 @@ $is_events_page = is_post_type_archive('tribe_events') || is_singular('tribe_eve
             </div>
         </div>
     </div>
-    <div id="wpc-online-details">
+    <?php
+
+    /*<div id="wpc-online-details">
         <div class="row">
             <div class="small-12 columns centered">
-	            <p><strong>The WPCampus 2017 <a href="https://2017.wpcampus.org/call-for-speakers/">call for speakers</a> is open until March 24, 2017.</strong><br />Share your WordPress and higher ed knowledge with our community. <a class="wpc-details-action" href="https://2017.wpcampus.org/call-for-speakers/"><strong>Apply to speak at WPCampus 2017</strong></a></p>
+	            <p><strong>The WPCampus 2017 <a href="https://2017.wpcampus.org/call-for-speakers/">call for speakers</a> has been extended until March 29, 2017.</strong><br />Share your WordPress and higher ed knowledge with our community. <a class="wpc-details-action" href="https://2017.wpcampus.org/call-for-speakers/"><strong>Apply to speak at WPCampus 2017</strong></a></p>
             </div>
         </div>
-    </div>				
-	<?php
+    </div>*/
 
-    /*<div id="wpc-notification">
-        <p><strong>The <a href="https://2016.wpcampus.org/speakers/">WPCampus 2016 call for speakers</a> is open and will close at 12 midnight EST on March 21, 2016.</strong></p>
-    </div> <!-- #wpc-notification --><?php */
+	?>
+	<div id="wpc-notifications"></div>
+	<script id="wpc-notification-template" type="x-tmpl-mustache">
+		{{#.}}
+		    <div class="wpc-notification">
+			    <div class="wpc-notification-message">
+				    {{{content.rendered}}}
+				</div>
+		    </div>
+		{{/.}}
+	</script>
+    <?php
 
-    if ( ! $is_front_page ) {
-        ?><div id="wpcampus-main-page-title">
+    if ( ! $is_front_page ) :
+        ?>
+	    <div id="wpcampus-main-page-title">
             <h1><?php
 
                 // For 404s
@@ -128,11 +139,13 @@ $is_events_page = is_post_type_archive('tribe_events') || is_singular('tribe_eve
                 echo $breadcrumbs_html;
             }
 
-        ?></div><?php
+            ?>
+	    </div>
+	    <?php
+    endif;
 
-    }
-
-    ?><div id="wpcampus-main">
+    ?>
+    <div id="wpcampus-main">
         <div class="row">
             <div class="small-12 columns">
 				<div class="panel" style="text-align:center;"><h2>The "WordPress in Education" Survey</h2><p>After an overwhelming response to our 2016 survey, WPCampus is back this year to dig a little deeper on key topics that schools and campuses care about most when it comes to WordPress and website development. We’d love to include your feedback in our results this year. The larger the data set, the more we all benefit. <strong>The survey will close on June 23rd, 2017.</strong></p><a class="button expand" href="https://2017.wpcampus.org/announcements/wordpress-in-education-survey/">Take the "WordPress in Education" survey</a></div>
