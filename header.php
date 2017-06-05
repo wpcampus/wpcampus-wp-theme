@@ -42,6 +42,7 @@ $is_events_page = is_post_type_archive('tribe_events') || is_singular('tribe_eve
                 </li>
                 <li class="has-submenu"><a href="<?php echo $blog_url; ?>/conferences/">Conferences</a>
                     <ul>
+	                    <li><a href="https://2017.wpcampus.org/">WPCampus 2017</a></li>
 	                    <li><a href="<?php echo $blog_url; ?>/online/">WPCampus Online</a></li>
                         <li><a href="https://2016.wpcampus.org/">WPCampus 2016</a></li>
                     </ul>
