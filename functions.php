@@ -38,6 +38,9 @@ add_action( 'rest_api_init', 'wpcampus_setup_api' );
  */
 function wpcampus_setup_theme() {
 
+	// Load the textdomain.
+	load_theme_textdomain( 'wpcampus', get_stylesheet_directory() . '/languages' );
+
 	// Register the nav menus.
 	register_nav_menus( array(
 		'primary' => __( 'Primary Menu', 'wpcampus' ),
