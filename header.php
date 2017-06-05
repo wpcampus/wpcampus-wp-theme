@@ -78,15 +78,17 @@ $is_events_page = is_post_type_archive('tribe_events') || is_singular('tribe_eve
                     // Create buttons
                     $get_involved_button = '<a href="/get-involved/" class="button royal-blue">' . __( 'Get Involved', 'wpcampus' ) . '</a>';
                     $member_survey_button = '<a href="/member-survey/" class="button royal-blue">' . __( 'Member Survey', 'wpcampus' ) . '</a>';
+                    $ed_survey_button = '<a href="https://2017.wpcampus.org/announcements/wordpress-in-education-survey/" class="button royal-blue">' . __( 'WP in Education Survey', 'wpcampus' ) . '</a>';
                     //$wpc_online_button = '<a href="https://online.wpcampus.org/watch/" class="button royal-blue">' . sprintf( __( 'Watch %s Online', 'wpcampus' ), 'WPCampus' ) . '</a>';
                     $wpc_2017_button = '<a href="https://2017.wpcampus.org/" class="button royal-blue">' . __( 'WPCampus 2017 Conference', 'wpcampus' ) . '</a>';
 
                     // Print buttons
-                    if ( is_page( 'get-involved' ) ) {
+                    /*if ( is_page( 'get-involved' ) ) {
                         echo "{$member_survey_button} {$wpc_2017_button}";
                     } else {
                        echo "{$get_involved_button}{$wpc_2017_button}";
-                    }
+                    }*/
+                    echo "{$ed_survey_button}{$wpc_2017_button}";
 
                 ?></div><!-- .wpcampus-header -->
             </div>
@@ -133,3 +135,4 @@ $is_events_page = is_post_type_archive('tribe_events') || is_singular('tribe_eve
     ?><div id="wpcampus-main">
         <div class="row">
             <div class="small-12 columns">
+				<div class="panel" style="text-align:center;"><h2>The "WordPress in Education" Survey</h2><p>After an overwhelming response to our 2016 survey, WPCampus is back this year to dig a little deeper on key topics that schools and campuses care about most when it comes to WordPress and website development. We’d love to include your feedback in our results this year. The larger the data set, the more we all benefit. <strong>The survey will close on June 23rd, 2017.</strong></p><a class="button expand" href="https://2017.wpcampus.org/announcements/wordpress-in-education-survey/">Take the "WordPress in Education" survey</a></div>
