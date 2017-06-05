@@ -34,6 +34,7 @@ $is_events_page = is_post_type_archive( 'tribe_events' ) || is_singular( 'tribe_
 	    $primary_menu = wp_nav_menu( array(
 	        'theme_location'    => 'primary',
 		    'container'         => false,
+		    'menu_class'        => false,
 		    'echo'              => false,
 	    ));
 
