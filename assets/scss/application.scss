@@ -1,0 +1,16 @@
+#wpc-host-application .gform_wrapper .gfield_description {
+
+	ol,
+	ul {
+		font-size: inherit;
+		margin-left: 2em;
+	}
+
+	ol li {
+		list-style: decimal !important;
+	}
+
+	ul li {
+		list-style: disc !important;
+	}
+}

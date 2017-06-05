@@ -1,10 +1,10 @@
 <?php
 
-$blog_url = get_bloginfo('url');
+$blog_url = get_bloginfo( 'url' );
 $stylesheet_dir = get_stylesheet_directory_uri();
 $images_dir = "{$stylesheet_dir}/assets/images/";
 $is_front_page = is_front_page();
-$is_events_page = is_post_type_archive('tribe_events') || is_singular('tribe_events');
+$is_events_page = is_post_type_archive( 'tribe_events' ) || is_singular( 'tribe_events' );
 
 ?>
 <!DOCTYPE html>
@@ -13,11 +13,8 @@ $is_events_page = is_post_type_archive('tribe_events') || is_singular('tribe_eve
     <meta charset="<?php bloginfo( 'charset' ); ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title><?php wp_title( '-', true, 'left' ); ?></title>
-
     <?php wp_head(); ?>
-
 </head>
 <body <?php body_class(); ?>>
     <a href="#wpcampus-main" id="skip-to-content">Skip to Content</a>
@@ -31,9 +28,31 @@ $is_events_page = is_post_type_archive('tribe_events') || is_singular('tribe_eve
             <div class="open-menu-label">Menu</div>
             <div class="close-menu-label">Close</div>
         </div>
+	    <?php
+
+	    // Get the primary menu.
+	    $primary_menu = wp_nav_menu( array(
+	        'theme_location'    => 'primary',
+		    'container'         => false,
+		    'echo'              => false,
+	    ));
+
+	    ?>
         <div id="wpcampus-main-menu" class="menu">
+	        <ul class="icons">
+		        <li class="icon has-icon-alt home<?php echo $is_front_page ? ' current' : null; ?>"><a href="<?php echo $blog_url; ?>"><img src="<?php echo $images_dir; ?>home-white.svg" alt="Visit the WPCampus home page" /><span class="icon-alt">Home</span></a></li>
+	        </ul>
+	        <?php echo $primary_menu; ?>
+	        <ul class="icons social-media">
+	            <li class="icon twitter"><a href="https://twitter.com/wpcampusorg"><img src="<?php echo $images_dir; ?>twitter-white.svg" alt="Follow WPCampus on Twitter" /></a></li>
+	            <li class="icon facebook"><a href="https://www.facebook.com/wpcampus"><img src="<?php echo $images_dir; ?>facebook-white.svg" alt="Follow WPCampus on Twitter" /></a></li>
+	            <li class="icon youtube"><a href="https://www.youtube.com/wpcampusorg"><img src="<?php echo $images_dir; ?>youtube-white.svg" alt="Follow WPCampus on YouTube" /></a></li>
+	            <li class="icon github"><a href="https://github.com/wpcampus/"><img src="<?php echo $images_dir; ?>github-white.svg" alt="Follow WPCampus on GitHub" /></a></li>
+	        </ul>
+	        <?php
+	        // @TODO Remove after testing.
+	        /* ?>
             <ul>
-                <li class="icon has-icon-alt home<?php echo $is_front_page ? ' current' : null; ?>"><a href="<?php echo $blog_url; ?>"><img src="<?php echo $images_dir; ?>home-white.svg" alt="Visit the WPCampus home page" /><span class="icon-alt">Home</span></a></li>
                 <li class="has-submenu<?php echo is_page( 'get-involved' ) || is_page( 'member-survey' ) ? ' current' : null; ?>">
 	                <a href="<?php echo $blog_url; ?>/get-involved/">Get Involved</a>
 	                <ul>
@@ -48,23 +67,21 @@ $is_events_page = is_post_type_archive('tribe_events') || is_singular('tribe_eve
                         <li><a href="https://2016.wpcampus.org/">WPCampus 2016</a></li>
                     </ul>
                 </li>
-                <li<?php echo is_post_type_archive('podcast') || is_singular('podcast') ? ' class="current"' : null; ?>><a href="<?php echo $blog_url; ?>/podcast/">Podcast</a></li>
+                <li<?php echo is_post_type_archive( 'podcast' ) || is_singular( 'podcast' ) ? ' class="current"' : null; ?>><a href="<?php echo $blog_url; ?>/podcast/">Podcast</a></li>
                 <li<?php echo $is_events_page ? ' class="current"' : null; ?>><a href="<?php echo $blog_url; ?>/events/">Events</a></li>
                 <li<?php echo is_page( 'contact' ) ? ' class="current"' : null; ?>><a href="<?php echo $blog_url; ?>/contact/">Contact</a></li>
-                <li class="icon twitter"><a href="https://twitter.com/wpcampusorg"><img src="<?php echo $images_dir; ?>twitter-white.svg" alt="Follow WPCampus on Twitter" /></a></li>
-                <li class="icon facebook"><a href="https://www.facebook.com/wpcampus"><img src="<?php echo $images_dir; ?>facebook-white.svg" alt="Follow WPCampus on Twitter" /></a></li>
-                <li class="icon youtube"><a href="https://www.youtube.com/wpcampusorg"><img src="<?php echo $images_dir; ?>youtube-white.svg" alt="Follow WPCampus on YouTube" /></a></li>
-                <li class="icon github"><a href="https://github.com/wpcampus/"><img src="<?php echo $images_dir; ?>github-white.svg" alt="Follow WPCampus on GitHub" /></a></li>
             </ul>
-        </div>
+	        <?php */
+	        ?>
+        </div> <!-- #wpcampus-main-menu -->
     </div> <!-- #wpcampus-banner -->
-
     <div id="wpcampus-hero">
         <div class="row">
             <div class="small-12 columns">
-                <div class="wpcampus-header"><?php
+                <div class="wpcampus-header">
+	                <?php
 
-                    // If home, add a <h1>
+                    // If home, add a <h1>.
                     echo $is_front_page ? '<h1>' : null;
 
                     ?><a class="wpcampus-logo" href="<?php echo $blog_url; ?>">
@@ -73,17 +90,17 @@ $is_events_page = is_post_type_archive('tribe_events') || is_singular('tribe_eve
                         <span class="wpcampus-tagline">Where WordPress Meets Higher Education</span>
                     </a><?php
 
-                    // If home, close the <h1>
+                    // If home, close the <h1>.
                     echo $is_front_page ? '</h1>' : null;
 
-                    // Create buttons
+                    // Create buttons.
                     $get_involved_button = '<a href="/get-involved/" class="button royal-blue">' . __( 'Get Involved', 'wpcampus' ) . '</a>';
                     $member_survey_button = '<a href="/member-survey/" class="button royal-blue">' . __( 'Member Survey', 'wpcampus' ) . '</a>';
                     $ed_survey_button = '<a href="https://2017.wpcampus.org/announcements/wordpress-in-education-survey/" class="button royal-blue">' . __( 'WP in Education Survey', 'wpcampus' ) . '</a>';
                     //$wpc_online_button = '<a href="https://online.wpcampus.org/watch/" class="button royal-blue">' . sprintf( __( 'Watch %s Online', 'wpcampus' ), 'WPCampus' ) . '</a>';
                     $wpc_2017_button = '<a href="https://2017.wpcampus.org/" class="button royal-blue">' . __( 'WPCampus 2017 Conference', 'wpcampus' ) . '</a>';
 
-                    // Print buttons
+                    // Print buttons.
                     /*if ( is_page( 'get-involved' ) ) {
                         echo "{$member_survey_button} {$wpc_2017_button}";
                     } else {
@@ -91,12 +108,12 @@ $is_events_page = is_post_type_archive('tribe_events') || is_singular('tribe_eve
                     }*/
                     echo "{$ed_survey_button}{$wpc_2017_button}";
 
-                ?></div><!-- .wpcampus-header -->
+                    ?>
+                </div><!-- .wpcampus-header -->
             </div>
         </div>
     </div>
     <?php
-
     /*<div id="wpc-online-details">
         <div class="row">
             <div class="small-12 columns centered">
@@ -104,7 +121,6 @@ $is_events_page = is_post_type_archive('tribe_events') || is_singular('tribe_eve
             </div>
         </div>
     </div>*/
-
 	?>
 	<div id="wpc-notifications"></div>
 	<script id="wpc-notification-template" type="x-tmpl-mustache">
@@ -123,19 +139,18 @@ $is_events_page = is_post_type_archive('tribe_events') || is_singular('tribe_eve
 	    <div id="wpcampus-main-page-title">
             <h1><?php
 
-                // For 404s
+                /*
+                 * Print page title.
+                 */
                 if ( is_404() ) {
                     echo 'Page Not Found';
-                }
-
-                // Print a title we can filter
-                else {
+                } else {
                     echo apply_filters( 'wpcampus_page_title', get_the_title() );
                 }
 
             ?></h1><?php
 
-            // Include breadcrumbs
+            // Include breadcrumbs.
             if ( $breadcrumbs_html = wpcampus_get_breadcrumbs_html() ) {
                 echo $breadcrumbs_html;
             }

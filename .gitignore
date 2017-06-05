@@ -3,3 +3,5 @@ bower_components/*
 node_modules/*
 wpcampus.min.js
 wpcampus-data.min.js
+chartist.min.css
+tribe-events.min.css

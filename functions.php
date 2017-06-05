@@ -31,6 +31,21 @@ function wpcampus_setup_api() {
 add_action( 'rest_api_init', 'wpcampus_setup_api' );
 
 /**
+ * Setup the theme:
+ *
+ * - Load the textdomain.
+ * - Register the navigation menus.
+ */
+function wpcampus_setup_theme() {
+
+	// Register the nav menus.
+	register_nav_menus( array(
+		'primary' => __( 'Primary Menu', 'wpcampus' ),
+	));
+}
+add_action( 'after_setup_theme', 'wpcampus_setup_theme' );
+
+/**
  * Setup styles and scripts.
  */
 function wpcampus_enqueue_styles_scripts() {

@@ -238,7 +238,8 @@ body {
                     }
                 }
 
-                &.current a,
+                &.current-menu-item a,
+                &.current-menu-ancestor a,
                 a:hover {
                     background: rgba(#fff, 0.2);
                 }
