@@ -38,17 +38,17 @@ add_action( 'wp_enqueue_scripts', function () {
     wp_enqueue_style( 'wpcampus-fonts', 'https://fonts.googleapis.com/css?family=Open+Sans:600,400,300' );
 
     // Enqueue the base styles
-    wp_enqueue_style( 'wpcampus', $wpcampus_dir . 'css/styles.min.css', array( 'wpcampus-fonts' ), $wpcampus_version, 'all' );
+    wp_enqueue_style( 'wpcampus', $wpcampus_dir . 'assets/css/styles.min.css', array( 'wpcampus-fonts' ), $wpcampus_version, 'all' );
 
     // Enqueue modernizr - goes in header
     wp_enqueue_script( 'modernizr', 'https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js' );
 
     // Enqueue the main script file - goes in footer
-    wp_enqueue_script( 'wpcampus', $wpcampus_dir . 'js/wpcampus.min.js', array( 'jquery', 'modernizr' ), $wpcampus_version, true );
+    wp_enqueue_script( 'wpcampus', $wpcampus_dir . 'assets/js/wpcampus.min.js', array( 'jquery', 'modernizr' ), $wpcampus_version, true );
     
     // Enqueue the application styles
     if ( is_page( 'apply-to-host' ) ) {
-	    wp_enqueue_style( 'wpcampus-host-application', $wpcampus_dir . 'css/application.css', array(), $wpcampus_version, 'all' );
+	    wp_enqueue_style( 'wpcampus-host-application', $wpcampus_dir . 'assets/css/application.css', array(), $wpcampus_version, 'all' );
     }
 
     // Enqueue the data scripts
@@ -61,18 +61,18 @@ add_action( 'wp_enqueue_scripts', function () {
         wp_register_script( 'chartist', 'https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js' );
 		
         // Enqueue Chartist styles
-        wp_enqueue_style( 'chartist', $wpcampus_dir . 'css/chartist.min.css', array(), $wpcampus_version, 'all' );
+        wp_enqueue_style( 'chartist', $wpcampus_dir . 'assets/css/chartist.min.css', array(), $wpcampus_version, 'all' );
 
         // Enqueue our data script
 		// Set a var so that we can automatically use the non-minified script on staging, but the minified script on prod
 		$min = stristr( $_SERVER['HTTP_HOST'], '.staging' ) ? '' : '.min';
-        wp_enqueue_script( 'wpcampus-data', $wpcampus_dir . 'js/wpcampus-data' . $min . '.js', array('jquery', 'google-charts', 'chartist'), $wpcampus_version, false );
+        wp_enqueue_script( 'wpcampus-data', $wpcampus_dir . 'assets/js/wpcampus-data' . $min . '.js', array('jquery', 'google-charts', 'chartist'), $wpcampus_version, false );
 
     }
 
     // Enqueue the events styles
     if ( is_post_type_archive( 'tribe_events' ) || is_singular( 'tribe_events' ) ) {
-        wp_enqueue_style( 'wpcampus-events', $wpcampus_dir . 'css/tribe-events.min.css', array( 'wpcampus' ), $wpcampus_version, 'all' );
+        wp_enqueue_style( 'wpcampus-events', $wpcampus_dir . 'assets/css/tribe-events.min.css', array( 'wpcampus' ), $wpcampus_version, 'all' );
     }
 
 }, 10 );
@@ -88,20 +88,22 @@ add_action( 'admin_head', 'wpcampus_add_favicons' );
 add_action( 'login_head', 'wpcampus_add_favicons' );
 function wpcampus_add_favicons() {
 
-    // Set the images folder
-    $favicons_folder = get_stylesheet_directory_uri() . '/images/favicons/';
+    // Set the images folder.
+    $favicons_folder = get_stylesheet_directory_uri() . '/assets/images/favicons/';
 
-    // Print the default icons
-    ?><link rel="shortcut icon" href="<?php echo $favicons_folder; ?>wpcampus-favicon-60.png"/>
+    // Print the default icons.
+    ?>
+    <link rel="shortcut icon" href="<?php echo $favicons_folder; ?>wpcampus-favicon-60.png"/>
     <link rel="apple-touch-icon" href="<?php echo $favicons_folder; ?>wpcampus-favicon-60.png"/><?php
 
-    // Set the image sizes
+    // Set the image sizes.
     $image_sizes = array( 57, 72, 76, 114, 120, 144, 152 );
 
-    foreach( $image_sizes as $size ) {
-        ?><link rel="apple-touch-icon" sizes="<?php echo "{$size}x{$size}"; ?>" href="<?php echo $favicons_folder; ?>wpcampus-favicon-<?php echo $size; ?>.png"/><?php
-    }
-
+    foreach( $image_sizes as $size ) :
+        ?>
+	    <link rel="apple-touch-icon" sizes="<?php echo "{$size}x{$size}"; ?>" href="<?php echo $favicons_folder; ?>wpcampus-favicon-<?php echo $size; ?>.png"/>
+	    <?php
+    endforeach;
 }
 
 // Get the post type archive title

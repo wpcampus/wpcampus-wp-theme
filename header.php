@@ -2,6 +2,7 @@
 
 $blog_url = get_bloginfo('url');
 $stylesheet_dir = get_stylesheet_directory_uri();
+$images_dir = "{$stylesheet_dir}/assets/images/";
 $is_front_page = is_front_page();
 $is_events_page = is_post_type_archive('tribe_events') || is_singular('tribe_events');
 
@@ -32,7 +33,7 @@ $is_events_page = is_post_type_archive('tribe_events') || is_singular('tribe_eve
         </div>
         <div id="wpcampus-main-menu" class="menu">
             <ul>
-                <li class="icon has-icon-alt home<?php echo $is_front_page ? ' current' : null; ?>"><a href="<?php echo $blog_url; ?>"><img src="<?php echo $stylesheet_dir; ?>/images/home-white.svg" alt="Visit the WPCampus home page" /><span class="icon-alt">Home</span></a></li>
+                <li class="icon has-icon-alt home<?php echo $is_front_page ? ' current' : null; ?>"><a href="<?php echo $blog_url; ?>"><img src="<?php echo $images_dir; ?>home-white.svg" alt="Visit the WPCampus home page" /><span class="icon-alt">Home</span></a></li>
                 <li class="has-submenu<?php echo is_page( 'get-involved' ) || is_page( 'member-survey' ) ? ' current' : null; ?>">
 	                <a href="<?php echo $blog_url; ?>/get-involved/">Get Involved</a>
 	                <ul>
@@ -50,10 +51,10 @@ $is_events_page = is_post_type_archive('tribe_events') || is_singular('tribe_eve
                 <li<?php echo is_post_type_archive('podcast') || is_singular('podcast') ? ' class="current"' : null; ?>><a href="<?php echo $blog_url; ?>/podcast/">Podcast</a></li>
                 <li<?php echo $is_events_page ? ' class="current"' : null; ?>><a href="<?php echo $blog_url; ?>/events/">Events</a></li>
                 <li<?php echo is_page( 'contact' ) ? ' class="current"' : null; ?>><a href="<?php echo $blog_url; ?>/contact/">Contact</a></li>
-                <li class="icon twitter"><a href="https://twitter.com/wpcampusorg"><img src="<?php echo $stylesheet_dir; ?>/images/twitter-white.svg" alt="Follow WPCampus on Twitter" /></a></li>
-                <li class="icon facebook"><a href="https://www.facebook.com/wpcampus"><img src="<?php echo $stylesheet_dir; ?>/images/facebook-white.svg" alt="Follow WPCampus on Twitter" /></a></li>
-                <li class="icon youtube"><a href="https://www.youtube.com/wpcampusorg"><img src="<?php echo $stylesheet_dir; ?>/images/youtube-white.svg" alt="Follow WPCampus on YouTube" /></a></li>
-                <li class="icon github"><a href="https://github.com/wpcampus/"><img src="<?php echo $stylesheet_dir; ?>/images/github-white.svg" alt="Follow WPCampus on GitHub" /></a></li>
+                <li class="icon twitter"><a href="https://twitter.com/wpcampusorg"><img src="<?php echo $images_dir; ?>twitter-white.svg" alt="Follow WPCampus on Twitter" /></a></li>
+                <li class="icon facebook"><a href="https://www.facebook.com/wpcampus"><img src="<?php echo $images_dir; ?>facebook-white.svg" alt="Follow WPCampus on Twitter" /></a></li>
+                <li class="icon youtube"><a href="https://www.youtube.com/wpcampusorg"><img src="<?php echo $images_dir; ?>youtube-white.svg" alt="Follow WPCampus on YouTube" /></a></li>
+                <li class="icon github"><a href="https://github.com/wpcampus/"><img src="<?php echo $images_dir; ?>github-white.svg" alt="Follow WPCampus on GitHub" /></a></li>
             </ul>
         </div>
     </div> <!-- #wpcampus-banner -->
@@ -68,7 +69,7 @@ $is_events_page = is_post_type_archive('tribe_events') || is_singular('tribe_eve
 
                     ?><a class="wpcampus-logo" href="<?php echo $blog_url; ?>">
                         <span class="screen-reader-text">WPCampus</span>
-                        <img src="<?php echo $stylesheet_dir; ?>/images/wpcampus-white.svg" alt="" />
+                        <img src="<?php echo $images_dir; ?>wpcampus-white.svg" alt="" />
                         <span class="wpcampus-tagline">Where WordPress Meets Higher Education</span>
                     </a><?php
 
