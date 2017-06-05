@@ -99,7 +99,6 @@ function wpc_get_current_sidebar() {
  * Setup styles and scripts.
  */
 function wpc_enqueue_scripts() {
-	$wpcampus_version = '0.58';
 
 	// Get the directory.
 	$wpcampus_dir = trailingslashit( get_template_directory_uri() );
@@ -108,16 +107,16 @@ function wpc_enqueue_scripts() {
 	wp_enqueue_style( 'wpcampus-fonts', 'https://fonts.googleapis.com/css?family=Open+Sans:600,400,300' );
 
 	// Enqueue the base styles.
-	wp_enqueue_style( 'wpcampus', $wpcampus_dir . 'assets/css/styles.min.css', array( 'wpcampus-fonts' ), $wpcampus_version, 'all' );
+	wp_enqueue_style( 'wpcampus', $wpcampus_dir . 'assets/css/styles.min.css', array( 'wpcampus-fonts' ), null, 'all' );
 
-	// Enqueue modernizr - goes in header.
-	wp_enqueue_script( 'modernizr', 'https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js' );
+	// Register modernizr.
+	wp_register_script( 'modernizr', 'https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js' );
 
-	// Enqueue the main script file - goes in footer.
-	wp_enqueue_script( 'wpcampus', $wpcampus_dir . 'assets/js/wpcampus.min.js', array( 'jquery', 'modernizr' ), $wpcampus_version, true );
+	// Enqueue the main script - goes in footer.
+	wp_enqueue_script( 'wpcampus', $wpcampus_dir . 'assets/js/wpcampus.min.js', array( 'jquery', 'modernizr' ), null, true );
 
 	// Enqueue eduwapuu script.
-	wp_enqueue_script( 'eduwapuu', $wpcampus_dir . 'assets/js/eduwapuu.min.js', array( 'jquery' ), $wpcampus_version, true );
+	wp_enqueue_script( 'eduwapuu', $wpcampus_dir . 'assets/js/eduwapuu.min.js', array( 'jquery' ), null, true );
 
 	// Pass info to eduwapuu script.
 	wp_localize_script( 'eduwapuu', 'eduwapuu', array(
@@ -134,22 +133,16 @@ function wpc_enqueue_scripts() {
 		wp_register_script( 'chartist', 'https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js' );
 
 		// Enqueue Chartist styles.
-		wp_enqueue_style( 'chartist', $wpcampus_dir . 'assets/css/chartist.min.css', array(), $wpcampus_version, 'all' );
+		wp_enqueue_style( 'chartist', $wpcampus_dir . 'assets/css/chartist.min.css', array(), null, 'all' );
 
-		/*
-		 * Enqueue our data script.
-		 *
-		 * Set a var so that we can automatically use the non-minified
-		 * script on staging but the minified script on prod.
-		 */
-		$min = stristr( $_SERVER['HTTP_HOST'], '.staging' ) ? '' : '.min';
-		wp_enqueue_script( 'wpcampus-data', $wpcampus_dir . 'assets/js/wpcampus-data' . $min . '.js', array( 'jquery', 'google-charts', 'chartist' ), $wpcampus_version, false );
+		// Enqueue our data script.
+		wp_enqueue_script( 'wpcampus-data', $wpcampus_dir . 'assets/js/wpcampus-data.min.js', array( 'jquery', 'google-charts', 'chartist' ), null, false );
 
 	}
 
 	// Enqueue the events styles.
 	if ( is_post_type_archive( 'tribe_events' ) || is_singular( 'tribe_events' ) ) {
-		wp_enqueue_style( 'wpcampus-events', $wpcampus_dir . 'assets/css/tribe-events.min.css', array( 'wpcampus' ), $wpcampus_version, 'all' );
+		wp_enqueue_style( 'wpcampus-events', $wpcampus_dir . 'assets/css/tribe-events.min.css', array( 'wpcampus' ), null, 'all' );
 	}
 
 }

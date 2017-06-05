@@ -14,6 +14,7 @@ $wpc-admin-bar-breakpoint: 782px;
 
 // Breakpoints
 $small-up: 40em;
+$menu-open-bp: 55em;
 $medium-up: 55em;
 
 // COLORS
@@ -24,6 +25,7 @@ $peach: #d0443c;
 $body-bg: #fafafa; //#eff4f5;
 $primary-color: $wpc-royal-blue;
 $wpc-light-gray: #eee;
+$wpc-medium-gray: #666;
 
 // FONTS
 $open_sans: 'Open Sans', sans-serif;
@@ -39,17 +41,28 @@ $wpc-inside-padding-side-desktop: 40px;
 $wpc-inside-padding-left: 80px;
 
 // Banner
-$wpc-banner-padding-side: 40px;
+$wpc-banner-padding-side: 20px;
+$wpc-banner-padding-side-desktop: 40px;
 $wpc-banner-bg-color: $wpc-dark-blue;
-$wpc-banner-height: 60px;
-$wpc-banner-color: #fff;
 $wpc-banner-border-height: 2px;
-$wpc-banner-eduwapuu-width: 38px;
-$wpc-banner-eduwapuu-height: 45px;
-$wpc-banner-logo-width: 270px;
-$wpc-banner-logo-height: 45px;
+$wpc-banner-border-style: solid;
+$wpc-banner-border-color: #fff;
+$wpc-banner-height: 80px;
+$wpc-banner-height-no-border: $wpc-banner-height - $wpc-banner-border-height;
+$wpc-banner-height-desktop: 60px;
+$wpc-banner-height-desktop-no-border: $wpc-banner-height-desktop - $wpc-banner-border-height;
+$wpc-banner-color: #fff;
+$wpc-banner-eduwapuu-width: 35px;
+$wpc-banner-eduwapuu-height: 41px;
+$wpc-banner-eduwapuu-margin-right: 10px;
+$wpc-banner-logo-width: 230px;
+$wpc-banner-logo-height: 40px;
 $wpc-banner-logo-width-desktop: 224px;
 $wpc-banner-logo-height-desktop: 24px;
+$wpc-banner-menu-icon-width: 25px;
+$wpc-banner-menu-icon-width-desktop: 25px;
+$wpc-banner-menu-icon-height: 18px;
+$wpc-banner-search-icon-width: 25px;
 $wpc-banner-search-icon-width-desktop: 25px;
 $wpc-banner-search-icon-height-desktop: 25px;
 $wpc-banner-search-button-width: 100px;

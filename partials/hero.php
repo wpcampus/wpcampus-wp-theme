@@ -34,12 +34,17 @@ if ( $is_front_page ) {
 
 		else :
 
-			// Print title
+			// Print title.
 			if ( is_single() ) :
-				?><div class="wpc-hero-title"><?php printf( __( 'The %s Blog', 'wpcampus' ), 'WPCampus' ); ?></div><?php
+
+				?>
+				<div class="wpc-hero-title"><?php printf( __( 'The %s Blog', 'wpcampus' ), 'WPCampus' ); ?></div>
+				<?php
+
 			else :
 
-				?><h1 class="wpc-hero-title"><?php
+				?>
+				<h1 class="wpc-hero-title"><?php
 
 				if ( is_home() ) :
 					printf( __( 'The %s Blog', 'wpcampus' ), 'WPCampus' );
@@ -51,7 +56,8 @@ if ( $is_front_page ) {
 					echo apply_filters( 'wpcampus_page_title', get_the_title() );
 				endif;
 
-				?></h1><?php
+				?>
+				</h1><?php
 
 			endif;
 		endif;

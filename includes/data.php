@@ -274,7 +274,7 @@ function wpcampus_get_group_count( $group ) {
 
 	// Setup search criteria.
 	$search_criteria = array(
-		'status' => 'active'
+		'status' => 'active',
 	);
 
 	// Add filters.

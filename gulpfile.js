@@ -44,7 +44,7 @@ gulp.task('sass',function() {
 		.pipe(gulp.dest(dest.scss));
 });
 
-// We don't need this... yet
+// Minify our JS
 gulp.task('js',function() {
     gulp.src(src.js)
         .pipe(minify({

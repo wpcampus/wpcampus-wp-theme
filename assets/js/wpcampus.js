@@ -1,28 +1,56 @@
 (function( $ ) {
 	'use strict';
 
-	// Changes .svg to .png if doesn't support SVG (Fallback)
+	/**
+	 * Changes .svg to .png if doesn't support SVG (Fallback)
+	 *
+	 * @TODO: Do we need this?
+	 */
 	if ( ! Modernizr.svg ) {
-
 		$( 'img[src*="svg"]' ).attr( 'src', function() {
 			return $( this ).attr( 'src' ).replace( '.svg', '.png' );
 		});
-
 	}
 
-	// Open/close search.
+	// Set elements
 	var $banner = $( '#wpc-banner' );
 	var $banner_logo = $( '#wpc-banner-logo' );
+	var $menu_wrapper = $banner.find( '.wpc-menu-wrapper' );
 	var $search_wrapper = $banner.find( '.wpc-search-wrapper' );
-	var $search_wrapper_orig_width = 65;
-	var $search_wrapper_full_width = wpc_get_open_banner_search_width();
+	var $search_wrapper_bg = $banner.find( '.wpc-search-wrapper-bg' );
 	var $search_icon = $search_wrapper.find( '.wpc-search-icon' );
-	var $search_icon_open_left = 40;
 
-	// If banner is "pre-opened", then setup banner search.
-	if ( $banner.hasClass( 'search-open' ) ) {
-		wpc_init_open_banner_search();
-	}
+	// Set breakpoints and sizes.
+	var small_breakpoint = 640;
+	var banner_padding_side = 20;
+	var banner_padding_side_desktop = 40;
+	var search_wrapper_orig_width = 65;
+	var search_wrapper_orig_width_desktop = 105;
+
+	// Setup banner search.
+	wpc_init_banner_search();
+
+	// Toggle the menu.
+	$menu_wrapper.find( '.toggle-main-menu' ).on( 'touchstart click', function( $event ) {
+
+		// Stop stuff from happening.
+		$event.stopPropagation();
+		$event.preventDefault();
+
+		// If menu isn't open, open it
+		if ( ! $banner.hasClass( 'menu-open' ) ) {
+
+			$banner.addClass( 'menu-open' );
+			//$main_menu.slideDown( 400 );
+
+		} else {
+
+			$banner.removeClass( 'menu-open' );
+			//$main_menu.slideUp( 400 );
+
+		}
+
+	});
 
 	// When clicking the search icon...
 	$search_icon.on( 'touchstart click', function( $event ) {
@@ -40,25 +68,92 @@
 		}
 	});
 
+	// When the window is resized...
+	$(window).on( 'resize', function( $event ) {
+		wpc_banner_check_resize();
+	});
+
 	/**
-	 * Returns the open width for the banner search.
+	 * Check banner sizes.
+	 */
+	function wpc_banner_check_resize() {
+
+		// Check styles.
+		wpc_check_banner_search_styles();
+
+	}
+
+	/**
+	 * Returns the open width for the
+	 * banner search depending on screen size.
 	 */
 	function wpc_get_open_banner_search_width() {
+		if ( $(window).width() < small_breakpoint ) {
+			return '100%';
+		}
 		return $banner.width() - ( $banner_logo.offset().left + $banner_logo.outerWidth() );
 	}
 
 	/**
-	 * Setup the banner search to be open.
+	 * Returns the side padding for the
+	 * banner depending on screen size.
 	 */
-	function wpc_init_open_banner_search() {
+	function wpc_get_banner_padding_side() {
+		if ( $(window).width() < small_breakpoint ) {
+			return banner_padding_side;
+		}
+		return banner_padding_side_desktop;
+	}
 
-		// Set up the search wrapper.
-		$search_wrapper.css({ 'width': $search_wrapper_full_width });
-		$search_icon.css({ 'left': $search_icon_open_left+'px' });
+	/**
+	 * Returns the search wrapper orig
+	 * width depending on screen size.
+	 */
+	function wpc_get_search_wrapper_orig_width() {
+		if ( $(window).width() < small_breakpoint ) {
+			return search_wrapper_orig_width;
+		}
+		return search_wrapper_orig_width_desktop;
+	}
+
+	/**
+	 * Setup the banner search.
+	 */
+	function wpc_init_banner_search() {
+
+		wpc_check_banner_search_styles();
+		wpc_setup_banner_search_actions();
+
+	}
+
+	/**
+	 * Setup the banner search styles.
+	 */
+	function wpc_check_banner_search_styles() {
+
+		/*
+		 * Set up the search wrapper.
+		 *
+		 * Need this for the animate that happens
+		 * when search is open when page loads,
+		 * e.g. on search results page.
+		 */
+		if ( $banner.hasClass( 'search-open' ) ) {
+			$search_wrapper.css({ 'width': wpc_get_open_banner_search_width() });
+		} else {
+			$search_wrapper.css({ 'width': wpc_get_search_wrapper_orig_width() });
+		}
+	}
+
+	/**
+	 * Setup the banner search actions.
+	 */
+	function wpc_setup_banner_search_actions() {
 
 		// Close search if ESC key.
-		$( document ).bind( 'keyup', wpc_banner_search_keypress_handler );
-
+		if ( $banner.hasClass( 'search-open' ) ) {
+			$( document ).bind( 'keyup', wpc_banner_search_keypress_handler );
+		}
 	}
 
 	/**
@@ -69,14 +164,14 @@
 		// Start the transition.
 		$banner.addClass( 'search-open-transition' ).removeClass( 'search-close' );
 
-		// Move the icon a little to make sure the banner has side padding.
-		$search_icon.animate({
-			left: $search_icon_open_left
-		}, { duration: 800, queue: false });
+		// Fade in the search wrapper background.
+		/*$search_wrapper_bg.animate({
+			opacity: 1
+		}, { duration: 800, queue: false });*/
 
 		// Animate the search wrapper.
 		$search_wrapper.animate({
-			width: $search_wrapper_full_width
+			width: wpc_get_open_banner_search_width()
 		}, { duration: 800, queue: false, complete: function() {
 
 			// Add the open and remove the transition class.
@@ -99,15 +194,25 @@
 		// Start the transition.
 		$banner.addClass( 'search-close-transition search-close' ).removeClass( 'search-open' );
 
-		// Move the icon a little to make sure the banner has side padding.
-		$search_icon.animate({
-			left: 0
-		}, { duration: 800, queue: false });
+		// Fade out the search wrapper background.
+		$search_wrapper_bg.animate({
+			opacity: 0
+		}, { duration: 800, queue: false,
+		complete: function() {
+			$search_wrapper_bg.css({'opacity':'1'});
+		}});
 
 		// Animate the search wrapper.
 		$search_wrapper.animate({
-			width: $search_wrapper_orig_width
-		}, { duration: 800, queue: false, complete: function() {
+			width: wpc_get_search_wrapper_orig_width()
+		}, { duration: 800, queue: false,
+		step: function( now, fx ) {
+			var data = fx.elem.id + " " + fx.prop + ": " + now;
+			console.log(data);
+			console.log(fx);
+			//$( "body" ).append( "<div>" + data + "</div>" );
+		},
+		complete: function() {
 
 			// Remove the transition class.
 			$banner.removeClass( 'search-close-transition search-close' );
@@ -129,31 +234,4 @@
 			wpc_close_banner_search();
 		}
 	}
-
-	// Get the banner and main menu
-	/*var $banner = jQuery( '#wpc-banner' );
-	var $main_menu = jQuery( '#wpcampus-main-menu' );
-
-	// Add listener to all elements who have the class to toggle the main menu
-	jQuery( '.toggle-main-menu' ).on( 'touchstart click', function( $event ) {
-
-		// Stop stuff from happening
-		$event.stopPropagation();
-		$event.preventDefault();
-
-		// If banner isn't open, open it
-		if ( ! $banner.hasClass( 'open-menu' ) ) {
-
-			$banner.addClass( 'open-menu' );
-			$main_menu.slideDown( 400 );
-
-		} else {
-
-			$banner.removeClass( 'open-menu' );
-			$main_menu.slideUp( 400 );
-
-		}
-
-	});*/
-
 })( jQuery );

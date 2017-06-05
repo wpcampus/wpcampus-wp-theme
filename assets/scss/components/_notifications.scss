@@ -1,49 +1,41 @@
-#wpc-notification {
-	background: $wpc-light-gray;
-	padding: $wpc-notif-padding-vert 0 $wpc-notif-padding-vert ( $wpc-notif-icon-width + 15px );
-	min-height: $wpc-notif-icon-height;
-	position: relative;
+// Hidden by default and displayed when populated
+#wpc-notifications {
+	display: none;
+	background: rgba($wpc-royal-blue,0.1);
 	z-index: -1;
 
-	* {
-		font-size: inherit;
+	.wpc-notification {
+		padding: $wpc-notif-padding-vert 0 $wpc-notif-padding-vert ( $wpc-notif-icon-width + 15px );
+		min-height: $wpc-notif-icon-height;
+		position: relative;
 
-		&:first-child {
-			margin-top: 0;
+		* {
+			font-size: inherit;
+
+			&:first-child {
+				margin-top: 0;
+			}
+
+			&:last-child {
+				margin-bottom: 0;
+			}
 		}
 
-		&:last-child {
-			margin-bottom: 0;
+		&:before {
+			content: '';
+			width: $wpc-notif-icon-width;
+			height: $wpc-notif-icon-height;
+			position: absolute;
+			left: 0;
+			top: 50%;
+			margin: ( 0 - ( $wpc-notif-icon-height / 2 ) ) 0 0 0;
+			background: url( '../images/information.png' ) 0 0 no-repeat;
+			background-size: auto $wpc-notif-icon-height;
+			opacity: 0.7;
 		}
-	}
-
-	&:before {
-		content: '';
-		width: $wpc-notif-icon-width;
-		height: $wpc-notif-icon-height;
-		position: absolute;
-		left: $wpc-inside-padding-side;
-		top: $wpc-notif-padding-vert;
-		background: url( '../images/information.png' ) 0 0 no-repeat;
-		background-size: auto $wpc-notif-icon-height;
-		opacity: 0.7;
 	}
 
 	@media screen and (min-width: $small-up) {
-
-		&:before {
-			left: $wpc-inside-padding-side-desktop;
-		}
-	}
-
-	@media screen and (min-width: $medium-up) {
-
-		&:before {
-			left: $wpc-inside-padding-left;
-		}
-
-		.inside.from-left {
-			padding-right: $wpc-inside-padding-left + 50px;
-		}
+		padding-right: $wpc-inside-padding-left + 50px;
 	}
 }

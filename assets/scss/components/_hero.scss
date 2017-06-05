@@ -51,7 +51,7 @@
 		width: 115px;
 		height: auto;
 
-		@media screen and (min-width: $medium-up) {
+		@media screen and (min-width: $small-up) {
 			display: block;
 		}
 	}
@@ -60,6 +60,26 @@
 		color: $wpc-hero-home-color;
 		padding: 0;
 		z-index: 0;
+
+		.wpc-home-hero-text {
+			clear: both;
+			padding: 25px 0;
+			font-size: 2.1rem;
+			line-height: 1.35;
+			text-align: left;
+			text-transform: uppercase;
+			font-weight: 300;
+
+			.digit {
+				font-weight: 600;
+			}
+
+			.tagline {
+				font-size: 1.4rem;
+				line-height: 1.5;
+				text-transform: none;
+			}
+		}
 
 		#wpc-hero-bg {
 			background: #000;
@@ -93,18 +113,10 @@
 				padding: 80px 0;
 				font-size: 3.8rem;
 				line-height: 1.35;
-				text-align: left;
-				text-transform: uppercase;
-				font-weight: 300;
-
-				.digit {
-					font-weight: 600;
-				}
 
 				.tagline {
 					font-size: 1.75rem;
 					line-height: 2;
-					text-transform: none;
 				}
 			}
 		}

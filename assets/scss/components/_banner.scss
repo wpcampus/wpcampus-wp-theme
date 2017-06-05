@@ -1,11 +1,13 @@
 // Move the content down for the banner and WP admin bar.
-@media screen and (min-width: $small-up) {
-	body {
-		padding-top: $wpc-banner-height;
+body {
+	padding-top: $wpc-banner-height;
+
+	@media screen and (min-width: $small-up) {
+		padding-top: $wpc-banner-height-desktop;
 	}
 }
 
-// Modify the WP admin bar
+// Modify the WP admin bar.
 #wpadminbar {
 	background: $wpc-banner-bg-color;
 	padding: 5px 33px;
@@ -14,11 +16,16 @@
 
 #wpc-banner {
 	background: $wpc-banner-bg-color;
+	position: fixed;
+	left: 0;
+	top: 0;
 	color: $wpc-banner-color;
+	width: 100%;
+	height: $wpc-banner-height;
+	padding: 0;
+	border-bottom: $wpc-banner-border-height $wpc-banner-border-style $wpc-banner-border-color;
 	z-index: 1000;
 	overflow: visible;
-	border-bottom: $wpc-banner-border-height solid #fff;
-	padding: 20px 0 0 0;
 
 	// Move the banner down for the WP admin bar.
 	body.admin-bar & {
@@ -37,57 +44,227 @@
 		width: 100%;
 		height: $wpc-banner-height;
 		padding: 0;
+		overflow: hidden;
+
+		@media screen and (min-width: $small-up) {
+			height: $wpc-banner-height-desktop;
+			padding: 0 $wpc-inside-padding-side;
+		}
 	}
 
 	.eduwapuu-wrapper {
-		display: block;
+		display: inline-block;
 		width: $wpc-banner-eduwapuu-width;
 		height: $wpc-banner-eduwapuu-height;
+		vertical-align: middle;
+		margin: -5px 0 0 0;
 
-		@media screen and (min-width: $medium-up) {
+		@media screen and (min-width: $small-up) {
 			display: none;
 		}
 	}
 
 	.wpc-logo {
 		display: block;
-		background: url('../images/wpcampus-white-logo-tagline.svg') ($wpc-banner-eduwapuu-width + 10px) center no-repeat;
+		background: url('../images/wpcampus-white-logo-tagline.svg') ($wpc-banner-eduwapuu-width + $wpc-banner-eduwapuu-margin-right) center no-repeat;
 		background-size: $wpc-banner-logo-width $wpc-banner-logo-height;
-		width: $wpc-banner-logo-width + ( $wpc-banner-eduwapuu-width + 10px );
-		height: $wpc-banner-logo-height;
-		margin: 0 auto 20px auto;
+		width: $wpc-banner-logo-width + ( $wpc-banner-eduwapuu-width + $wpc-banner-eduwapuu-margin-right );
+		height: $wpc-banner-height;
+		line-height: $wpc-banner-height;
+		margin: 0 auto;
+		z-index: 1200;
+
+		@media screen and (min-width: $small-up) {
+			background: url('../images/wpcampus-white.svg') center center no-repeat;
+			background-size: auto 100%;
+			position: absolute;
+			left: $wpc-banner-padding-side-desktop + $wpc-banner-menu-icon-width + $wpc-banner-padding-side;
+			top: ( $wpc-banner-height-desktop - $wpc-banner-logo-height-desktop ) / 2;
+			width: $wpc-banner-logo-width-desktop;
+			height: $wpc-banner-logo-height-desktop;
+			line-height: $wpc-banner-logo-height-desktop;
+			margin: 0;
+		}
+
+		@media screen and (min-width: $menu-open-bp) {
+			left: $wpc-banner-padding-side-desktop;
+		}
 	}
 
-	.buttons {
-		text-align: center;
+	.wpc-menu-wrapper {
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: $wpc-banner-menu-icon-width + ( $wpc-banner-padding-side * 2 );
+		height: $wpc-banner-height;
 
-		.button {
+		.toggle-main-menu {
 			display: block;
-			float: right;
-			width: 50%;
-			height: $wpc-banner-button-height;
+			width: $wpc-banner-menu-icon-width + ( $wpc-banner-padding-side * 2 );
+			height: $wpc-banner-height-no-border;
+			cursor: pointer;
+			overflow: hidden;
+			position: relative;
+
+			.toggle-icon {
+				display: block;
+				width: $wpc-banner-menu-icon-width;
+				height: $wpc-banner-menu-icon-height;
+				position: absolute;
+				right: $wpc-banner-padding-side;
+				top: 50%;
+				margin-top: 0 - ( $wpc-banner-menu-icon-height / 2 );
+				cursor: pointer;
+
+				.bar {
+					background: rgba( #fff, 0.8 );
+					position: absolute;
+					top: 0;
+					left: 0;
+					width: 100%;
+					height: 2px;
+					margin: 0;
+					opacity: 1;
+					transition: all 200ms ease-out;
+
+					&.two {
+						margin-top: 8px;
+					}
+
+					&.three {
+						margin-top: 16px;
+					}
+				}
+
+				@media screen and (min-width: $small-up) {
+					right: $wpc-banner-padding-side-desktop;
+				}
+			}
+
+			@media screen and (min-width: $small-up) {
+				width: $wpc-banner-menu-icon-width-desktop + ( $wpc-banner-padding-side-desktop * 2 );
+				height: $wpc-banner-height-desktop-no-border;
+			}
+
+			@media screen and (min-width: $menu-open-bp) {
+				display: none;
+			}
+		}
+
+		.wpc-menu-container {
+			display: none;
+
+			.wpc-buttons {
+				display: none;
+				text-align: center;
+				z-index: 1000;
+
+				.button {
+					display: block;
+					float: right;
+					width: 50%;
+					height: $wpc-banner-button-height;
+					text-align: center;
+					font-size: 0.9rem;
+					line-height: $wpc-banner-button-height;
+					padding: 0 15px;
+					text-decoration: none;
+					text-transform: uppercase;
+					margin: 0;
+
+					&.primary {
+						background: $wpc-royal-blue;
+						color: #fff;
+					}
+
+					&.secondary {
+						background: $wpc-light-gray;
+						color: #222;
+					}
+
+					@media screen and (min-width: $small-up) {
+						width: auto;
+						height: $wpc-banner-button-height-desktop;
+						line-height: $wpc-banner-button-height-desktop;
+						border-radius: 5px;
+						margin: 0 0 0 $wpc-banner-button-padding;
+					}
+				}
+
+				@media screen and (min-width: $small-up) {
+					display: block;
+					position: absolute;
+					right: $wpc-banner-padding-side-desktop + $wpc-banner-search-icon-width-desktop + $wpc-banner-search-buttons-padding;
+					top: ( $wpc-banner-height-desktop - $wpc-banner-button-height-desktop ) / 2;
+				}
+			}
+
+			ul.wpc-menu {
+				display: block;
+				margin: 0;
+				padding: 0;
+				overflow: auto;
+
+				ul.sub-menu {
+					display: none;
+				}
+
+				li {
+					display: block;
+					list-style: none;
+					margin: 0;
+					padding: 0;
+					line-height: normal;
+					text-transform: uppercase;
+
+					a {
+						display: block;
+						padding: 0 20px;
+						text-decoration: none;
+						font-weight: inherit;
+					}
+
+					&.current-menu-item,
+					&.current_page_parent,
+					&:hover {
+						background: rgba(255, 255, 255, 0.1);
+					}
+
+					&.current-menu-item {
+						font-weight: bold;
+					}
+				}
+
+				@media screen and (min-width: $menu-open-bp) {
+					display: inline-block;
+					text-align: center;
+
+					li {
+						float: left;
+						line-height: $wpc-banner-height-desktop;
+					}
+				}
+			}
+		}
+
+		@media screen and (min-width: $small-up) {
+			width: $wpc-banner-menu-icon-width-desktop + ( $wpc-banner-padding-side-desktop * 2 );
+			height: $wpc-banner-height-desktop;
+		}
+
+		@media screen and (min-width: $menu-open-bp) {
+			left: 0;
+			width: 100%;
 			text-align: center;
-			font-size: 0.9rem;
-			line-height: $wpc-banner-button-height;
-			padding: 0 15px;
-			text-decoration: none;
-			text-transform: uppercase;
-			margin: 0;
-
-			&.primary {
-				background: $wpc-royal-blue;
-				color: #fff;
-			}
-
-			&.secondary {
-				background: $wpc-light-gray;
-				color: #222;
-			}
 		}
 	}
 
 	.wpc-search-wrapper {
-		position: relative;
+		position: absolute;
+		right: 0;
+		top: 0;
+		width: $wpc-banner-search-icon-width + ( $wpc-banner-padding-side * 2 );
+		height: $wpc-banner-height-no-border;
 
 		.wpc-search-wrapper-bg {
 			display: none;
@@ -97,11 +274,73 @@
 			top: 0;
 			width: 100%;
 			height: 100%;
-			z-index: -1;
+			z-index: -10;
+		}
+
+		.wpc-search-form-wrapper {
+			display: block;
+			position: absolute;
+			right: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			opacity: 0;
+			transition: opacity 0.8s ease;
+
+			.search-form {
+				display: block;
+				position: absolute;
+				right: 0;
+				top: 50%;
+				transform: translate(0, -50%);
+				width: 100%;
+				height: $wpc-banner-search-icon-height-desktop;
+				padding: 0 ($wpc-banner-padding-side + $wpc-banner-search-button-width + $wpc-banner-search-button-padding) 0 ($wpc-banner-search-icon-width + $wpc-banner-padding-side + $wpc-banner-search-input-padding);
+
+				input {
+					display: block;
+					height: 100%;
+					margin: 0;
+					border: 0;
+					padding: 0;
+					line-height: $wpc-banner-search-icon-height-desktop;
+
+					&.search-field {
+						width: 100%;
+						padding: 0 5px;
+					}
+
+					&.search-submit {
+						position: absolute;
+						right: $wpc-banner-padding-side;
+						top: 0;
+						background: #ddd;
+						color: #444;
+						width: $wpc-banner-search-button-width;
+						font-size: 0.8rem;
+						font-weight: bold;
+						text-transform: uppercase;
+
+						@media screen and (min-width: $small-up) {
+							right: $wpc-banner-padding-side-desktop;
+						}
+					}
+				}
+
+				@media screen and (min-width: $small-up) {
+					padding: 0 ($wpc-banner-padding-side-desktop + $wpc-banner-search-button-width + $wpc-banner-search-button-padding) 0 ($wpc-banner-search-icon-width-desktop + $wpc-banner-padding-side-desktop + $wpc-banner-search-input-padding);
+				}
+			}
 		}
 
 		.wpc-search-icon {
 			cursor: pointer;
+			position: absolute;
+			left: $wpc-banner-padding-side;
+			top: 0;
+			width: $wpc-banner-search-icon-width + ( $wpc-banner-search-input-padding / 2 );
+			height: $wpc-banner-height-no-border;
+			z-index: 10;
 
 			.wpc-search-magnifying,
 			.wpc-search-close {
@@ -111,7 +350,7 @@
 				top: 0;
 				width: 100%;
 				height: 100%;
-				background-size: $wpc-banner-search-icon-width-desktop $wpc-banner-search-icon-height-desktop;
+				background-size: $wpc-banner-search-icon-width $wpc-banner-search-icon-height-desktop;
 				background-position: left center;
 				background-repeat: no-repeat;
 				transition: opacity 0.8s ease;
@@ -126,395 +365,116 @@
 				background-image: url('../images/close-white.png');
 				opacity: 0;
 			}
+
+			@media screen and (min-width: $small-up) {
+				left: $wpc-banner-padding-side-desktop;
+				width: $wpc-banner-search-icon-width-desktop + ( $wpc-banner-search-input-padding / 2 );
+				height: $wpc-banner-height-desktop-no-border;
+			}
+		}
+
+		@media screen and (min-width: $small-up) {
+			width: $wpc-banner-search-icon-width-desktop + ( $wpc-banner-padding-side-desktop * 2 );
+			height: $wpc-banner-height-desktop-no-border
 		}
 	}
 
-	ul.wpc-primary-menu {
-		display: block;
-		margin: 0;
-		padding: 0;
-		text-align: center;
-		overflow: auto;
+	&.menu-open {
 
-		ul.sub-menu {
-			display: none;
-		}
+		.wpc-menu-wrapper {
+			width: 100%;
+			height: 100%;
+			position: fixed;
+			left: 0;
+			top: 0;
+			overflow: hidden;
 
-		li {
-			display: block;
-			float: left;
-			list-style: none;
-			margin: 0;
-			padding: 0;
-			line-height: normal;
-			text-transform: uppercase;
-
-			a {
+			.wpc-menu-container {
 				display: block;
-				padding: 0 20px;
-				text-decoration: none;
-				font-weight: inherit;
-			}
-
-			&.current-menu-item,
-			&.current_page_parent,
-			&:hover {
-				background: rgba(255, 255, 255, 0.1);
-			}
-
-			&.current-menu-item {
-				font-weight: bold;
-			}
-		}
-	}
-
-	.wpc-primary-menu-wrapper {
-		text-align: center;
-	}
-
-	/*.toggle-main-menu {
-		display: block;
-		height: $wpc-banner-height;
-		background: none;
-		color: rgba( #fff, 0.9 );
-		text-transform: uppercase;
-		font-size: 1em;
-		line-height: $wpc-banner-height;
-		padding: 0 20px;
-		cursor: pointer;
-		overflow: hidden;
-
-		.open-menu-label,
-		.close-menu-label {
-			display: block;
-			float: left;
-			text-transform: uppercase;
-			height: $wpc-banner-height;
-			line-height: $wpc-banner-height;
-		}
-
-		.close-menu-label {
-			display: none;
-		}
-
-		.toggle-icon {
-			display: block;
-			float: left;
-			width: 22px;
-			height: 18px;
-			cursor: pointer;
-			position: relative;
-			margin: 15px 12px 0 0;
-
-			.bar {
-				background: rgba( #fff, 0.8 );
-				position: absolute;
-				top: 0;
-				left: 0;
 				width: 100%;
-				height: 2px;
-				margin: 0;
-				opacity: 1;
-				transition: all 200ms ease-out;
+				height: 100%;
+				background: $wpc-medium-gray;
+				position: absolute;
+				left: 0;
+				top: $wpc-banner-height - $wpc-banner-border-height;
+				border-top: $wpc-banner-border-height $wpc-banner-border-style $wpc-banner-border-color;
+				overflow: scroll;
 
-				&.two {
-					margin-top: 8px;
-				}
-
-				&.three {
-					margin-top: 16px;
-				}
-			}
-		}
-	}
-
-	.menu {
-		display: none;
-		z-index: 10000;
-		border-bottom: 1px solid #fff;
-		padding: 0 0 5px 0;
-
-		ul {
-			@include reset-ul();
-			color: #fff;
-			font-size: 1em;
-			line-height:1;
-			text-transform: uppercase;
-
-			li {
-				color: inherit;
-				font-size: inherit;
-				line-height: inherit;
-
-				a {
+				.wpc-buttons {
 					display: block;
-					color: inherit;
-					font-size: inherit;
-					line-height: inherit;
-					text-decoration: none;
-					padding: 15px 10px;
-				}
+					position: absolute;
+					left: 0;
+					top: $wpc-banner-height;
+					width: 100%;
+					border-bottom: $wpc-banner-border-height $wpc-banner-border-style $wpc-banner-border-color;
 
-				img {
-					display: block;
-				}
-
-				&.icon {
-					display: inline-block;
-
-					a {
-						padding: 10px 7px;
+					@media screen and (min-width: $small-up) {
+						top: $wpc-banner-height-desktop;
 					}
+				}
+				
+				ul.wpc-menu {
+					padding: 30px 0;
 
-					img {
-						height: 15px;
-						opacity: 0.7;
-					}
-
-					&.has-icon-alt {
+					li {
 						display: block;
 
 						a {
-							padding: 15px 10px;
-						}
+							display: block;
+							padding: 10px $wpc-banner-padding-side;
 
-						img {
-							display: none;
-						}
-					}
-
-					&.github {
-
-						img {
-							height: 18px;
-						}
-					}
-				}
-
-				&.current a,
-				a:hover {
-					background: rgba(#fff, 0.2);
-				}
-			}
-		}
-	}
-
-	&.open-menu {
-
-		.toggle-main-menu {
-			background: none;
-
-			&:hover {
-				background: none;
-			}
-
-			.toggle-icon {
-
-				.bar {
-
-					&.one {
-						margin-top: 8px;
-						transform: rotate(45deg);
-					}
-
-					&.two {
-						opacity: 0;
-					}
-
-					&.three {
-						margin-top: 8px;
-						transform: rotate(-45deg);
-					}
-				}
-			}
-
-			.open-menu-label {
-				display: none;
-			}
-
-			.close-menu-label {
-				display: block;
-			}
-		}
-	}
-
-	// Expand the banner
-	@media screen and (min-width: 700px) {
-
-		.toggle-main-menu {
-			display: none !important;
-		}
-
-		.menu {
-			display: block !important;
-			height: $wpc-banner-height;
-			background: none !important;
-
-			ul {
-				display: inline-block !important;
-				height: $wpc-banner-height;
-				line-height: $wpc-banner-height - 1;
-
-				li {
-					float: left;
-					height: $wpc-banner-height;
-
-					a {
-						height: $wpc-banner-height;
-						padding: 0 12px;
-					}
-
-					&.icon {
-						display: block;
-
-						a {
-							padding: 16px 10px 0 10px;
-						}
-
-						img {
-							display: block !important;
-						}
-
-						.icon-alt {
-							@include for-screen-reader();
-						}
-
-						&.github {
-
-							a {
-								padding-top: 15px;
+							@media screen and (min-width: $small-up) {
+								padding-left: $wpc-banner-padding-side-desktop;
+								padding-right: $wpc-banner-padding-side-desktop;
 							}
 						}
 					}
 				}
+
+				@media screen and (min-width: $small-up) {
+					top: $wpc-banner-height-desktop - $wpc-banner-border-height;
+				}
 			}
 		}
-	}*/
+	}
 
-	@media screen and (min-width: $small-up) {
-		position: fixed;
-		left: 0;
-		top: 0;
-		width: 100%;
-		height: $wpc-banner-height;
-		padding: 0;
-
-		.inside {
-			padding: 0 $wpc-inside-padding-side;
-		}
-
-		.wpc-logo {
-			background: url('../images/wpcampus-white.svg') center center no-repeat;
-			background-size: auto 100%;
-			position: absolute;
-			left: $wpc-banner-padding-side;
-			top: ( $wpc-banner-height - $wpc-banner-logo-height-desktop ) / 2;
-			width: $wpc-banner-logo-width-desktop;
-			height: $wpc-banner-logo-height-desktop;
-			margin: 0;
-		}
+	&.search-open-transition,
+	&.search-close-transition,
+	&.search-open,
+	&.search-close {
 
 		.wpc-search-wrapper {
-			position: absolute;
+			z-index: 2000;
+		}
+
+		.wpc-search-wrapper-bg {
+			display: block;
+		}
+	}
+
+	&.search-open-transition {
+
+		.wpc-search-icon {
+
+			.wpc-search-magnifying {
+				opacity: 0;
+			}
+
+			.wpc-search-close {
+				opacity: 1;
+			}
+		}
+
+		.wpc-search-form-wrapper {
+			opacity: 1;
+		}
+	}
+
+	&.search-open {
+
+		.wpc-search-wrapper {
 			right: 0;
-			top: 0;
-			width: $wpc-banner-search-icon-width-desktop + $wpc-banner-padding-side;
-			height: $wpc-banner-height - $wpc-banner-border-height;
-
-			.wpc-search-icon {
-				position: absolute;
-				left: 0;
-				top: 0;
-				width: $wpc-banner-search-icon-width-desktop + ( $wpc-banner-search-input-padding / 2 );
-				height: $wpc-banner-height - $wpc-banner-border-height;
-			}
-
-			.wpc-search-form-wrapper {
-				display: block;
-				position: absolute;
-				right: 0;
-				top: 0;
-				width: 100%;
-				height: 100%;
-				opacity: 0;
-				transition: opacity 0.8s ease;
-
-				.search-form {
-					display: block;
-					position: absolute;
-					right: 0;
-					top: 50%;
-					transform: translate(0, -50%);
-					width: 100%;
-					height: $wpc-banner-search-icon-height-desktop;
-					padding: 0 ($wpc-banner-padding-side + $wpc-banner-search-button-width + $wpc-banner-search-button-padding) 0 ($wpc-banner-search-icon-width-desktop + $wpc-banner-padding-side + $wpc-banner-search-input-padding );
-
-					input {
-						display: block;
-						height: 100%;
-						margin: 0;
-						border: 0;
-						padding: 0;
-						line-height: $wpc-banner-search-icon-height-desktop;
-
-						&.search-field {
-							width: 100%;
-							padding: 0 5px;
-						}
-
-						&.search-submit {
-							position: absolute;
-							right: $wpc-banner-padding-side;
-							top: 0;
-							background: #ddd;
-							color: #444;
-							width: $wpc-banner-search-button-width;
-							font-size: 0.8rem;
-							font-weight: bold;
-							text-transform: uppercase;
-						}
-					}
-				}
-			}
-		}
-
-		.buttons {
-			position: absolute;
-			right: $wpc-banner-padding-side + $wpc-banner-search-icon-width-desktop + $wpc-banner-search-buttons-padding;
-			top: ( $wpc-banner-height - $wpc-banner-button-height-desktop ) / 2;
-
-			.button {
-				width: auto;
-				height: $wpc-banner-button-height-desktop;
-				line-height: $wpc-banner-button-height-desktop;
-				border-radius: 5px;
-				margin: 0 0 0 $wpc-banner-button-padding;
-			}
-		}
-
-		ul.wpc-primary-menu {
-			display: inline-block;
-
-			li {
-				line-height: $wpc-banner-height;
-			}
-		}
-
-		&.search-open-transition,
-		&.search-close-transition,
-		&.search-open,
-		&.search-close {
-
-			.wpc-search-wrapper {
-				z-index: 1000;
-			}
-
-			.wpc-search-wrapper-bg {
-				display: block;
-			}
-		}
-
-		&.search-open-transition {
+			width: 100%;
 
 			.wpc-search-icon {
 
@@ -526,59 +486,39 @@
 					opacity: 1;
 				}
 			}
-
-			.wpc-search-form-wrapper {
-				opacity: 1;
-			}
 		}
 
-		&.search-open {
+		.wpc-search-form-wrapper {
+			opacity: 1;
+		}
+	}
 
-			.wpc-search-wrapper {
-				right: 0;
-				width: 100%;
+	&.search-close-transition {
 
-				.wpc-search-icon {
-					left: $wpc-banner-padding-side;
+		.wpc-search-icon {
 
-					.wpc-search-magnifying {
-						opacity: 0;
-					}
-
-					.wpc-search-close {
-						opacity: 1;
-					}
-				}
-			}
-
-			.wpc-search-form-wrapper {
+			.wpc-search-magnifying {
 				opacity: 1;
 			}
-		}
 
-		&.search-close-transition {
-
-			.wpc-search-icon {
-
-				.wpc-search-magnifying {
-					opacity: 1;
-				}
-
-				.wpc-search-close {
-					opacity: 0;
-				}
-			}
-
-			.wpc-search-form-wrapper {
+			.wpc-search-close {
 				opacity: 0;
 			}
 		}
 
-		&.search-close {
-
-			.wpc-search-form-wrapper {
-				opacity: 0;
-			}
+		.wpc-search-form-wrapper {
+			opacity: 0;
 		}
+	}
+
+	&.search-close {
+
+		.wpc-search-form-wrapper {
+			opacity: 0;
+		}
+	}
+
+	@media screen and (min-width: $small-up) {
+		height: $wpc-banner-height-desktop;
 	}
 }
