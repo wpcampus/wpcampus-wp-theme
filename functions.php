@@ -43,7 +43,8 @@ function wpcampus_setup_theme() {
 
 	// Register the nav menus.
 	register_nav_menus( array(
-		'primary' => __( 'Primary Menu', 'wpcampus' ),
+		'primary'   => __( 'Primary Menu', 'wpcampus' ),
+		'footer'    => __( 'Footer Menu', 'wpcampus' ),
 	));
 }
 add_action( 'after_setup_theme', 'wpcampus_setup_theme' );
