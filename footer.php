@@ -26,12 +26,7 @@ $images_dir = "{$stylesheet_dir}/assets/images/";
 				?>
 				<p><strong>WPCampus is a community of networking, resources, and events for those using WordPress in the world of higher education.</strong><br />If you are not a member of the WPCampus community, we'd love for you to <a href="https://wpcampus.org/get-involved/">get involved</a>.</p>
 				<p class="disclaimer">This site is powered by <a href="https://wordpress.org/">WordPress</a>. You can view, and contribute to, the theme on <a href="https://github.com/wpcampus/wpcampus-wp-theme">GitHub</a>.<br />WPCampus events are not WordCamps and are not affiliated with the WordPress Foundation.</p>
-				<p class="icons">
-					<a class="twitter" href="https://twitter.com/wpcampusorg"><img src="<?php echo $images_dir; ?>twitter-black.svg" alt="Follow WPCampus on Twitter" /></a>
-					<a class="facebook" href="https://www.facebook.com/wpcampus"><img src="<?php echo $images_dir; ?>facebook-black.svg" alt="Follow WPCampus on Twitter" /></a>
-					<a class="youtube" href="https://www.youtube.com/wpcampusorg"><img src="<?php echo $images_dir; ?>youtube-black.svg" alt="Follow WPCampus on YouTube" /></a>
-					<a class="github" href="https://github.com/wpcampus/"><img src="<?php echo $images_dir; ?>github-black.svg" alt="Follow WPCampus on GitHub" /></a>
-				</p>
+				<?php wpcampus_print_social_media_icons(); ?>
 				<p class="copyright">&copy; <?php echo date( 'Y' ); ?> WPCampus</p>
 			</div>
 		</div>

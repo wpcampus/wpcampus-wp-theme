@@ -53,7 +53,7 @@ add_action( 'after_setup_theme', 'wpcampus_setup_theme' );
  * Setup styles and scripts.
  */
 function wpcampus_enqueue_styles_scripts() {
-	$wpcampus_version = '0.58';
+	$wpcampus_version = '0.59';
 
 	// Get the directory.
 	$wpcampus_dir = trailingslashit( get_stylesheet_directory_uri() );
@@ -290,4 +290,31 @@ function wpcampus_get_breadcrumbs_html() {
 
 	//  We change up the variable so it doesn't interfere with global variable.
 	return $breadcrumbs_html;
+}
+
+/**
+ * Prints list of social media icons.
+ *
+ * @param   $color - string - color of icon, black is default.
+ */
+function wpcampus_print_social_media_icons( $color = 'black' ) {
+
+	// Get the theme directory.
+	$theme_dir = trailingslashit( get_template_directory_uri() );
+	$images_dir = "{$theme_dir}assets/images/";
+
+	// If color, prefix with dash.
+	if ( $color ) {
+		$color = "-{$color}";
+	}
+
+	?>
+	<ul class="social-media-icons">
+		<li><a class="slack" href="https://wpcampus.org/get-involved/"><img src="<?php echo $images_dir; ?>slack<?php echo $color; ?>.svg" alt="<?php printf( __( 'Join %1$s on %2$s', 'wpcampus' ), 'WPCampus', 'Slack' ); ?>" /></a></li>
+		<li><a class="twitter" href="https://twitter.com/wpcampusorg"><img src="<?php echo $images_dir; ?>twitter<?php echo $color; ?>.svg" alt="<?php printf( __( 'Follow %1$s on %2$s', 'wpcampus' ), 'WPCampus', 'Twitter' ); ?>" /></a></li>
+		<li><a class="facebook" href="https://www.facebook.com/wpcampus"><img src="<?php echo $images_dir; ?>facebook<?php echo $color; ?>.svg" alt="<?php printf( __( 'Follow %1$s on %2$s', 'wpcampus' ), 'WPCampus', 'Facebook' ); ?>" /></a></li>
+		<li><a class="youtube" href="https://www.youtube.com/wpcampusorg"><img src="<?php echo $images_dir; ?>youtube<?php echo $color; ?>.svg" alt="<?php printf( __( 'Follow %1$s on %2$s', 'wpcampus' ), 'WPCampus', 'YouTube' ); ?>" /></a></li>
+		<li><a class="github" href="https://github.com/wpcampus/"><img src="<?php echo $images_dir; ?>github<?php echo $color; ?>.svg" alt="<?php printf( __( 'Follow %1$s on %2$s', 'wpcampus' ), 'WPCampus', 'GitHub' ); ?>" /></a></li>
+	</ul>
+	<?php
 }

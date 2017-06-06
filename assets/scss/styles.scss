@@ -719,7 +719,19 @@ body {
         font-style: italic;
     }
 
-    .icons {
+    .social-media-icons {
+	    @include reset-ul();
+	    display: inline-block;
+	    text-align: center;
+	    overflow: auto;
+
+	    li {
+		    display: block;
+		    float: left;
+		    list-style: none;
+		    margin: 0 8px;
+		    padding: 0;
+	    }
 
         img {
             width: auto;
@@ -727,9 +739,8 @@ body {
         }
         
         a {
-            display: inline-block;
+            display: block;
             opacity: $wpc-footer-opacity;
-            margin: 0 5px;
 
             &:hover {
                 opacity: $wpc-footer-opacity-hover;
