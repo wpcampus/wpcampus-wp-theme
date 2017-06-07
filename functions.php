@@ -79,7 +79,7 @@ function wpcampus_enqueue_styles_scripts() {
 	if ( is_page( 'data' ) ) {
 
 		// Register Google Charts script.
-		wp_register_script( 'google-charts', 'https://www.google.com/jsapi', array('jquery' ) );
+		wp_register_script( 'google-charts', 'https://www.google.com/jsapi', array( 'jquery' ) );
 
 		// Register Chartist script.
 		wp_register_script( 'chartist', 'https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js' );
@@ -95,7 +95,7 @@ function wpcampus_enqueue_styles_scripts() {
 		 * but the minified script on prod.
 		 */
 		$min = stristr( $_SERVER['HTTP_HOST'], '.staging' ) ? '' : '.min';
-		wp_enqueue_script( 'wpcampus-data', $wpcampus_dir . 'assets/js/wpcampus-data' . $min . '.js', array('jquery', 'google-charts', 'chartist'), $wpcampus_version, false );
+		wp_enqueue_script( 'wpcampus-data', $wpcampus_dir . 'assets/js/wpcampus-data' . $min . '.js', array( 'jquery', 'google-charts', 'chartist' ), $wpcampus_version, false );
 
 	}
 
@@ -121,22 +121,22 @@ add_action( 'wp_footer', 'wpcampus_add_addthis' );
  */
 function wpcampus_add_favicons() {
 
-    // Set the images folder.
-    $favicons_folder = get_stylesheet_directory_uri() . '/assets/images/favicons/';
+	// Set the images folder.
+	$favicons_folder = get_stylesheet_directory_uri() . '/assets/images/favicons/';
 
-    // Print the default icons.
-    ?>
-    <link rel="shortcut icon" href="<?php echo $favicons_folder; ?>wpcampus-favicon-60.png"/>
-    <link rel="apple-touch-icon" href="<?php echo $favicons_folder; ?>wpcampus-favicon-60.png"/><?php
+	// Print the default icons.
+	?>
+	<link rel="shortcut icon" href="<?php echo $favicons_folder; ?>wpcampus-favicon-60.png"/>
+	<link rel="apple-touch-icon" href="<?php echo $favicons_folder; ?>wpcampus-favicon-60.png"/><?php
 
-    // Set the image sizes.
-    $image_sizes = array( 57, 72, 76, 114, 120, 144, 152 );
+	// Set the image sizes.
+	$image_sizes = array( 57, 72, 76, 114, 120, 144, 152 );
 
-    foreach( $image_sizes as $size ) :
-        ?>
-	    <link rel="apple-touch-icon" sizes="<?php echo "{$size}x{$size}"; ?>" href="<?php echo $favicons_folder; ?>wpcampus-favicon-<?php echo $size; ?>.png"/>
-	    <?php
-    endforeach;
+	foreach ( $image_sizes as $size ) :
+		?>
+		<link rel="apple-touch-icon" sizes="<?php echo "{$size}x{$size}"; ?>" href="<?php echo $favicons_folder; ?>wpcampus-favicon-<?php echo $size; ?>.png"/>
+		<?php
+	endforeach;
 }
 add_action( 'wp_head', 'wpcampus_add_favicons' );
 add_action( 'admin_head', 'wpcampus_add_favicons' );
@@ -147,30 +147,30 @@ add_action( 'login_head', 'wpcampus_add_favicons' );
  */
 function wpcampus_get_post_type_archive_title( $post_type = '' ) {
 
-    // Make sure we have a post type.
-    if ( ! $post_type ) {
-        $post_type = get_query_var( 'post_type' );
-    }
+	// Make sure we have a post type.
+	if ( ! $post_type ) {
+		$post_type = get_query_var( 'post_type' );
+	}
 
-    // Get post type archive title.
-    if ( $post_type ) {
+	// Get post type archive title.
+	if ( $post_type ) {
 
-        // Make sure its not an array.
-        if ( is_array( $post_type ) ) {
-            $post_type = reset( $post_type );
-        }
+		// Make sure its not an array.
+		if ( is_array( $post_type ) ) {
+			$post_type = reset( $post_type );
+		}
 
-        // Get the post type data.
-        if ( $post_type_obj = get_post_type_object( $post_type ) ) {
+		// Get the post type data.
+		if ( $post_type_obj = get_post_type_object( $post_type ) ) {
 
-            // Get the title.
-            $title = apply_filters( 'post_type_archive_title', $post_type_obj->labels->name, $post_type );
+			// Get the title.
+			$title = apply_filters( 'post_type_archive_title', $post_type_obj->labels->name, $post_type );
 
-            // Return the title.
-            return apply_filters( 'wpcampus_post_type_archive_title', $title, $post_type );
-        }
-    }
-    return null;
+			// Return the title.
+			return apply_filters( 'wpcampus_post_type_archive_title', $title, $post_type );
+		}
+	}
+	return null;
 }
 
 /**
@@ -181,82 +181,92 @@ function wpcampus_get_breadcrumbs_html() {
 	// Build array of breadcrumbs.
 	$breadcrumbs = array();
 
-    // Not for front page.
-    if ( is_front_page() ) {
-        return false;
-    }
+	// Not for front page.
+	if ( is_front_page() ) {
+		return false;
+	}
 
-    // Get post type.
-    $post_type = get_query_var( 'post_type' );
+	// Get post type.
+	$post_type = get_query_var( 'post_type' );
 
-    // Make sure its not an array.
-    if ( is_array( $post_type ) ) {
-        $post_type = reset( $post_type );
-    }
+	// Make sure its not an array.
+	if ( is_array( $post_type ) ) {
+		$post_type = reset( $post_type );
+	}
 
-    // Add home.
-    $breadcrumbs[] = array(
-        'url'   => get_bloginfo( 'url' ),
-        'label' => 'Home',
-    );
+	// Add home.
+	$breadcrumbs[] = array(
+		'url'   => get_bloginfo( 'url' ),
+		'label' => 'Home',
+	);
 
-    // Add archive(s).
-    if ( is_archive() ) {
+	// Add archive(s).
+	if ( is_archive() ) {
 
-        // Add the archive breadcrumb.
-        if ( is_post_type_archive() ) {
+		// Add the archive breadcrumb.
+		if ( is_post_type_archive() ) {
 
-            // Get the info.
-            $post_type_archive_link = get_post_type_archive_link( $post_type );
-            $post_type_archive_title = wpcampus_get_post_type_archive_title( $post_type );
+			// Get the info.
+			$post_type_archive_link = get_post_type_archive_link( $post_type );
+			$post_type_archive_title = wpcampus_get_post_type_archive_title( $post_type );
 
-            // Add the breadcrumb.
-            if ( $post_type_archive_link && $post_type_archive_title ) {
-                $breadcrumbs[] = array( 'url' => $post_type_archive_link, 'label' => $post_type_archive_title );
-            }
-        }
-    } else {
+			// Add the breadcrumb.
+			if ( $post_type_archive_link && $post_type_archive_title ) {
+				$breadcrumbs[] = array( 'url' => $post_type_archive_link, 'label' => $post_type_archive_title );
+			}
+		}
+	} else {
 
-        // Add links to archive.
-        if ( is_singular() ) {
+		// Add links to archive.
+		if ( is_singular() ) {
 
-            // Get the information
-            $post_type_archive_link = get_post_type_archive_link( $post_type );
-            $post_type_archive_title = wpcampus_get_post_type_archive_title( $post_type );
+			// Get the information.
+			$post_type_archive_link = get_post_type_archive_link( $post_type );
+			$post_type_archive_title = wpcampus_get_post_type_archive_title( $post_type );
 
-            if ( $post_type_archive_link ) {
-                $breadcrumbs[] = array( 'url' => $post_type_archive_link, 'label' => $post_type_archive_title );
-            }
-        }
+			if ( $post_type_archive_link ) {
+				$breadcrumbs[] = array(
+					'url'   => $post_type_archive_link,
+					'label' => $post_type_archive_title,
+				);
+			}
+		}
 
-        // Print info for the current post.
-        if ( ( $post = get_queried_object() ) && is_a( $post, 'WP_Post' ) ) {
+		// Print info for the current post.
+		if ( ( $post = get_queried_object() ) && is_a( $post, 'WP_Post' ) ) {
 
-            // Get ancestors.
-            $post_ancestors = isset( $post ) ? get_post_ancestors( $post->ID ) : array();
+			// Get ancestors.
+			$post_ancestors = isset( $post ) ? get_post_ancestors( $post->ID ) : array();
 
-            // Add the ancestors.
-            foreach ( $post_ancestors as $post_ancestor_id ) {
+			// Add the ancestors.
+			foreach ( $post_ancestors as $post_ancestor_id ) {
 
-                // Add ancestor.
-                $breadcrumbs[] = array( 'ID' => $post_ancestor_id, 'url' => get_permalink( $post_ancestor_id ), 'label' => get_the_title( $post_ancestor_id ), );
+				// Add ancestor.
+				$breadcrumbs[] = array(
+					'ID'    => $post_ancestor_id,
+					'url'   => get_permalink( $post_ancestor_id ),
+					'label' => get_the_title( $post_ancestor_id ),
+				);
+			}
 
-            }
-
-            // Add current page - if not home page.
-            if ( isset( $post ) ) {
-                $breadcrumbs[ 'current' ] = array( 'ID' => $post->ID, 'url' => get_permalink( $post ), 'label' => get_the_title( $post->ID ), );
-            }
-        }
-    }
+			// Add current page - if not home page.
+			if ( isset( $post ) ) {
+				$breadcrumbs['current'] = array(
+					'ID'    => $post->ID,
+					'url'   => get_permalink( $post ),
+					'label' => get_the_title( $post->ID ),
+				);
+			}
+		}
+	}
 
 	// Build breadcrumbs HTML.
 	$breadcrumbs_html = null;
 
-	foreach( $breadcrumbs as $crumb_key => $crumb ) {
+	foreach ( $breadcrumbs as $crumb_key => $crumb ) {
 
 		// Make sure we have what we need.
-		if ( empty( $crumb[ 'label' ] ) ) {
+		if ( empty( $crumb['label'] ) ) {
 			continue;
 		}
 
@@ -269,24 +279,26 @@ function wpcampus_get_breadcrumbs_html() {
 		$crumb_classes = array( $crumb_key );
 
 		// Add if current.
-		if ( isset( $crumb[ 'current' ] ) && $crumb[ 'current' ] ) {
+		if ( isset( $crumb['current'] ) && $crumb['current'] ) {
 			$crumb_classes[] = 'current';
 		}
 
 		$breadcrumbs_html .= '<li role="menuitem"' . ( ! empty( $crumb_classes ) ? ' class="' . implode( ' ', $crumb_classes ) . '"' : null ) . '>';
 
 		// Add URL and label.
-		if ( ! empty( $crumb[ 'url' ] ) ) {
-			$breadcrumbs_html .= '<a href="' . $crumb[ 'url' ] . '"' . ( ! empty( $crumb[ 'title' ] ) ? ' title="' . $crumb[ 'title' ] . '"' : null ) . '>' . $crumb[ 'label' ] . '</a>';
+		if ( ! empty( $crumb['url'] ) ) {
+			$breadcrumbs_html .= '<a href="' . $crumb['url'] . '"' . ( ! empty( $crumb['title'] ) ? ' title="' . $crumb['title'] . '"' : null ) . '>' . $crumb['label'] . '</a>';
 		} else {
-			$breadcrumbs_html .= $crumb[ 'label' ];
+			$breadcrumbs_html .= $crumb['label'];
 		}
 
 		$breadcrumbs_html .= '</li>';
 	}
 
-    // Wrap them in nav.
-	$breadcrumbs_html = '<div class="breadcrumbs-wrapper"><nav class="breadcrumbs" role="menubar" aria-label="breadcrumbs">' . $breadcrumbs_html . '</nav></div>';
+	// Wrap them in nav.
+	$breadcrumbs_html = '<div class="breadcrumbs-wrapper">
+		<nav class="breadcrumbs" role="menubar" aria-label="breadcrumbs">' . $breadcrumbs_html . '</nav>
+	</div>';
 
 	//  We change up the variable so it doesn't interfere with global variable.
 	return $breadcrumbs_html;
