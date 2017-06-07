@@ -13,6 +13,16 @@ require_once( STYLESHEETPATH . '/includes/universities.php' );
 require_once( STYLESHEETPATH . '/includes/shortcodes.php' );
 
 /**
+ * Print the ed survey callout.
+ */
+function wpcampus_print_ed_survey_callout() {
+
+	?>
+	<div class="panel" style="text-align:center;"><h2>The "WordPress in Education" Survey</h2><p>After an overwhelming response to our 2016 survey, WPCampus is back this year to dig a little deeper on key topics that schools and campuses care about most when it comes to WordPress and website development. We’d love to include your feedback in our results this year. The larger the data set, the more we all benefit. <strong>The survey will close on June 23rd, 2017.</strong></p><a class="button expand" href="https://2017.wpcampus.org/announcements/wordpress-in-education-survey/">Take the "WordPress in Education" survey</a></div>
+	<?php
+}
+
+/**
  * Setup the API.
  */
 function wpcampus_setup_api() {
@@ -46,14 +56,24 @@ function wpcampus_setup_theme() {
 		'primary'   => __( 'Primary Menu', 'wpcampus' ),
 		'footer'    => __( 'Footer Menu', 'wpcampus' ),
 	));
+
 }
 add_action( 'after_setup_theme', 'wpcampus_setup_theme' );
+
+/**
+ * Register the category taxonomy
+ * to the podcast.
+ */
+function wpcampus_add_category_to_podcast() {
+	register_taxonomy_for_object_type( 'category', 'podcast' );
+}
+add_action( 'wp_loaded', 'wpcampus_add_category_to_podcast' );
 
 /**
  * Setup styles and scripts.
  */
 function wpcampus_enqueue_styles_scripts() {
-	$wpcampus_version = '0.59';
+	$wpcampus_version = '0.62';
 
 	// Get the directory.
 	$wpcampus_dir = trailingslashit( get_stylesheet_directory_uri() );
@@ -174,15 +194,196 @@ function wpcampus_get_post_type_archive_title( $post_type = '' ) {
 }
 
 /**
- * Get breadcrumbs markup.
+ * Print the articles.
+ *
+ * @param array $args
  */
-function wpcampus_get_breadcrumbs_html() {
+function wpcampus_print_articles( $args = array(), $query = null ) {
+	global $wp_query;
+
+	// Use default query if none was passed.
+	if ( ! $query || ! is_a( $query, 'WP_Query' ) ) {
+		$query = $wp_query;
+	}
+
+	do_action( 'wpcampus_before_articles' );
+
+	?>
+	<div class="wpcampus-articles">
+		<?php
+
+		while ( $query->have_posts() ) :
+			$query->the_post();
+
+			wpcampus_print_article( $args );
+
+		endwhile;
+
+		?>
+	</div><!--.wpcampus-articles-->
+	<?php
+
+	do_action( 'wpcampus_after_articles' );
+
+}
+
+/**
+ * Print the article.
+ *
+ * @param array $args
+ */
+function wpcampus_print_article( $args = array() ) {
+
+	// Define the defaults.
+	$defaults = array(
+		'header'        => false,
+		'link_to_post'  => true,
+		'print_content' => true,
+	);
+
+	// Merge incoming with defaults.
+	$args = wp_parse_args( $args, $defaults );
+
+	// Get post information.
+	$post_id = get_the_ID();
+	$post_permalink = get_permalink( $post_id );
+	$post_thumbnail_id = get_post_thumbnail_id( $post_id );
+
+	do_action( 'wpcampus_before_article' );
+
+	?>
+	<article id="post-<?php echo $post_id; ?>" <?php post_class(); ?>>
+		<?php
+
+		// Should we add a header?
+		if ( ! empty( $args['header'] ) ) :
+
+			do_action( 'wpcampus_before_article_header' );
+
+			?>
+			<<?php echo $args['header']; ?> class="article-title"><?php
+
+			if ( $args['link_to_post'] ) {
+				?><a href="<?php echo $post_permalink; ?>"><?php the_title(); ?></a><?php
+			} else {
+				the_title();
+			}
+
+			?></<?php echo $args['header']; ?>>
+			<?php
+
+			do_action( 'wpcampus_after_article_header' );
+
+		endif;
+
+		// Get the featured image.
+		$featured_image = $post_thumbnail_id > 0 ? wp_get_attachment_image_src( $post_thumbnail_id, 'thumbnail' ) : '';
+		if ( ! empty( $featured_image[0] ) ) :
+
+			do_action( 'wpcampus_before_article_thumbnail' );
+
+			?>
+			<img class="article-thumbnail" src="<?php echo $featured_image[0]; ?>" />
+			<?php
+
+			do_action( 'wpcampus_after_article_thumbnail' );
+
+		endif;
+
+		if ( $args['print_content'] ) {
+
+			do_action( 'wpcampus_before_article_content' );
+
+			the_content();
+
+			do_action( 'wpcampus_after_article_content' );
+
+		} else {
+
+			do_action( 'wpcampus_before_article_excerpt' );
+
+			the_excerpt();
+
+			do_action( 'wpcampus_after_article_excerpt' );
+
+		}
+
+		?>
+	</article>
+	<?php
+
+	do_action( 'wpcampus_after_article' );
+
+}
+
+/**
+ * Print article meta.
+ */
+function wpcampus_print_article_meta() {
+
+	// Get categories.
+	$categories = get_the_category_list( ', ' );
+
+	?>
+	<div class="article-meta-wrapper">
+		<span class="article-meta article-time"><?php wpcampus_print_article_time(); ?></span>
+		<?php
+
+		wpcampus_print_article_author();
+
+		if ( $categories ) :
+			?>
+			<span class="article-meta article-categories"><?php echo $categories; ?></span>
+			<?php
+		endif;
+
+		?>
+	</div>
+	<?php
+
+}
+
+/**
+ * Print the article author.
+ */
+function wpcampus_print_article_author() {
+	?><span class="article-meta article-author"><a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>"><?php echo get_the_author(); ?></a></span><?php
+}
+
+/**
+ * Print the article time.
+ */
+function wpcampus_print_article_time() {
+
+	$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
+
+	if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
+		$time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time>';
+	}
+
+	echo sprintf( $time_string,
+		get_the_date( DATE_W3C ),
+		get_the_date()
+	);
+}
+
+/**
+ * Print breadcrumbs.
+ */
+function wpcampus_print_breadcrumbs() {
+	echo wpcampus_get_breadcrumbs_html();
+}
+
+/**
+ * Get breadcrumbs list.
+ */
+function wpcampus_get_breadcrumbs() {
 
 	// Build array of breadcrumbs.
 	$breadcrumbs = array();
 
-	// Not for front page.
-	if ( is_front_page() ) {
+	// Not for front page or 404.
+	if ( is_front_page() || is_404() ) {
 		return false;
 	}
 
@@ -214,11 +415,39 @@ function wpcampus_get_breadcrumbs_html() {
 			if ( $post_type_archive_link && $post_type_archive_title ) {
 				$breadcrumbs[] = array( 'url' => $post_type_archive_link, 'label' => $post_type_archive_title );
 			}
+		} elseif ( is_author() ) {
+
+			// Add crumb to contributors page.
+			$breadcrumbs[] = array(
+				'url'   => '/contributors/',
+				'label' => __( 'Contributors', 'wpcampus' ),
+			);
+
+			// Add crumb to current contributor's page.
+			$breadcrumbs['current'] = array(
+				'url'   => get_author_posts_url( get_the_author_meta( 'ID' ) ),
+				'label' => get_the_author(),
+			);
+		} else {
+
+			$breadcrumbs[] = array(
+				'url'   => '/blog/',
+				'label' => __( 'Blog', 'wpcampus' ),
+			);
+
 		}
 	} else {
 
-		// Add links to archive.
-		if ( is_singular() ) {
+		/*
+		 * Add links to main blog
+		 * or to post type archive.
+		 */
+		if ( is_singular( 'post' ) ) {
+			$breadcrumbs[] = array(
+				'url'   => '/blog/',
+				'label' => __( 'Blog', 'wpcampus' ),
+			);
+		} elseif ( is_singular() ) {
 
 			// Get the information.
 			$post_type_archive_link = get_post_type_archive_link( $post_type );
@@ -233,7 +462,8 @@ function wpcampus_get_breadcrumbs_html() {
 		}
 
 		// Print info for the current post.
-		if ( ( $post = get_queried_object() ) && is_a( $post, 'WP_Post' ) ) {
+		$post = get_queried_object();
+		if ( $post && is_a( $post, 'WP_Post' ) ) {
 
 			// Get ancestors.
 			$post_ancestors = isset( $post ) ? get_post_ancestors( $post->ID ) : array();
@@ -249,8 +479,8 @@ function wpcampus_get_breadcrumbs_html() {
 				);
 			}
 
-			// Add current page - if not home page.
-			if ( isset( $post ) ) {
+			// Add current page - if not singular post.
+			if ( isset( $post ) && ! is_singular( array( 'post', 'podcast' ) ) ) {
 				$breadcrumbs['current'] = array(
 					'ID'    => $post->ID,
 					'url'   => get_permalink( $post ),
@@ -258,6 +488,22 @@ function wpcampus_get_breadcrumbs_html() {
 				);
 			}
 		}
+	}
+
+	return $breadcrumbs;
+}
+
+/**
+ * Get breadcrumbs markup.
+ */
+function wpcampus_get_breadcrumbs_html() {
+
+	// Get the breadcrumbs.
+	$breadcrumbs = wpcampus_get_breadcrumbs();
+
+	// Make sure we have crumbs.
+	if ( empty( $breadcrumbs ) ) {
+		return '';
 	}
 
 	// Build breadcrumbs HTML.
@@ -296,11 +542,12 @@ function wpcampus_get_breadcrumbs_html() {
 	}
 
 	// Wrap them in nav.
-	$breadcrumbs_html = '<div class="breadcrumbs-wrapper">
+	if ( ! empty( $breadcrumbs_html ) ) {
+		$breadcrumbs_html = '<div class="breadcrumbs-wrapper">
 		<nav class="breadcrumbs" role="menubar" aria-label="breadcrumbs">' . $breadcrumbs_html . '</nav>
 	</div>';
+	}
 
-	//  We change up the variable so it doesn't interfere with global variable.
 	return $breadcrumbs_html;
 }
 
@@ -329,4 +576,162 @@ function wpcampus_print_social_media_icons( $color = 'black' ) {
 		<li><a class="github" href="https://github.com/wpcampus/"><img src="<?php echo $images_dir; ?>github<?php echo $color; ?>.svg" alt="<?php printf( __( 'Follow %1$s on %2$s', 'wpcampus' ), 'WPCampus', 'GitHub' ); ?>" /></a></li>
 	</ul>
 	<?php
+}
+
+/**
+ * Print the 404 page.
+ */
+function wpcampus_print_404() {
+
+	do_action( 'wpcampus_before_404' );
+
+	?>
+	<p>Uh-oh. This page seems to be missing. Please check to make sure the link you requested was entered correctly.</p>
+	<p>If you can't find what you're looking for in the menu, please <a href="/contact/">reach out to us</a> and let us know. We'd be happy to help.</p>
+	<?php
+
+	do_action( 'wpcampus_after_404' );
+
+}
+
+/**
+ * Print a specific contributor's profile.
+ */
+function wpcampus_print_contributor( $user_id = 0 ) {
+
+	// Make sure we have a user ID.
+	if ( ! $user_id ) {
+		$user_id = get_the_author_meta( 'ID' );
+	}
+
+	// Get display name
+	$author_name = get_the_author_meta( 'display_name', $user_id );
+
+	// Get thumbnail.
+	$author_thumbnail = get_avatar_url( $user_id, array(
+		'size' => '200',
+	));
+
+	// Get other fields.
+	$author_desc = get_the_author_meta( 'description', $user_id );
+	$author_website = get_the_author_meta( 'url', $user_id );
+	$author_twitter = get_the_author_meta( 'twitter', $user_id );
+	$author_company = get_the_author_meta( 'company', $user_id );
+	$author_company_pos = get_the_author_meta( 'company_position', $user_id );
+
+	?>
+	<div class="wpcampus-contributor<?php echo $author_thumbnail ? ' has-thumbnail' : ''; ?>">
+		<div class="inside">
+			<h2 class="contributor-name"><?php
+
+			if ( ! is_author() ) :
+				?>
+				<a href="<?php echo esc_url( get_author_posts_url( $user_id ) ); ?>"><?php echo $author_name; ?></a>
+				<?php
+			else :
+				echo $author_name;
+			endif;
+
+			?></h2>
+			<?php
+
+			// Display author thumbnail.
+			if ( ! empty( $author_thumbnail ) ) :
+
+				?>
+				<img class="author-thumbnail" src="<?php echo $author_thumbnail; ?>" />
+				<?php
+			endif;
+
+			// Build meta.
+			$contributor_meta = array();
+
+			// Add company.
+			if ( $author_company ) {
+				if ( $author_company_pos ) {
+					$contributor_meta['company'] = "{$author_company_pos}, {$author_company}";
+				} else {
+					$contributor_meta['company'] = $author_company;
+				}
+			}
+
+			// Add Twitter.
+			if ( $author_twitter ) {
+
+				// Sanitize Twitter handle.
+				$author_twitter_handle = preg_replace( '/[^a-z0-9]/i', '', $author_twitter );
+				$contributor_meta['twitter'] = '<a href="' . esc_url( 'https://twitter.com/' . $author_twitter_handle ) . '">@' . $author_twitter_handle . '</a>';
+			}
+
+			// Add website.
+			if ( $author_website ) {
+				$contributor_meta['website'] = '<a href="' . esc_url( $author_website ) . '">' . $author_website . '</a>';
+			}
+
+			// Display meta
+			if ( ! empty( $contributor_meta ) ) :
+				?>
+				<div class="contributor-meta-wrapper">
+					<?php
+
+					foreach ( $contributor_meta as $meta ) :
+						?><span class="contributor-meta"><?php echo $meta; ?></span><?php
+					endforeach;
+
+					?>
+				</div>
+				<?php
+			endif;
+
+			// Display author bio.
+			if ( ! empty( $author_desc ) ) :
+
+				?>
+				<p class="contributor-desc"><?php echo $author_desc; ?></p>
+				<?php
+			endif;
+
+			?>
+		</div>
+	</div>
+	<?php
+}
+
+/**
+ * Print podcast promo/links.
+ */
+function wpcampus_print_podcast_promo() {
+
+	?>
+	<div class="panel dark-blue center" style="margin-bottom:20px;">New episodes of <a href="/podcast/">The WPCampus Podcast</a> are released every month.</div>
+	<div style="text-align: center">
+		<ul class="button-group">
+			<li><a href="https://itun.es/i6YF9HH" class="button">Listen on iTunes</a></li>
+			<li><a href="https://play.google.com/music/listen?u=0#/ps/Imipnlywvba5v3lqu7y646dg6z4" class="button">Listen on Google Play</a></li>
+			<li><a href="/feed/podcast" class="button">View RSS feed</a></li>
+		</ul>
+	</div>
+	<?php
+}
+
+/**
+ * Is used in certain places to prepend
+ * the post title with post type.
+ *
+ * @param   $post_title - the post title we're prepending.
+ * @param   $post_id - the post ID.
+ * @return  string - the new post title.
+ */
+function wpcampus_prepend_post_title( $post_title, $post_id ) {
+
+	// Get the post type.
+	$post_type = get_post_type( $post_id );
+
+	if ( 'post' == $post_type ) {
+		return '<span class="fade type">' . __( 'Blog:', 'wpcampus' ) . '</span> ' . $post_title;
+	} elseif ( 'podcast' == $post_type ) {
+		return '<span class="fade type">' . __( 'Podcast:', 'wpcampus' ) . '</span> ' . $post_title;
+	}
+
+	return $post_title;
 }

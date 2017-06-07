@@ -3,13 +3,17 @@
 // Add article meta after header.
 add_action( 'wpcampus_after_article_header', 'wpcampus_print_article_meta', 5 );
 
+/**
+ * Add contributor info before articles.
+ */
+function wpcampus_author_archive_add_contributor() {
+	if ( is_author() ) {
+		wpcampus_print_contributor();
+	}
+}
+add_action( 'wpcampus_before_articles', 'wpcampus_author_archive_add_contributor' );
+
 get_header();
-
-?>
-<p>The WPCampus Podcast is a monthly show where members of the community come together to discuss relevant topics, unique ways that WordPress is being used in higher education, share tutorials and walkthroughs, and more.</p>
-<?php
-
-wpcampus_print_podcast_promo();
 
 if ( ! have_posts() ) :
 	wpcampus_print_404();

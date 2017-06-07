@@ -3,14 +3,21 @@
 /**
  * Remove the auto <p> when needed.
  */
-function wpcampus_remove_filters() {
+function wpcampus_add_remove_filters() {
+
+	// Print the ed survey callout.
+	add_action( 'wpcampus_after_404', 'wpcampus_print_ed_survey_callout' );
+
+	if ( ! is_archive() && ! is_home() ) {
+		add_action( 'wpcampus_before_article', 'wpcampus_print_ed_survey_callout' );
+	}
 
 	// Remove on order t-shirt page.
 	if ( is_page( 'order-wpcampus-shirt' ) ) {
 		remove_filter( 'the_content', 'wpautop' );
 	}
 }
-add_action( 'wp', 'wpcampus_remove_filters' );
+add_action( 'wp', 'wpcampus_add_remove_filters' );
 
 /**
  * Filter the nav menu item CSS.
@@ -22,7 +29,9 @@ add_action( 'wp', 'wpcampus_remove_filters' );
  * @return  array - the filtered classes array.
  */
 function wpcampus_filter_nav_menu_css_class( $classes, $item, $args, $depth ) {
-	if ( is_singular( 'podcast' ) && '/podcast/' == $item->url ) {
+	if ( is_singular( 'post' ) && 'Blog' == $item->title ) {
+		$classes[] = 'current-menu-item';
+	} elseif ( is_singular( 'podcast' ) && '/podcast/' == $item->url ) {
 		$classes[] = 'current-menu-item';
 	}
 	return $classes;
@@ -41,12 +50,36 @@ function wpcampus_filter_page_title( $page_title ) {
 	 * events plugin was overwriting the
 	 * 'post_type_archive_title' filter.
 	 */
-	if ( is_post_type_archive( 'tribe_events' ) || is_singular( 'tribe_events' ) ) {
+	if ( is_singular( 'post' ) ) {
+		return '<span class="fade">' . __( 'Blog:', 'wpcampus' ) . '</span> ' . $page_title;
+	} elseif ( is_home() ) {
+		return sprintf( __( 'The %s Blog', 'wpcampus' ), 'WPCampus' );
+	} elseif ( is_author() ) {
+		return '<span class="fade">' . __( 'Contributor:', 'wpcampus' ) . '</span> ' . get_the_author();
+	} elseif ( is_post_type_archive( 'tribe_events' ) || is_singular( 'tribe_events' ) ) {
 		return __( 'Events', 'wpcampus' );
 	} elseif ( is_post_type_archive( 'podcast' ) ) {
 		return sprintf( __( 'The %s Podcast', 'wpcampus' ), 'WPCampus' );
 	} elseif ( is_singular( 'podcast' ) ) {
 		return '<span class="fade">' . __( 'Podcast:', 'wpcampus' ) . '</span> ' . $page_title;
+	} elseif ( is_category() ) {
+
+		// Add category header.
+		$categories = get_the_category();
+		if ( ! empty( $categories ) ) :
+			$category = array_shift( $categories );
+			if ( ! empty( $category ) ) :
+				return '<span class="fade">' . sprintf( __( 'The %s Blog:', 'wpcampus' ), 'WPCampus' ) . '</span> ' . $category->name;
+			endif;
+		endif;
+
+	} elseif ( is_archive() ) {
+
+		// Get the post type.
+		$post_type = get_post_type();
+		if ( 'post' == $post_type ) {
+			return sprintf( __( 'The %s Blog', 'wpcampus' ), 'WPCampus' );
+		}
 	}
 
 	return $page_title;
@@ -73,6 +106,27 @@ function wpcampus_filter_post_type_archive_title( $title, $post_type ) {
 	return $title;
 }
 add_filter( 'wpcampus_post_type_archive_title', 'wpcampus_filter_post_type_archive_title', 100, 2 );
+
+/**
+ * Adjust queries
+ */
+function wpcampus_adjust_queries( $query ) {
+
+	/*
+	 * For now, get all posts and podcasts posts.
+	 *
+	 * @TODO add pagination.
+	 */
+	if ( is_post_type_archive( array( 'podcast', 'post' ) ) && $query->is_main_query() ) {
+		$query->set( 'nopaging', true );
+	}
+
+	// Make sure authors get all post types.
+	if ( is_author() ) {
+		$query->set( 'post_type', array( 'post', 'podcast' ) );
+	}
+}
+add_action( 'pre_get_posts', 'wpcampus_adjust_queries' );
 
 /**
  * Filter/build our own map infowindow content.

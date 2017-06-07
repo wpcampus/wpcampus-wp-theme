@@ -138,26 +138,31 @@ $is_events_page = is_post_type_archive( 'tribe_events' ) || is_singular( 'tribe_
 	if ( ! $is_front_page ) :
 		?>
 		<div id="wpcampus-main-page-title">
-			<h1><?php
+			<div class="inside">
+				<h1><?php
 
-			/*
-			 * Print page title.
-			 */
-			if ( is_404() ) {
-				echo 'Page Not Found';
-			} else {
-				echo apply_filters( 'wpcampus_page_title', get_the_title() );
-			}
+				/*
+				 * Print page title.
+				 */
+				if ( is_404() ) {
+					echo 'Page Not Found';
+				} else {
+					echo apply_filters( 'wpcampus_page_title', get_the_title() );
+				}
 
-			?></h1>
-			<?php
+				?></h1>
+				<?php
 
-			// Include breadcrumbs.
-			if ( $breadcrumbs_html = wpcampus_get_breadcrumbs_html() ) {
-				echo $breadcrumbs_html;
-			}
+				// If article, include article meta.
+				if ( is_singular( array( 'post', 'podcast' ) ) ) {
+					wpcampus_print_article_meta();
+				}
 
-			?>
+				// Include breadcrumbs.
+				wpcampus_print_breadcrumbs();
+
+				?>
+			</div>
 		</div>
 		<?php
 	endif;
@@ -165,5 +170,4 @@ $is_events_page = is_post_type_archive( 'tribe_events' ) || is_singular( 'tribe_
 	?>
 	<div id="wpcampus-main">
 		<div class="row">
-			<div class="small-12 columns">
-				<div class="panel" style="text-align:center;"><h2>The "WordPress in Education" Survey</h2><p>After an overwhelming response to our 2016 survey, WPCampus is back this year to dig a little deeper on key topics that schools and campuses care about most when it comes to WordPress and website development. We’d love to include your feedback in our results this year. The larger the data set, the more we all benefit. <strong>The survey will close on June 23rd, 2017.</strong></p><a class="button expand" href="https://2017.wpcampus.org/announcements/wordpress-in-education-survey/">Take the "WordPress in Education" survey</a></div>
+			<div id="wpcampus-content" class="small-12 columns">
