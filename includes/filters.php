@@ -13,6 +13,23 @@ function wpcampus_remove_filters() {
 add_action( 'wp', 'wpcampus_remove_filters' );
 
 /**
+ * Filter the nav menu item CSS.
+ *
+ * @param   $classes - array - The CSS classes that are applied to the menu item's `<li>` element.
+ * @param   $item - WP_Post - The current menu item.
+ * @param   $args- stdClass - An object of wp_nav_menu() arguments.
+ * @param   $depth - int - Depth of menu item. Used for padding.
+ * @return  array - the filtered classes array.
+ */
+function wpcampus_filter_nav_menu_css_class( $classes, $item, $args, $depth ) {
+	if ( is_singular( 'podcast' ) && '/podcast/' == $item->url ) {
+		$classes[] = 'current-menu-item';
+	}
+	return $classes;
+}
+add_filter( 'nav_menu_css_class', 'wpcampus_filter_nav_menu_css_class', 100, 4 );
+
+/**
  * Filter the page title.
  */
 function wpcampus_filter_page_title( $page_title ) {

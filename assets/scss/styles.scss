@@ -93,6 +93,19 @@ ul {
     }
 }
 
+.button-group {
+	margin: 0 0 $paragraph-margin-bottom 0;
+
+	.button {
+		margin-bottom: 0;
+		border-top: 1px solid rgba(255, 255, 255, 0.5);
+	}
+}
+
+hr {
+	margin: 2.5rem 0;
+}
+
 // Make padding for the banner.
 body {
     padding-top: $wpc-banner-height;
