@@ -8,9 +8,34 @@
 	padding-top: 3em;
 	margin-top: 3.5em;
 
+	.comment-respond {
+
+		.comment-reply-title {
+			font-size: 1.5em;
+			padding: 0 30px;
+			margin: 0 0 0.5em 0;
+		}
+
+		.form-submit {
+			.submit {
+				width: 100%;
+				border: 0;
+				background: $wpc-light-gray;
+				padding: 10px 20px;
+				line-height: 20px;
+				text-transform: uppercase;
+			}
+		}
+
+		.comment-form {
+			padding: 0 30px;
+		}
+	}
+
 	.comments-title {
 		font-size: 1.5em;
-		margin: 0 30px 1em;
+		padding: 0 30px;
+		margin: 0 0 1em 0;
 	}
 
 	.comment-list {

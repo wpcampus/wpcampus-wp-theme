@@ -66,7 +66,7 @@ if ( post_password_required() ) {
 	endif;
 
 	// If comments are closed and there are comments, let's leave a little note, shall we?
-	if ( ! comments_open() && get_comments_number() && post_type_supports( get_post_type(), 'comments' ) ) :
+	if ( ! comments_open() && post_type_supports( get_post_type(), 'comments' ) ) :
 
 		?>
 		<p class="no-comments"><?php _e( 'Comments are closed.', 'wpcampus' ); ?></p>

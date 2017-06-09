@@ -661,13 +661,14 @@ iframe {
 
 	.article-meta {
 
-        .article-comments {
+        &.article-comments.comments-open {
             font-weight: bold;
         }
 
 		&:before {
 			content: '-';
 			padding: 0 8px 0 5px;
+			font-weight: normal;
 		}
 
 		&:first-child {

@@ -201,13 +201,14 @@ body.single-podcast #wpcampus-main {
 	color: inherit;
 }
 
-.article-meta-wrapper .article-comments {
+.article-meta-wrapper .article-meta.article-comments.comments-open {
 	font-weight: bold;
 }
 
 .article-meta-wrapper .article-meta:before {
 	content: '-';
 	padding: 0 8px 0 5px;
+	font-weight: normal;
 }
 
 .article-meta-wrapper .article-meta:first-child:before {
@@ -310,9 +311,29 @@ body.single-podcast #wpcampus-main {
 	margin-top: 3.5em;
 }
 
+#comments .comment-respond .comment-reply-title {
+	font-size: 1.5em;
+	padding: 0 30px;
+	margin: 0 0 0.5em 0;
+}
+
+#comments .comment-respond .form-submit .submit {
+	width: 100%;
+	border: 0;
+	background: #eee;
+	padding: 10px 20px;
+	line-height: 20px;
+	text-transform: uppercase;
+}
+
+#comments .comment-respond .comment-form {
+	padding: 0 30px;
+}
+
 #comments .comments-title {
 	font-size: 1.5em;
-	margin: 0 30px 1em;
+	padding: 0 30px;
+	margin: 0 0 1em 0;
 }
 
 #comments .comment-list {

@@ -59,6 +59,13 @@ function wpcampus_setup_theme() {
 		'footer'    => __( 'Footer Menu', 'wpcampus' ),
 	));
 
+	// Add HTML5 support.
+	add_theme_support( 'html5', array(
+		'comment-form',
+		'comment-list',
+		'gallery',
+		'caption',
+	));
 }
 add_action( 'after_setup_theme', 'wpcampus_setup_theme' );
 
@@ -88,7 +95,7 @@ add_action( 'wp_loaded', 'wpcampus_add_category_to_podcast' );
  * Setup styles and scripts.
  */
 function wpcampus_enqueue_styles_scripts() {
-	$wpcampus_version = '0.62';
+	$wpcampus_version = '0.63';
 
 	// Get the directory.
 	$wpcampus_dir = trailingslashit( get_stylesheet_directory_uri() );
@@ -352,8 +359,15 @@ function wpcampus_print_article_meta() {
 			// Get # of comments.
 			$comments_number = get_comments_number();
 
+			// Build comment classes.
+			$comment_classes = array( 'article-meta', 'article-comments' );
+
+			if ( comments_open() ) {
+				$comment_classes[] = 'comments-open';
+			}
+
 			?>
-			<span class="article-meta article-comments"><a href="#comments"><?php printf( _n( '%s comment', '%s comments', $comments_number, 'wpcampus' ), $comments_number ); ?></a></span>
+			<span class="<?php echo implode( ' ', $comment_classes ); ?>"><a href="#comments"><?php printf( _n( '%s comment', '%s comments', $comments_number, 'wpcampus' ), $comments_number ); ?></a></span>
 			<?php
 
 		endif;
