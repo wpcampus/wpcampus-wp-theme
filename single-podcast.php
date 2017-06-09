@@ -21,6 +21,8 @@ else :
 
 		wpcampus_print_article();
 
+		comments_template();
+
 	endwhile;
 endif;
 

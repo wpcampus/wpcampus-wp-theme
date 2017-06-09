@@ -1,16 +1,18 @@
 <?php
 
+$includes_path = STYLESHEETPATH . '/includes/';
+
 // Include filters.
-require_once( STYLESHEETPATH . '/includes/filters.php' );
+require_once( $includes_path . 'filters.php' );
 
 // Include data functionality.
-require_once( STYLESHEETPATH . '/includes/data.php' );
+require_once( $includes_path . 'data.php' );
 
 // Include university functionality.
-require_once( STYLESHEETPATH . '/includes/universities.php' );
+require_once( $includes_path . 'universities.php' );
 
 // Include shortcodes.
-require_once( STYLESHEETPATH . '/includes/shortcodes.php' );
+require_once( $includes_path . 'shortcodes.php' );
 
 /**
  * Print the ed survey callout.
@@ -59,6 +61,19 @@ function wpcampus_setup_theme() {
 
 }
 add_action( 'after_setup_theme', 'wpcampus_setup_theme' );
+
+/**
+ * Load files depending on page,
+ * After WP object is set up.
+ */
+function wpcampus_load_files() {
+
+	// Include comments.
+	if ( is_singular() ) {
+		require_once( STYLESHEETPATH . '/includes/comments.php' );
+	}
+}
+add_action( 'wp', 'wpcampus_load_files' );
 
 /**
  * Register the category taxonomy
@@ -330,6 +345,18 @@ function wpcampus_print_article_meta() {
 		<?php
 
 		wpcampus_print_article_author();
+
+		// If comments are closed and there are comments, let's leave a little note, shall we?
+		if ( post_type_supports( get_post_type(), 'comments' ) ) :
+
+			// Get # of comments.
+			$comments_number = get_comments_number();
+
+			?>
+			<span class="article-meta article-comments"><a href="#comments"><?php printf( _n( '%s comment', '%s comments', $comments_number, 'wpcampus' ), $comments_number ); ?></a></span>
+			<?php
+
+		endif;
 
 		if ( $categories ) :
 			?>

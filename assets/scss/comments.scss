@@ -1,0 +1,74 @@
+// Include our settings.
+@import "_settings";
+
+// @TODO Only include on pages with comments.
+
+#comments {
+	border-top: 1px solid $wpc-light-gray;
+	padding-top: 3em;
+	margin-top: 3.5em;
+
+	.comments-title {
+		font-size: 1.5em;
+		margin: 0 30px 1em;
+	}
+
+	.comment-list {
+		list-style: none;
+		margin-left: 0;
+
+		.comment {
+			padding: 30px;
+
+			.comment-meta {
+				border: 0;
+				padding: 0;
+				margin: 0 0 20px 0;
+
+				a {
+					color: inherit;
+				}
+
+				.avatar {
+					margin-right: 12px;
+				}
+
+				.comment-meta-text {
+					display: inline-block;
+					vertical-align: middle;
+				}
+
+				.comment-author {
+
+					.author-name {
+						font-weight: bold;
+					}
+				}
+
+				.comment-time {
+					font-size: 0.9em;
+					opacity: 0.7;
+				}
+			}
+
+			.comment-content {
+
+				> *:last-child {
+					margin-bottom: 0;
+				}
+			}
+
+			&.odd {
+				background: rgba(0, 0, 0, 0.025);
+			}
+		}
+	}
+
+	.no-comments {
+		background: rgba( $primary-color, 0.05 );
+		font-style: italic;
+		font-weight: bold;
+		color: $primary-color;
+		padding: 20px;
+	}
+}
