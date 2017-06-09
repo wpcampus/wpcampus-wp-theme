@@ -25,8 +25,12 @@ else :
 		'print_content' => false,
 	);
 
+	add_filter( 'the_title', 'wpcampus_prepend_post_title', 100, 2 );
+
 	// Print the articles.
 	wpcampus_print_articles( $args );
+
+	remove_filter( 'the_title', 'wpcampus_prepend_post_title', 100, 2 );
 
 endif;
 

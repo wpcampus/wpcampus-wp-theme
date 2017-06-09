@@ -29,12 +29,22 @@ iframe {
 	font-style: italic;
 }
 
+#wpcampus-main .wpcampus-articles article {
+	margin: 3.5em 0 0;
+	padding-top: 3em;
+	border-top: 1px solid #eee;
+}
+#wpcampus-main .wpcampus-articles article:first-child {
+	padding-top: 0;
+	border-top: 0;
+}
+
 #wpcampus-main .wpcampus-articles article .article-title {
 	font-size: 2em;
 }
 
-#wpcampus-main .wpcampus-articles article {
-	margin: 3em 0;
+#wpcampus-main .wpcampus-articles article .article-title .type {
+	text-transform: uppercase;
 }
 
 body.home #wpcampus-main .wpcampus-front-page-articles {
@@ -52,10 +62,6 @@ body.home #wpcampus-main .wpcampus-front-page-articles h2 {
 
 body.home #wpcampus-main .wpcampus-front-page-articles .article-title {
 	font-size: 1.7em;
-}
-
-body.home #wpcampus-main .wpcampus-front-page-articles .article-title .type {
-	text-transform: uppercase;
 }
 
 body.home #wpcampus-main .wpcampus-front-page-articles .button-group {
