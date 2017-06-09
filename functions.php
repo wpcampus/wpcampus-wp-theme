@@ -703,6 +703,9 @@ function wpcampus_print_contributor( $user_id = 0 ) {
 function wpcampus_print_podcast_promo() {
 
 	?>
+	<div class="panel">
+		<p>The WPCampus Podcast is a monthly show where members of the community come together to discuss relevant topics, unique ways that WordPress is being used in higher education, share tutorials and walkthroughs, and more. <strong><em>If you'd like to be a guest on the show, or have a topic you'd like us to discuss, please <a href="/contact/">let us know</a>.</em></strong></p>
+	</div>
 	<div class="panel dark-blue center" style="margin-bottom:20px;">New episodes of <a href="/podcast/">The WPCampus Podcast</a> are released every month.</div>
 	<div style="text-align: center">
 		<ul class="button-group">

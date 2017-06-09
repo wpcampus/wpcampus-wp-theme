@@ -23,7 +23,7 @@ if ( $query_posts->have_posts() ) :
 	// Add article meta after header.
 	add_action( 'wpcampus_after_article_header', 'wpcampus_print_article_meta', 5 );
 
-	// Remove the callout.
+	// Remove the callout from displaying before each article in the list.
 	remove_action( 'wpcampus_before_article', 'wpcampus_print_ed_survey_callout' );
 
 	// Setup article arguments.
