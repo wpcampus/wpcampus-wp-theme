@@ -121,8 +121,8 @@ function wpcampus_adjust_queries( $query ) {
 		$query->set( 'nopaging', true );
 	}
 
-	// Make sure authors get all post types.
-	if ( is_author() ) {
+	// Make sure these pages get all post types.
+	if ( is_search() || is_author() || is_category() || is_tag() ) {
 		$query->set( 'post_type', array( 'post', 'podcast' ) );
 	}
 }
