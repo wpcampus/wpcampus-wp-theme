@@ -203,7 +203,7 @@ body.single-podcast #wpcampus-main {
 	color: inherit;
 }
 
-.article-meta-wrapper .article-meta.article-comments.comments-open {
+.article-meta-wrapper .article-meta.article-comments.has-comments {
 	font-weight: bold;
 }
 

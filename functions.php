@@ -346,6 +346,9 @@ function wpcampus_print_article_meta() {
 	// Get categories.
 	$categories = get_the_category_list( ', ' );
 
+	// Get permalink.
+	$comments_link = get_permalink() . '#comments';
+
 	?>
 	<div class="article-meta-wrapper">
 		<span class="article-meta article-time"><?php wpcampus_print_article_time(); ?></span>
@@ -362,12 +365,19 @@ function wpcampus_print_article_meta() {
 			// Build comment classes.
 			$comment_classes = array( 'article-meta', 'article-comments' );
 
-			if ( comments_open() ) {
-				$comment_classes[] = 'comments-open';
+			if ( $comments_number ) {
+				$comment_classes[] = 'has-comments';
 			}
 
 			?>
-			<span class="<?php echo implode( ' ', $comment_classes ); ?>"><a href="#comments"><?php printf( _n( '%s comment', '%s comments', $comments_number, 'wpcampus' ), $comments_number ); ?></a></span>
+			<span class="<?php echo implode( ' ', $comment_classes ); ?>"><a href="<?php echo $comments_link; ?>"><?php
+
+				if ( ! $comments_number ) {
+					echo __( 'Leave a comment', 'wpcampus' );
+				} else {
+					printf( _n( '%s comment', '%s comments', $comments_number, 'wpcampus' ), $comments_number );
+				}
+			?></a></span>
 			<?php
 
 		endif;
