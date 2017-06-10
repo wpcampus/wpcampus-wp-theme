@@ -299,6 +299,10 @@ body.single-podcast #wpcampus-main {
 	line-height: 1.3;
 }
 
+#wpcampus-content .wpcampus-podcast-promo {
+	margin: 3em 0;
+}
+
 #wpcampus-content > *:first-child {
 	margin-top: 0;
 }
