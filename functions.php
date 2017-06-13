@@ -95,7 +95,7 @@ add_action( 'wp_loaded', 'wpcampus_add_category_to_podcast' );
  * Setup styles and scripts.
  */
 function wpcampus_enqueue_styles_scripts() {
-	$wpcampus_version = '0.64';
+	$wpcampus_version = '0.67';
 
 	// Get the directory.
 	$wpcampus_dir = trailingslashit( get_stylesheet_directory_uri() );

@@ -48,11 +48,11 @@ iframe {
 	text-transform: uppercase;
 }
 
-body.home #wpcampus-main .wpcampus-front-page-articles {
+#wpcampus-main .wpcampus-front-page-articles {
 	margin-top: 4em;
 }
 
-body.home #wpcampus-main .wpcampus-front-page-articles h2 {
+#wpcampus-main .wpcampus-front-page-articles h2 {
 	text-transform: uppercase;
 	font-size: 2em;
 	font-weight: 400;
@@ -62,11 +62,11 @@ body.home #wpcampus-main .wpcampus-front-page-articles h2 {
 	margin-bottom: 1.5em;
 }
 
-body.home #wpcampus-main .wpcampus-front-page-articles .article-title {
+#wpcampus-main .wpcampus-front-page-articles .article-title {
 	font-size: 1.7em;
 }
 
-body.home #wpcampus-main .wpcampus-front-page-articles .button-group {
+#wpcampus-main .wpcampus-front-page-articles .button-group {
 	text-align: center;
 	margin-top: 3em;
 }
