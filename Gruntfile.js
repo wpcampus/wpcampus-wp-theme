@@ -1,5 +1,18 @@
 module.exports = function(grunt) {
 
+	// Load our dependencies
+	grunt.loadNpmTasks( 'grunt-contrib-sass' );
+	grunt.loadNpmTasks( 'grunt-contrib-watch' );
+	grunt.loadNpmTasks( 'grunt-contrib-uglify' );
+	grunt.loadNpmTasks( 'grunt-newer' );
+	grunt.loadNpmTasks( 'grunt-phpcs' );
+
+    var phpFiles = [
+        '**/*.php',
+        '!vendor/**',
+        '!node_modules/**'
+    ];
+
     grunt.initConfig({
         sass: {
             wpcampus: {
@@ -41,18 +54,33 @@ module.exports = function(grunt) {
             wpcampusjs: {
                 files: [ 'js/*' ],
                 tasks: [ 'newer:uglify:wpcampus' ]
+            },
+	        phpcs: {
+		        files: phpFiles,
+		        tasks: ['phpcs']
+	        }
+        },
+        phpcs: {
+            main: {
+                src: phpFiles
+            },
+            options: {
+                bin: './vendor/bin/phpcs',
+                standard: 'WordPress-Core'
             }
         }
     });
 
-    // Load our dependencies
-    grunt.loadNpmTasks( 'grunt-contrib-sass' );
-    grunt.loadNpmTasks( 'grunt-contrib-watch' );
-    grunt.loadNpmTasks( 'grunt-contrib-uglify' );
-    grunt.loadNpmTasks( 'grunt-newer' );
-
     // Register our tasks
-   	grunt.registerTask( 'default', [ 'newer:sass', 'newer:uglify', 'watch' ] );
+   	grunt.registerTask( 'default', [
+		'newer:sass',
+	    'newer:uglify',
+	    'test',
+	    'watch'
+    ]);
+
+	// Run tests
+	grunt.registerTask( 'test', ['phpcs'] );
 
     // Register a watch function
     grunt.event.on( 'watch', function( action, filepath, target ) {

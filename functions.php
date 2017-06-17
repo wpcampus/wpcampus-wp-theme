@@ -372,11 +372,12 @@ function wpcampus_print_article_meta() {
 			?>
 			<span class="<?php echo implode( ' ', $comment_classes ); ?>"><a href="<?php echo $comments_link; ?>"><?php
 
-				if ( ! $comments_number ) {
-					echo __( 'Leave a comment', 'wpcampus' );
-				} else {
-					printf( _n( '%s comment', '%s comments', $comments_number, 'wpcampus' ), $comments_number );
-				}
+			if ( ! $comments_number ) {
+				echo __( 'Leave a comment', 'wpcampus' );
+			} else {
+				printf( _n( '%s comment', '%s comments', $comments_number, 'wpcampus' ), $comments_number );
+			}
+
 			?></a></span>
 			<?php
 
