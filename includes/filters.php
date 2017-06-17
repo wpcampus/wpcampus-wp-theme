@@ -1,73 +1,144 @@
 <?php
-	
+
 /**
  * Remove the auto <p> when needed.
  */
-function wpcampus_remove_filters() {
-	
-	// Remove on order t-shirt page
+function wpcampus_add_remove_filters() {
+
+	// Print the ed survey callout.
+	add_action( 'wpcampus_after_404', 'wpcampus_print_ed_survey_callout' );
+
+	if ( ! is_archive() && ! is_home() ) {
+		add_action( 'wpcampus_before_article', 'wpcampus_print_ed_survey_callout' );
+	}
+
+	// Remove on order t-shirt page.
 	if ( is_page( 'order-wpcampus-shirt' ) ) {
 		remove_filter( 'the_content', 'wpautop' );
 	}
 }
-add_action( 'wp', 'wpcampus_remove_filters' );
+add_action( 'wp', 'wpcampus_add_remove_filters' );
+
+/**
+ * Filter the nav menu item CSS.
+ *
+ * @param   $classes - array - The CSS classes that are applied to the menu item's `<li>` element.
+ * @param   $item - WP_Post - The current menu item.
+ * @param   $args- stdClass - An object of wp_nav_menu() arguments.
+ * @param   $depth - int - Depth of menu item. Used for padding.
+ * @return  array - the filtered classes array.
+ */
+function wpcampus_filter_nav_menu_css_class( $classes, $item, $args, $depth ) {
+	if ( is_singular( 'post' ) && 'Blog' == $item->title ) {
+		$classes[] = 'current-menu-item';
+	} elseif ( is_singular( 'podcast' ) && '/podcast/' == $item->url ) {
+		$classes[] = 'current-menu-item';
+	}
+	return $classes;
+}
+add_filter( 'nav_menu_css_class', 'wpcampus_filter_nav_menu_css_class', 100, 4 );
 
 /**
  * Filter the page title.
  */
-add_filter( 'wpcampus_page_title', function( $page_title ) {
+function wpcampus_filter_page_title( $page_title ) {
 
-	/**
-	 * Change the title for events pages.
+	/*
+	 * Change the page title.
 	 *
-	 * Had to write in because events plugin was
-	 * overwriting the 'post_type_archive_title' filter.
+	 * Had to write in for events because the
+	 * events plugin was overwriting the
+	 * 'post_type_archive_title' filter.
 	 */
-	if ( is_post_type_archive('tribe_events') || is_singular('tribe_events') ) {
-		return 'Events';
-	}
+	if ( is_singular( 'post' ) ) {
+		return '<span class="fade">' . __( 'Blog:', 'wpcampus' ) . '</span> ' . $page_title;
+	} elseif ( is_home() ) {
+		return sprintf( __( 'The %s Blog', 'wpcampus' ), 'WPCampus' );
+	} elseif ( is_author() ) {
+		return '<span class="fade">' . __( 'Contributor:', 'wpcampus' ) . '</span> ' . get_the_author();
+	} elseif ( is_post_type_archive( 'tribe_events' ) || is_singular( 'tribe_events' ) ) {
+		return __( 'Events', 'wpcampus' );
+	} elseif ( is_post_type_archive( 'podcast' ) ) {
+		return sprintf( __( 'The %s Podcast', 'wpcampus' ), 'WPCampus' );
+	} elseif ( is_singular( 'podcast' ) ) {
+		return '<span class="fade">' . __( 'Podcast:', 'wpcampus' ) . '</span> ' . $page_title;
+	} elseif ( is_category() ) {
 
-	// Change the title for the main podcast page
-	else if ( is_post_type_archive('podcast') ) {
-		return 'WPCampus Podcast';
-	}
+		// Add category header.
+		$categories = get_the_category();
+		if ( ! empty( $categories ) ) :
+			$category = array_shift( $categories );
+			if ( ! empty( $category ) ) :
+				return '<span class="fade">' . sprintf( __( 'The %s Blog:', 'wpcampus' ), 'WPCampus' ) . '</span> ' . $category->name;
+			endif;
+		endif;
 
-	// Prefix the title for the single podcast pages
-	else if ( is_singular('podcast') ) {
-		return '<span class="fade">Podcast:</span> ' . $page_title;
+	} elseif ( is_archive() ) {
+
+		// Get the post type.
+		$post_type = get_post_type();
+		if ( 'post' == $post_type ) {
+			return sprintf( __( 'The %s Blog', 'wpcampus' ), 'WPCampus' );
+		}
 	}
 
 	return $page_title;
-});
+}
+add_filter( 'wpcampus_page_title', 'wpcampus_filter_page_title' );
 
 /**
  * Filter the post type archive title.
  */
-add_filter( 'wpcampus_post_type_archive_title', function( $title, $post_type ) {
+function wpcampus_filter_post_type_archive_title( $title, $post_type ) {
 
-	// Had to write in because events plugin was overwriting the 'post_type_archive_title' filter
-	if ( is_post_type_archive('tribe_events') || is_singular('tribe_events') ) {
-		return 'Events';
+	/*
+	 * Had to write in because events plugin was
+	 * overwriting the 'post_type_archive_title' filter.
+	 */
+	if ( is_post_type_archive( 'tribe_events' ) || is_singular( 'tribe_events' ) ) {
+		return __( 'Events', 'wpcampus' );
 	}
 
-	if ( is_post_type_archive('podcast') ) {
-		return 'Podcast';
+	if ( is_post_type_archive( 'podcast' ) ) {
+		return __( 'Podcast', 'wpcampus' );
 	}
 
 	return $title;
-}, 100, 2 );
+}
+add_filter( 'wpcampus_post_type_archive_title', 'wpcampus_filter_post_type_archive_title', 100, 2 );
+
+/**
+ * Adjust queries
+ */
+function wpcampus_adjust_queries( $query ) {
+
+	/*
+	 * For now, get all posts and podcasts posts.
+	 *
+	 * @TODO add pagination.
+	 */
+	if ( is_post_type_archive( array( 'podcast', 'post' ) ) && $query->is_main_query() ) {
+		$query->set( 'nopaging', true );
+	}
+
+	// Make sure these pages get all post types.
+	if ( is_search() || is_author() || is_category() || is_tag() ) {
+		$query->set( 'post_type', array( 'post', 'podcast' ) );
+	}
+}
+add_action( 'pre_get_posts', 'wpcampus_adjust_queries' );
 
 /**
  * Filter/build our own map infowindow content.
  */
-add_filter( 'gmb_mashup_infowindow_content', function( $response, $marker_data, $post_id ) {
+function wpcampus_filter_gmb_mashup_infowindow_content( $response, $marker_data, $post_id ) {
 
-	// Only for interest posts
+	// Only for interest posts.
 	if ( 'wpcampus_interest' != get_post_type( $marker_data['id'] ) ) {
 		return $response;
 	}
 
-	// Build new infowindow content
+	// Build new infowindow content.
 	$response['infowindow'] = '<div id="infobubble-content" class="main-place-infobubble-content">';
 
 	// Get location
@@ -76,9 +147,9 @@ add_filter( 'gmb_mashup_infowindow_content', function( $response, $marker_data, 
 		$response['infowindow'] .= '<p class="place-title">' . $location . '</p>';
 	}
 
-	// Close the window element
+	// Close the window element.
 	$response['infowindow'] .= '</div>';
 
 	return $response;
-
-}, 100, 3 );
+}
+add_filter( 'gmb_mashup_infowindow_content', 'wpcampus_filter_gmb_mashup_infowindow_content', 100, 3 );

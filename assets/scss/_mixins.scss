@@ -1,11 +1,11 @@
-//
-// These are the base SASS mixins for WPCampus.
-//
+/*
+ * These are the base SASS mixins for WPCampus.
+ */
 
-// Make sure the charset is set appropriately
+// Make sure the charset is set appropriately.
 @charset "UTF-8";
 
-// Will convert the element to a screen reader element
+// Will convert the element to a screen reader element.
 @mixin screen-reader-text() {
     display: block;
     width: 0;
@@ -16,7 +16,7 @@
     text-indent: -9999px;
 }
 
-// Will reset a <ul>
+// Will reset a <ul>.
 @mixin reset-ul() {
     display: block;
     margin: 0;
@@ -31,37 +31,35 @@
         padding: 0;
         list-style: none;
     }
-
 }
 
-// Will set placeholder color
+// Will set placeholder color.
 @mixin set-placeholder-color( $color ) {
 
-    // WebKit browsers
+    // WebKit browsers.
     &::-webkit-input-placeholder {
         color: $color;
     }
 
-    // Mozilla Firefox 4 to 18
+    // Mozilla Firefox 4 to 18.
     &:-moz-placeholder {
         color: $color;
         opacity:  1;
     }
 
-    // Mozilla Firefox 19+
+    // Mozilla Firefox 19+.
     &::-moz-placeholder {
         color: $color;
         opacity:  1;
     }
 
-    // Internet Explorer 10+
+    // Internet Explorer 10+.
     &:-ms-input-placeholder {
         color: $color;
     }
-
 }
 
-// Will set transition values
+// Will set transition values.
 @mixin set-transition( $transition... ) {
     -webkit-transition: $transition;
     -moz-transition: $transition;
@@ -70,7 +68,7 @@
     transition: $transition;
 }
 
-// Will set transform values
+// Will set transform values.
 @mixin set-transform( $transform... ) {
     -webkit-transform: $transform;
     -moz-transform: $transform;

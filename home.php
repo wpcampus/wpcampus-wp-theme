@@ -5,10 +5,12 @@ add_action( 'wpcampus_after_article_header', 'wpcampus_print_article_meta', 5 );
 
 get_header();
 
-wpcampus_print_podcast_promo();
-
 if ( ! have_posts() ) :
-	wpcampus_print_404();
+
+	?>
+	<p><em><?php _e( 'There are no posts at this time.', 'wpcampus' ); ?></em></p>
+	<?php
+
 else :
 
 	// Setup article arguments.

@@ -1,11 +1,11 @@
-//
-// These are the base form settings for WPCampus.
-//
+/*
+ * These are the base form settings for WPCampus.
+ */
 
-// Make sure the charset is set appropriately
+// Make sure the charset is set appropriately.
 @charset "UTF-8";
 
-// Include Foundation settings to reuse them
+// Include Foundation settings to reuse them.
 @import '_settings';
 
 #wpcampus-main {
@@ -26,7 +26,6 @@
 			&.ginput_quantity {
 				display: inline-block;
 			}
-
 		}
 
 		input[type="radio"],
@@ -41,12 +40,10 @@
 				&.gfield {
 					margin: 0 0 1em 0;
 				}
-
 			}
-
 		}
 
-		// Style the country field
+		// Style the country field.
 		#input_1_18_6_container {
 			margin: 0.5em 0 0 0;
 		}
@@ -62,7 +59,6 @@
 			.gfield_description {
 				padding: 0 0 .625em 0;
 			}
-
 		}
 
 		.gform_footer {
@@ -77,9 +73,7 @@
 				text-transform: uppercase;
 				font-weight: 300;
 			}
-
 		}
-
 	}
 
 	#gform_wrapper_7 {
@@ -101,13 +95,8 @@
 						padding-top: 0;
 						border-top: 0;
 					}
-					
 				}
-
 			}
-
 		}
-
 	}
-
 }

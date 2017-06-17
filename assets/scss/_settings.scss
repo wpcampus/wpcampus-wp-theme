@@ -1,35 +1,36 @@
-//
-// These are the base Foundation
-// SASS settings for WPCampus.
-//
-// These settings will override the default
-// Foundation SASS settings.
-//
+/*
+ * These are the base Foundation
+ * SASS settings for WPCampus.
+ *
+ * These settings will override the default
+ * Foundation SASS settings.
+ */
 
-// Make sure the charset is set appropriately
+// Make sure the charset is set appropriately.
 @charset "UTF-8";
 
-// Include Foundation settings to reuse them
+// Include Foundation settings to reuse them.
 @import '../../../foundation/scss/foundation/_settings';
 
-// Set the row width - this includes side padding
+// Set the row width - this includes side padding.
 $row-width: 920px;
 
-// Widen the column gutter to 40px - default is 30
+// Widen the column gutter to 40px - default is 30.
 $column-gutter: 40px;
 
 // COLORS
-// We use these as default colors throughout
+// We use these as default colors throughout.
 $royal-blue: #1159bd;
 $dark-blue: #2e3641;
 $peach: #d0443c;
 $body-bg: #fafafa; //#eff4f5;
 $primary-color: $royal-blue;
+$wpc-light-gray: #eee;
 
 // FONTS
 $open_sans: 'Open Sans', sans-serif;
 
-// Set the base font
+// Set the base font.
 $font-family-sans-serif: $open_sans !default;
 $body-font-family: $font-family-sans-serif !default;
 $body-font-color: #222;
@@ -47,7 +48,7 @@ $anchor-text-decoration-hover: underline;
 
 // Paragraphs
 $paragraph-line-height: 1.8;
-$paragraph-margin-bottom: rem-calc(20);
+$paragraph-margin-bottom: 1.4rem; //rem-calc(20);
 
 // Lists
 $list-side-margin: 2.3em;
