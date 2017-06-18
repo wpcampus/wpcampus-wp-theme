@@ -154,7 +154,7 @@ $is_events_page = is_post_type_archive( 'tribe_events' ) || is_singular( 'tribe_
 				<?php
 
 				// If article, include article meta.
-				if ( is_singular( array( 'post', 'podcast' ) ) ) {
+				if ( is_singular( array( 'post', 'podcast', 'video' ) ) ) {
 					wpcampus_print_article_meta();
 				}
 

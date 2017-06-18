@@ -1,25 +1,6 @@
 <?php
 
 /**
- * Add the AddThis bar before the blog post.
- */
-function wpcampus_blog_add_addthis() {
-
-	?>
-	<div class="addthis_sharing_toolbox"></div>
-	<?php
-}
-add_action( 'wpcampus_before_article_content', 'wpcampus_blog_add_addthis' );
-
-/**
- * Add contributor info after articles.
- */
-function wpcampus_blog_add_contributor() {
-	wpcampus_print_contributor();
-}
-add_action( 'wpcampus_after_article', 'wpcampus_blog_add_contributor' );
-
-/**
  * Add disclaimer to end of blog posts.
  *
  * // @TODO

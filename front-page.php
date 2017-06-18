@@ -15,7 +15,7 @@ endif;
 
 // Display blog posts.
 $query_posts = new WP_Query( array(
-	'post_type'         => array( 'post', 'podcast' ),
+	'post_type'         => array( 'post', 'podcast', 'video' ),
 	'posts_per_page'    => 5, // @TODO add pagination
 ));
 if ( $query_posts->have_posts() ) :
@@ -42,11 +42,11 @@ if ( $query_posts->have_posts() ) :
 		// Print the articles.
 		wpcampus_print_articles( $args, $query_posts );
 
-		// @TODO uncomment blog button.
 		?>
 		<ul class="button-group">
-			<?php /*<li><a href="/blog/" class="button"><?php _e( 'Read more on our blog', 'wpcampus' ); ?></a></li>*/ ?>
-			<li><a href="/podcast/" class="button"><?php _e( 'Listen to more of our podcast', 'wpcampus' ); ?></a></li>
+			<li><a href="/blog/" class="button"><?php _e( 'Read more on our blog', 'wpcampus' ); ?></a></li>
+			<li><a href="/videos/" class="button"><?php _e( 'Watch our videos', 'wpcampus' ); ?></a></li>
+			<li><a href="/podcast/" class="button"><?php _e( 'Listen to the podcast', 'wpcampus' ); ?></a></li>
 		</ul>
 	</div>
 	<?php

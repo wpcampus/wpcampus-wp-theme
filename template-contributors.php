@@ -5,7 +5,7 @@
  */
 
 $users = new WP_User_Query( array(
-	'has_published_posts' => array( 'post', 'podcast' ),
+	'has_published_posts' => array( 'post', 'podcast', 'video' ),
 ));
 
 get_header();
@@ -13,7 +13,7 @@ get_header();
 if ( empty( $users->results ) ) :
 
 	?>
-	<p>There are no contributors.</p>
+	<p><?php _e( 'There are no contributors.', 'wpcampus' ); ?></p>
 	<?php
 else :
 

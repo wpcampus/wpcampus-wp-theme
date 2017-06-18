@@ -95,7 +95,7 @@ add_action( 'wp_loaded', 'wpcampus_add_category_to_podcast' );
  * Setup styles and scripts.
  */
 function wpcampus_enqueue_styles_scripts() {
-	$wpcampus_version = '0.67';
+	$wpcampus_version = '0.69';
 
 	// Get the directory.
 	$wpcampus_dir = trailingslashit( get_stylesheet_directory_uri() );
@@ -532,7 +532,7 @@ function wpcampus_get_breadcrumbs() {
 			}
 
 			// Add current page - if not singular post.
-			if ( isset( $post ) && ! is_singular( array( 'post', 'podcast' ) ) ) {
+			if ( isset( $post ) && ! is_singular( array( 'post', 'podcast', 'video' ) ) ) {
 				$breadcrumbs['current'] = array(
 					'ID'    => $post->ID,
 					'url'   => get_permalink( $post ),
@@ -784,10 +784,14 @@ function wpcampus_prepend_post_title( $post_title, $post_id ) {
 	// Get the post type.
 	$post_type = get_post_type( $post_id );
 
-	if ( 'post' == $post_type ) {
-		return '<span class="fade type">' . __( 'Blog:', 'wpcampus' ) . '</span> ' . $post_title;
-	} elseif ( 'podcast' == $post_type ) {
-		return '<span class="fade type">' . __( 'Podcast:', 'wpcampus' ) . '</span> ' . $post_title;
+	switch( $post_type ) {
+
+		case 'podcast':
+			return '<span class="fade type">' . __( 'Podcast:', 'wpcampus' ) . '</span> ' . $post_title;
+		case 'post':
+			return '<span class="fade type">' . __( 'Blog:', 'wpcampus' ) . '</span> ' . $post_title;
+		case 'video':
+			return '<span class="fade type">' . __( 'Video:', 'wpcampus' ) . '</span> ' . $post_title;
 	}
 
 	return $post_title;

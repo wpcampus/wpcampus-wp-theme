@@ -1,8 +1,5 @@
 <?php
 
-// Add promo block.
-add_action( 'wpcampus_after_article', 'wpcampus_print_podcast_promo', 10 );
-
 get_header();
 
 if ( ! have_posts() ) :
