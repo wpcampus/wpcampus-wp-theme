@@ -141,6 +141,11 @@ add_filter( 'wpcampus_post_type_archive_title', 'wpcampus_filter_post_type_archi
  */
 function wpcampus_adjust_queries( $query ) {
 
+	// Don't run in the admin.
+	if ( is_admin() ) {
+		return;
+	}
+
 	/*
 	 * For now, get all posts and podcasts posts.
 	 *
