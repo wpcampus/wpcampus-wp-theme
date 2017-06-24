@@ -15,12 +15,37 @@ require_once( $includes_path . 'universities.php' );
 require_once( $includes_path . 'shortcodes.php' );
 
 /**
+ * Decide which main callout to print.
+ */
+function wpcampus_print_main_callout() {
+	wpcampus_print_2017_callout();
+}
+
+/**
+ * Print the 2017 callout.
+ */
+function wpcampus_print_2017_callout() {
+
+	?>
+	<div class="panel" style="text-align:center;">
+		<h2>WPCampus 2017 Conference on July 14-15</h2>
+		<p><a href="https://2017.wpcampus.org/" style="color:inherit;">WPCampus 2017</a> will take place July 14-15 on the campus of Canisius College in Buffalo, New York. If you can't join us in person, sessions will be live-streamed and made available online after the event. <strong>Tickets are available until June 30.</strong></p>
+		<a class="button expand" href="https://2017.wpcampus.org/">Visit the WPCampus 2017 website</a>
+	</div>
+	<?php
+}
+
+/**
  * Print the ed survey callout.
  */
 function wpcampus_print_ed_survey_callout() {
 
 	?>
-	<div class="panel" style="text-align:center;"><h2>The "WordPress in Education" Survey</h2><p>After an overwhelming response to our 2016 survey, WPCampus is back this year to dig a little deeper on key topics that schools and campuses care about most when it comes to WordPress and website development. We’d love to include your feedback in our results this year. The larger the data set, the more we all benefit. <strong>The survey will close on June 23rd, 2017.</strong></p><a class="button expand" href="https://2017.wpcampus.org/announcements/wordpress-in-education-survey/">Take the "WordPress in Education" survey</a></div>
+	<div class="panel" style="text-align:center;">
+		<h2>The "WordPress in Education" Survey</h2>
+		<p>After an overwhelming response to our 2016 survey, WPCampus is back this year to dig a little deeper on key topics that schools and campuses care about most when it comes to WordPress and website development. We’d love to include your feedback in our results this year. The larger the data set, the more we all benefit. <strong>The survey will close on June 23rd, 2017.</strong></p>
+		<a class="button expand" href="https://2017.wpcampus.org/announcements/wordpress-in-education-survey/">Take the "WordPress in Education" survey</a>
+	</div>
 	<?php
 }
 

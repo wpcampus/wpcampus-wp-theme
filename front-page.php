@@ -2,6 +2,8 @@
 
 get_header();
 
+wpcampus_print_main_callout();
+
 if ( ! have_posts() ) :
 	wpcampus_print_404();
 else :
@@ -22,9 +24,6 @@ if ( $query_posts->have_posts() ) :
 
 	// Add article meta after header.
 	add_action( 'wpcampus_after_article_header', 'wpcampus_print_article_meta', 5 );
-
-	// Remove the callout from displaying before each article in the list.
-	remove_action( 'wpcampus_before_article', 'wpcampus_print_ed_survey_callout' );
 
 	// Setup article arguments.
 	$args = array(

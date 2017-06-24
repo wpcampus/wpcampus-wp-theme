@@ -5,13 +5,6 @@
  */
 function wpcampus_add_remove_filters() {
 
-	// Print the ed survey callout.
-	add_action( 'wpcampus_after_404', 'wpcampus_print_ed_survey_callout' );
-
-	if ( ! is_archive() && ! is_home() ) {
-		add_action( 'wpcampus_before_article', 'wpcampus_print_ed_survey_callout' );
-	}
-
 	// Remove on order t-shirt page.
 	if ( is_page( 'order-wpcampus-shirt' ) ) {
 		remove_filter( 'the_content', 'wpautop' );
