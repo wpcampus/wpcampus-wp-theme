@@ -171,6 +171,11 @@ function wpcampus_adjust_queries( $query ) {
 		return;
 	}
 
+	// Only for the main query.
+	if ( ! $query->is_main_query() ) {
+		return;
+	}
+
 	/*
 	 * For now, get all posts and podcasts posts.
 	 *
