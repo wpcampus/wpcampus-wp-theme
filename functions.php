@@ -808,6 +808,18 @@ function wpcampus_print_podcast_promo() {
 }
 
 /**
+ * Print user registration promo.
+ */
+function wpcampus_print_user_reg_promo() {
+
+	?>
+	<div class="panel blue center" style="margin:2em 0 3em 0;">
+		<p><strong><?php printf( __( 'Want to become a %s contributor?', 'wpcampus' ), 'WPCampus' ); ?></strong><br/><?php printf( __( 'Great! We\'d love to have your voice and insight. %1$sRegister as a %2$s user%3$s to get started.', 'wpcampus' ), '<a href="/user-registration/">', 'WPCampus', '</a>' ); ?></p>
+	</div>
+	<?php
+}
+
+/**
  * Is used in certain places to prepend
  * the post title with post type.
  *

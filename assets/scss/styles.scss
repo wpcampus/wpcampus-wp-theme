@@ -565,6 +565,10 @@ iframe {
         text-align: center;
     }
 
+	&.blue {
+		background-color: rgba(17,89,189,0.1);
+	}
+
     &.dark {
         color: #fff;
 

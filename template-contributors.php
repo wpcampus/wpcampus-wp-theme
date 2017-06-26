@@ -13,6 +13,18 @@ $users = new WP_User_Query( array(
 
 get_header();
 
+if ( have_posts() ) :
+	while ( have_posts() ) :
+		the_post();
+
+		wpcampus_print_article();
+
+	endwhile;
+endif;
+
+// Print user registration promo.
+wpcampus_print_user_reg_promo();
+
 if ( empty( $users->results ) ) :
 
 	?>

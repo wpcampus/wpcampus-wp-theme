@@ -16,6 +16,10 @@ iframe {
 	max-width: 100%;
 }
 
+.panel.blue {
+	background-color: rgba(17,89,189,0.1);
+}
+
 .button-group {
 	margin: 0 0 1.4rem 0;
 }
