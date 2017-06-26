@@ -6,6 +6,8 @@
 
 $users = new WP_User_Query( array(
 	'number'                => -1,
+	'orderby'               => 'name',
+	'order'                 => 'ASC',
 	'has_published_posts'   => array( 'post', 'podcast', 'video' ),
 ));
 
