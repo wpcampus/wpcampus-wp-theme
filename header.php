@@ -28,52 +28,26 @@ $is_events_page = is_post_type_archive( 'tribe_events' ) || is_singular( 'tribe_
 			<div class="open-menu-label"><?php _e( 'Menu', 'wpcampus' ); ?></div>
 			<div class="close-menu-label"><?php _e( 'Close', 'wpcampus' ); ?></div>
 		</div>
-		<?php
-
-		// Get the primary menu.
-		$primary_menu = wp_nav_menu( array(
-			'theme_location'    => 'primary',
-			'container'         => false,
-			'menu_class'        => false,
-			'echo'              => false,
-		));
-
-		?>
 		<div id="wpcampus-main-menu" class="menu">
 	        <ul class="icons">
 		        <li class="icon has-icon-alt home<?php echo $is_front_page ? ' current' : null; ?>"><a href="<?php echo $blog_url; ?>"><img src="<?php echo $images_dir; ?>home-white.svg" alt="<?php printf( esc_attr__( 'Visit the %s home page', 'wpcampus' ), 'WPCampus' ); ?>" /><span class="icon-alt"><?php _e( 'Home', 'wpcampus' ); ?></span></a></li>
 	        </ul>
-	        <?php echo $primary_menu; ?>
+	        <?php
+
+	        // Print the header menu.
+	        wp_nav_menu( array(
+		        'theme_location'    => 'primary',
+		        'container'         => false,
+		        'menu_class'        => false,
+	        ));
+
+	        ?>
 	        <ul class="icons social-media">
 	            <li class="icon twitter"><a href="https://twitter.com/wpcampusorg"><img src="<?php echo $images_dir; ?>twitter-white.svg" alt="<?php printf( esc_attr__( 'Follow %1$s on %2$s', 'wpcampus' ), 'WPCampus', 'Twitter' ); ?>" /></a></li>
 	            <li class="icon facebook"><a href="https://www.facebook.com/wpcampus"><img src="<?php echo $images_dir; ?>facebook-white.svg" alt="<?php printf( esc_attr__( 'Follow %1$s on %2$s', 'wpcampus' ), 'WPCampus', 'Facebook' ); ?>" /></a></li>
 	            <li class="icon youtube"><a href="https://www.youtube.com/wpcampusorg"><img src="<?php echo $images_dir; ?>youtube-white.svg" alt="<?php printf( esc_attr__( 'Follow %1$s on %2$s', 'wpcampus' ), 'WPCampus', 'YouTube' ); ?>" /></a></li>
 	            <li class="icon github"><a href="https://github.com/wpcampus/"><img src="<?php echo $images_dir; ?>github-white.svg" alt="<?php printf( esc_attr__( 'Follow %1$s on %2$s', 'wpcampus' ), 'WPCampus', 'GitHub' ); ?>" /></a></li>
 	        </ul>
-	        <?php
-	        // @TODO Remove after testing.
-	        /* ?>
-            <ul>
-                <li class="has-submenu<?php echo is_page( 'get-involved' ) || is_page( 'member-survey' ) ? ' current' : null; ?>">
-	                <a href="<?php echo $blog_url; ?>/get-involved/">Get Involved</a>
-	                <ul>
-		                <li><a href="/get-involved/">Get Involved</a></li>
-		                <li><a href="/member-survey/">Member Survey</a></li>
-	                </ul>
-                </li>
-                <li class="has-submenu"><a href="<?php echo $blog_url; ?>/conferences/">Conferences</a>
-                    <ul>
-	                    <li><a href="https://2017.wpcampus.org/">WPCampus 2017</a></li>
-	                    <li><a href="<?php echo $blog_url; ?>/online/">WPCampus Online</a></li>
-                        <li><a href="https://2016.wpcampus.org/">WPCampus 2016</a></li>
-                    </ul>
-                </li>
-                <li<?php echo is_post_type_archive( 'podcast' ) || is_singular( 'podcast' ) ? ' class="current"' : null; ?>><a href="<?php echo $blog_url; ?>/podcast/">Podcast</a></li>
-                <li<?php echo $is_events_page ? ' class="current"' : null; ?>><a href="<?php echo $blog_url; ?>/events/">Events</a></li>
-                <li<?php echo is_page( 'contact' ) ? ' class="current"' : null; ?>><a href="<?php echo $blog_url; ?>/contact/">Contact</a></li>
-            </ul>
-	        <?php */
-	        ?>
 		</div> <!-- #wpcampus-main-menu -->
 	</div> <!-- #wpcampus-banner -->
 	<div id="wpcampus-hero">
