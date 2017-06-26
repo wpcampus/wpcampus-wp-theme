@@ -424,7 +424,16 @@ function wpcampus_print_article_meta() {
  * Print the article author.
  */
 function wpcampus_print_article_author() {
-	?><span class="article-meta article-author"><a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>"><?php echo get_the_author(); ?></a></span><?php
+	?><span class="article-meta article-author"><?php
+
+	// Print multi authors.
+	if ( function_exists( 'my_multi_author' ) && method_exists( my_multi_author(), 'get_the_authors_list' ) ) :
+		echo my_multi_author()->get_the_authors_list();
+	else :
+		?><a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>"><?php echo get_the_author(); ?></a><?php
+	endif;
+
+	?></span><?php
 }
 
 /**
@@ -501,17 +510,19 @@ function wpcampus_get_breadcrumbs() {
 			);
 
 			// Add crumb to current contributor's page.
-			$breadcrumbs['current'] = array(
-				'url'   => get_author_posts_url( get_the_author_meta( 'ID' ) ),
-				'label' => get_the_author(),
-			);
+			$author = get_queried_object();
+			if ( ! empty( $author->ID ) ) {
+				$breadcrumbs['current'] = array(
+					'url'   => get_author_posts_url( $author->ID ),
+					'label' => get_the_author_meta( 'display_name', $author->ID ),
+				);
+			}
 		} else {
 
 			$breadcrumbs[] = array(
 				'url'   => '/blog/',
 				'label' => __( 'Blog', 'wpcampus' ),
 			);
-
 		}
 	} else {
 

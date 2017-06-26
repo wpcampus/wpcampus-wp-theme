@@ -195,6 +195,7 @@ body.single-podcast #wpcampus-main {
 
 .article-meta-wrapper {
 	font-size: 0.9em;
+	line-height: 1.6;
 	margin: 5px 0 7px 0;
 	opacity: 0.7;
 }
@@ -222,6 +223,10 @@ body.single-podcast #wpcampus-main {
 	padding: 30px;
 	margin: 3em 0;
 	font-size: 0.9em;
+}
+
+#wpcampus-main .wpcampus-contributor + .wpcampus-contributor {
+	margin-top: -1em;
 }
 
 #wpcampus-main .wpcampus-contributor .inside {

@@ -32,7 +32,22 @@ add_action( 'wpcampus_before_article_content', 'wpcampus_add_addthis_before_arti
  */
 function wpcampus_add_contributor_after_article() {
 	if ( is_singular( array( 'post', 'podcast', 'video' ) ) ) {
-		wpcampus_print_contributor();
+
+		// Print the multi authors.
+		$authors = array();
+		if ( function_exists( 'my_multi_author' ) && method_exists( my_multi_author(), 'get_authors' ) ) {
+			$authors = my_multi_author()->get_authors();
+			if ( ! empty( $authors ) ) {
+				foreach ( $authors as $author_id ) {
+					wpcampus_print_contributor( $author_id );
+				}
+			}
+		}
+
+		// If no authors, print the primary contributor.
+		if ( empty( $authors ) ) {
+			wpcampus_print_contributor();
+		}
 	}
 }
 add_action( 'wpcampus_after_article', 'wpcampus_add_contributor_after_article', 15 );
@@ -75,7 +90,22 @@ function wpcampus_filter_page_title( $page_title ) {
 	} elseif ( is_home() ) {
 		return sprintf( __( 'The %s Blog', 'wpcampus' ), 'WPCampus' );
 	} elseif ( is_author() ) {
-		return '<span class="fade type">' . __( 'Contributor:', 'wpcampus' ) . '</span> ' . get_the_author();
+
+		// Build the filtered title.
+		$author_page_title = '<span class="fade type">' . __( 'Contributor:', 'wpcampus' ) . '</span> ';
+
+		// Get the queried author.
+		$author = get_queried_object();
+
+		// Get queried author ID.
+		if ( ! empty( $author->ID ) && $author->ID > 0 ) {
+			$author_page_title .= get_the_author_meta( 'display_name', $author->ID );
+		} else {
+			$author_page_title .= get_the_author();
+		}
+
+		return $author_page_title;
+
 	} elseif ( is_post_type_archive( 'tribe_events' ) || is_singular( 'tribe_events' ) ) {
 		return __( 'Events', 'wpcampus' );
 	} elseif ( is_post_type_archive( 'podcast' ) ) {
