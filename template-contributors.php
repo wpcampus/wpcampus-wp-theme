@@ -5,7 +5,8 @@
  */
 
 $users = new WP_User_Query( array(
-	'has_published_posts' => array( 'post', 'podcast', 'video' ),
+	'number'                => -1,
+	'has_published_posts'   => array( 'post', 'podcast', 'video' ),
 ));
 
 get_header();
