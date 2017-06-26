@@ -68,6 +68,8 @@ function wpcampus_filter_nav_menu_css_class( $classes, $item, $args, $depth ) {
 		$classes[] = 'current-menu-item';
 	} elseif ( is_singular( 'video' ) && 'Videos' == $item->title ) {
 		$classes[] = 'current-menu-item';
+	} elseif ( is_singular( 'tribe_events' ) && '/events/' == $item->url ) {
+		$classes[] = 'current-menu-item';
 	}
 	return $classes;
 }
