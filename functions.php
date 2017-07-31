@@ -379,7 +379,11 @@ function wpcampus_print_article_meta() {
 		<span class="article-meta article-time"><?php wpcampus_print_article_time(); ?></span>
 		<?php
 
-		wpcampus_print_article_author();
+		// Print authors.
+		$authors = wpcampus_get_article_authors();
+		if ( ! empty( $authors ) ) :
+			?><span class="article-meta article-author"><?php echo $authors; ?></span><?php
+		endif;
 
 		// If comments are closed and there are comments, let's leave a little note, shall we?
 		if ( post_type_supports( get_post_type(), 'comments' ) ) :
@@ -421,19 +425,15 @@ function wpcampus_print_article_meta() {
 }
 
 /**
- * Print the article author.
+ * Get the article author(s).
  */
-function wpcampus_print_article_author() {
-	?><span class="article-meta article-author"><?php
+function wpcampus_get_article_authors( $post_id = 0 ) {
 
-	// Print multi authors.
-	if ( function_exists( 'my_multi_author' ) && method_exists( my_multi_author(), 'get_the_authors_list' ) ) :
-		echo my_multi_author()->get_the_authors_list();
-	else :
-		?><a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>"><?php echo get_the_author(); ?></a><?php
-	endif;
+	if ( function_exists( 'my_multi_author' ) && method_exists( my_multi_author(), 'get_the_authors_list' ) ) {
+		return my_multi_author()->get_the_authors_list( $post_id );
+	}
 
-	?></span><?php
+	return '<a href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . get_the_author() . '</a>';
 }
 
 /**

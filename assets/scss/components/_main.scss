@@ -170,6 +170,25 @@
 			}
 		}
 	}
+
+	.wpc-videos-filters {
+
+		select {
+			display: inline-block;
+			width: auto;
+			margin:0 0 0 10px;
+		}
+	}
+}
+
+.page-template-template-videos {
+
+	#wpcampus-main {
+
+		.row {
+			max-width: 1200px;
+		}
+	}
 }
 
 #wpcampus-content {
