@@ -172,11 +172,67 @@
 	}
 
 	.wpc-videos-filters {
+		margin: 0 0 1.1em 0;
 
-		select {
-			display: inline-block;
-			width: auto;
-			margin:0 0 0 10px;
+		form {
+			align-items: center;
+			margin: 0 0 10px 0;
+
+			.form-label {
+				display: block;
+			}
+
+			select {
+				display: block;
+				height: 40px;
+				margin: 10px 0;
+			}
+
+			input.search-videos {
+				flex-grow: 1;
+				height: 40px;
+				margin: 10px 0;
+			}
+
+			input.update-videos {
+				display: block;
+				background: $wpc-royal-blue;
+				color: #fff;
+				height: 40px;
+				border: 0;
+				margin: 10px 0 10px;
+				padding: 0 15px;
+			}
+
+			@media screen and (min-width: 600px) {
+				display: flex;
+
+				.form-label {
+					display: inline-block;
+					min-width: 110px;
+				}
+
+				select {
+					display: inline-block;
+					width: auto;
+					margin-left: 10px;
+				}
+
+				input.search-videos {
+					margin-left: 10px;
+				}
+
+				input.update-videos {
+					display: inline-block;
+					width: 100px;
+					margin-left: 10px;
+				}
+			}
+		}
+
+		.button.clear {
+			padding: 10px;
+			margin: 0 0 1em 0;
 		}
 	}
 }

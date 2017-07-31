@@ -24,6 +24,10 @@
     @include screen-reader-text();
 }
 
+form {
+    margin: 0 0 $paragraph-margin-bottom;
+}
+
 // Stylize the "Skip To Content" link.
 #skip-to-content {
     display: block;
