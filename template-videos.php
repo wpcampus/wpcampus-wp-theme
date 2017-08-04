@@ -35,13 +35,13 @@ if ( 'podcast' == $filters['playlist'] ) {
 }
 
 // Is there a selected category?
-$filters['category'] = ! empty( $_GET['c'] ) ? sanitize_text_field( $_GET['c'] ) : '';
+$filters['category'] = ! empty( $_GET['c'] ) ? sanitize_text_field( $_GET['c'] ) : get_query_var( 'videos_category' );
 
 // Is there a selected author?
-$filters['author'] = ! empty( $_GET['a'] ) ? sanitize_text_field( $_GET['a'] ) : '';
+$filters['author'] = ! empty( $_GET['a'] ) ? sanitize_text_field( $_GET['a'] ) : get_query_var( 'videos_author' );
 
 // Are we searching?
-$filters['search'] = ! empty( $_GET['search'] ) ? sanitize_text_field( $_GET['search'] ) : '';
+$filters['search'] = ! empty( $_GET['search'] ) ? sanitize_text_field( $_GET['search'] ) : get_query_var( 'videos_search' );
 
 // Remove empty filters.
 $filters = array_filter( $filters );
