@@ -741,6 +741,8 @@ function wpcampus_print_contributor( $user_id = 0 ) {
 				} else {
 					$contributor_meta['company'] = $author_company;
 				}
+			} else if ( $author_company_pos ) {
+				$contributor_meta['company'] = $author_company_pos;
 			}
 
 			// Add Twitter.
