@@ -112,6 +112,8 @@ function wpcampus_filter_page_title( $page_title ) {
 		return __( 'Events', 'wpcampus' );
 	} elseif ( is_post_type_archive( 'podcast' ) ) {
 		return sprintf( __( 'The %s Podcast', 'wpcampus' ), 'WPCampus' );
+    } elseif ( is_post_type_archive( 'product' ) ) {
+        return sprintf( __( 'The %s Shop', 'wpcampus' ), 'WPCampus' );
 	} elseif ( is_singular( 'podcast' ) ) {
 		return '<span class="fade type">' . __( 'Podcast:', 'wpcampus' ) . '</span> ' . $page_title;
 	} elseif ( is_singular( 'video' ) ) {
