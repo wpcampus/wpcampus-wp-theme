@@ -503,3 +503,11 @@ body.single-podcast #wpcampus-main {
 .woocommerce-tabs .panel {
 	background: #ffffff;
 }
+
+.woocommerce-tabs td, .woocommerce-tabs tr {
+	padding: 5px;
+}
+
+body.woocommerce h1.page-title {
+	display: none;
+}

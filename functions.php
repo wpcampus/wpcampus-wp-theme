@@ -91,6 +91,9 @@ function wpcampus_setup_theme() {
 		'gallery',
 		'caption',
 	));
+
+	add_theme_support( 'woocommerce' );
+
 }
 add_action( 'after_setup_theme', 'wpcampus_setup_theme' );
 
@@ -120,7 +123,7 @@ add_action( 'wp_loaded', 'wpcampus_add_category_to_podcast' );
  * Setup styles and scripts.
  */
 function wpcampus_enqueue_styles_scripts() {
-	$wpcampus_version = '0.74';
+	$wpcampus_version = '0.77';
 
 	// Get the directory.
 	$wpcampus_dir = trailingslashit( get_stylesheet_directory_uri() );
