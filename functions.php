@@ -50,24 +50,6 @@ function wpcampus_print_ed_survey_callout() {
 }
 
 /**
- * Setup the API.
- */
-function wpcampus_setup_api() {
-	global $wpcampus_api_data;
-
-	// Load the class.
-	require_once( STYLESHEETPATH . '/includes/class-api-data.php' );
-
-	// Initialize our class.
-	$wpcampus_api_data = new WPCampus_API_Data();
-
-	// Register our routes.
-	$wpcampus_api_data->register_routes();
-
-}
-add_action( 'rest_api_init', 'wpcampus_setup_api' );
-
-/**
  * Setup the theme:
  *
  * - Load the textdomain.
@@ -123,7 +105,7 @@ add_action( 'wp_loaded', 'wpcampus_add_category_to_podcast' );
  * Setup styles and scripts.
  */
 function wpcampus_enqueue_styles_scripts() {
-	$wpcampus_version = '0.77';
+	$wpcampus_version = '0.82';
 
 	// Get the directory.
 	$wpcampus_dir = trailingslashit( get_stylesheet_directory_uri() );
@@ -143,6 +125,14 @@ function wpcampus_enqueue_styles_scripts() {
 	// Enqueue the application styles.
 	if ( is_page( 'apply-to-host' ) ) {
 		wp_enqueue_style( 'wpcampus-host-application', $wpcampus_dir . 'assets/css/application.css', array(), $wpcampus_version, 'all' );
+	}
+
+	// Enqueue the sessions script.
+	if ( is_page_template( 'template-sessions.php' ) ) {
+		wp_enqueue_script( 'wpcampus-sessions', $wpcampus_dir . 'assets/js/wpcampus-sessions.js', array( 'jquery' ), $wpcampus_version, false );
+		wp_localize_script( 'wpcampus-sessions', 'wpc_sessions', array(
+			'load_error_msg' => '<p class="error-msg">' . __( 'Oops. Looks like something went wrong. Please refresh the page and try again.', 'wpcampus' ) . '</p><p>' . sprintf( __( 'If the problem persists, please %1$slet us know%2$s.', 'wpcampus' ), '<a href="/contact/">', '</a>' ) . '</p>',
+		));
 	}
 
 	// Enqueue the data scripts.
@@ -744,7 +734,7 @@ function wpcampus_print_contributor( $user_id = 0 ) {
 				} else {
 					$contributor_meta['company'] = $author_company;
 				}
-			} else if ( $author_company_pos ) {
+			} elseif ( $author_company_pos ) {
 				$contributor_meta['company'] = $author_company_pos;
 			}
 
@@ -837,7 +827,7 @@ function wpcampus_prepend_post_title( $post_title, $post_id ) {
 	// Get the post type.
 	$post_type = get_post_type( $post_id );
 
-	switch( $post_type ) {
+	switch ( $post_type ) {
 
 		case 'podcast':
 			return '<span class="fade type">' . __( 'Podcast:', 'wpcampus' ) . '</span> ' . $post_title;

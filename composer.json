@@ -2,7 +2,7 @@
     "name": "wpcampus/wpcampus-wp-theme",
     "description": "The WordPress theme for the main WPCampus website.",
     "type": "wordpress-theme",
-    "license": "false",
+    "license": "GPL2.0+",
     "authors": [
         {
             "name": "WPCampus",
@@ -16,7 +16,8 @@
     "scripts": {
         "post-install-cmd": [
             "./vendor/bin/phpcs --config-set bin ./vendor/bin/phpcs",
-            "./vendor/bin/phpcs --config-set installed_paths ../../wp-coding-standards/wpcs"
+            "./vendor/bin/phpcs --config-set installed_paths ../../wp-coding-standards/wpcs",
+            "./vendor/bin/phpcs --config-set standard WordPress-Core"
         ]
     }
 }

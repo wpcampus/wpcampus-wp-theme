@@ -96,7 +96,7 @@ else :
 							<option value=""><?php _e( 'All authors', 'wpcampus' ); ?></option>
 							<?php
 
-							foreach( $authors as $author ) :
+							foreach ( $authors as $author ) :
 								?><option value="<?php echo $author->user_login; ?>"<?php selected( ! empty( $filters['author'] ) && $filters['author'] == $author->user_login ); ?>><?php echo $author->display_name; ?></option><?php
 							endforeach;
 
@@ -123,7 +123,7 @@ else :
 
 		// Create shortcode arguments.
 		$shortcode_args = '';
-		foreach( $filters as $filter_key => $filter_value ) {
+		foreach ( $filters as $filter_key => $filter_value ) {
 			$shortcode_args .= " {$filter_key}=\"{$filter_value}\"";
 		}
 

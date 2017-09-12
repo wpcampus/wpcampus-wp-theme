@@ -1,0 +1,254 @@
+# Copyright (C) 2017 wpcampus-wp-theme
+# This file is distributed under the same license as the wpcampus-wp-theme package.
+msgid ""
+msgstr ""
+"Project-Id-Version: wpcampus-wp-theme\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language-Team: WPCampus <code@wpcampus.org>\n"
+"Last-Translator: WPCampus <code@wpcampus.org>\n"
+"Report-Msgid-Bugs-To: https://github.com/wpcampus/wpcampus-wp-theme/issues\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: comments.php:27
+msgctxt "comments title"
+msgid "One Reply to &ldquo;%s&rdquo;"
+msgstr ""
+
+#: comments.php:31
+msgctxt "comments title"
+msgid "%1$s Reply to &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s Replies to &ldquo;%2$s&rdquo;"
+msgstr[0] ""
+msgstr[1] ""
+
+#: comments.php:52
+msgid "Reply"
+msgstr ""
+
+#: comments.php:62
+msgid "Previous"
+msgstr ""
+
+#: comments.php:63
+msgid "Next"
+msgstr ""
+
+#: comments.php:72
+msgid "Comments are closed."
+msgstr ""
+
+#: front-page.php:38
+msgid "From The %s Community"
+msgstr ""
+
+#: front-page.php:46
+msgid "Read more on our blog"
+msgstr ""
+
+#: front-page.php:47
+msgid "Watch our videos"
+msgstr ""
+
+#: front-page.php:48
+msgid "Listen to the podcast"
+msgstr ""
+
+#: functions.php:65
+msgid "Primary Menu"
+msgstr ""
+
+#: functions.php:66
+msgid "Footer Menu"
+msgstr ""
+
+#: functions.php:134
+msgid "Oops. Looks like something went wrong. Please refresh the page and try again."
+msgstr ""
+
+#: functions.php:134
+msgid "If the problem persists, please %1$slet us know%2$s."
+msgstr ""
+
+#: functions.php:398
+msgid "Leave a comment"
+msgstr ""
+
+#: functions.php:400
+msgid "%s comment"
+msgid_plural "%s comments"
+msgstr[0] ""
+msgstr[1] ""
+
+#: functions.php:502
+msgid "Contributors"
+msgstr ""
+
+#: functions.php:517, functions.php:529
+msgid "Blog"
+msgstr ""
+
+#: functions.php:653
+msgid "Join %1$s on %2$s"
+msgstr ""
+
+#: functions.php:654, functions.php:655, functions.php:656, functions.php:657, header.php:46, header.php:47, header.php:48, header.php:49
+msgid "Follow %1$s on %2$s"
+msgstr ""
+
+#: functions.php:812
+msgid "Want to become a %s contributor?"
+msgstr ""
+
+#: functions.php:812
+msgid "Great! We'd love to have your voice and insight. %1$sRegister as a %2$s user%3$s to get started."
+msgstr ""
+
+#: functions.php:833, includes/filters.php:118
+msgid "Podcast:"
+msgstr ""
+
+#: functions.php:835, includes/filters.php:91
+msgid "Blog:"
+msgstr ""
+
+#: functions.php:837, includes/filters.php:120
+msgid "Video:"
+msgstr ""
+
+#: header.php:20
+msgid "Skip to Content"
+msgstr ""
+
+#: header.php:28
+msgid "Menu"
+msgstr ""
+
+#: header.php:29
+msgid "Close"
+msgstr ""
+
+#: header.php:33
+msgid "Visit the %s home page"
+msgstr ""
+
+#: header.php:33
+msgid "Home"
+msgstr ""
+
+#: header.php:65
+msgid "Where %s Meets Higher Education"
+msgstr ""
+
+#: header.php:72
+msgid "Get Involved"
+msgstr ""
+
+#: header.php:73
+msgid "Member Survey"
+msgstr ""
+
+#: header.php:76
+msgid "%s 2017 Conference"
+msgstr ""
+
+#: home.php:11
+msgid "There are no posts at this time."
+msgstr ""
+
+#: template-contributors.php:2
+msgid "WPCampus Contributors"
+msgstr ""
+
+#: template-contributors.php:31
+msgid "There are no contributors."
+msgstr ""
+
+#: template-sessions.php:2
+msgid "WPCampus Sessions"
+msgstr ""
+
+#: template-sessions.php:20
+msgid "- Loading sessions -"
+msgstr ""
+
+#: template-videos.php:2
+msgid "WPCampus Videos"
+msgstr ""
+
+#: template-videos.php:63
+msgid "Filter videos:"
+msgstr ""
+
+#: template-videos.php:64
+msgid "Filter videos by event"
+msgstr ""
+
+#: template-videos.php:65
+msgid "All events"
+msgstr ""
+
+#: template-videos.php:66
+msgid "%s Podcast"
+msgstr ""
+
+#: template-videos.php:75
+msgid "Filter videos by category"
+msgstr ""
+
+#: template-videos.php:76
+msgid "All categories"
+msgstr ""
+
+#: template-videos.php:95
+msgid "Filter videos by author"
+msgstr ""
+
+#: template-videos.php:96
+msgid "All authors"
+msgstr ""
+
+#: template-videos.php:110
+msgid "Search videos"
+msgstr ""
+
+#: template-videos.php:111
+msgid "Update"
+msgstr ""
+
+#: template-videos.php:111
+msgid "Update videos"
+msgstr ""
+
+#: template-videos.php:117
+msgid "Clear filters"
+msgstr ""
+
+#: includes/filters.php:93, includes/filters.php:137
+msgid "The %s Blog"
+msgstr ""
+
+#: includes/filters.php:97
+msgid "Contributor:"
+msgstr ""
+
+#: includes/filters.php:112, includes/filters.php:155
+msgid "Events"
+msgstr ""
+
+#: includes/filters.php:114
+msgid "The %s Podcast"
+msgstr ""
+
+#: includes/filters.php:116
+msgid "The %s Shop"
+msgstr ""
+
+#: includes/filters.php:128
+msgid "The %s Blog:"
+msgstr ""
+
+#: includes/filters.php:159
+msgid "Podcast"
+msgstr ""
