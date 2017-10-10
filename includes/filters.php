@@ -79,7 +79,6 @@ add_filter( 'nav_menu_css_class', 'wpcampus_filter_nav_menu_css_class', 100, 4 )
  * Filter the page title.
  */
 function wpcampus_filter_page_title( $page_title ) {
-
 	/*
 	 * Change the page title.
 	 *
@@ -219,3 +218,23 @@ function wpcampus_filter_gmb_mashup_infowindow_content( $response, $marker_data,
 	return $response;
 }
 add_filter( 'gmb_mashup_infowindow_content', 'wpcampus_filter_gmb_mashup_infowindow_content', 100, 3 );
+
+
+/**
+ * Filter the page title.
+ */
+function wpcampus_filter_page_title_tag( $page_title , $separator) {
+    if (is_post_type_archive( 'product' )) {
+        $page_title = sprintf( __( 'The %s Shop', 'wpcampus' ), 'WPCampus' );
+    }
+    /*
+	 * Change the page title.
+	 *
+	 * Had to write in for events because the
+	 * events plugin was overwriting the
+	 * 'post_type_archive_title' filter.
+	 */
+
+	return $page_title;
+}
+add_filter( 'wp_title', 'wpcampus_filter_page_title_tag', 20, 2 );
