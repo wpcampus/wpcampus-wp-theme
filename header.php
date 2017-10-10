@@ -70,16 +70,19 @@ $is_events_page = is_post_type_archive( 'tribe_events' ) || is_singular( 'tribe_
 
 					// Create buttons.
 					$get_involved_button = '<a href="/get-involved/" class="button royal-blue">' . __( 'Get Involved', 'wpcampus' ) . '</a>';
-					$member_survey_button = '<a href="/member-survey/" class="button royal-blue">' . __( 'Member Survey', 'wpcampus' ) . '</a>';
+					//$member_survey_button = '<a href="/member-survey/" class="button royal-blue">' . __( 'Member Survey', 'wpcampus' ) . '</a>';
 					//$ed_survey_button = '<a href="https://2017.wpcampus.org/announcements/wordpress-in-education-survey/" class="button royal-blue">' . sprintf( __( '%s in Education Survey', 'wpcampus' ), 'WP' ) . '</a>';
 					//$wpc_online_button = '<a href="https://online.wpcampus.org/watch/" class="button royal-blue">' . sprintf( __( 'Watch %s Online', 'wpcampus' ), 'WPCampus' ) . '</a>';
 					$wpc_2017_button = '<a href="https://2017.wpcampus.org/" class="button royal-blue">' . sprintf( __( '%s 2017 Conference', 'wpcampus' ), 'WPCampus' ) . '</a>';
+					$apply_host_button = '<a href="/conferences/apply-to-host/" class="button royal-blue">' . sprintf( __( 'Apply to host %s 2018', 'wpcampus' ), 'WPCampus' ) . '</a>';
 
 					// Print buttons.
 					if ( is_page( 'get-involved' ) ) {
-						echo "{$member_survey_button} {$wpc_2017_button}";
-					} else {
+						echo "{$wpc_2017_button} {$apply_host_button}";
+					} elseif ( is_page( 'conferences/apply-to-host' ) ) {
 						echo "{$get_involved_button}{$wpc_2017_button}";
+					} else {
+						echo "{$get_involved_button}{$apply_host_button}";
 					}
 
 					?>

@@ -18,7 +18,21 @@ require_once( $includes_path . 'shortcodes.php' );
  * Decide which main callout to print.
  */
 function wpcampus_print_main_callout() {
-	wpcampus_print_2017_callout();
+	wpcampus_print_apply_host_2018_callout();
+}
+
+/**
+ * Print the "Apply to host 2018" callout.
+ */
+function wpcampus_print_apply_host_2018_callout() {
+
+	?>
+	<div class="panel" style="text-align:center;">
+		<h2 style="line-height:1.3;">Apply to host WPCampus 2018</h2>
+		<p>WPCampus is looking for the host for our 2018 conference. If you wish to invest in higher education, and bring web professionals from all over the world to your campus, we’d love to learn more about you and your institution. <strong>The hosting application will close TUESDAY, OCTOBER 31, 2017.</strong></p>
+		<a class="button expand" style="text-decoration:underline;" href="/conferences/apply-to-host/"><strong>Apply to host the WPCampus 2018 conference</strong></a>
+	</div>
+	<?php
 }
 
 /**
@@ -123,7 +137,7 @@ function wpcampus_enqueue_styles_scripts() {
 	wp_enqueue_script( 'wpcampus', $wpcampus_dir . 'assets/js/wpcampus.min.js', array( 'jquery', 'modernizr' ), $wpcampus_version, true );
 
 	// Enqueue the application styles.
-	if ( is_page( 'apply-to-host' ) ) {
+	if ( is_page( 'conferences/apply-to-host' ) ) {
 		wp_enqueue_style( 'wpcampus-host-application', $wpcampus_dir . 'assets/css/application.css', array(), $wpcampus_version, 'all' );
 	}
 
