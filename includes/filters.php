@@ -227,13 +227,6 @@ function wpcampus_filter_page_title_tag( $page_title , $separator) {
     if (is_post_type_archive( 'product' )) {
         $page_title = sprintf( __( 'The %s Shop', 'wpcampus' ), 'WPCampus' );
     }
-    /*
-	 * Change the page title.
-	 *
-	 * Had to write in for events because the
-	 * events plugin was overwriting the
-	 * 'post_type_archive_title' filter.
-	 */
 
 	return $page_title;
 }
