@@ -319,7 +319,7 @@ body {
 }
 
 // Expand the banner.
-@media screen and (min-width: 860px) {
+@media screen and (min-width: 910px) {
 
     #wpcampus-banner {
 
@@ -731,7 +731,7 @@ body.single-podcast {
 @import "components/main";
 
 #wpcampus-footer {
-    padding: 25px 20px 35px 20px;
+    padding: 25px 40px 35px 40px;
     color: #444;
     font-size: 0.9em;
     line-height: 1.8;
