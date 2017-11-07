@@ -1,8 +1,5 @@
 <?php
 
-// Add article meta after header.
-add_action( 'wpcampus_after_article_header', 'wpcampus_print_article_meta', 5 );
-
 /**
  * Add contributor info before articles.
  */

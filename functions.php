@@ -90,6 +90,11 @@ function wpcampus_setup_theme() {
 
 	add_theme_support( 'woocommerce' );
 
+	if ( is_archive() ) {
+
+		// Add article meta after header.
+		add_action( 'wpcampus_after_article_header', 'wpcampus_print_article_meta', 5 );
+	}
 }
 add_action( 'after_setup_theme', 'wpcampus_setup_theme' );
 
