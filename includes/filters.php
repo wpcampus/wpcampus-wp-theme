@@ -218,16 +218,3 @@ function wpcampus_filter_gmb_mashup_infowindow_content( $response, $marker_data,
 	return $response;
 }
 add_filter( 'gmb_mashup_infowindow_content', 'wpcampus_filter_gmb_mashup_infowindow_content', 100, 3 );
-
-
-/**
- * Filter the page title.
- */
-function wpcampus_filter_page_title_tag( $page_title , $separator) {
-    if (is_post_type_archive( 'product' )) {
-        $page_title = sprintf( __( 'The %s Shop', 'wpcampus' ), 'WPCampus' );
-    }
-
-	return $page_title;
-}
-add_filter( 'wp_title', 'wpcampus_filter_page_title_tag', 20, 2 );
