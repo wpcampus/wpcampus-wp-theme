@@ -41,9 +41,10 @@ function wpcampus_print_apply_host_2018_callout() {
 function wpcampus_print_online_speakers_callout() {
 
 	?>
-	<div class="panel dark-blue" style="text-align:center;">
+	<div class="panel" style="text-align:center;">
 		<h2 style="line-height:1.3;">Call for speakers for WPCampus Online</h2>
 		<p>Our <strong><a href="https://online.wpcampus.org/call-for-speakers/">call for speakers</a></strong> is open for WPCampus Online 2018 and we'd love to hear from you. Share your stories and expertise from your living room! <strong>The call will close at 12 midnight PST on Friday, November 10, 2017.</strong></p>
+		<a class="button expand" style="text-decoration:underline;" href="https://online.wpcampus.org/call-for-speakers/"><strong>Apply to speak at WPCampus Online</strong></a>
 	</div>
 	<?php
 }
