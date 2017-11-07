@@ -202,6 +202,9 @@ body.single-podcast #wpcampus-main {
 	position: relative;
 	padding-left: 48px;
 }
+#wpc-notifications .wpc-notification-message p {
+	margin-bottom: 0;
+}
 #wpc-notifications .wpc-notification-message:before {
 	content: '';
 	display: inline-block;
