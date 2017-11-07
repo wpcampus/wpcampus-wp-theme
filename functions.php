@@ -19,6 +19,7 @@ require_once( $includes_path . 'shortcodes.php' );
  */
 function wpcampus_print_main_callout() {
 	wpcampus_print_apply_host_2018_callout();
+	wpcampus_print_online_speakers_callout();
 }
 
 /**
@@ -31,6 +32,19 @@ function wpcampus_print_apply_host_2018_callout() {
 		<h2 style="line-height:1.3;">Apply to host WPCampus 2018</h2>
 		<p>WPCampus is looking for the host for our 2018 conference. If you wish to invest in higher education, and bring web professionals from all over the world to your campus, we’d love to learn more about you and your institution. <strong>The hosting application has been extended and will close FRIDAY, NOVEMBER 3, 2017.</strong></p>
 		<a class="button expand" style="text-decoration:underline;" href="/conferences/apply-to-host/"><strong>Apply to host the WPCampus 2018 conference</strong></a>
+	</div>
+	<?php
+}
+
+/**
+ * Print the "WPC Online call for speakers" callout.
+ */
+function wpcampus_print_online_speakers_callout() {
+
+	?>
+	<div class="panel dark-blue" style="text-align:center;">
+		<h2 style="line-height:1.3;">Call for speakers for WPCampus Online</h2>
+		<p>Our <strong><a href="https://online.wpcampus.org/call-for-speakers/">call for speakers</a></strong> is open for WPCampus Online 2018 and we'd love to hear from you. Share your stories and expertise from your living room! <strong>The call will close at 12 midnight PST on Friday, November 10, 2017.</strong></p>
 	</div>
 	<?php
 }
