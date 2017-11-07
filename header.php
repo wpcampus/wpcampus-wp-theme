@@ -75,14 +75,15 @@ $is_events_page = is_post_type_archive( 'tribe_events' ) || is_singular( 'tribe_
 					//$wpc_online_button = '<a href="https://online.wpcampus.org/watch/" class="button royal-blue">' . sprintf( __( 'Watch %s Online', 'wpcampus' ), 'WPCampus' ) . '</a>';
 					$wpc_2017_button = '<a href="https://2017.wpcampus.org/" class="button royal-blue">' . sprintf( __( '%s 2017 Conference', 'wpcampus' ), 'WPCampus' ) . '</a>';
 					$apply_host_button = '<a href="/conferences/apply-to-host/" class="button royal-blue">' . sprintf( __( 'Apply to host %s 2018', 'wpcampus' ), 'WPCampus' ) . '</a>';
+					$online_speaker_button = '<a href="https://online.wpcampus.org/call-for-speakers/" class="button royal-blue">' . __( 'Call for speakers', 'wpcampus' ) . '</a>';
 
 					// Print buttons.
 					if ( is_page( 'get-involved' ) ) {
-						echo "{$wpc_2017_button} {$apply_host_button}";
+						echo "{$online_speaker_button} {$apply_host_button}";
 					} elseif ( is_page( 'conferences/apply-to-host' ) ) {
-						echo "{$get_involved_button}{$wpc_2017_button}";
+						echo "{$get_involved_button}{$online_speaker_button}";
 					} else {
-						echo "{$get_involved_button}{$apply_host_button}";
+						echo "{$online_speaker_button}{$apply_host_button}";
 					}
 
 					?>
@@ -117,9 +118,7 @@ $is_events_page = is_post_type_archive( 'tribe_events' ) || is_singular( 'tribe_
 			<div class="inside">
 				<h1><?php
 
-				/*
-				 * Print page title.
-				 */
+				// Print page title.
 				if ( is_404() ) {
 					echo 'Page Not Found';
 				} else {
