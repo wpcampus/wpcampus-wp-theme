@@ -29,7 +29,7 @@ function wpcampus_print_apply_host_2018_callout() {
 	?>
 	<div class="panel" style="text-align:center;">
 		<h2 style="line-height:1.3;">Apply to host WPCampus 2018</h2>
-		<p>WPCampus is looking for the host for our 2018 conference. If you wish to invest in higher education, and bring web professionals from all over the world to your campus, we’d love to learn more about you and your institution. <strong>The hosting application will close TUESDAY, OCTOBER 31, 2017.</strong></p>
+		<p>WPCampus is looking for the host for our 2018 conference. If you wish to invest in higher education, and bring web professionals from all over the world to your campus, we’d love to learn more about you and your institution. <strong>The hosting application has been extended and will close FRIDAY, NOVEMBER 3, 2017.</strong></p>
 		<a class="button expand" style="text-decoration:underline;" href="/conferences/apply-to-host/"><strong>Apply to host the WPCampus 2018 conference</strong></a>
 	</div>
 	<?php
