@@ -218,3 +218,17 @@ function wpcampus_filter_gmb_mashup_infowindow_content( $response, $marker_data,
 	return $response;
 }
 add_filter( 'gmb_mashup_infowindow_content', 'wpcampus_filter_gmb_mashup_infowindow_content', 100, 3 );
+
+/**
+ * Filter the WordPress SEO OpenGraph image.
+ */
+function wpcampus_filter_wpseo_opengraph_image( $image ) {
+
+	// For shop pages, use the shop promo.
+	if ( is_post_type_archive( 'product' ) || is_singular( 'product' ) ) {
+		return get_bloginfo('url') . '/wp-content/uploads/shop-fb-promo.png';
+	}
+
+	return $image;
+}
+add_filter( 'wpseo_opengraph_image', 'wpcampus_filter_wpseo_opengraph_image' );
