@@ -7,7 +7,10 @@
     "type": "git",
     "url": "https://github.com/wpcampus/wpcampus-wp-theme.git"
   },
-  "author": "Rachel Carden",
+  "author": "WPCampus <code@wpcampus.org>",
+  "contributors": [
+    "Rachel Cherry <rachel@wpcampus.org>"
+  ],
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-contrib-sass": "^0.9.2",
