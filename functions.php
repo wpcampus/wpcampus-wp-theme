@@ -18,7 +18,7 @@ require_once( $includes_path . 'shortcodes.php' );
  * Decide which main callout to print.
  */
 function wpcampus_print_main_callout() {
-	wpcampus_print_online_speakers_callout();
+	//wpcampus_print_online_speakers_callout();
 }
 
 /**
