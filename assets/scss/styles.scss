@@ -473,74 +473,10 @@ body {
 }
 
 // The main notification.
-#wpc-notification {
-    background-color: rgba( $royal-blue, 0.1 );
-    padding: 20px;
-    text-align: center;
-    font-size: 1em;
-    line-height: 1.2;
-
-    * {
-        font-size: inherit;
-
-        &:last-child {
-            margin-bottom: 0;
-        }
-    }
-}
-
-
 #wpc-notifications {
-    display: none;
 
-    * {
-        font-size: inherit;
-        color: inherit;
-
-        &:first-child {
-            margin-top: 0;
-        }
-
-        &:last-child {
-            margin-bottom: 0;
-        }
-    }
-
-    .wpc-notification {
-        background-color: rgba(17,89,189,0.1);
-        padding: 20px;
-        text-align: center;
-        font-size: 1em;
-        line-height: 1.2;
-
-        .wpc-notification-message {
-            max-width: 880px;
-            text-align: left;
-            vertical-align: middle;
-            margin: 0 auto;
-            position: relative;
-            padding-left: 48px;
-
-            p {
-                margin-bottom: 0;
-            }
-
-            &:before {
-                content: '';
-                display: inline-block;
-                line-height: inherit;
-                width: 28px;
-                height: 28px;
-                background: url( '../images/information.png' ) 0 0 no-repeat;
-                background-size: auto 28px;
-                opacity: 0.7;
-                vertical-align: middle;
-                margin: -14px 0 0 0;
-                position: absolute;
-                left: 0;
-                top: 50%;
-            }
-        }
+    .wpc-notification-message {
+        max-width: 880px;
     }
 }
 

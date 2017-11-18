@@ -6,6 +6,11 @@ $images_dir = "{$stylesheet_dir}/assets/images/";
 $is_front_page = is_front_page();
 $is_events_page = is_post_type_archive( 'tribe_events' ) || is_singular( 'tribe_events' );
 
+// Enable network notifications.
+if ( function_exists( 'wpcampus_enable_network_notifications' ) ) {
+	wpcampus_enable_network_notifications();
+}
+
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?> class="no-js">
@@ -98,18 +103,11 @@ $is_events_page = is_post_type_archive( 'tribe_events' ) || is_singular( 'tribe_
 			</div>
 		</div>
 	</div>*/
-	?>
-	<div id="wpc-notifications"></div>
-	<script id="wpc-notification-template" type="x-tmpl-mustache">
-		{{#.}}
-			<div class="wpc-notification">
-				<div class="wpc-notification-message">
-					{{{content.rendered}}}
-				</div>
-			</div>
-		{{/.}}
-	</script>
-	<?php
+
+	// Print network notifications.
+	if ( function_exists( 'wpcampus_print_network_notifications' ) ) {
+		wpcampus_print_network_notifications();
+	}
 
 	if ( ! $is_front_page ) :
 		?>

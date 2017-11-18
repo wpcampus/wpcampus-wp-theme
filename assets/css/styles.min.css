@@ -174,51 +174,8 @@ body.single-podcast #wpcampus-main {
 	margin: 10px 0 0 0;
 }
 
-#wpc-notifications {
-	display: none;
-}
-#wpc-notifications .wpc-notification {
-	background-color: rgba(17,89,189,0.1);
-	padding: 20px;
-	text-align: center;
-	font-size: 1em;
-	line-height: 1.2;
-}
-#wpc-notifications * {
-	font-size: inherit;
-	color: inherit;
-}
-#wpc-notifications *:first-child {
-	margin-top: 0;
-}
-#wpc-notifications *:last-child {
-	margin-bottom: 0;
-}
 #wpc-notifications .wpc-notification-message {
 	max-width: 880px;
-	text-align: left;
-	vertical-align: middle;
-	margin: 0 auto;
-	position: relative;
-	padding-left: 48px;
-}
-#wpc-notifications .wpc-notification-message p {
-	margin-bottom: 0;
-}
-#wpc-notifications .wpc-notification-message:before {
-	content: '';
-	display: inline-block;
-	line-height: inherit;
-	width: 28px;
-	height: 28px;
-	background: url( '../images/information.png' ) 0 0 no-repeat;
-	background-size: auto 28px;
-	opacity: 0.7;
-	vertical-align: middle;
-	margin: -14px 0 0 0;
-	position: absolute;
-	left: 0;
-	top: 50%;
 }
 
 .article-meta-wrapper {
