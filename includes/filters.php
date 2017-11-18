@@ -13,21 +13,6 @@ function wpcampus_add_remove_filters() {
 add_action( 'wp', 'wpcampus_add_remove_filters' );
 
 /**
- * Add the AddThis bar before articles.
- */
-function wpcampus_add_addthis_before_article() {
-
-	if ( ! is_singular( array( 'post', 'podcast', 'video' ) ) ) {
-		return;
-	}
-
-	?>
-	<div class="addthis_sharing_toolbox"></div>
-	<?php
-}
-add_action( 'wpcampus_before_article_content', 'wpcampus_add_addthis_before_article' );
-
-/**
  * Add contributor info after articles.
  */
 function wpcampus_add_contributor_after_article() {

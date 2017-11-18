@@ -495,15 +495,11 @@ iframe {
     }
 }
 
-.addthis_sharing_toolbox {
+.addthis_tool {
     position: relative;
     z-index: 0;
     text-align: center;
     margin: 0;
-
-    .at-share-tbx-element {
-        display: inline-block !important;
-    }
 }
 
 .wpcampus-chart,
