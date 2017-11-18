@@ -88,10 +88,19 @@ function wpcampus_setup_theme() {
 	// Load the textdomain.
 	load_theme_textdomain( 'wpcampus', get_stylesheet_directory() . '/languages' );
 
+	// Enable network notifications.
+	if ( function_exists( 'wpcampus_enable_network_notifications' ) ) {
+		wpcampus_enable_network_notifications();
+	}
+
+	// Enable network footer.
+	if ( function_exists( 'wpcampus_enable_network_footer' ) ) {
+		wpcampus_enable_network_footer();
+	}
+
 	// Register the nav menus.
 	register_nav_menus( array(
-		'primary'   => __( 'Primary Menu', 'wpcampus' ),
-		'footer'    => __( 'Footer Menu', 'wpcampus' ),
+		'primary' => __( 'Primary Menu', 'wpcampus' ),
 	));
 
 	// Add HTML5 support.
@@ -110,7 +119,7 @@ function wpcampus_setup_theme() {
 		add_action( 'wpcampus_after_article_header', 'wpcampus_print_article_meta', 5 );
 	}
 }
-add_action( 'after_setup_theme', 'wpcampus_setup_theme' );
+add_action( 'after_setup_theme', 'wpcampus_setup_theme', 1 );
 
 /**
  * Load files depending on page,
@@ -138,7 +147,7 @@ add_action( 'wp_loaded', 'wpcampus_add_category_to_podcast' );
  * Setup styles and scripts.
  */
 function wpcampus_enqueue_styles_scripts() {
-	$wpcampus_version = '0.87';
+	$wpcampus_version = '0.88';
 
 	// Get the directory.
 	$wpcampus_dir = trailingslashit( get_stylesheet_directory_uri() );
@@ -198,16 +207,6 @@ function wpcampus_enqueue_styles_scripts() {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'wpcampus_enqueue_styles_scripts' );
-
-/**
- * Add the AddThis script to the footer.
- */
-function wpcampus_add_addthis() {
-	?>
-	<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-55c7ed90ac8a8479" async="async"></script>
-	<?php
-}
-add_action( 'wp_footer', 'wpcampus_add_addthis' );
 
 /**
  * Load favicons.
@@ -663,33 +662,6 @@ function wpcampus_get_breadcrumbs_html() {
 	}
 
 	return $breadcrumbs_html;
-}
-
-/**
- * Prints list of social media icons.
- *
- * @param   $color - string - color of icon, black is default.
- */
-function wpcampus_print_social_media_icons( $color = 'black' ) {
-
-	// Get the theme directory.
-	$theme_dir = trailingslashit( get_template_directory_uri() );
-	$images_dir = "{$theme_dir}assets/images/";
-
-	// If color, prefix with dash.
-	if ( $color ) {
-		$color = "-{$color}";
-	}
-
-	?>
-	<ul class="social-media-icons">
-		<li><a class="slack" href="https://wpcampus.org/get-involved/"><img src="<?php echo $images_dir; ?>slack<?php echo $color; ?>.svg" alt="<?php printf( __( 'Join %1$s on %2$s', 'wpcampus' ), 'WPCampus', 'Slack' ); ?>" /></a></li>
-		<li><a class="twitter" href="https://twitter.com/wpcampusorg"><img src="<?php echo $images_dir; ?>twitter<?php echo $color; ?>.svg" alt="<?php printf( __( 'Follow %1$s on %2$s', 'wpcampus' ), 'WPCampus', 'Twitter' ); ?>" /></a></li>
-		<li><a class="facebook" href="https://www.facebook.com/wpcampus"><img src="<?php echo $images_dir; ?>facebook<?php echo $color; ?>.svg" alt="<?php printf( __( 'Follow %1$s on %2$s', 'wpcampus' ), 'WPCampus', 'Facebook' ); ?>" /></a></li>
-		<li><a class="youtube" href="https://www.youtube.com/wpcampusorg"><img src="<?php echo $images_dir; ?>youtube<?php echo $color; ?>.svg" alt="<?php printf( __( 'Follow %1$s on %2$s', 'wpcampus' ), 'WPCampus', 'YouTube' ); ?>" /></a></li>
-		<li><a class="github" href="https://github.com/wpcampus/"><img src="<?php echo $images_dir; ?>github<?php echo $color; ?>.svg" alt="<?php printf( __( 'Follow %1$s on %2$s', 'wpcampus' ), 'WPCampus', 'GitHub' ); ?>" /></a></li>
-	</ul>
-	<?php
 }
 
 /**

@@ -6,11 +6,6 @@ $images_dir = "{$stylesheet_dir}/assets/images/";
 $is_front_page = is_front_page();
 $is_events_page = is_post_type_archive( 'tribe_events' ) || is_singular( 'tribe_events' );
 
-// Enable network notifications.
-if ( function_exists( 'wpcampus_enable_network_notifications' ) ) {
-	wpcampus_enable_network_notifications();
-}
-
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?> class="no-js">
