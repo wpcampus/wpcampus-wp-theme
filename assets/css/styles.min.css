@@ -186,11 +186,11 @@ body.single-podcast #wpcampus-main {
 	overflow: auto;
 }
 
-#wpcampus-main .wpcampus-contributor .inside > *:first-child {
+#wpcampus-main .wpcampus-contributor .inside *:first-child {
 	margin-top: 0;
 }
 
-#wpcampus-main .wpcampus-contributor .inside > *:last-child {
+#wpcampus-main .wpcampus-contributor .inside *:last-child {
 	margin-bottom: 0;
 }
 
@@ -242,7 +242,7 @@ body.single-podcast #wpcampus-main {
 @media screen and (min-width: 600px) {
 	#wpcampus-main .wpcampus-contributor.has-thumbnail .inside {
 		padding: 0 0 0 160px;
-		min-height: 160px;
+		min-height: 130px;
 	}
 }
 

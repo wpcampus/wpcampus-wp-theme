@@ -773,9 +773,8 @@ function wpcampus_print_contributor( $user_id = 0 ) {
 
 			// Display author bio.
 			if ( ! empty( $author_desc ) ) :
-
 				?>
-				<p class="contributor-desc"><?php echo $author_desc; ?></p>
+				<div class="contributor-desc"><?php echo $author_desc; ?></div>
 				<?php
 			endif;
 
