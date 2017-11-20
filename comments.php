@@ -3,6 +3,10 @@
  * The template for displaying comments.
  */
 
+if ( ! post_type_supports( get_post_type(), 'comments' ) ) {
+	return;
+}
+
 /*
  * If the current post is protected by a password and
  * the visitor has not yet entered the password we will
@@ -66,7 +70,7 @@ if ( post_password_required() ) {
 	endif;
 
 	// If comments are closed and there are comments, let's leave a little note, shall we?
-	if ( ! comments_open() && post_type_supports( get_post_type(), 'comments' ) ) :
+	if ( ! comments_open() ) :
 
 		?>
 		<p class="no-comments"><?php _e( 'Comments are closed.', 'wpcampus' ); ?></p>
