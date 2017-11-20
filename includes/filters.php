@@ -51,6 +51,8 @@ function wpcampus_filter_nav_menu_css_class( $classes, $item, $args, $depth ) {
 		$classes[] = 'current-menu-item';
 	} elseif ( is_singular( 'podcast' ) && '/podcast/' == $item->url ) {
 		$classes[] = 'current-menu-item';
+	} elseif ( is_singular( 'resource' ) && 'Resources' == $item->title ) {
+		$classes[] = 'current-menu-item';
 	} elseif ( is_singular( 'video' ) && 'Videos' == $item->title ) {
 		$classes[] = 'current-menu-item';
 	} elseif ( is_singular( 'tribe_events' ) && '/events/' == $item->url ) {
@@ -102,6 +104,8 @@ function wpcampus_filter_page_title( $page_title ) {
 		return __( 'Resources', 'wpcampus' );
 	} elseif ( is_singular( 'podcast' ) ) {
 		return '<span class="fade type">' . __( 'Podcast:', 'wpcampus' ) . '</span> ' . $page_title;
+	} elseif ( is_singular( 'resource' ) ) {
+		return '<span class="fade type">' . __( 'Resource:', 'wpcampus' ) . '</span> ' . $page_title;
 	} elseif ( is_singular( 'video' ) ) {
 		return '<span class="fade type">' . __( 'Video:', 'wpcampus' ) . '</span> ' . $page_title;
 	} elseif ( is_category() ) {
@@ -164,18 +168,20 @@ function wpcampus_adjust_queries( $query ) {
 		return;
 	}
 
+	$all_post_types = array( 'podcast', 'post', 'resource', 'video' );
+
 	/*
 	 * For now, get all posts and podcasts posts.
 	 *
 	 * @TODO add pagination.
 	 */
-	if ( is_post_type_archive( array( 'podcast', 'post', 'video' ) ) && $query->is_main_query() ) {
+	if ( is_post_type_archive( $all_post_types ) && $query->is_main_query() ) {
 		$query->set( 'nopaging', true );
 	}
 
 	// Make sure these pages get all post types.
 	if ( is_search() || is_author() || is_category() || is_tag() ) {
-		$query->set( 'post_type', array( 'post', 'podcast', 'video' ) );
+		$query->set( 'post_type', $all_post_types );
 	}
 }
 add_action( 'pre_get_posts', 'wpcampus_adjust_queries' );

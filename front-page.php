@@ -17,8 +17,10 @@ endif;
 
 // Display blog posts.
 $query_posts = new WP_Query( array(
-	'post_type'         => array( 'post', 'podcast', 'video' ),
+	'post_type'         => array( 'post', 'podcast', 'resource', 'video' ),
 	'posts_per_page'    => 5, // @TODO add pagination
+	'orderby'           => 'modified',
+	'order'             => 'DESC',
 ));
 if ( $query_posts->have_posts() ) :
 
@@ -43,9 +45,10 @@ if ( $query_posts->have_posts() ) :
 
 		?>
 		<ul class="button-group">
-			<li><a href="/blog/" class="button"><?php _e( 'Read more on our blog', 'wpcampus' ); ?></a></li>
-			<li><a href="/videos/" class="button"><?php _e( 'Watch our videos', 'wpcampus' ); ?></a></li>
-			<li><a href="/podcast/" class="button"><?php _e( 'Listen to the podcast', 'wpcampus' ); ?></a></li>
+			<li><a href="/blog/" class="button"><?php _e( 'Blog', 'wpcampus' ); ?></a></li>
+			<li><a href="/podcast/" class="button"><?php _e( 'Podcast', 'wpcampus' ); ?></a></li>
+			<li><a href="/resources/" class="button"><?php _e( 'Resources', 'wpcampus' ); ?></a></li>
+			<li><a href="/videos/" class="button"><?php _e( 'Videos', 'wpcampus' ); ?></a></li>
 		</ul>
 	</div>
 	<?php
