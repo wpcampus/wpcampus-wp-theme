@@ -156,7 +156,7 @@ add_filter( 'wpcampus_post_type_archive_title', 'wpcampus_filter_post_type_archi
 /**
  * Adjust queries
  */
-function wpcampus_adjust_queries( $query ) {
+function wpcampus_adjust_queries( &$query ) {
 
 	// Don't run in the admin.
 	if ( is_admin() ) {
@@ -175,13 +175,18 @@ function wpcampus_adjust_queries( $query ) {
 	 *
 	 * @TODO add pagination.
 	 */
-	if ( is_post_type_archive( $all_post_types ) && $query->is_main_query() ) {
-		$query->set( 'nopaging', true );
+	if ( is_post_type_archive( $all_post_types ) ) {
+		if ( $query->is_main_query() ) {
+			$query->set( 'nopaging', true );
+		}
 	}
 
 	// Make sure these pages get all post types.
 	if ( is_search() || is_author() || is_category() || is_tag() ) {
-		$query->set( 'post_type', $all_post_types );
+		if ( $query->is_main_query() ) {
+			$query->set( 'nopaging', true );
+			$query->set( 'post_type', $all_post_types );
+		}
 	}
 }
 add_action( 'pre_get_posts', 'wpcampus_adjust_queries' );
