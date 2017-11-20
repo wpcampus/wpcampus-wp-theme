@@ -1,16 +1,22 @@
 // Require all the things (that we need).
-var gulp = require('gulp');
-var phpcs = require('gulp-phpcs');
-var rename = require('gulp-rename');
-var sort = require('gulp-sort');
-var uglify = require('gulp-uglify');
-var watch = require('gulp-watch');
-var wp_pot = require('gulp-wp-pot');
+const gulp = require('gulp');
+const notify = require('gulp-notify');
+const rename = require('gulp-rename');
+const shell = require('gulp-shell');
+const sort = require('gulp-sort');
+const uglify = require('gulp-uglify');
+const watch = require('gulp-watch');
+const wp_pot = require('gulp-wp-pot');
 
 // Define the source paths for each file type.
-var src = {
+const src = {
 	js: ['assets/js/wpcampus.js', 'assets/js/wpcampus-data.js', 'assets/js/wpcampus-sessions.js'],
 	php: ['**/*.php','!vendor/**','!node_modules/**']
+};
+
+const dest = {
+	js: 'assets/js',
+	translations: 'languages/wpcampus-wp-theme.pot'
 };
 
 // Minify the JS.
@@ -22,18 +28,22 @@ gulp.task('js', function() {
         .pipe(rename({
 			suffix: '.min'
 		}))
-        .pipe(gulp.dest('assets/js'))
+        .pipe(gulp.dest(dest.js))
+		.pipe(notify('WPC Main JS compiled'));
 });
 
-// Sniff our code.
-gulp.task('php',function () {
-	return gulp.src(src.php)
-		.pipe(phpcs({
-			bin: './vendor/bin/phpcs',
-			standard: 'WordPress-Core'
+// "Sniff" our PHP.
+gulp.task('php', function() {
+	// TODO: Clean up. Want to run command and show notify for sniff errors.
+	return gulp.src('index.php', {read: false})
+		.pipe(shell(['composer sniff'], {
+			ignoreErrors: true,
+			verbose: false
 		}))
-		// Log all problems that was found
-		.pipe(phpcs.reporter('log'));
+		.pipe(notify('WPC Main PHP sniffed'), {
+			onLast: true,
+			emitError: true
+		});
 });
 
 // Create the .pot translation file.
@@ -48,7 +58,8 @@ gulp.task('translate', function () {
             team: 'WPCampus <code@wpcampus.org>',
             headers: false
         } ))
-        .pipe(gulp.dest('languages/wpcampus-wp-theme.pot'));
+        .pipe(gulp.dest(dest.translations))
+		.pipe(notify('WPC Main translated'));
 });
 
 // Compile all the things.

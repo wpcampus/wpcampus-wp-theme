@@ -14,11 +14,6 @@
         "wp-coding-standards/wpcs": "*"
     },
     "scripts": {
-        "post-install-cmd": [
-            "./vendor/bin/phpcs --config-set bin ./vendor/bin/phpcs",
-            "./vendor/bin/phpcs --config-set installed_paths ../../wp-coding-standards/wpcs",
-            "./vendor/bin/phpcs --config-set standard WordPress-Core"
-        ],
         "sniff": "vendor/bin/phpcs --runtime-set installed_paths vendor/wp-coding-standards/wpcs -p ./ --standard=WordPress-Core --report=full --extensions=php --ignore=*/vendor/*,*/node_modules/*"
     }
 }
