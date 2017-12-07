@@ -18,14 +18,25 @@ require_once( $includes_path . 'shortcodes.php' );
  * Decide which main callout to print.
  */
 function wpcampus_print_main_callout() {
-	//wpcampus_print_online_speakers_callout();
+	wpcampus_print_events_callout();
+}
+
+/**
+ * Prints a main callout highlighting our events.
+ */
+function wpcampus_print_events_callout() {
+	?>
+	<div class="panel" style="text-align:center;">
+		<p>WPCampus currently hosts one in-person and one virtual conference each year.<br /><strong>Our next event will be WPCampus Online 2018 (virtual) on Tuesday, January 30, 2018.</strong></p>
+		<a class="button expand" style="text-decoration:underline;" href="/conferences/"><strong>Learn more about our conferences</strong></a>
+	</div>
+	<?php
 }
 
 /**
  * Print the "Apply to host 2018" callout.
  */
 function wpcampus_print_apply_host_2018_callout() {
-
 	?>
 	<div class="panel" style="text-align:center;">
 		<h2 style="line-height:1.3;">Apply to host WPCampus 2018</h2>
@@ -39,7 +50,6 @@ function wpcampus_print_apply_host_2018_callout() {
  * Print the "WPC Online call for speakers" callout.
  */
 function wpcampus_print_online_speakers_callout() {
-
 	?>
 	<div class="panel" style="text-align:center;">
 		<h2 style="line-height:1.3;">Call for speakers for WPCampus Online</h2>
@@ -53,7 +63,6 @@ function wpcampus_print_online_speakers_callout() {
  * Print the 2017 callout.
  */
 function wpcampus_print_2017_callout() {
-
 	?>
 	<div class="panel" style="text-align:center;">
 		<h2>WPCampus 2017 Conference on July 14-15</h2>
@@ -67,7 +76,6 @@ function wpcampus_print_2017_callout() {
  * Print the ed survey callout.
  */
 function wpcampus_print_ed_survey_callout() {
-
 	?>
 	<div class="panel" style="text-align:center;">
 		<h2>The "WordPress in Education" Survey</h2>
