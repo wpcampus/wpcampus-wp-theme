@@ -28,42 +28,6 @@ form {
     margin: 0 0 $paragraph-margin-bottom;
 }
 
-// Stylize the "Skip To Content" link
-#skip-to-content {
-    display: block;
-    position: fixed;
-    top: -1000px;
-    left: -1000px;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    border: 0;
-    padding: 0;
-    margin: 0;
-    z-index: -1;
-    clip: rect(1px, 1px, 1px, 1px);
-
-    &:active,
-    &:focus,
-    &:hover {
-        clip: auto;
-        background: #eee;
-        left: 0;
-        top: 0;
-        width: auto;
-        height: auto;
-        text-decoration: underline;
-        text-align: center;
-        color: #000;
-        font-size: 1rem;
-        font-weight: 600;
-        line-height: $wpc-banner-height;
-        padding: 0 15px;
-        overflow: visible;
-        z-index: 10000;
-    }
-}
-
 h1 {
     text-transform: uppercase;
     font-weight: 300;

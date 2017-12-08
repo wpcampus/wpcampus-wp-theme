@@ -17,7 +17,6 @@ $is_events_page = is_post_type_archive( 'tribe_events' ) || is_singular( 'tribe_
 	<?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
-	<a href="#wpcampus-main" id="skip-to-content"><?php _e( 'Skip to Content', 'wpcampus' ); ?></a>
 	<div id="wpcampus-banner">
 		<div class="toggle-main-menu">
 			<div class="toggle-icon">
