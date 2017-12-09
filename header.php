@@ -82,14 +82,25 @@ $is_events_page = is_post_type_archive( 'tribe_events' ) || is_singular( 'tribe_
 					$watch_videos_button = '<a href="/videos/" class="button royal-blue">' . __( 'Watch sessions', 'wpcampus' ) . '</a>';
 					$podcast_button = '<a href="/podcast/" class="button royal-blue">' . __( 'Listen to Podcast', 'wpcampus' ) . '</a>';
 
-					// Print buttons.
+					// Buttons to use.
 					if ( is_page( 'get-involved' ) ) {
-						echo "{$watch_videos_button} {$conferences_button} {$podcast_button}";
+						$buttons = array(
+							$watch_videos_button,
+							$conferences_button,
+							$podcast_button,
+						);
 					} else {
-						echo "{$get_involved_button} {$watch_videos_button} {$conferences_button}";
+						$buttons = array(
+							$get_involved_button,
+							$watch_videos_button,
+							$conferences_button,
+						);
 					}
 
 					?>
+					<ul class="wpc-header-buttons" role="navigation">
+						<li><?php echo implode( '</li><li>', $buttons ); ?></li>
+					</ul>
 				</div><!-- .wpcampus-header -->
 			</div>
 		</div>
