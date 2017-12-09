@@ -96,6 +96,11 @@ function wpcampus_setup_theme() {
 	// Load the textdomain.
 	load_theme_textdomain( 'wpcampus', get_stylesheet_directory() . '/languages' );
 
+	// Enable network banner.
+	if ( function_exists( 'wpcampus_enable_network_banner' ) ) {
+		wpcampus_enable_network_banner();
+	}
+
 	// Enable network notifications.
 	if ( function_exists( 'wpcampus_enable_network_notifications' ) ) {
 		wpcampus_enable_network_notifications();
@@ -170,7 +175,7 @@ function wpcampus_enqueue_styles_scripts() {
 	wp_enqueue_script( 'modernizr', 'https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js' );
 
 	// Enqueue the main script file - goes in footer.
-	wp_enqueue_script( 'wpcampus', $wpcampus_dir . 'assets/js/wpcampus.min.js', array( 'jquery', 'modernizr' ), $wpcampus_version, true );
+	wp_enqueue_script( 'wpcampus', $wpcampus_dir . 'assets/js/wpcampus.min.js', array( 'jquery', 'modernizr', 'wpc-network-toggle-menu' ), $wpcampus_version, true );
 
 	// Enqueue the application styles.
 	if ( is_page( 'conferences/apply-to-host' ) ) {
@@ -214,7 +219,7 @@ function wpcampus_enqueue_styles_scripts() {
 		wp_enqueue_style( 'wpcampus-events', $wpcampus_dir . 'assets/css/tribe-events.min.css', array( 'wpcampus' ), $wpcampus_version, 'all' );
 	}
 }
-add_action( 'wp_enqueue_scripts', 'wpcampus_enqueue_styles_scripts' );
+add_action( 'wp_enqueue_scripts', 'wpcampus_enqueue_styles_scripts', 11 );
 
 /**
  * Load favicons.

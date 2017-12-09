@@ -1,6 +1,5 @@
 <?php
 
-$blog_url = get_bloginfo( 'url' );
 $stylesheet_dir = get_stylesheet_directory_uri();
 $images_dir = "{$stylesheet_dir}/assets/images/";
 $is_front_page = is_front_page();
@@ -17,8 +16,18 @@ $is_events_page = is_post_type_archive( 'tribe_events' ) || is_singular( 'tribe_
 	<?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
-	<div id="wpcampus-banner">
-		<div class="toggle-main-menu">
+	<?php
+
+	// Print network banner.
+	if ( function_exists( 'wpcampus_print_network_banner' ) ) {
+		wpcampus_print_network_banner( array(
+			'skip_nav_id' => 'wpcampus-main',
+		));
+	}
+
+	?>
+	<div id="wpcampus-banner" role="navigation">
+		<button class="wpc-toggle-menu" data-toggle="wpcampus-banner" aria-label="<?php _e( 'Toggle menu', 'wpcampus' ); ?>">
 			<div class="toggle-icon">
 				<div class="bar one"></div>
 				<div class="bar two"></div>
@@ -26,28 +35,22 @@ $is_events_page = is_post_type_archive( 'tribe_events' ) || is_singular( 'tribe_
 			</div>
 			<div class="open-menu-label"><?php _e( 'Menu', 'wpcampus' ); ?></div>
 			<div class="close-menu-label"><?php _e( 'Close', 'wpcampus' ); ?></div>
-		</div>
+		</button>
 		<div id="wpcampus-main-menu" class="menu">
-	        <ul class="icons">
-		        <li class="icon has-icon-alt home<?php echo $is_front_page ? ' current' : null; ?>"><a href="<?php echo $blog_url; ?>"><img src="<?php echo $images_dir; ?>home-white.svg" alt="<?php printf( esc_attr__( 'Visit the %s home page', 'wpcampus' ), 'WPCampus' ); ?>" /><span class="icon-alt"><?php _e( 'Home', 'wpcampus' ); ?></span></a></li>
-	        </ul>
-	        <?php
+			<ul class="icons">
+				<li class="icon has-icon-alt home<?php echo $is_front_page ? ' current' : null; ?>"><a href="/"><img src="<?php echo $images_dir; ?>home-white.svg" alt="<?php printf( esc_attr__( 'Visit the %s home page', 'wpcampus' ), 'WPCampus' ); ?>" /><span class="icon-alt"><?php _e( 'Home', 'wpcampus' ); ?></span></a></li>
+			</ul>
+			<?php
 
-	        // Print the header menu.
-	        wp_nav_menu( array(
-		        'theme_location'    => 'primary',
-		        'container'         => false,
-		        'menu_class'        => false,
-	        ));
+			// Print the header menu.
+			wp_nav_menu( array(
+				'theme_location'    => 'primary',
+				'container'         => false,
+				'menu_class'        => false,
+			));
 
-	        ?>
-	        <ul class="icons social-media">
-	            <li class="icon twitter"><a href="https://twitter.com/wpcampusorg"><img src="<?php echo $images_dir; ?>twitter-white.svg" alt="<?php printf( esc_attr__( 'Follow %1$s on %2$s', 'wpcampus' ), 'WPCampus', 'Twitter' ); ?>" /></a></li>
-	            <li class="icon facebook"><a href="https://www.facebook.com/wpcampus"><img src="<?php echo $images_dir; ?>facebook-white.svg" alt="<?php printf( esc_attr__( 'Follow %1$s on %2$s', 'wpcampus' ), 'WPCampus', 'Facebook' ); ?>" /></a></li>
-	            <li class="icon youtube"><a href="https://www.youtube.com/wpcampusorg"><img src="<?php echo $images_dir; ?>youtube-white.svg" alt="<?php printf( esc_attr__( 'Follow %1$s on %2$s', 'wpcampus' ), 'WPCampus', 'YouTube' ); ?>" /></a></li>
-	            <li class="icon github"><a href="https://github.com/wpcampus/"><img src="<?php echo $images_dir; ?>github-white.svg" alt="<?php printf( esc_attr__( 'Follow %1$s on %2$s', 'wpcampus' ), 'WPCampus', 'GitHub' ); ?>" /></a></li>
-	        </ul>
-		</div> <!-- #wpcampus-main-menu -->
+			?>
+		</div>
 	</div> <!-- #wpcampus-banner -->
 	<div id="wpcampus-hero">
 		<div class="row">
@@ -58,9 +61,9 @@ $is_events_page = is_post_type_archive( 'tribe_events' ) || is_singular( 'tribe_
 					// If home, add a <h1>.
 					echo $is_front_page ? '<h1>' : null;
 
-					?><a class="wpcampus-logo" href="<?php echo $blog_url; ?>">
-						<span class="screen-reader-text">WPCampus</span>
+					?><a class="wpcampus-logo" href="/">
 						<img src="<?php echo $images_dir; ?>wpcampus-white.svg" alt="" />
+						<span class="screen-reader-text">WPCampus</span>
 						<span class="wpcampus-tagline"><?php printf( __( 'Where %s Meets Higher Education', 'wpcampus' ), 'WordPress' ); ?></span>
 					</a><?php
 
@@ -72,7 +75,7 @@ $is_events_page = is_post_type_archive( 'tribe_events' ) || is_singular( 'tribe_
 					//$member_survey_button = '<a href="/member-survey/" class="button royal-blue">' . __( 'Member Survey', 'wpcampus' ) . '</a>';
 					//$ed_survey_button = '<a href="https://2017.wpcampus.org/announcements/wordpress-in-education-survey/" class="button royal-blue">' . sprintf( __( '%s in Education Survey', 'wpcampus' ), 'WP' ) . '</a>';
 					//$wpc_online_button = '<a href="https://online.wpcampus.org/watch/" class="button royal-blue">' . sprintf( __( 'Watch %s Online', 'wpcampus' ), 'WPCampus' ) . '</a>';
-					$conferences_button =  '<a href="/conferences/" class="button royal-blue">' . sprintf( __( 'Our Conferences', 'wpcampus' ), 'WPCampus' ) . '</a>';
+					$conferences_button = '<a href="/conferences/" class="button royal-blue">' . sprintf( __( 'Our Conferences', 'wpcampus' ), 'WPCampus' ) . '</a>';
 					//$wpc_2017_button = '<a href="https://2017.wpcampus.org/" class="button royal-blue">' . sprintf( __( '%s 2017 Conference', 'wpcampus' ), 'WPCampus' ) . '</a>';
 					//$apply_host_button = '<a href="/conferences/apply-to-host/" class="button royal-blue">' . sprintf( __( 'Apply to host %s 2018', 'wpcampus' ), 'WPCampus' ) . '</a>';
 					//$online_speaker_button = '<a href="https://online.wpcampus.org/call-for-speakers/" class="button royal-blue">' . __( 'Call for speakers for online event', 'wpcampus' ) . '</a>';

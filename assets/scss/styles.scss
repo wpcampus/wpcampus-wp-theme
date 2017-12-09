@@ -24,6 +24,11 @@
     @include screen-reader-text();
 }
 
+#wpc-skip-to-content {
+	background: $royal-blue;
+	color: #fff;
+}
+
 form {
     margin: 0 0 $paragraph-margin-bottom;
 }
@@ -92,29 +97,27 @@ hr {
 	margin: 2.5em 0;
 }
 
-// Make padding for the banner.
-body {
-    padding-top: $wpc-banner-height;
+#wpc-network-banner {
+    background: #f2f2f2;
 }
 
 #wpcampus-banner {
+	position: relative;
+	width: 100%;
     height: $wpc-banner-height;
     background: $wpc-banner-bg-color;
     color: #fff;
     text-align: center;
     border-bottom: 1px solid #fff;
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
     z-index: 1000;
 
     & body.admin-bar {
         top: 32px;
     }
 
-    .toggle-main-menu {
+    .wpc-toggle-menu {
         display: block;
+        width: 100%;
         height: $wpc-banner-height;
         background: none;
         color: rgba( #fff, 0.9 );
@@ -122,6 +125,8 @@ body {
         font-size: 1em;
         line-height: $wpc-banner-height;
         padding: 0 20px;
+        margin: 0;
+        border: 0;
         cursor: pointer;
         overflow: hidden;
 
@@ -171,14 +176,19 @@ body {
                 }
             }
         }
+
+	    &:hover,
+	    &:focus {
+		    background: $royal-blue;
+	    }
     }
 
     .menu {
-        display: none;
+	    display: none;
         background: $wpc-banner-bg-color;
-        z-index: 10000;
-        border-bottom: 1px solid #fff;
-        padding: 0 0 5px 0;
+	    max-height: 0;
+	    transition: max-height 0.5s ease-in-out;
+	    overflow: hidden;
 
         ul {
             @include reset-ul();
@@ -237,23 +247,28 @@ body {
                     }
                 }
 
-                &.current-menu-item a,
-                &.current-menu-ancestor a,
-                a:hover {
-                    background: rgba(#fff, 0.2);
+                &.current-menu-item,
+                &.current-menu-ancestor,
+                &:hover,
+                &:focus {
+                    background: #4e4e4e;
+	                border-bottom: 1px solid #fff;
                 }
+
+	            &.menu-item-has-children {
+
+		            &:hover,
+		            &:focus {
+			            border-bottom: 0;
+		            }
+	            }
             }
         }
     }
 
-    &.open-menu {
+    &.wpc-menu-open {
 
-        .toggle-main-menu {
-            background: none;
-
-            &:hover {
-                background: none;
-            }
+        .wpc-toggle-menu {
 
             .toggle-icon {
 
@@ -261,10 +276,6 @@ body {
 
                     &.one {
                         margin-top: 8px;
-                        -webkit-transform: rotate(45deg);
-                        -moz-transform: rotate(45deg);
-                        -ms-transform: rotate(45deg);
-                        -o-transform: rotate(45deg);
                         transform: rotate(45deg);
                     }
 
@@ -274,10 +285,6 @@ body {
 
                     &.three {
                         margin-top: 8px;
-                        -webkit-transform: rotate(-45deg);
-                        -moz-transform: rotate(-45deg);
-                        -ms-transform: rotate(-45deg);
-                        -o-transform: rotate(-45deg);
                         transform: rotate(-45deg);
                     }
                 }
@@ -291,35 +298,55 @@ body {
                 display: block;
             }
         }
+
+	    .menu {
+		    display: block;
+		    max-height: 2000px;
+		    border-bottom: 1px solid #fff;
+		    padding: 0 0 5px 0;
+		    z-index: 10000;
+	    }
     }
 }
 
 // Expand the banner.
-@media screen and (min-width: 910px) {
+@media screen and (min-width: 930px) {
+
+	#wpc-network-banner {
+
+		.wpc-menu {
+			padding-right: 13px;
+		}
+	}
 
     #wpcampus-banner {
 
-        .toggle-main-menu {
+        .wpc-toggle-menu {
             display: none !important;
         }
 
         .menu {
-            display: block !important;
+            display: flex !important;
             height: $wpc-banner-height;
             background: none !important;
+	        max-height: none;
+            max-width: 920px;
+            margin: 0 auto;
+	        overflow: visible;
 
-            ul {
-                display: inline-block !important;
+            > ul {
+                display: flex !important;
                 height: $wpc-banner-height;
                 line-height: $wpc-banner-height - 1;
+	            flex-grow: 2;
 
                 li {
-                    float: left;
-                    height: $wpc-banner-height;
+                    flex-grow: 1;
+                    height: 100%;
 
                     a {
-                        height: $wpc-banner-height;
-                        padding: 0 12px;
+                        height: 100%;
+                        padding: 0;
                     }
 
                     &.icon {
@@ -346,12 +373,29 @@ body {
                     }
                 }
 
-	            &.social-media {
-		            display: none !important;
+	            &.icons {
+		            height: $wpc-banner-height - 1;
+		            flex-grow: initial;
+
+		            & > li.current > a {
+			            border-bottom: 0;
+		            }
 	            }
             }
         }
     }
+}
+
+// Make padding for the banner.
+body.wpc-banner-fixed {
+	padding-top: $wpc-banner-height;
+
+	#wpcampus-banner {
+		position: fixed;
+		left: 0;
+		top: 0;
+		z-index: 1000;
+	}
 }
 
 #wpcampus-hero {
@@ -428,7 +472,8 @@ body {
             &.royal-blue {
                 background: $royal-blue;
 
-                &:hover {
+                &:hover,
+                &:focus {
                     background: darken( $royal-blue, 10% );
                 }
             }
