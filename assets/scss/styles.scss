@@ -190,14 +190,14 @@ hr {
 	    transition: max-height 0.5s ease-in-out;
 	    overflow: hidden;
 
-        ul {
+        & > ul {
             @include reset-ul();
             color: #fff;
             font-size: 1em;
             line-height:1;
             text-transform: uppercase;
 
-            li {
+            & > li {
                 color: inherit;
                 font-size: inherit;
                 line-height: inherit;
