@@ -303,14 +303,13 @@ hr {
 		    display: block;
 		    max-height: 2000px;
 		    border-bottom: 1px solid #fff;
-		    padding: 0 0 5px 0;
 		    z-index: 10000;
 	    }
     }
 }
 
 // Expand the banner.
-@media screen and (min-width: 930px) {
+@media screen and (min-width: 960px) {
 
 	#wpc-network-banner {
 
