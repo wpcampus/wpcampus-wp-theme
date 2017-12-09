@@ -19,8 +19,6 @@ endif;
 $query_posts = new WP_Query( array(
 	'post_type'         => array( 'post', 'podcast', 'resource', 'video' ),
 	'posts_per_page'    => 5, // @TODO add pagination
-	'orderby'           => 'modified',
-	'order'             => 'DESC',
 ));
 if ( $query_posts->have_posts() ) :
 
