@@ -11,31 +11,31 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/wpcampus/wpcampus-wp-theme/issues\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: comments.php:27
+#: comments.php:31
 msgctxt "comments title"
 msgid "One Reply to &ldquo;%s&rdquo;"
 msgstr ""
 
-#: comments.php:31
+#: comments.php:35
 msgctxt "comments title"
 msgid "%1$s Reply to &ldquo;%2$s&rdquo;"
 msgid_plural "%1$s Replies to &ldquo;%2$s&rdquo;"
 msgstr[0] ""
 msgstr[1] ""
 
-#: comments.php:52
+#: comments.php:56
 msgid "Reply"
 msgstr ""
 
-#: comments.php:62
+#: comments.php:66
 msgid "Previous"
 msgstr ""
 
-#: comments.php:63
+#: comments.php:67
 msgid "Next"
 msgstr ""
 
-#: comments.php:72
+#: comments.php:76
 msgid "Comments are closed."
 msgstr ""
 
@@ -43,114 +43,110 @@ msgstr ""
 msgid "From The %s Community"
 msgstr ""
 
-#: front-page.php:46
-msgid "Read more on our blog"
+#: front-page.php:46, functions.php:562, functions.php:574
+msgid "Blog"
 msgstr ""
 
-#: front-page.php:47
-msgid "Watch our videos"
+#: front-page.php:47, includes/filters.php:149
+msgid "Podcast"
 msgstr ""
 
-#: front-page.php:48
-msgid "Listen to the podcast"
+#: front-page.php:48, includes/filters.php:104
+msgid "Resources"
 msgstr ""
 
-#: functions.php:65
+#: front-page.php:49
+msgid "Videos"
+msgstr ""
+
+#: functions.php:116
 msgid "Primary Menu"
 msgstr ""
 
-#: functions.php:66
-msgid "Footer Menu"
-msgstr ""
-
-#: functions.php:134
+#: functions.php:189
 msgid "Oops. Looks like something went wrong. Please refresh the page and try again."
 msgstr ""
 
-#: functions.php:134
+#: functions.php:189
 msgid "If the problem persists, please %1$slet us know%2$s."
 msgstr ""
 
-#: functions.php:398
+#: functions.php:443
 msgid "Leave a comment"
 msgstr ""
 
-#: functions.php:400
+#: functions.php:445
 msgid "%s comment"
 msgid_plural "%s comments"
 msgstr[0] ""
 msgstr[1] ""
 
-#: functions.php:502
+#: functions.php:547
 msgid "Contributors"
 msgstr ""
 
-#: functions.php:517, functions.php:529
-msgid "Blog"
-msgstr ""
-
-#: functions.php:653
-msgid "Join %1$s on %2$s"
-msgstr ""
-
-#: functions.php:654, functions.php:655, functions.php:656, functions.php:657, header.php:46, header.php:47, header.php:48, header.php:49
-msgid "Follow %1$s on %2$s"
-msgstr ""
-
-#: functions.php:812
+#: functions.php:829
 msgid "Want to become a %s contributor?"
 msgstr ""
 
-#: functions.php:812
+#: functions.php:829
 msgid "Great! We'd love to have your voice and insight. %1$sRegister as a %2$s user%3$s to get started."
 msgstr ""
 
-#: functions.php:833, includes/filters.php:118
+#: functions.php:851, includes/filters.php:106
 msgid "Podcast:"
 msgstr ""
 
-#: functions.php:835, includes/filters.php:91
+#: functions.php:855, includes/filters.php:77
 msgid "Blog:"
 msgstr ""
 
-#: functions.php:837, includes/filters.php:120
+#: functions.php:858, includes/filters.php:108
+msgid "Resource:"
+msgstr ""
+
+#: functions.php:863, includes/filters.php:110
 msgid "Video:"
 msgstr ""
 
-#: header.php:20
-msgid "Skip to Content"
+#: header.php:30
+msgid "Toggle menu"
 msgstr ""
 
-#: header.php:28
+#: header.php:36
 msgid "Menu"
 msgstr ""
 
-#: header.php:29
+#: header.php:37
 msgid "Close"
 msgstr ""
 
-#: header.php:33
+#: header.php:41
 msgid "Visit the %s home page"
 msgstr ""
 
-#: header.php:33
+#: header.php:41
 msgid "Home"
 msgstr ""
 
-#: header.php:65
+#: header.php:67
 msgid "Where %s Meets Higher Education"
 msgstr ""
 
-#: header.php:72
+#: header.php:74
 msgid "Get Involved"
 msgstr ""
 
-#: header.php:73
-msgid "Member Survey"
+#: header.php:78
+msgid "Our Conferences"
 msgstr ""
 
-#: header.php:76
-msgid "%s 2017 Conference"
+#: header.php:82
+msgid "Watch sessions"
+msgstr ""
+
+#: header.php:83
+msgid "Listen to Podcast"
 msgstr ""
 
 #: home.php:11
@@ -163,6 +159,34 @@ msgstr ""
 
 #: template-contributors.php:31
 msgid "There are no contributors."
+msgstr ""
+
+#: template-members.php:2
+msgid "WPCampus Members"
+msgstr ""
+
+#: template-members.php:21
+msgid "Logout"
+msgstr ""
+
+#: template-members.php:30
+msgid "Membership into the %1$s community is open to all who wish to be involved.<br />%2$sFill out our user registration%3$s to join the fun."
+msgstr ""
+
+#: template-members.php:42
+msgid "Username"
+msgstr ""
+
+#: template-members.php:43
+msgid "Password"
+msgstr ""
+
+#: template-members.php:44
+msgid "Remember Me"
+msgstr ""
+
+#: template-members.php:45
+msgid "Login"
 msgstr ""
 
 #: template-sessions.php:2
@@ -225,30 +249,26 @@ msgstr ""
 msgid "Clear filters"
 msgstr ""
 
-#: includes/filters.php:93, includes/filters.php:137
+#: includes/filters.php:79, includes/filters.php:127
 msgid "The %s Blog"
 msgstr ""
 
-#: includes/filters.php:97
+#: includes/filters.php:83
 msgid "Contributor:"
 msgstr ""
 
-#: includes/filters.php:112, includes/filters.php:155
+#: includes/filters.php:98, includes/filters.php:145
 msgid "Events"
 msgstr ""
 
-#: includes/filters.php:114
+#: includes/filters.php:100
 msgid "The %s Podcast"
 msgstr ""
 
-#: includes/filters.php:116
+#: includes/filters.php:102
 msgid "The %s Shop"
 msgstr ""
 
-#: includes/filters.php:128
+#: includes/filters.php:118
 msgid "The %s Blog:"
-msgstr ""
-
-#: includes/filters.php:159
-msgid "Podcast"
 msgstr ""
