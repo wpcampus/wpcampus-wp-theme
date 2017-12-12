@@ -10,7 +10,7 @@
 }
 
 #wpc-skip-to-content {
-	background: $royal-blue;
+	background: $wpc-royal-blue;
 	color: #fff;
 }
 
@@ -160,7 +160,7 @@ hr {
 
 	    &:hover,
 	    &:focus {
-		    background: $royal-blue;
+		    background: $wpc-royal-blue;
 	    }
     }
 
@@ -459,11 +459,11 @@ body.wpc-banner-fixed {
                 line-height: 1.3;
 
                 &.royal-blue {
-                    background: $royal-blue;
+                    background: $wpc-royal-blue;
 
                     &:hover,
                     &:focus {
-                        background: darken( $royal-blue, 10% );
+                        background: darken( $wpc-royal-blue, 10% );
                     }
                 }
             }
@@ -607,7 +607,7 @@ iframe {
     }
 
     &.royal-blue {
-        background: $royal-blue;
+        background: $wpc-royal-blue;
         color: #fff;
 
         * {
@@ -616,7 +616,7 @@ iframe {
     }
 
     &.dark-blue {
-        background: $dark-blue;
+        background: $wpc-dark-blue;
         color: #fff;
 
         * {
