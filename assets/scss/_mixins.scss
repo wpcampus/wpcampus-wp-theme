@@ -1,10 +1,3 @@
-/*
- * These are the base SASS mixins for WPCampus.
- */
-
-// Make sure the charset is set appropriately.
-@charset "UTF-8";
-
 // Will convert the element to a screen reader element.
 @mixin screen-reader-text() {
     display: block;
@@ -61,18 +54,10 @@
 
 // Will set transition values.
 @mixin set-transition( $transition... ) {
-    -webkit-transition: $transition;
-    -moz-transition: $transition;
-    -ms-transition: $transition;
-    -o-transition: $transition;
     transition: $transition;
 }
 
 // Will set transform values.
 @mixin set-transform( $transform... ) {
-    -webkit-transform: $transform;
-    -moz-transform: $transform;
-    -ms-transform: $transform;
-    -o-transform: $transform;
     transform: $transform;
 }

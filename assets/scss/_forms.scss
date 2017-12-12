@@ -1,11 +1,4 @@
-/*
- * These are the base form settings for WPCampus.
- */
-
-// Make sure the charset is set appropriately.
-@charset "UTF-8";
-
-// Include Foundation settings to reuse them.
+// Include settings to reuse them.
 @import '_settings';
 
 #wpcampus-main {
