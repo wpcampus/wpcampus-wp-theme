@@ -1,4 +1,3 @@
-bower_components/*
 *.map
 node_modules/*
 wpcampus.min.js
