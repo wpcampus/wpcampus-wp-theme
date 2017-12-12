@@ -733,6 +733,10 @@ body.single-podcast {
 	}
 }
 
+// Include components.
+@import "components/comments";
+@import "components/forms";
+
 // Add main area styles.
 @import "components/main";
 
@@ -803,6 +807,3 @@ body.single-podcast {
         }
     }
 }
-
-// Include form styles.
-@import "_forms";
