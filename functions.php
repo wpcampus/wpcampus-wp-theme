@@ -179,7 +179,7 @@ function wpcampus_enqueue_styles_scripts() {
 
 	// Enqueue the application styles.
 	if ( is_page( 'conferences/apply-to-host' ) ) {
-		wp_enqueue_style( 'wpcampus-host-application', $wpcampus_dir . 'assets/css/application.css', array(), $wpcampus_version, 'all' );
+		wp_enqueue_style( 'wpcampus-host-application', $wpcampus_dir . 'assets/css/application.min.css', array(), $wpcampus_version, 'all' );
 	}
 
 	// Enqueue the sessions script.

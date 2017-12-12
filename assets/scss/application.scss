@@ -1,16 +1,34 @@
-#wpc-host-application .gform_wrapper .gfield_description {
+#wpcampus-main .gform_wrapper ul li.gfield.gsection {
+	margin: 2em 0 1em 0;
+}
 
-	ol,
-	ul {
-		font-size: inherit;
-		margin-left: 2em;
-	}
+#wpc-host-application {
 
-	ol li {
-		list-style: decimal !important;
-	}
+	.gform_wrapper {
 
-	ul li {
-		list-style: disc !important;
+		.gfield_description {
+
+			p {
+				font-size: 0.9rem;
+
+				&:last-child {
+					margin-bottom: 0;
+				}
+			}
+
+			ol,
+			ul {
+				font-size: inherit;
+				margin-left: 2em;
+			}
+
+			ol li {
+				list-style: decimal !important;
+			}
+
+			ul li {
+				list-style: disc !important;
+			}
+		}
 	}
 }
