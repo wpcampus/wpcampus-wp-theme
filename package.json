@@ -21,12 +21,16 @@
   "homepage": "https://github.com/wpcampus/wpcampus-wp-theme#readme",
   "devDependencies": {
     "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^4.0.0",
+    "gulp-clean-css": "^3.9.0",
+    "gulp-merge-media-queries": "^0.2.1",
     "gulp-notify": "^3.0.0",
     "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
     "gulp-shell": "^0.6.3",
     "gulp-sort": "^2.0.0",
     "gulp-uglify": "^3.0.0",
-    "gulp-watch": "^4.3.11",
-    "gulp-wp-pot": "^2.0.6"
+    "gulp-wp-pot": "^2.0.6",
+    "node-normalize-scss": "^3.0.0"
   }
 }
