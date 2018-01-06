@@ -8,6 +8,7 @@
   },
   "scripts": {
     "install": "composer install",
+    "postinstall": "gulp",
     "test": "composer sniff"
   },
   "author": "WPCampus <code@wpcampus.org>",
