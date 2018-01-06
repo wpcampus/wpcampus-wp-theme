@@ -7,6 +7,7 @@
     "url": "https://github.com/wpcampus/wpcampus-wp-theme.git"
   },
   "scripts": {
+    "install": "composer install",
     "test": "composer sniff"
   },
   "author": "WPCampus <code@wpcampus.org>",

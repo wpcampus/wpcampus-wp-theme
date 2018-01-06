@@ -1,8 +1,9 @@
-bower_components/*
+bower_components
 *.map
-node_modules/*
+node_modules
 wpcampus.min.js
 wpcampus-data.min.js
 wpcampus-sessions.min.js
 chartist.min.css
 tribe-events.min.css
+vendor
