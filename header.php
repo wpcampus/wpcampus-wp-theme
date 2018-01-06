@@ -152,4 +152,4 @@ $is_events_page = is_post_type_archive( 'tribe_events' ) || is_singular( 'tribe_
 	?>
 	<div id="wpcampus-main">
 		<div class="row">
-			<div id="wpcampus-content" class="small-12 columns">
+			<div id="wpcampus-content" role="main" class="small-12 columns">
