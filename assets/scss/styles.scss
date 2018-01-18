@@ -97,8 +97,38 @@ hr {
 	margin: 2.5em 0;
 }
 
+$wpc-banner-highlight-bg: #1159bd;
+$wpc-banner-highlight-color: #fff;
+$wpc-banner-highlight-margin-left: 5px;
+$wpc-banner-breakpoint: 660px;
 #wpc-network-banner {
     background: #f2f2f2;
+
+    @media screen and (min-width: $wpc-banner-breakpoint) {
+
+		.wpc-menu {
+
+			li {
+
+				&.highlight {
+					font-weight: normal;
+					font-size: 100%;
+                    margin-left: 5px;
+
+					a {
+                        background: $wpc-banner-highlight-bg;
+                        color: $wpc-banner-highlight-color;
+						opacity: 1;
+
+                        &:hover,
+                        &:focus {
+                            background: darken($wpc-banner-highlight-bg, 10%);
+                        }
+					}
+				}
+			}
+		}
+	}
 }
 
 #wpcampus-banner {

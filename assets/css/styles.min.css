@@ -20,6 +20,26 @@
 #wpc-network-banner {
 	background: #f2f2f2;
 }
+
+@media screen and (min-width: 660px) {
+	#wpc-network-banner .wpc-menu li.highlight {
+		font-weight: normal;
+		font-size: 100%;
+		margin-left: 5px;
+	}
+
+	#wpc-network-banner .wpc-menu li.highlight a {
+		background: #1159bd;
+		color: #fff;
+		opacity: 1;
+	}
+
+	#wpc-network-banner .wpc-menu li.highlight a:hover,
+	#wpc-network-banner .wpc-menu li.highlight a:focus {
+		background: #0d438e;
+	}
+}
+
 @media screen and (min-width: 960px) {
 	#wpc-network-banner .wpc-menu {
 		padding-right: 13px;
