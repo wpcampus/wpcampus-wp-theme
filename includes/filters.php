@@ -183,10 +183,8 @@ function wpcampus_adjust_queries( &$query ) {
 
 	// Make sure these pages get all post types.
 	if ( is_search() || is_author() || is_category() || is_tag() ) {
-		if ( $query->is_main_query() ) {
-			$query->set( 'nopaging', true );
-			$query->set( 'post_type', $all_post_types );
-		}
+		$query->set( 'nopaging', true );
+		$query->set( 'post_type', $all_post_types );
 	}
 }
 add_action( 'pre_get_posts', 'wpcampus_adjust_queries' );
