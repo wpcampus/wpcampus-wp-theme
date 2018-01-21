@@ -274,6 +274,10 @@ iframe {
 	margin-bottom: 0;
 }
 
+.fbx-blue .fbx-caption a {
+	color: inherit;
+}
+
 body.single-post #wpcampus-main-page-title,
 body.single-podcast #wpcampus-main-page-title {
 	background: #fff;

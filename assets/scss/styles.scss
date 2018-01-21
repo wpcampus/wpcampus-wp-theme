@@ -787,6 +787,10 @@ body.single-podcast {
 // Add main area styles.
 @import "components/main";
 
+.fbx-blue .fbx-caption a {
+    color: inherit;
+}
+
 @media screen and (min-width: 720px) {
 
 	#wpcampus-hero {
