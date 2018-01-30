@@ -18,7 +18,18 @@ require_once( $includes_path . 'shortcodes.php' );
  * Decide which main callout to print.
  */
 function wpcampus_print_main_callout() {
-	wpcampus_print_events_callout();
+	wpcampus_print_online_callout();
+}
+
+/**
+ * Prints a main callout highlighting online.
+ */
+function wpcampus_print_online_callout() {
+	?>
+	<div class="panel" style="text-align:center;">
+		<a class="button bigger expand" style="font-size:1.5rem;text-decoration:underline;" href="http://online.wpcampus.org/watch/"><strong>Watch WPCampus Online</strong></a>
+	</div>
+	<?php
 }
 
 /**
