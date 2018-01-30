@@ -18,13 +18,13 @@ require_once( $includes_path . 'shortcodes.php' );
  * Decide which main callout to print.
  */
 function wpcampus_print_main_callout() {
-	wpcampus_print_online_callout();
+	wpcampus_print_events_callout();
 }
 
 /**
  * Prints a main callout highlighting online.
  */
-function wpcampus_print_online_callout() {
+function wpcampus_print_watch_online_callout() {
 	?>
 	<div class="panel" style="text-align:center;">
 		<a class="button bigger expand" style="font-size:1.5rem;text-decoration:underline;" href="http://online.wpcampus.org/watch/"><strong>Watch WPCampus Online</strong></a>
@@ -38,7 +38,7 @@ function wpcampus_print_online_callout() {
 function wpcampus_print_events_callout() {
 	?>
 	<div class="panel" style="text-align:center;">
-		<p>WPCampus currently hosts one in-person and one virtual conference each year.<br /><strong>Our next event will be WPCampus Online 2018 (virtual) on Tuesday, January 30, 2018.</strong></p>
+		<p><strong>WPCampus currently hosts one in-person and one virtual conference each year.</strong><br />We just wrapped WPCampus Online 2018. The session recordings will be on <a href="http://online.wpcampus.org/">the WPCampus Online website</a> ASAP. Our next event will be WPCampus 2018 (in-person). Dates and location to be announced soon.</p>
 		<a class="button expand" style="text-decoration:underline;" href="/conferences/"><strong>Learn more about our conferences</strong></a>
 	</div>
 	<?php

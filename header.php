@@ -75,25 +75,25 @@ $is_events_page = is_post_type_archive( 'tribe_events' ) || is_singular( 'tribe_
 					//$member_survey_button = '<a href="/member-survey/" class="button royal-blue">' . __( 'Member Survey', 'wpcampus' ) . '</a>';
 					//$ed_survey_button = '<a href="https://2017.wpcampus.org/announcements/wordpress-in-education-survey/" class="button royal-blue">' . sprintf( __( '%s in Education Survey', 'wpcampus' ), 'WP' ) . '</a>';
 					//$wpc_online_button = '<a href="https://online.wpcampus.org/watch/" class="button royal-blue">' . sprintf( __( 'Watch %s Online', 'wpcampus' ), 'WPCampus' ) . '</a>';
-					$conferences_button = '<a href="/conferences/" class="button royal-blue">' . sprintf( __( 'Other Conferences', 'wpcampus' ), 'WPCampus' ) . '</a>';
+					$conferences_button = '<a href="/conferences/" class="button royal-blue">' . sprintf( __( 'Our Conferences', 'wpcampus' ), 'WPCampus' ) . '</a>';
 					//$wpc_2017_button = '<a href="https://2017.wpcampus.org/" class="button royal-blue">' . sprintf( __( '%s 2017 Conference', 'wpcampus' ), 'WPCampus' ) . '</a>';
 					//$apply_host_button = '<a href="/conferences/apply-to-host/" class="button royal-blue">' . sprintf( __( 'Apply to host %s 2018', 'wpcampus' ), 'WPCampus' ) . '</a>';
 					//$online_speaker_button = '<a href="https://online.wpcampus.org/call-for-speakers/" class="button royal-blue">' . __( 'Call for speakers for online event', 'wpcampus' ) . '</a>';
 					$watch_videos_button = '<a href="/videos/" class="button royal-blue">' . __( 'Watch sessions', 'wpcampus' ) . '</a>';
-					$watch_online_button = '<a href="http://online.wpcampus.org/watch/" class="button royal-blue">' . __( 'Watch Online Conference', 'wpcampus' ) . '</a>';
+					//$watch_online_button = '<a href="http://online.wpcampus.org/watch/" class="button royal-blue">' . __( 'Watch Online Conference', 'wpcampus' ) . '</a>';
 					$podcast_button = '<a href="/podcast/" class="button royal-blue">' . __( 'Listen to Podcast', 'wpcampus' ) . '</a>';
 
 					// Buttons to use.
 					if ( is_page( 'get-involved' ) ) {
 						$buttons = array(
-							$watch_online_button,
+							$watch_videos_button,
 							$conferences_button,
 							$podcast_button,
 						);
 					} else {
 						$buttons = array(
-							$watch_online_button,
 							$get_involved_button,
+							$watch_videos_button,
 							$conferences_button,
 						);
 					}
