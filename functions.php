@@ -38,7 +38,7 @@ function wpcampus_print_watch_online_callout() {
 function wpcampus_print_events_callout() {
 	?>
 	<div class="panel" style="text-align:center;">
-		<p><strong>WPCampus currently hosts one in-person and one virtual conference each year.</strong><br />We just wrapped <a href="http://online.wpcampus.org/">WPCampus Online 2018</a>. The session recordings will be on the WPCampus Online website ASAP. Our next event will be WPCampus 2018 (in-person). Dates and location to be announced soon.</p>
+		<p><strong>WPCampus currently hosts one in-person and one virtual conference each year.</strong><br />We just wrapped <a href="http://online.wpcampus.org/">WPCampus Online 2018</a>. The session recordings are being uploaded. You can <a href="http://online.wpcampus.org/schedule/">view them on the schedule</a>. Our next event will be WPCampus 2018 (in-person). Dates and location to be announced soon.</p>
 		<a class="button expand" style="text-decoration:underline;" href="/conferences/"><strong>Learn more about our conferences</strong></a>
 	</div>
 	<?php
