@@ -168,19 +168,26 @@ function wpcampus_add_category_to_podcast() {
 add_action( 'wp_loaded', 'wpcampus_add_category_to_podcast' );
 
 /**
+ * Make sure the Open Sans
+ * font weights we need are added.
+ */
+function wpcampus_load_open_sans_weights( $weights ) {
+	return array_merge( $weights, array( 300, 400, 600 ) );
+}
+add_filter( 'wpcampus_open_sans_font_weights', 'wpcampus_load_open_sans_weights' );
+
+/**
  * Setup styles and scripts.
  */
 function wpcampus_enqueue_styles_scripts() {
-	$wpcampus_version = '0.88';
+	$wpcampus_version = '0.89';
 
 	// Get the directory.
 	$wpcampus_dir = trailingslashit( get_stylesheet_directory_uri() );
 
-	// Load fonts.
-	wp_enqueue_style( 'wpcampus-fonts', 'https://fonts.googleapis.com/css?family=Open+Sans:600,400,300' );
-
 	// Enqueue the base styles.
-	wp_enqueue_style( 'wpcampus', $wpcampus_dir . 'assets/css/styles.min.css', array( 'wpcampus-fonts' ), $wpcampus_version, 'all' );
+	// wpc-fonts-open-sans is registered in the network plugin.
+	wp_enqueue_style( 'wpcampus', $wpcampus_dir . 'assets/css/styles.min.css', array( 'wpc-fonts-open-sans' ), $wpcampus_version, 'all' );
 
 	// Enqueue modernizr - goes in header.
 	wp_enqueue_script( 'modernizr', 'https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js' );
