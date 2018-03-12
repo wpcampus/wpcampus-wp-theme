@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Template Name: WPCampus Contributors
+ * Template Name: WPCampus: Contributors
  */
 
 $users = new WP_User_Query( array(

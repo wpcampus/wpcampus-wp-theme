@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Template Name: WPCampus Videos
+ * Template Name: WPCampus: Videos
  */
 
 // Get the playlists.

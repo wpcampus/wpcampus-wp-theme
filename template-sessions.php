@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Template Name: WPCampus Sessions
+ * Template Name: WPCampus: Sessions
  */
 
 get_header();

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Template Name: WPCampus Members
+ * Template Name: WPCampus: Members
  */
 
 // Is the user logged in?
