@@ -18,7 +18,20 @@ require_once( $includes_path . 'shortcodes.php' );
  * Decide which main callout to print.
  */
 function wpcampus_print_main_callout() {
-	wpcampus_print_events_callout();
+	wpcampus_print_2018_callout();
+}
+
+/**
+ * Print the 2018 callout.
+ */
+function wpcampus_print_2018_callout() {
+	?>
+	<div class="panel" style="text-align:center;">
+		<h2>WPCampus 2018 Conference on July 12-14</h2>
+		<p><strong><a href="https://2018.wpcampus.org/" style="color:inherit;">WPCampus 2018</a></strong> will take place July 12-14 on the campus of Washington University in St. Louis, Missouri. <strong><a href="https://2018.wpcampus.org/call-for-speakers/">The call for speakers is open until April 7.</a></strong> We'd love to hear how you build higher ed. Join us!</p>
+		<a class="button expand" style="text-decoration:underline;" href="https://2018.wpcampus.org/"><strong>Visit the WPCampus 2018 website</strong></a>
+	</div>
+	<?php
 }
 
 /**
