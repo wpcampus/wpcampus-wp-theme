@@ -159,6 +159,16 @@ function wpcampus_setup_theme() {
 add_action( 'after_setup_theme', 'wpcampus_setup_theme', 1 );
 
 /**
+ * Add the Mailchimp signup form to bottom of all content.
+ */
+function wpcampus_add_mailchimp_to_content() {
+	if ( function_exists( 'wpcampus_print_mailchimp_signup' ) ) {
+		wpcampus_print_mailchimp_signup();
+	}
+}
+add_action( 'wpc_add_after_content', 'wpcampus_add_mailchimp_to_content' );
+
+/**
  * Load files depending on page,
  * After WP object is set up.
  */
@@ -193,7 +203,7 @@ add_filter( 'wpcampus_open_sans_font_weights', 'wpcampus_load_open_sans_weights'
  * Setup styles and scripts.
  */
 function wpcampus_enqueue_styles_scripts() {
-	$wpcampus_version = '0.89';
+	$wpcampus_version = '0.92';
 
 	// Get the directory.
 	$wpcampus_dir = trailingslashit( get_stylesheet_directory_uri() );
