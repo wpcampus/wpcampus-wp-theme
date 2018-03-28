@@ -1,3 +1,5 @@
+<?php do_action( 'wpc_add_after_content' ); ?>
+
 			</div> <!-- .columns -->
 		</div> <!-- .row -->
 	</div> <!-- #wpcampus-main -->
