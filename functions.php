@@ -892,18 +892,30 @@ function wpcampus_prepend_post_title( $post_title, $post_id ) {
 				return '<span class="fade type">' . __( 'Podcast:', 'wpcampus' ) . '</span> ' . $post_title;
 			}
 			break;
+
 		case 'post':
 			return '<span class="fade type">' . __( 'Blog:', 'wpcampus' ) . '</span> ' . $post_title;
+
 		case 'resource':
 			if ( ! is_post_type_archive( $post_type ) ) {
 				return '<span class="fade type">' . __( 'Resource:', 'wpcampus' ) . '</span> ' . $post_title;
 			}
 			break;
+
 		case 'video':
 			if ( ! is_post_type_archive( $post_type ) ) {
 				return '<span class="fade type">' . __( 'Video:', 'wpcampus' ) . '</span> ' . $post_title;
 			}
+			break;
 	}
 
 	return $post_title;
+}
+
+function wpcampus_print_sessions() {
+	?>
+	<div id="wpcampus-sessions" class="loading">
+		<p class="loading-msg"><?php _e( '- Loading sessions -', 'wpcampus' ); ?></p>
+	</div>
+	<?php
 }
