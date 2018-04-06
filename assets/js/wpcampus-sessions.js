@@ -14,7 +14,7 @@
 				return;
 			}
 
-			var events_str = [];
+			var events_list = [], events_str = [];
 
 			// Sort events.
             $.each( events, function(index, event) {
@@ -45,15 +45,18 @@
 
 				// If we have sessions...
 				if ( event_sessions_str.length > 0 ) {
+					events_list.push('<a href="#' + event.slug + '">' + event.title + '</a>');
 					events_str.push('<h2 id="' + event.slug + '">' + event.title + '</h2><ol><li>' + event_sessions_str.join('</li><li>') + '</li></ol>')
 				}
             });
 
             if ( events_str.length > 0 ) {
 
+            	var events_list_html = '<ul><li>' + events_list.join('</li><li>') + '</li></ul>';
+
             	// Remove loading class and add sessions list.
             	$wpc_sessions.css({'min-height':$wpc_sessions.outerHeight()+'px'}).fadeTo(1000,0,function(){
-            		$wpc_sessions.removeClass('loading').html( events_str.join('') ).fadeTo(1000,1);
+            		$wpc_sessions.removeClass('loading').html( events_list_html + events_str.join('') ).fadeTo(1000,1);
             	});
             }
 		})
