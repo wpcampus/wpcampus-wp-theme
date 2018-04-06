@@ -406,10 +406,12 @@ function wpcampus_print_article( $args = array() ) {
 		$featured_image = $post_thumbnail_id > 0 ? wp_get_attachment_image_src( $post_thumbnail_id, 'thumbnail' ) : '';
 		if ( ! empty( $featured_image[0] ) ) :
 
+			$image_alt = get_post_meta( $post_thumbnail_id, '_wp_attachment_image_alt', true );
+
 			do_action( 'wpcampus_before_article_thumbnail' );
 
 			?>
-			<img class="article-thumbnail" src="<?php echo $featured_image[0]; ?>" />
+			<img class="article-thumbnail" src="<?php echo $featured_image[0]; ?>" alt="<?php echo $image_alt; ?>" />
 			<?php
 
 			do_action( 'wpcampus_after_article_thumbnail' );
