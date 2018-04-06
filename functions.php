@@ -867,7 +867,7 @@ function wpcampus_print_user_reg_promo() {
 
 	?>
 	<div class="panel blue center" style="margin:2em 0 3em 0;">
-		<p><strong><?php printf( __( 'Want to become a %s contributor?', 'wpcampus' ), 'WPCampus' ); ?></strong><br/><?php printf( __( 'Great! We\'d love to have your voice and insight. %1$sRegister as a %2$s user%3$s to get started.', 'wpcampus' ), '<a href="/user-registration/">', 'WPCampus', '</a>' ); ?></p>
+		<p><strong><?php printf( __( 'Want to become a %s contributor?', 'wpcampus' ), 'WPCampus' ); ?></strong><br/><?php printf( __( 'Great! You can become a contributor by speaking at %1$sone of our events%2$s, being a guest %3$son our podcast%4$s, or by submitting a guest blog post. We\'d love to have your voice and insight. %5$sRegister as a user%6$s to get started.', 'wpcampus' ), '<a href="/conferences/">', '</a>', '<a href="/podcast/">', '</a>', '<a href="/user-registration/">', '</a>' ); ?></p>
 	</div>
 	<?php
 }
@@ -918,4 +918,42 @@ function wpcampus_print_sessions() {
 		<p class="loading-msg"><?php _e( '- Loading sessions -', 'wpcampus' ); ?></p>
 	</div>
 	<?php
+}
+
+function wpcampus_print_contributors() {
+
+	$users = new WP_User_Query( array(
+		'number'                => -1,
+		'orderby'               => 'name',
+		'order'                 => 'ASC',
+		'has_published_posts'   => array( 'post', 'podcast', 'video' ),
+	));
+
+	// Print user registration promo.
+	wpcampus_print_user_reg_promo();
+
+	if ( empty( $users->results ) ) :
+
+		?>
+		<p><?php _e( 'There are no contributors.', 'wpcampus' ); ?></p>
+		<?php
+	else :
+
+		do_action( 'wpcampus_before_contributors' );
+
+		?>
+		<div class="wpcampus-contributors">
+			<?php
+
+			foreach ( $users->results as $user ) :
+				wpcampus_print_contributor( $user->ID );
+			endforeach;
+
+			?>
+		</div><!--.wpcampus-contributors-->
+		<?php
+
+		do_action( 'wpcampus_after_contributors' );
+
+	endif;
 }
