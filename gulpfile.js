@@ -107,4 +107,4 @@ gulp.task('watch', function() {
 });
 
 // Let's get this party started.
-gulp.task('default', ['compile','translate','test']);
+gulp.task('default', ['compile','translate','test','watch']);

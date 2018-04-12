@@ -63,7 +63,7 @@ $is_events_page = is_post_type_archive( 'tribe_events' ) || is_singular( 'tribe_
 
 					?><a class="wpcampus-logo" href="/">
 						<img src="<?php echo $images_dir; ?>wpcampus-white.svg" alt="" />
-						<span class="screen-reader-text">WPCampus</span>
+						<span class="for-screen-reader">WPCampus</span>
 						<span class="wpcampus-tagline"><?php printf( __( 'Where %s Meets Higher Education', 'wpcampus' ), 'WordPress' ); ?></span>
 					</a><?php
 

@@ -63,8 +63,8 @@ if ( post_password_required() ) {
 		<?php
 
 		the_comments_pagination( array(
-			'prev_text' => '<span class="screen-reader-text">' . __( 'Previous', 'wpcampus' ) . '</span>',
-			'next_text' => '<span class="screen-reader-text">' . __( 'Next', 'wpcampus' ) . '</span>',
+			'prev_text' => '<span class="for-screen-reader">' . __( 'Previous', 'wpcampus' ) . '</span>',
+			'next_text' => '<span class="for-screen-reader">' . __( 'Next', 'wpcampus' ) . '</span>',
 		));
 
 	endif;

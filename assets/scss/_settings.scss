@@ -1,3 +1,7 @@
+// Breakpoints
+$medium-breakpoint: 640px;
+$medium-up: only screen and (min-width: $medium-breakpoint);
+
 // Set the row width - this includes side padding.
 $row-width: 920px;
 
@@ -41,6 +45,7 @@ $list-side-margin: 2.3em;
 $list-ordered-side-margin: 2.5em;
 
 // Panels
+$panel-bg: #f2f2f2;
 $panel-border-size: 0;
 
 // Breadcrumbs

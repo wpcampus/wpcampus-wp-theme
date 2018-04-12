@@ -1,12 +1,15 @@
 // Will convert the element to a screen reader element.
-@mixin screen-reader-text() {
-    display: block;
-    width: 0;
-    height: 0;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    text-indent: -9999px;
+@mixin for-screen-reader() {
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: polygon(0 0, 0 0, 0 0, 0 0);
+    position: absolute !important;
+    white-space: nowrap !important;
+    width: 1px !important;
+    height: 1px !important;
+    overflow: hidden !important;
+    border: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
 }
 
 // Will reset a <ul>.

@@ -4,18 +4,21 @@
 // Include our mixins.
 @import "_mixins";
 
+// Include our dependencies.
+@import "normalize";
+
+// Include Foundation styles until we can remove.
+@import "components/foundation";
+
 // Hide these elements visibly, but make sure they're still viewable by screen readers.
+.for-screen-reader,
 .screen-reader-text {
-    @include screen-reader-text();
+    @include for-screen-reader();
 }
 
 #wpc-skip-to-content {
 	background: $wpc-royal-blue;
 	color: #fff;
-}
-
-form {
-    margin: 0 0 $paragraph-margin-bottom;
 }
 
 h1 {
@@ -72,7 +75,13 @@ ul {
 .button-group {
 	margin: 0 0 $paragraph-margin-bottom 0;
 
+	& > li {
+		display: block;
+		width: 100%;
+	}
+
 	.button {
+		display: block;
 		margin-bottom: 0;
 		border-top: 1px solid rgba(255, 255, 255, 0.5);
 	}
@@ -82,8 +91,38 @@ hr {
 	margin: 2.5em 0;
 }
 
+$wpc-banner-highlight-bg: #1159bd;
+$wpc-banner-highlight-color: #fff;
+$wpc-banner-highlight-margin-left: 5px;
+$wpc-banner-breakpoint: 660px;
 #wpc-network-banner {
     background: #f2f2f2;
+
+    @media screen and (min-width: $wpc-banner-breakpoint) {
+
+		.wpc-menu {
+
+			li {
+
+				&.highlight {
+					font-weight: normal;
+					font-size: 100%;
+                    margin-left: 5px;
+
+					a {
+                        background: $wpc-banner-highlight-bg;
+                        color: $wpc-banner-highlight-color;
+						opacity: 1;
+
+                        &:hover,
+                        &:focus {
+                            background: darken($wpc-banner-highlight-bg, 10%);
+                        }
+					}
+				}
+			}
+		}
+	}
 }
 
 #wpcampus-banner {
@@ -94,18 +133,14 @@ hr {
     color: #fff;
     text-align: center;
     border-bottom: 1px solid #fff;
-    z-index: 1000;
-
-    & body.admin-bar {
-        top: 32px;
-    }
+	z-index: 10000;
 
     .wpc-toggle-menu {
         display: block;
         width: 100%;
         height: $wpc-banner-height;
         background: none;
-        color: rgba( #fff, 0.9 );
+	    color: rgba(255,255,255,0.9);
         text-transform: uppercase;
         font-size: 1em;
         line-height: $wpc-banner-height;
@@ -138,7 +173,7 @@ hr {
             margin: 15px 12px 0 0;
 
             .bar {
-                background: rgba( #fff, 0.8 );
+	            background: rgba(255,255,255,0.8);
                 position: absolute;
                 top: 0;
                 left: 0;
@@ -175,7 +210,7 @@ hr {
             @include reset-ul();
             color: #fff;
             font-size: 1em;
-            line-height:1;
+            line-height: 1;
             text-transform: uppercase;
 
             & > li {
@@ -207,91 +242,144 @@ hr {
                         height: 15px;
                         opacity: 0.7;
                     }
-                    
-                    &.has-icon-alt {
-                        display: block;
 
-                        a {
-                            padding: 15px 10px;
-                        }
+					&.has-icon-alt {
+						display: block;
 
-                        img {
-                            display: none;
-                        }
-                    }
+						a {
+							padding: 15px 10px;
+						}
 
-                    &.github {
+						img {
+							display: none;
+						}
+					}
 
-                        img {
-                            height: 18px;
-                        }
-                    }
-                }
+					&.github {
 
-                &.current-menu-item,
-                &.current-menu-ancestor,
-                &:hover,
-                &:focus {
-                    background: #4e4e4e;
-	                border-bottom: 1px solid #fff;
-                }
+						img {
+							height: 18px;
+						}
+					}
+				}
 
-	            &.menu-item-has-children {
+				&.current-menu-item,
+				&.current-menu-ancestor,
+				&:hover,
+				&:focus {
+					background: #4e4e4e;
+					border-bottom: 1px solid #fff;
+				}
 
-		            &:hover,
-		            &:focus {
-			            border-bottom: 0;
-		            }
-	            }
-            }
-        }
-    }
+				&.menu-item-has-children {
 
-    &.wpc-menu-open {
+					&:hover,
+					&:focus {
+						border-bottom: 0;
+					}
+				}
+			}
+		}
 
-        .wpc-toggle-menu {
+	    ul {
+		    display:block;
+		    margin:0;
+		    border:0;
+		    padding:0;
+		    list-style:none;
+		    color:#fff;
+		    font-size:1em;
+		    line-height:1;
+		    text-transform:uppercase;
 
-            .toggle-icon {
+		    li {
+			    display:block;
+			    margin:0;
+			    border:0;
+			    padding:0;
+			    list-style:none;
+			    position:relative;
+			    color:inherit;
+			    font-size:inherit;
+			    line-height:inherit;
 
-                .bar {
-
-                    &.one {
-                        margin-top: 8px;
-                        transform: rotate(45deg);
-                    }
-
-                    &.two {
-                        opacity: 0;
-                    }
-
-                    &.three {
-                        margin-top: 8px;
-                        transform: rotate(-45deg);
-                    }
-                }
-            }
-
-            .open-menu-label {
-                display: none;
-            }
-
-            .close-menu-label {
-                display: block;
-            }
-        }
-
-	    .menu {
-		    display: block;
-		    max-height: 2000px;
-		    border-bottom: 1px solid #fff;
-		    z-index: 10000;
+			    a {
+				    display: block;
+				    color: inherit;
+				    font-size: inherit;
+				    line-height: inherit;
+				    text-decoration: none;
+			    }
+		    }
 	    }
-    }
+
+	    & > ul {
+
+		    & > li {
+
+			    & > a {
+				    padding: 15px 10px;
+			    }
+
+			    img {
+				    display: block;
+			    }
+
+			    &.icon {
+				    display: inline-block;
+
+				    a {
+					    padding: 10px 7px;
+				    }
+
+				    img {
+					    height: 15px;
+					    opacity: 0.7;
+				    }
+
+				    &.has-icon-alt {
+					    display: block;
+
+					    a {
+						    padding: 15px 10px;
+					    }
+
+					    img {
+						    display: none;
+					    }
+				    }
+
+				    &.github {
+
+					    img {
+						    height: 18px;
+					    }
+				    }
+			    }
+
+			    &.current > a,
+			    &.current-menu-item,
+			    &.current-menu-ancestor,
+			    &:hover,
+			    &:focus {
+				    background: #4e4e4e;
+			    }
+		    }
+	    }
+	}
 }
 
-// Expand the banner.
-@media screen and (min-width: 960px) {
+#wpcampus-banner.wpc-menu-open{position: fixed;left: 0;top: 0;height: 100%;border-bottom: 0;}#wpcampus-banner.wpc-menu-open .wpc-toggle-menu .toggle-icon .bar.one{margin-top:8px;-webkit-transform:rotate(45deg);-moz-transform:rotate(45deg);-ms-transform:rotate(45deg);-o-transform:rotate(45deg);transform:rotate(45deg)}#wpcampus-banner.wpc-menu-open .wpc-toggle-menu .toggle-icon .bar.two{opacity:0}#wpcampus-banner.wpc-menu-open .wpc-toggle-menu .toggle-icon .bar.three{margin-top:8px;-webkit-transform:rotate(-45deg);-moz-transform:rotate(-45deg);-ms-transform:rotate(-45deg);-o-transform:rotate(-45deg);transform:rotate(-45deg)}#wpcampus-banner.wpc-menu-open .wpc-toggle-menu .open-menu-label{display:none}#wpcampus-banner.wpc-menu-open .wpc-toggle-menu .close-menu-label{display:block}#wpcampus-banner.wpc-menu-open .menu{display:block;max-height:2000px;;z-index:10000;}@media screen and (min-width: 960px){#wpcampus-banner .wpc-toggle-menu{display:none !important}#wpcampus-banner .menu{display:flex !important;width:920px;height:50px;max-height:none;background:none!important;margin:0 auto;overflow: visible;}#wpcampus-banner .menu > ul{display:flex!important;height:50px;line-height:49px;flex-grow:2;}#wpcampus-banner .menu > ul.icons{height:49px;flex-grow:initial;}#wpcampus-banner .menu > ul > li{flex-grow:1;height:100%}#wpcampus-banner .menu > ul > li > a{height:100%;padding:0;}#wpcampus-banner .menu > ul > li.icon{display:block}#wpcampus-banner .menu > ul > li.icon a{padding:16px 10px 0 10px}#wpcampus-banner .menu > ul > li.icon img{display:block !important}#wpcampus-banner .menu > ul > li.icon .icon-alt{display:block;width:0;height:0;margin:0;padding:0;overflow:hidden;text-indent:-9999px}#wpcampus-banner .menu > ul > li.icon.github a{padding-top:15px}}
 
+#wpcampus-banner .menu > ul.icons > li.current > a,
+#wpcampus-banner .menu > ul.icons > li:hover,
+#wpcampus-banner .menu > ul.icons > li:focus,
+#wpcampus-banner .menu ul li.menu-item-has-children:hover,
+#wpcampus-banner .menu ul li.menu-item-has-children:focus {
+	border-bottom: 0;
+}
+
+@media screen and (min-width: 960px) {
 	#wpc-network-banner {
 
 		.wpc-menu {
@@ -299,75 +387,56 @@ hr {
 		}
 	}
 
-    #wpcampus-banner {
+	#wpcampus-banner {
 
-        .wpc-toggle-menu {
-            display: none !important;
-        }
+		.menu {
 
-        .menu {
-            display: flex !important;
-            height: $wpc-banner-height;
-            background: none !important;
-	        max-height: none;
-            max-width: 920px;
-            margin: 0 auto;
-	        overflow: visible;
+			& > ul {
 
-            > ul {
-                display: flex !important;
-                height: $wpc-banner-height;
-                line-height: $wpc-banner-height - 1;
-	            flex-grow: 2;
+				& > li.current > a,
+				& > li.current-menu-item,
+				& > li.current-menu-ancestor,
+				& > li:hover,
+				& > li:focus {
+					border-bottom:1px solid #fff;
+				}
+			}
 
-                li {
-                    flex-grow: 1;
-                    height: 100%;
+			.hide-on-desktop {
+				display: none;
+			}
+		}
+	}
+}
 
-                    a {
-                        height: 100%;
-                        padding: 0;
-                    }
+#wpcampus-banner .menu > ul ul {
+	display: none;
+	background: #4e4e4e;
+	position: absolute;
+	left: 0;
+	top: 98%;
+	min-width: 130%;
+	text-align: left;
+	padding: 8px 0 10px 0;
+	border: 1px solid #fff;
+	border-top: 0;
+	line-height: 1.3;
 
-                    &.icon {
-                        display: block;
+	& > li > a {
+		padding: 3px 12px;
 
-                        a {
-                            padding: 16px 10px 0 10px;
-                        }
+		&:hover {
+			background: #fff;
+			color: #444;
+		}
+	}
+}
 
-                        img {
-                            display: block !important;
-                        }
-
-                        .icon-alt {
-                            @include screen-reader-text();
-                        }
-
-                        &.github {
-
-                            a {
-                                padding-top: 15px;
-                            }
-                        }
-                    }
-                }
-
-	            &.icons {
-		            height: $wpc-banner-height - 1;
-		            flex-grow: initial;
-
-		            & > li.current > a {
-			            border-bottom: 0;
-		            }
-	            }
-            }
-	        
-	        .hide-on-desktop {
-		        display: none;
-	        }
-        }
-    }
+@media screen and (min-width: 960px) {
+	#wpcampus-banner .menu > ul > li.menu-item-has-children:hover > ul {
+		display: block;
+		z-index: 1000;
+	}
 }
 
 // Make padding for the banner.
@@ -382,7 +451,7 @@ body.wpc-banner-fixed {
 	}
 }
 
-#wpcampus-hero {
+/*#wpcampus-hero {
     background: url('../images/wpcampus-tile-BG-small.jpg') 0 0 repeat;
     background-size: auto 400px;
     position: relative;
@@ -740,6 +809,10 @@ body.single-podcast {
 // Add main area styles.
 @import "components/main";
 
+.fbx-blue .fbx-caption a {
+	color: inherit;
+}
+
 @media screen and (min-width: 720px) {
 
 	#wpcampus-hero {
@@ -806,4 +879,4 @@ body.single-podcast {
             }
         }
     }
-}
+}*/
