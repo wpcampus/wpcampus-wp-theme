@@ -159,16 +159,6 @@ function wpcampus_setup_theme() {
 add_action( 'after_setup_theme', 'wpcampus_setup_theme', 1 );
 
 /**
- * Add the Mailchimp signup form to bottom of all content.
- */
-function wpcampus_add_mailchimp_to_content() {
-	if ( function_exists( 'wpcampus_print_mailchimp_signup' ) ) {
-		wpcampus_print_mailchimp_signup();
-	}
-}
-add_action( 'wpc_add_after_content', 'wpcampus_add_mailchimp_to_content' );
-
-/**
  * Load files depending on page,
  * After WP object is set up.
  */
@@ -203,7 +193,7 @@ add_filter( 'wpcampus_open_sans_font_weights', 'wpcampus_load_open_sans_weights'
  * Setup styles and scripts.
  */
 function wpcampus_enqueue_styles_scripts() {
-	$wpcampus_version = '0.92';
+	$wpcampus_version = '0.91';
 
 	// Get the directory.
 	$wpcampus_dir = trailingslashit( get_stylesheet_directory_uri() );
@@ -406,12 +396,10 @@ function wpcampus_print_article( $args = array() ) {
 		$featured_image = $post_thumbnail_id > 0 ? wp_get_attachment_image_src( $post_thumbnail_id, 'thumbnail' ) : '';
 		if ( ! empty( $featured_image[0] ) ) :
 
-			$image_alt = get_post_meta( $post_thumbnail_id, '_wp_attachment_image_alt', true );
-
 			do_action( 'wpcampus_before_article_thumbnail' );
 
 			?>
-			<img class="article-thumbnail" src="<?php echo $featured_image[0]; ?>" alt="<?php echo $image_alt; ?>" />
+			<img class="article-thumbnail" src="<?php echo $featured_image[0]; ?>" />
 			<?php
 
 			do_action( 'wpcampus_after_article_thumbnail' );
@@ -869,7 +857,7 @@ function wpcampus_print_user_reg_promo() {
 
 	?>
 	<div class="panel blue center" style="margin:2em 0 3em 0;">
-		<p><strong><?php printf( __( 'Want to become a %s contributor?', 'wpcampus' ), 'WPCampus' ); ?></strong><br/><?php printf( __( 'Great! You can become a contributor by speaking at %1$sone of our events%2$s, being a guest %3$son our podcast%4$s, or by submitting a guest blog post. We\'d love to have your voice and insight. %5$sRegister as a user%6$s to get started.', 'wpcampus' ), '<a href="/conferences/">', '</a>', '<a href="/podcast/">', '</a>', '<a href="/user-registration/">', '</a>' ); ?></p>
+		<p><strong><?php printf( __( 'Want to become a %s contributor?', 'wpcampus' ), 'WPCampus' ); ?></strong><br/><?php printf( __( 'Great! We\'d love to have your voice and insight. %1$sRegister as a %2$s user%3$s to get started.', 'wpcampus' ), '<a href="/user-registration/">', 'WPCampus', '</a>' ); ?></p>
 	</div>
 	<?php
 }
@@ -894,68 +882,18 @@ function wpcampus_prepend_post_title( $post_title, $post_id ) {
 				return '<span class="fade type">' . __( 'Podcast:', 'wpcampus' ) . '</span> ' . $post_title;
 			}
 			break;
-
 		case 'post':
 			return '<span class="fade type">' . __( 'Blog:', 'wpcampus' ) . '</span> ' . $post_title;
-
 		case 'resource':
 			if ( ! is_post_type_archive( $post_type ) ) {
 				return '<span class="fade type">' . __( 'Resource:', 'wpcampus' ) . '</span> ' . $post_title;
 			}
 			break;
-
 		case 'video':
 			if ( ! is_post_type_archive( $post_type ) ) {
 				return '<span class="fade type">' . __( 'Video:', 'wpcampus' ) . '</span> ' . $post_title;
 			}
-			break;
 	}
 
 	return $post_title;
-}
-
-function wpcampus_print_sessions() {
-	?>
-	<div id="wpcampus-sessions" class="loading">
-		<p class="loading-msg"><?php _e( '- Loading sessions -', 'wpcampus' ); ?></p>
-	</div>
-	<?php
-}
-
-function wpcampus_print_contributors() {
-
-	$users = new WP_User_Query( array(
-		'number'                => -1,
-		'orderby'               => 'name',
-		'order'                 => 'ASC',
-		'has_published_posts'   => array( 'post', 'podcast', 'video' ),
-	));
-
-	// Print user registration promo.
-	wpcampus_print_user_reg_promo();
-
-	if ( empty( $users->results ) ) :
-
-		?>
-		<p><?php _e( 'There are no contributors.', 'wpcampus' ); ?></p>
-		<?php
-	else :
-
-		do_action( 'wpcampus_before_contributors' );
-
-		?>
-		<div class="wpcampus-contributors">
-			<?php
-
-			foreach ( $users->results as $user ) :
-				wpcampus_print_contributor( $user->ID );
-			endforeach;
-
-			?>
-		</div><!--.wpcampus-contributors-->
-		<?php
-
-		do_action( 'wpcampus_after_contributors' );
-
-	endif;
 }
