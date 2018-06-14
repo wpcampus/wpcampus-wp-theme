@@ -268,21 +268,35 @@ add_action( 'wp_enqueue_scripts', 'wpcampus_enqueue_styles_scripts', 11 );
 function wpcampus_add_favicons() {
 
 	// Set the images folder.
-	$favicons_folder = get_stylesheet_directory_uri() . '/assets/images/favicons/';
+	$favicons_folder = get_template_directory_uri() . '/assets/images/favicons/';
 
-	// Print the default icons.
 	?>
 	<link rel="shortcut icon" href="<?php echo $favicons_folder; ?>wpcampus-favicon-60.png"/>
-	<link rel="apple-touch-icon" href="<?php echo $favicons_folder; ?>wpcampus-favicon-60.png"/><?php
+	<?php
 
-	// Set the image sizes.
-	$image_sizes = array( 57, 72, 76, 114, 120, 144, 152 );
-
-	foreach ( $image_sizes as $size ) :
+	// Set the Apple image sizes.
+	$apple_image_sizes = array( 57, 60, 72, 76, 114, 120, 144, 152, 180 );
+	foreach ( $apple_image_sizes as $size ) :
 		?>
-		<link rel="apple-touch-icon" sizes="<?php echo "{$size}x{$size}"; ?>" href="<?php echo $favicons_folder; ?>wpcampus-favicon-<?php echo $size; ?>.png"/>
+		<link rel="apple-touch-icon" sizes="<?php echo "{$size}x{$size}"; ?>" href="<?php echo $favicons_folder; ?>wpcampus-favicon-<?php echo $size; ?>.png">
 		<?php
 	endforeach;
+
+	// Set the Android image sizes.
+	$android_image_sizes = array( 16, 32, 96, 192 );
+	foreach ( $android_image_sizes as $size ) :
+
+		?>
+		<link rel="icon" type="image/png" sizes="<?php echo "{$size}x{$size}"; ?>" href="<?php echo $favicons_folder; ?>wpcampus-favicon-<?php echo $size; ?>.png">
+		<?php
+
+	endforeach;
+
+	?>
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="<?php echo $favicons_folder; ?>wpcampus-favicon-144x144.png">
+	<meta name="theme-color" content="#ffffff">
+	<?php
 }
 add_action( 'wp_head', 'wpcampus_add_favicons' );
 add_action( 'admin_head', 'wpcampus_add_favicons' );
