@@ -52,7 +52,7 @@ $is_events_page = is_post_type_archive( 'tribe_events' ) || is_singular( 'tribe_
 			?>
 		</div>
 	</div> <!-- #wpcampus-banner -->
-	<div id="wpcampus-hero">
+	<div role="complementary" id="wpcampus-hero">
 		<div class="row">
 			<div class="small-12 columns">
 				<div class="wpcampus-header">
@@ -61,47 +61,53 @@ $is_events_page = is_post_type_archive( 'tribe_events' ) || is_singular( 'tribe_
 					// If home, add a <h1>.
 					echo $is_front_page ? '<h1>' : null;
 
-					?><a class="wpcampus-logo" href="/">
+					?>
+					<a class="wpcampus-logo" href="/">
 						<img src="<?php echo $images_dir; ?>wpcampus-white.svg" alt="" />
 						<span class="screen-reader-text">WPCampus</span>
 						<span class="wpcampus-tagline"><?php printf( __( 'Where %s Meets Higher Education', 'wpcampus' ), 'WordPress' ); ?></span>
-					</a><?php
+					</a>
+					<?php
 
 					// If home, close the <h1>.
 					echo $is_front_page ? '</h1>' : null;
 
 					// Create buttons.
+					$audit_button = '<a href="/audit/" class="button royal-blue">' . __( 'Gutenberg audit', 'wpcampus' ) . '</a>';
 					$get_involved_button = '<a href="/get-involved/" class="button royal-blue">' . __( 'Get Involved', 'wpcampus' ) . '</a>';
 					//$member_survey_button = '<a href="/member-survey/" class="button royal-blue">' . __( 'Member Survey', 'wpcampus' ) . '</a>';
 					//$ed_survey_button = '<a href="https://2017.wpcampus.org/announcements/wordpress-in-education-survey/" class="button royal-blue">' . sprintf( __( '%s in Education Survey', 'wpcampus' ), 'WP' ) . '</a>';
 					//$wpc_online_button = '<a href="https://online.wpcampus.org/watch/" class="button royal-blue">' . sprintf( __( 'Watch %s Online', 'wpcampus' ), 'WPCampus' ) . '</a>';
 					$conferences_button = '<a href="/conferences/" class="button royal-blue">' . sprintf( __( 'Our Conferences', 'wpcampus' ), 'WPCampus' ) . '</a>';
-					$wpc_2018_button = '<a href="https://2018.wpcampus.org/" class="button royal-blue">' . sprintf( __( '%s 2018 Conference', 'wpcampus' ), 'WPCampus' ) . '</a>';
+					$next_conf_button = '<a href="https://online.wpcampus.org/" class="button royal-blue">' . __( 'Online Conference', 'wpcampus' ) . '</a>';
 					//$apply_host_button = '<a href="/conferences/apply-to-host/" class="button royal-blue">' . sprintf( __( 'Apply to host %s 2018', 'wpcampus' ), 'WPCampus' ) . '</a>';
 					//$online_speaker_button = '<a href="https://online.wpcampus.org/call-for-speakers/" class="button royal-blue">' . __( 'Call for speakers for online event', 'wpcampus' ) . '</a>';
-					$watch_videos_button = '<a href="/videos/" class="button royal-blue">' . __( 'Watch sessions', 'wpcampus' ) . '</a>';
+					//$watch_videos_button = '<a href="/videos/" class="button royal-blue">' . __( 'Watch sessions', 'wpcampus' ) . '</a>';
 					//$watch_online_button = '<a href="http://online.wpcampus.org/watch/" class="button royal-blue">' . __( 'Watch Online Conference', 'wpcampus' ) . '</a>';
 					$podcast_button = '<a href="/podcast/" class="button royal-blue">' . __( 'Listen to Podcast', 'wpcampus' ) . '</a>';
+					$announce_button = '<a href="/announcements/" class="button royal-blue">' . __( 'Announcements', 'wpcampus' ) . '</a>';
 
 					// Buttons to use.
 					if ( is_page( 'get-involved' ) ) {
 						$buttons = array(
-							$wpc_2018_button,
-							$watch_videos_button,
+							$audit_button,
 							$podcast_button,
+							$announce_button,
 						);
 					} else {
 						$buttons = array(
-							$wpc_2018_button,
+							$audit_button,
 							$get_involved_button,
-							$watch_videos_button,
+							$announce_button,
 						);
 					}
 
 					?>
-					<ul class="wpc-header-buttons" role="navigation">
-						<li><?php echo implode( '</li><li>', $buttons ); ?></li>
-					</ul>
+					<nav>
+						<ul class="wpc-header-buttons">
+							<li><?php echo implode( '</li><li>', $buttons ); ?></li>
+						</ul>
+					</nav>
 				</div><!-- .wpcampus-header -->
 			</div>
 		</div>
@@ -120,37 +126,50 @@ $is_events_page = is_post_type_archive( 'tribe_events' ) || is_singular( 'tribe_
 		wpcampus_print_network_notifications();
 	}
 
-	if ( ! $is_front_page ) :
-		?>
-		<div id="wpcampus-main-page-title">
-			<div class="inside">
-				<h1><?php
-
-				// Print page title.
-				if ( is_404() ) {
-					echo 'Page Not Found';
-				} else {
-					echo apply_filters( 'wpcampus_page_title', get_the_title() );
-				}
-
-				?></h1>
-				<?php
-
-				// If article, include article meta.
-				if ( is_singular( array( 'post', 'podcast', 'video' ) ) ) {
-					wpcampus_print_article_meta();
-				}
-
-				// Include breadcrumbs.
-				wpcampus_print_breadcrumbs();
-
-				?>
-			</div>
-		</div>
-		<?php
-	endif;
-
 	?>
-	<div id="wpcampus-main">
-		<div class="row">
-			<div id="wpcampus-content" role="main" class="small-12 columns">
+	<div role="main" id="wpcampus-main">
+		<?php
+
+		if ( ! $is_front_page ) :
+			?>
+			<div id="wpcampus-main-page-title">
+				<div class="inside">
+					<?php
+
+					do_action( 'wpcampus_before_page_title' );
+
+					?>
+					<h1><?php
+
+						// Print page title.
+						if ( is_404() ) {
+							echo 'Page Not Found';
+						} else {
+							echo apply_filters( 'wpcampus_page_title', get_the_title() );
+						}
+
+						?></h1>
+					<?php
+
+					do_action( 'wpcampus_after_page_title' );
+
+					// If article, include article meta.
+					if ( is_singular( array( 'post', 'podcast', 'video' ) ) ) {
+						wpcampus_print_article_meta();
+					}
+
+					// Include breadcrumbs.
+					if ( apply_filters( 'wpcampus_print_breadcrumbs', true ) ) {
+						wpcampus_print_breadcrumbs();
+					}
+
+					?>
+				</div>
+			</div>
+			<?php
+		endif;
+
+		?>
+		<div id="wpcampus-content">
+			<div class="row">
+				<div class="small-12 columns">

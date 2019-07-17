@@ -32,6 +32,7 @@
     "gulp-sort": "^2.0.0",
     "gulp-uglify": "^3.0.0",
     "gulp-watch": "^4.3.11",
-    "gulp-wp-pot": "^2.0.6"
+    "gulp-wp-pot": "^2.0.6",
+    "iframe-resizer": "^4.1.1"
   }
 }

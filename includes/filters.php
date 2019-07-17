@@ -1,5 +1,27 @@
 <?php
 
+function wpcampus_add_document() {
+	?>
+	<script>
+		document.domain='wpcampus.org';
+	</script>
+	<?php
+}
+add_action( 'login_head', 'wpcampus_add_document' );
+
+function wpcampus_wp_title( $title, $sep, $seplocation ) {
+	global $wp_query;
+
+	if ( is_post_type_archive() ) {
+		$post_type = $wp_query->get( 'post_type' );
+		$post_type_obj = get_post_type_object( $post_type );
+		return $post_type_obj->labels->name . " {$sep} " . get_bloginfo( 'title' );
+	}
+
+	return $title;
+}
+add_filter( 'wp_title', 'wpcampus_wp_title', 20, 3 );
+
 /**
  * Remove the auto <p> when needed.
  */
@@ -11,6 +33,65 @@ function wpcampus_add_remove_filters() {
 	}
 }
 add_action( 'wp', 'wpcampus_add_remove_filters' );
+
+function wpcampus_hide_from_archive( $pieces, $query ) {
+	global $wpdb;
+
+	// Only for archives.
+	if ( ! $query->is_archive() && ! $query->is_home() && ! $query->get( 'wpc_hide_archive' ) ) {
+		return $pieces;
+	}
+
+	if ( is_admin() ) {
+		return $pieces;
+	}
+
+	// Join to get post meta.
+	$pieces['join'] .= " LEFT JOIN {$wpdb->postmeta} hide_meta ON hide_meta.post_id = {$wpdb->posts}.ID AND hide_meta.meta_key = 'wpc_hide_archive'";
+
+	// We don't want posts who are set to be hid.
+	$pieces['where'] .= " AND hide_meta.meta_value IS NULL OR hide_meta.meta_value != '1'";
+
+	return $pieces;
+}
+add_filter( 'posts_clauses', 'wpcampus_hide_from_archive', 100, 2 );
+
+/**
+ * Add article thumbnail before excerpt.
+ */
+function wpcampus_add_excerpt_thumbnail() {
+
+	// Get the featured image.
+	$post_thumbnail_id = get_post_thumbnail_id( get_the_ID() );
+
+	$featured_image_src = '';
+	$image_alt = '';
+
+	if ( $post_thumbnail_id > 0 ) {
+
+		$featured_image = wp_get_attachment_image_src( $post_thumbnail_id, 'thumbnail' );
+
+		if ( ! empty( $featured_image[0] ) ) {
+			$featured_image_src = $featured_image[0];
+			$image_alt = get_post_meta( $post_thumbnail_id, '_wp_attachment_image_alt', true );
+		}
+	}
+
+	// Set default thumbnail.
+	if ( empty( $featured_image_src ) ) {
+		$featured_image_src = 'https://wpcampus.org/wp-content/uploads/WPCampus-graphic-header-e1557180472741-300x300.png';
+	}
+
+	do_action( 'wpcampus_before_article_thumbnail' );
+
+	?>
+	<img role="presentation" class="article-thumbnail" src="<?php echo esc_attr( $featured_image_src ); ?>" alt="<?php echo esc_attr( $image_alt ); ?>"/>
+	<?php
+
+	do_action( 'wpcampus_after_article_thumbnail' );
+
+}
+add_action( 'wpcampus_before_article_excerpt', 'wpcampus_add_excerpt_thumbnail' );
 
 /**
  * Add contributor info after articles.
@@ -94,6 +175,10 @@ function wpcampus_filter_page_title( $page_title ) {
 
 		return $author_page_title;
 
+	} elseif ( is_post_type_archive( 'opportunity' ) ) {
+		return __( 'Volunteer Opportunities', 'wpcampus' );
+	} elseif ( is_post_type_archive( 'notification' ) || is_singular( 'notification' ) ) {
+		return __( 'Announcements', 'wpcampus' );
 	} elseif ( is_post_type_archive( 'tribe_events' ) || is_singular( 'tribe_events' ) ) {
 		return __( 'Events', 'wpcampus' );
 	} elseif ( is_post_type_archive( 'podcast' ) ) {
@@ -168,7 +253,7 @@ function wpcampus_adjust_queries( &$query ) {
 		return;
 	}
 
-	$all_post_types = array( 'podcast', 'post', 'resource', 'video' );
+	$all_post_types = array( 'podcast', 'post', 'resource' );
 
 	/*
 	 * For now, get all posts and podcasts posts.
@@ -228,3 +313,38 @@ function wpcampus_filter_wpseo_opengraph_image( $image ) {
 	return $image;
 }
 add_filter( 'wpseo_opengraph_image', 'wpcampus_filter_wpseo_opengraph_image' );
+
+/**
+ * Filter the breadcrumbs.
+ *
+ * @param $crumbs
+ *
+ * @return mixed
+ */
+function wpcampus_filter_breadcrumbs( $crumbs ) {
+
+	/*
+	 * Prefix breadcrumbs with "Get Involved".
+	 */
+	if ( is_post_type_archive( 'opportunity' ) || is_singular( 'opportunity' ) ) {
+
+		$new_crumbs = [];
+
+		foreach ( $crumbs as $crumb ) {
+
+			if ( 'Opportunities' == $crumb['label'] ) {
+				$new_crumbs[] = [
+					'url' => '/get-involved/',
+					'label' => __( 'Get Involved', 'wpcampus' ),
+				];
+			}
+
+			$new_crumbs[] = $crumb;
+		}
+
+		return $new_crumbs;
+	}
+
+	return $crumbs;
+}
+add_filter( 'wpcampus_breadcrumbs', 'wpcampus_filter_breadcrumbs' );

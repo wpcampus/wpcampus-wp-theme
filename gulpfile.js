@@ -10,7 +10,7 @@ const wp_pot = require('gulp-wp-pot');
 
 // Define the source paths for each file type.
 const src = {
-	js: ['assets/js/wpcampus.js', 'assets/js/wpcampus-data.js', 'assets/js/wpcampus-sessions.js'],
+	js: ['assets/js/wpcampus.js', 'assets/js/wpcampus-data.js'],
 	php: ['**/*.php','!vendor/**','!node_modules/**']
 };
 

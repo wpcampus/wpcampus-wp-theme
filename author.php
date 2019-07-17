@@ -1,11 +1,11 @@
 <?php
 
-// Add article meta after header.
-add_action( 'wpcampus_after_article_header', 'wpcampus_print_article_meta', 5 );
+/**
+ * Add contributor info before articles.
+ */
+add_action( 'wpcampus_before_articles', 'wpcampus_print_contributor' );
 
 get_header();
-
-wpcampus_print_podcast_promo();
 
 if ( ! have_posts() ) :
 	wpcampus_print_404();
@@ -17,10 +17,12 @@ else :
 		'print_content' => false,
 	);
 
+	add_filter( 'the_title', 'wpcampus_prepend_post_title', 100, 2 );
+
 	// Print the articles.
 	wpcampus_print_articles( $args );
 
-	wpcampus_print_podcast_links();
+	remove_filter( 'the_title', 'wpcampus_prepend_post_title', 100, 2 );
 
 endif;
 

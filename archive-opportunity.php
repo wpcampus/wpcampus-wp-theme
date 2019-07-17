@@ -2,8 +2,16 @@
 
 get_header();
 
+add_action( 'wpcampus_before_articles', function() {
+	?>
+	<p>The following are opportunities to get involved with our community. If you have any questions, please do not hesitate to use <a href="/contact/">our contact form</a>.</p>
+	<?php
+});
+
 if ( ! have_posts() ) :
-	wpcampus_print_404();
+	?>
+	<p>There are no volunteer opportunities at this time.</p>
+	<?php
 else :
 
 	// Setup article arguments.

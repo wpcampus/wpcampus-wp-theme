@@ -18,7 +18,9 @@ require_once( $includes_path . 'shortcodes.php' );
  * Decide which main callout to print.
  */
 function wpcampus_print_main_callout() {
-	wpcampus_print_2018_callout();
+	if ( function_exists( 'wpcampus_print_network_callout' ) ) {
+		wpcampus_print_network_callout();
+	}
 }
 
 /**
@@ -27,9 +29,9 @@ function wpcampus_print_main_callout() {
 function wpcampus_print_2018_callout() {
 	?>
 	<div class="panel" style="text-align:center;">
-		<h2>WPCampus 2018 Conference on July 12-14</h2>
-		<p><strong><a href="https://2018.wpcampus.org/" style="color:inherit;">WPCampus 2018</a></strong> will take place July 12-14 on the campus of Washington University in St. Louis, Missouri. <strong><a href="https://2018.wpcampus.org/call-for-speakers/">The call for speakers is open until April 7.</a></strong> We'd love to hear how you build higher ed. Join us!</p>
-		<a class="button expand" style="text-decoration:underline;" href="https://2018.wpcampus.org/"><strong>Visit the WPCampus 2018 website</strong></a>
+		<h2>WPCampus Online set for January 31, 2019</h2>
+		<p>Join us January 31 for the third annual <a href="https://online.wpcampus.org/">WPCampus Online</a>, a full day of free, virtual sessions focused on WordPress, higher education, and accessibility. Join us January 7 or 10 for <a href="https://wpcampus.org/resources/speaker-training/">free speaker training</a>.</p>
+		<a class="button expand" style="text-decoration:underline;" href="https://online.wpcampus.org/"><strong>Visit the WPCampus Online website</strong></a>
 	</div>
 	<?php
 }
@@ -58,14 +60,14 @@ function wpcampus_print_events_callout() {
 }
 
 /**
- * Print the "Apply to host 2018" callout.
+ * Print the "Apply to host" callout.
  */
-function wpcampus_print_apply_host_2018_callout() {
+function wpcampus_print_apply_host_callout() {
 	?>
-	<div class="panel" style="text-align:center;">
-		<h2 style="line-height:1.3;">Apply to host WPCampus 2018</h2>
-		<p>WPCampus is looking for the host for our 2018 conference. If you wish to invest in higher education, and bring web professionals from all over the world to your campus, we’d love to learn more about you and your institution. <strong>The hosting application has been extended and will close FRIDAY, NOVEMBER 3, 2017.</strong></p>
-		<a class="button expand" style="text-decoration:underline;" href="/conferences/apply-to-host/"><strong>Apply to host the WPCampus 2018 conference</strong></a>
+	<div class="panel" style="margin-top:0;text-align:center;">
+		<h2 style="line-height:1.3;">Apply to host WPCampus 2019</h2>
+		<p>WPCampus is looking for the host for our 2019 conference. If you’d be willing to help plan and host an event, we’d love to bring our community to your campus. It’s a great opportunity to invest in higher education and education technology. <strong>The application is open until Friday, February 15, 2019.</strong></p>
+		<a class="button expand" style="text-decoration:underline;" href="/conferences/apply-to-host/"><strong>Apply to host the WPCampus 2019 conference</strong></a>
 	</div>
 	<?php
 }
@@ -120,19 +122,9 @@ function wpcampus_setup_theme() {
 	// Load the textdomain.
 	load_theme_textdomain( 'wpcampus', get_stylesheet_directory() . '/languages' );
 
-	// Enable network banner.
-	if ( function_exists( 'wpcampus_enable_network_banner' ) ) {
-		wpcampus_enable_network_banner();
-	}
-
-	// Enable network notifications.
-	if ( function_exists( 'wpcampus_enable_network_notifications' ) ) {
-		wpcampus_enable_network_notifications();
-	}
-
-	// Enable network footer.
-	if ( function_exists( 'wpcampus_enable_network_footer' ) ) {
-		wpcampus_enable_network_footer();
+	// Enable network components.
+	if ( function_exists( 'wpcampus_network_enable' ) ) {
+		wpcampus_network_enable( array( 'banner', 'notifications', 'coc', 'footer' ) );
 	}
 
 	// Register the nav menus.
@@ -148,7 +140,7 @@ function wpcampus_setup_theme() {
 		'caption',
 	));
 
-	add_theme_support( 'woocommerce' );
+	add_theme_support( 'post-thumbnails' );
 
 	if ( is_archive() ) {
 
@@ -162,6 +154,12 @@ add_action( 'after_setup_theme', 'wpcampus_setup_theme', 1 );
  * Add the Mailchimp signup form to bottom of all content.
  */
 function wpcampus_add_mailchimp_to_content() {
+
+	// Not for the resources speaker training page.
+	if ( is_single( 30097 ) ) {
+		return;
+	}
+
 	if ( function_exists( 'wpcampus_print_mailchimp_signup' ) ) {
 		wpcampus_print_mailchimp_signup();
 	}
@@ -203,7 +201,7 @@ add_filter( 'wpcampus_open_sans_font_weights', 'wpcampus_load_open_sans_weights'
  * Setup styles and scripts.
  */
 function wpcampus_enqueue_styles_scripts() {
-	$wpcampus_version = '0.92';
+	$wpcampus_version = '2.4';
 
 	// Get the directory.
 	$wpcampus_dir = trailingslashit( get_stylesheet_directory_uri() );
@@ -221,14 +219,6 @@ function wpcampus_enqueue_styles_scripts() {
 	// Enqueue the application styles.
 	if ( is_page( 'conferences/apply-to-host' ) ) {
 		wp_enqueue_style( 'wpcampus-host-application', $wpcampus_dir . 'assets/css/application.css', array(), $wpcampus_version, 'all' );
-	}
-
-	// Enqueue the sessions script.
-	if ( is_page_template( 'template-sessions.php' ) ) {
-		wp_enqueue_script( 'wpcampus-sessions', $wpcampus_dir . 'assets/js/wpcampus-sessions.js', array( 'jquery' ), $wpcampus_version, false );
-		wp_localize_script( 'wpcampus-sessions', 'wpc_sessions', array(
-			'load_error_msg' => '<p class="error-msg">' . __( 'Oops. Looks like something went wrong. Please refresh the page and try again.', 'wpcampus' ) . '</p><p>' . sprintf( __( 'If the problem persists, please %1$slet us know%2$s.', 'wpcampus' ), '<a href="/contact/">', '</a>' ) . '</p>',
-		));
 	}
 
 	// Enqueue the data scripts.
@@ -338,7 +328,7 @@ function wpcampus_get_post_type_archive_title( $post_type = '' ) {
  *
  * @param array $args
  */
-function wpcampus_print_articles( $args = array(), $query = null ) {
+function wpcampus_print_articles( $args = array(), $show_pagination = true, $query = null ) {
 	global $wp_query;
 
 	// Use default query if none was passed.
@@ -346,10 +336,37 @@ function wpcampus_print_articles( $args = array(), $query = null ) {
 		$query = $wp_query;
 	}
 
+	$pagination = ! $show_pagination ? null : paginate_links( array(
+		//'base'  => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+		'format'  => '?paged=%#%',
+		'current' => max( 1, get_query_var( 'paged' ) ),
+		'total'   => $query->max_num_pages,
+	));
+
+	if ( ! empty( $pagination ) ) {
+		$pagination = '<nav class="wpc-pagination">' . $pagination . '</nav>';
+	}
+
+	echo $pagination;
+
 	do_action( 'wpcampus_before_articles' );
 
+	$article_css = array( 'wpcampus-articles' );
+
+	$post_types = get_query_var( 'post_type' );
+	if ( ! empty( $post_types ) ) {
+
+		if ( ! is_array( $post_types ) ) {
+			$post_types = explode( ',', $post_types );
+		}
+
+		foreach ( $post_types as $post_type ) {
+			$article_css[] = "post-{$post_type}";
+		}
+	}
+
 	?>
-	<div class="wpcampus-articles">
+	<div class="<?php echo implode( ' ', $article_css ); ?>">
 		<?php
 
 		while ( $query->have_posts() ) :
@@ -365,6 +382,7 @@ function wpcampus_print_articles( $args = array(), $query = null ) {
 
 	do_action( 'wpcampus_after_articles' );
 
+	echo $pagination;
 }
 
 /**
@@ -387,7 +405,6 @@ function wpcampus_print_article( $args = array() ) {
 	// Get post information.
 	$post_id = get_the_ID();
 	$post_permalink = get_permalink( $post_id );
-	$post_thumbnail_id = get_post_thumbnail_id( $post_id );
 
 	do_action( 'wpcampus_before_article' );
 
@@ -413,22 +430,6 @@ function wpcampus_print_article( $args = array() ) {
 			<?php
 
 			do_action( 'wpcampus_after_article_header' );
-
-		endif;
-
-		// Get the featured image.
-		$featured_image = $post_thumbnail_id > 0 ? wp_get_attachment_image_src( $post_thumbnail_id, 'thumbnail' ) : '';
-		if ( ! empty( $featured_image[0] ) ) :
-
-			$image_alt = get_post_meta( $post_thumbnail_id, '_wp_attachment_image_alt', true );
-
-			do_action( 'wpcampus_before_article_thumbnail' );
-
-			?>
-			<img class="article-thumbnail" src="<?php echo $featured_image[0]; ?>" alt="<?php echo $image_alt; ?>" />
-			<?php
-
-			do_action( 'wpcampus_after_article_thumbnail' );
 
 		endif;
 
@@ -481,7 +482,7 @@ function wpcampus_print_article_meta() {
 		endif;
 
 		// If comments are closed and there are comments, let's leave a little note, shall we?
-		if ( post_type_supports( get_post_type(), 'comments' ) ) :
+		if ( post_type_supports( get_post_type(), 'comments' ) && comments_open() ) :
 
 			// Get # of comments.
 			$comments_number = get_comments_number();
@@ -651,15 +652,22 @@ function wpcampus_get_breadcrumbs() {
 			// Get ancestors.
 			$post_ancestors = isset( $post ) ? get_post_ancestors( $post->ID ) : array();
 
+			$post_ancestor_crumbs = [];
+
 			// Add the ancestors.
 			foreach ( $post_ancestors as $post_ancestor_id ) {
 
 				// Add ancestor.
-				$breadcrumbs[] = array(
+				$post_ancestor_crumbs[] = array(
 					'ID'    => $post_ancestor_id,
 					'url'   => get_permalink( $post_ancestor_id ),
 					'label' => get_the_title( $post_ancestor_id ),
 				);
+			}
+
+			if ( ! empty( $post_ancestor_crumbs ) ) {
+				$post_ancestor_crumbs = array_reverse( $post_ancestor_crumbs );
+				$breadcrumbs = array_merge( $breadcrumbs, $post_ancestor_crumbs );
 			}
 
 			// Add current page - if not singular post.
@@ -673,7 +681,7 @@ function wpcampus_get_breadcrumbs() {
 		}
 	}
 
-	return $breadcrumbs;
+	return apply_filters( 'wpcampus_breadcrumbs', $breadcrumbs );
 }
 
 /**
@@ -712,7 +720,7 @@ function wpcampus_get_breadcrumbs_html() {
 			$crumb_classes[] = 'current';
 		}
 
-		$breadcrumbs_html .= '<li role="menuitem"' . ( ! empty( $crumb_classes ) ? ' class="' . implode( ' ', $crumb_classes ) . '"' : null ) . '>';
+		$breadcrumbs_html .= '<li' . ( ! empty( $crumb_classes ) ? ' class="' . implode( ' ', $crumb_classes ) . '"' : null ) . '>';
 
 		// Add URL and label.
 		if ( ! empty( $crumb['url'] ) ) {
@@ -727,7 +735,7 @@ function wpcampus_get_breadcrumbs_html() {
 	// Wrap them in nav.
 	if ( ! empty( $breadcrumbs_html ) ) {
 		$breadcrumbs_html = '<div class="breadcrumbs-wrapper">
-		<nav class="breadcrumbs" role="menubar" aria-label="breadcrumbs">' . $breadcrumbs_html . '</nav>
+		<nav class="breadcrumbs" aria-label="breadcrumbs"><ul>' . $breadcrumbs_html . '</ul></nav>
 	</div>';
 	}
 
@@ -793,9 +801,8 @@ function wpcampus_print_contributor( $user_id = 0 ) {
 
 			// Display author thumbnail.
 			if ( ! empty( $author_thumbnail ) ) :
-
 				?>
-				<img class="author-thumbnail" src="<?php echo $author_thumbnail; ?>" />
+				<img class="author-thumbnail" src="<?php echo $author_thumbnail; ?>" alt="" />
 				<?php
 			endif;
 
@@ -817,7 +824,7 @@ function wpcampus_print_contributor( $user_id = 0 ) {
 			if ( $author_twitter ) {
 
 				// Sanitize Twitter handle.
-				$author_twitter_handle = preg_replace( '/[^a-z0-9]/i', '', $author_twitter );
+				$author_twitter_handle = preg_replace( '/[^a-z0-9\_]/i', '', $author_twitter );
 				$contributor_meta['twitter'] = '<a href="' . esc_url( 'https://twitter.com/' . $author_twitter_handle ) . '">@' . $author_twitter_handle . '</a>';
 			}
 
@@ -855,23 +862,37 @@ function wpcampus_print_contributor( $user_id = 0 ) {
 }
 
 /**
- * Print podcast promo/links.
+ * Print podcast links.
+ */
+function wpcampus_print_podcast_links() {
+	?>
+	<div class="wpcampus-podcast-links">
+		<ul class="button-group">
+			<li><a href="https://itun.es/i6YF9HH" class="button">Listen on iTunes</a></li>
+			<li><a href="https://play.google.com/music/listen?u=0#/ps/Imipnlywvba5v3lqu7y646dg6z4" class="button">Listen on Google Play</a></li>
+			<li><a href="/feed/podcast" class="button">View RSS feed</a></li>
+		</ul>
+	</div>
+	<?php
+}
+
+/**
+ * Print podcast promo.
  */
 function wpcampus_print_podcast_promo() {
 
 	?>
 	<div class="wpcampus-podcast-promo">
 		<div class="panel">
-			<p>The WPCampus Podcast is a monthly show where members of the community come together to discuss relevant topics, unique ways that WordPress is being used in higher education, share tutorials and walkthroughs, and more. <strong><em>If you'd like to be a guest on the show, or have a topic you'd like us to discuss, please <a href="/contact/">let us know</a>.</em></strong></p>
+			<p>The WPCampus Podcast is a recurring show where members of the community come together to discuss relevant topics, unique ways that WordPress is being used in higher education, share tutorials and walkthroughs, and more. <strong><em>If you'd like to be a guest on the show, or have a topic you'd like us to discuss, please <a href="/contact/">let us know</a>.</em></strong></p>
 		</div>
-		<div class="panel dark-blue center" style="margin-bottom:20px;">New episodes of <a href="/podcast/">The WPCampus Podcast</a> are released every month.</div>
-		<div style="text-align: center">
-			<ul class="button-group">
-				<li><a href="https://itun.es/i6YF9HH" class="button">Listen on iTunes</a></li>
-				<li><a href="https://play.google.com/music/listen?u=0#/ps/Imipnlywvba5v3lqu7y646dg6z4" class="button">Listen on Google Play</a></li>
-				<li><a href="/feed/podcast" class="button">View RSS feed</a></li>
-			</ul>
-		</div>
+		<?php
+
+		/*<div class="panel dark-blue center" style="margin-bottom:20px;">New episodes of <a href="/podcast/">The WPCampus Podcast</a> are released every month.</div>*/
+
+		wpcampus_print_podcast_links();
+
+		?>
 	</div>
 	<?php
 }
@@ -903,6 +924,12 @@ function wpcampus_prepend_post_title( $post_title, $post_id ) {
 
 	switch ( $post_type ) {
 
+		case 'opportunity':
+			if ( ! is_post_type_archive( $post_type ) ) {
+				return '<span class="fade type">' . __( 'Get Involved:', 'wpcampus' ) . '</span> ' . $post_title;
+			}
+			break;
+
 		case 'podcast':
 			if ( ! is_post_type_archive( $post_type ) ) {
 				return '<span class="fade type">' . __( 'Podcast:', 'wpcampus' ) . '</span> ' . $post_title;
@@ -911,6 +938,12 @@ function wpcampus_prepend_post_title( $post_title, $post_id ) {
 
 		case 'post':
 			return '<span class="fade type">' . __( 'Blog:', 'wpcampus' ) . '</span> ' . $post_title;
+
+		case 'proposal':
+			if ( ! is_page( 'library' ) ) {
+				return '<span class="fade type">' . __( 'Session:', 'wpcampus' ) . '</span> ' . $post_title;
+			}
+			break;
 
 		case 'resource':
 			if ( ! is_post_type_archive( $post_type ) ) {
@@ -928,14 +961,6 @@ function wpcampus_prepend_post_title( $post_title, $post_id ) {
 	return $post_title;
 }
 
-function wpcampus_print_sessions() {
-	?>
-	<div id="wpcampus-sessions" class="loading">
-		<p class="loading-msg"><?php _e( '- Loading sessions -', 'wpcampus' ); ?></p>
-	</div>
-	<?php
-}
-
 function wpcampus_print_contributors() {
 
 	$users = new WP_User_Query( array(
@@ -949,7 +974,6 @@ function wpcampus_print_contributors() {
 	wpcampus_print_user_reg_promo();
 
 	if ( empty( $users->results ) ) :
-
 		?>
 		<p><?php _e( 'There are no contributors.', 'wpcampus' ); ?></p>
 		<?php

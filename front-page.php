@@ -17,8 +17,9 @@ endif;
 
 // Display blog posts.
 $query_posts = new WP_Query( array(
-	'post_type'         => array( 'post', 'podcast', 'resource', 'video' ),
-	'posts_per_page'    => 5, // @TODO add pagination
+	'post_type'        => array( 'post', 'podcast', 'resource', 'video', 'opportunity' ), // @TODO add notification
+	'posts_per_page'   => 5, // @TODO add pagination
+	'wpc_hide_archive' => true,
 ));
 if ( $query_posts->have_posts() ) :
 
@@ -38,11 +39,11 @@ if ( $query_posts->have_posts() ) :
 		<h2><?php printf( __( 'From The %s Community', 'wpcampus' ), 'WPCampus' ); ?></h2>
 		<?php
 
-		// Print the articles.
-		wpcampus_print_articles( $args, $query_posts );
+		wpcampus_print_articles( $args, false, $query_posts );
 
 		?>
 		<ul class="button-group">
+			<li><a href="/announcements/" class="button"><?php _e( 'Announcements', 'wpcampus' ); ?></a></li>
 			<li><a href="/blog/" class="button"><?php _e( 'Blog', 'wpcampus' ); ?></a></li>
 			<li><a href="/podcast/" class="button"><?php _e( 'Podcast', 'wpcampus' ); ?></a></li>
 			<li><a href="/resources/" class="button"><?php _e( 'Resources', 'wpcampus' ); ?></a></li>

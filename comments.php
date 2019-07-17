@@ -3,7 +3,9 @@
  * The template for displaying comments.
  */
 
-if ( ! post_type_supports( get_post_type(), 'comments' ) ) {
+$show_comments = apply_filters( 'wpcampus_show_comments', post_type_supports( get_post_type(), 'comments' ) );
+
+if ( ! $show_comments ) {
 	return;
 }
 

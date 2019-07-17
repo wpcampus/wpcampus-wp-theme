@@ -20,6 +20,25 @@
 		margin: 0;
 		padding: 0;
 
+		.gfield_checkbox,
+		.gfield_radio {
+
+			li label {
+				max-width: none;
+			}
+		}
+
+		li.gf_list_inline {
+
+			ul.gfield_checkbox,
+			ul.gfield_radio {
+
+				li {
+					margin: 0 1rem 0.5rem 0;
+				}
+			}
+		}
+
 		input[type="text"] {
 			margin: 0 0 0.5em 0;
 
@@ -42,6 +61,11 @@
 				}
 			}
 		}
+
+		li.gfield ul.gfield_radio li input[type=radio]+input[type=text] {
+			display: inline-block;
+		}
+
 
 		// Style the country field.
 		#input_1_18_6_container {

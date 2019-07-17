@@ -3,7 +3,7 @@
 	min-height: 200px;
 	padding: 55px 0 60px 0;
 
-	#mc_embed_signup {
+	.wpc-mc-signup {
 		margin: 3rem 0 0 0;
 	}
 
@@ -39,6 +39,7 @@
 			margin: 3.5em 0 0;
 			padding-top: 3em;
 			border-top: 1px solid $wpc-light-gray;
+			overflow: auto;
 
 			.article-title {
 				font-size: 2em;
@@ -46,6 +47,13 @@
 				.type {
 					text-transform: uppercase;
 				}
+			}
+
+			.article-thumbnail {
+				float: left;
+				width: 100px;
+				height: auto;
+				margin: 8px 20px 15px 0;
 			}
 
 			&:first-child {
@@ -178,71 +186,6 @@
 			}
 		}
 	}
-
-	.wpc-videos-filters {
-		margin: 0 0 1.1em 0;
-
-		form {
-			align-items: center;
-			margin: 0 0 10px 0;
-
-			.form-label {
-				display: block;
-			}
-
-			select {
-				display: block;
-				height: 40px;
-				margin: 10px 0;
-			}
-
-			input.search-videos {
-				flex-grow: 1;
-				height: 40px;
-				margin: 10px 0;
-			}
-
-			input.update-videos {
-				display: block;
-				background: $wpc-royal-blue;
-				color: #fff;
-				height: 40px;
-				border: 0;
-				margin: 10px 0 10px;
-				padding: 0 15px;
-			}
-
-			@media screen and (min-width: 600px) {
-				display: flex;
-
-				.form-label {
-					display: inline-block;
-					min-width: 110px;
-				}
-
-				select {
-					display: inline-block;
-					width: auto;
-					margin-left: 10px;
-				}
-
-				input.search-videos {
-					margin-left: 10px;
-				}
-
-				input.update-videos {
-					display: inline-block;
-					width: 100px;
-					margin-left: 10px;
-				}
-			}
-		}
-
-		.button.clear {
-			padding: 10px;
-			margin: 0 0 1em 0;
-		}
-	}
 }
 
 .page-template-template-videos {
@@ -259,6 +202,20 @@
 
 	.wpcampus-podcast-promo {
 		margin: 3em 0;
+	}
+
+	.wpcampus-podcast-links {
+		text-align: center;
+
+		@media screen and (min-width: 740px) {
+			ul {
+				display: flex;
+
+				li {
+					width: 100%;
+				}
+			}
+		}
 	}
 
 	> *:first-child {

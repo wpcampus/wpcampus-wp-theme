@@ -1,4 +1,4 @@
-# Copyright (C) 2017 wpcampus-wp-theme
+# Copyright (C) 2018 wpcampus-wp-theme
 # This file is distributed under the same license as the wpcampus-wp-theme package.
 msgid ""
 msgstr ""
@@ -43,15 +43,15 @@ msgstr ""
 msgid "From The %s Community"
 msgstr ""
 
-#: front-page.php:46, functions.php:562, functions.php:574
+#: front-page.php:46, functions.php:603, functions.php:615
 msgid "Blog"
 msgstr ""
 
-#: front-page.php:47, includes/filters.php:149
+#: front-page.php:47, includes/filters.php:158
 msgid "Podcast"
 msgstr ""
 
-#: front-page.php:48, includes/filters.php:104
+#: front-page.php:48, includes/filters.php:113
 msgid "Resources"
 msgstr ""
 
@@ -59,53 +59,53 @@ msgstr ""
 msgid "Videos"
 msgstr ""
 
-#: functions.php:116
+#: functions.php:140
 msgid "Primary Menu"
 msgstr ""
 
-#: functions.php:189
+#: functions.php:230
 msgid "Oops. Looks like something went wrong. Please refresh the page and try again."
 msgstr ""
 
-#: functions.php:189
+#: functions.php:230
 msgid "If the problem persists, please %1$slet us know%2$s."
 msgstr ""
 
-#: functions.php:443
+#: functions.php:484
 msgid "Leave a comment"
 msgstr ""
 
-#: functions.php:445
+#: functions.php:486
 msgid "%s comment"
 msgid_plural "%s comments"
 msgstr[0] ""
 msgstr[1] ""
 
-#: functions.php:547
+#: functions.php:588
 msgid "Contributors"
 msgstr ""
 
-#: functions.php:829
+#: functions.php:870
 msgid "Want to become a %s contributor?"
 msgstr ""
 
-#: functions.php:829
+#: functions.php:870
 msgid "Great! We'd love to have your voice and insight. %1$sRegister as a %2$s user%3$s to get started."
 msgstr ""
 
-#: functions.php:851, includes/filters.php:106
+#: functions.php:892, includes/filters.php:115
 msgid "Podcast:"
 msgstr ""
 
-#: functions.php:855, includes/filters.php:77
+#: functions.php:897, includes/filters.php:86
 msgid "Blog:"
 msgstr ""
 
-#: functions.php:858, includes/filters.php:108
+#: functions.php:901, includes/filters.php:117
 msgid "Resource:"
 msgstr ""
 
-#: functions.php:863, includes/filters.php:110
+#: functions.php:907, includes/filters.php:119
 msgid "Video:"
 msgstr ""
 
@@ -141,11 +141,15 @@ msgstr ""
 msgid "Our Conferences"
 msgstr ""
 
+#: header.php:79
+msgid "%s 2018 Conference"
+msgstr ""
+
 #: header.php:82
 msgid "Watch sessions"
 msgstr ""
 
-#: header.php:83
+#: header.php:84
 msgid "Listen to Podcast"
 msgstr ""
 
@@ -153,8 +157,24 @@ msgstr ""
 msgid "There are no posts at this time."
 msgstr ""
 
+#: template-content-only.php:2
+msgid "WPCampus: Content Only"
+msgstr ""
+
+#: template-content-only.php:71
+msgid "Log out of your %s account"
+msgstr ""
+
+#: template-content-only.php:71, template-members.php:21
+msgid "Logout"
+msgstr ""
+
+#: template-content-only.php:72
+msgid "You are logged-in as %1$s%2$s%3$s."
+msgstr ""
+
 #: template-contributors.php:2
-msgid "WPCampus Contributors"
+msgid "WPCampus: Contributors"
 msgstr ""
 
 #: template-contributors.php:31
@@ -162,11 +182,7 @@ msgid "There are no contributors."
 msgstr ""
 
 #: template-members.php:2
-msgid "WPCampus Members"
-msgstr ""
-
-#: template-members.php:21
-msgid "Logout"
+msgid "WPCampus: Members"
 msgstr ""
 
 #: template-members.php:30
@@ -190,7 +206,7 @@ msgid "Login"
 msgstr ""
 
 #: template-sessions.php:2
-msgid "WPCampus Sessions"
+msgid "WPCampus: Sessions"
 msgstr ""
 
 #: template-sessions.php:20
@@ -198,7 +214,7 @@ msgid "- Loading sessions -"
 msgstr ""
 
 #: template-videos.php:2
-msgid "WPCampus Videos"
+msgid "WPCampus: Videos"
 msgstr ""
 
 #: template-videos.php:63
@@ -249,26 +265,26 @@ msgstr ""
 msgid "Clear filters"
 msgstr ""
 
-#: includes/filters.php:79, includes/filters.php:127
+#: includes/filters.php:88, includes/filters.php:136
 msgid "The %s Blog"
 msgstr ""
 
-#: includes/filters.php:83
+#: includes/filters.php:92
 msgid "Contributor:"
 msgstr ""
 
-#: includes/filters.php:98, includes/filters.php:145
+#: includes/filters.php:107, includes/filters.php:154
 msgid "Events"
 msgstr ""
 
-#: includes/filters.php:100
+#: includes/filters.php:109
 msgid "The %s Podcast"
 msgstr ""
 
-#: includes/filters.php:102
+#: includes/filters.php:111
 msgid "The %s Shop"
 msgstr ""
 
-#: includes/filters.php:118
+#: includes/filters.php:127
 msgid "The %s Blog:"
 msgstr ""
