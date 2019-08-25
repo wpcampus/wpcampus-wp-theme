@@ -151,22 +151,6 @@ function wpcampus_setup_theme() {
 add_action( 'after_setup_theme', 'wpcampus_setup_theme', 1 );
 
 /**
- * Add the Mailchimp signup form to bottom of all content.
- */
-function wpcampus_add_mailchimp_to_content() {
-
-	// Not for the resources speaker training page.
-	if ( is_single( 30097 ) ) {
-		return;
-	}
-
-	if ( function_exists( 'wpcampus_print_mailchimp_signup' ) ) {
-		wpcampus_print_mailchimp_signup();
-	}
-}
-add_action( 'wpc_add_after_content', 'wpcampus_add_mailchimp_to_content' );
-
-/**
  * Load files depending on page,
  * After WP object is set up.
  */

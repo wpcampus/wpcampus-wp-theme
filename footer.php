@@ -6,6 +6,14 @@
 	</div> <!-- #wpcampus-main -->
 	<?php
 
+	if ( function_exists( 'wpcampus_print_mailchimp_signup' ) ) {
+
+		// Not for the resources speaker training page.
+		if ( ! is_single( 30097 ) ) {
+			wpcampus_print_mailchimp_signup();
+		}
+	}
+
 	if ( function_exists( 'wpcampus_print_network_coc' ) ) {
 		wpcampus_print_network_coc();
 	}
