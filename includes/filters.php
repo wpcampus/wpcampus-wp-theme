@@ -85,7 +85,7 @@ function wpcampus_add_excerpt_thumbnail() {
 	do_action( 'wpcampus_before_article_thumbnail' );
 
 	?>
-	<img role="presentation" class="article-thumbnail" src="<?php echo esc_attr( $featured_image_src ); ?>" alt="<?php echo esc_attr( $image_alt ); ?>"/>
+	<img aria-hidden="true" class="article-thumbnail" src="<?php echo esc_attr( $featured_image_src ); ?>" alt="<?php echo esc_attr( $image_alt ); ?>"/>
 	<?php
 
 	do_action( 'wpcampus_after_article_thumbnail' );
