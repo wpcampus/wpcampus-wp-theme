@@ -26,7 +26,7 @@ if ( function_exists( 'wpcampus_print_network_banner' ) ) {
 }
 
 ?>
-<div id="wpcampus-banner" role="navigation">
+<nav id="wpcampus-banner" aria-label="<?php esc_attr_e( 'Primary', 'wpcampus' ); ?>">
 	<button class="wpc-toggle-menu" data-toggle="wpcampus-banner" aria-label="<?php _e( 'Toggle menu', 'wpcampus' ); ?>">
 		<div class="toggle-icon">
 			<div class="bar one"></div>
@@ -51,8 +51,8 @@ if ( function_exists( 'wpcampus_print_network_banner' ) ) {
 
 		?>
 	</div>
-</div> <!-- #wpcampus-banner -->
-<div role="complementary" id="wpcampus-hero">
+</nav> <!-- #wpcampus-banner -->
+<aside id="wpcampus-hero" aria-label="<?php esc_attr_e( 'Our logo', 'wpcampus' ); ?>">
 	<div class="row">
 		<div class="small-12 columns">
 			<div class="wpcampus-header">
@@ -76,7 +76,7 @@ if ( function_exists( 'wpcampus_print_network_banner' ) ) {
 			</div><!-- .wpcampus-header -->
 		</div>
 	</div>
-</div>
+</aside>
 <div role="main" id="wpcampus-main">
 	<?php
 	/*<div id="wpc-online-details">

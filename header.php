@@ -26,7 +26,7 @@ $is_events_page = is_post_type_archive( 'tribe_events' ) || is_singular( 'tribe_
 	}
 
 	?>
-	<div id="wpcampus-banner" role="navigation">
+    <nav id="wpcampus-banner" aria-label="<?php esc_attr_e( 'Primary', 'wpcampus' ); ?>">
 		<button class="wpc-toggle-menu" data-toggle="wpcampus-banner" aria-label="<?php _e( 'Toggle menu', 'wpcampus' ); ?>">
 			<div class="toggle-icon">
 				<div class="bar one"></div>
@@ -51,8 +51,8 @@ $is_events_page = is_post_type_archive( 'tribe_events' ) || is_singular( 'tribe_
 
 			?>
 		</div>
-	</div> <!-- #wpcampus-banner -->
-	<div role="complementary" id="wpcampus-hero">
+	</nav> <!-- #wpcampus-banner -->
+	<aside id="wpcampus-hero" aria-label="<?php esc_attr_e( 'Our logo with promo information', 'wpcampus' ); ?>">
 		<div class="row">
 			<div class="small-12 columns">
 				<div class="wpcampus-header">
@@ -103,7 +103,7 @@ $is_events_page = is_post_type_archive( 'tribe_events' ) || is_singular( 'tribe_
 					}
 
 					?>
-					<nav>
+					<nav aria-label="<?php esc_attr_e( 'Promo information', 'wpcampus' ); ?>">
 						<ul class="wpc-header-buttons">
 							<li><?php echo implode( '</li><li>', $buttons ); ?></li>
 						</ul>
@@ -111,7 +111,7 @@ $is_events_page = is_post_type_archive( 'tribe_events' ) || is_singular( 'tribe_
 				</div><!-- .wpcampus-header -->
 			</div>
 		</div>
-	</div>
+	</aside>
 	<?php
 	/*<div id="wpc-online-details">
 		<div class="row">

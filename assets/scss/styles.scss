@@ -243,45 +243,48 @@ $wpc-banner-breakpoint: 660px;
         }
     }
 
-    &.wpc-menu-open {
+    @media screen and (max-width: $wpc-banner-breakpoint - 1px) {
 
-        .wpc-toggle-menu {
+        &.wpc-menu-open {
 
-            .toggle-icon {
+            .wpc-toggle-menu {
 
-                .bar {
+                .toggle-icon {
 
-                    &.one {
-                        margin-top: 8px;
-                        transform: rotate(45deg);
+                    .bar {
+
+                        &.one {
+                            margin-top: 8px;
+                            transform: rotate(45deg);
+                        }
+
+                        &.two {
+                            opacity: 0;
+                        }
+
+                        &.three {
+                            margin-top: 8px;
+                            transform: rotate(-45deg);
+                        }
                     }
+                }
 
-                    &.two {
-                        opacity: 0;
-                    }
+                .open-menu-label {
+                    display: none;
+                }
 
-                    &.three {
-                        margin-top: 8px;
-                        transform: rotate(-45deg);
-                    }
+                .close-menu-label {
+                    display: block;
                 }
             }
 
-            .open-menu-label {
-                display: none;
-            }
-
-            .close-menu-label {
+            .menu {
                 display: block;
+                max-height: 2000px;
+                border-bottom: 1px solid #fff;
+                z-index: 10000;
             }
         }
-
-	    .menu {
-		    display: block;
-		    max-height: 2000px;
-		    border-bottom: 1px solid #fff;
-		    z-index: 10000;
-	    }
     }
 }
 
