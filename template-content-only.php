@@ -42,7 +42,7 @@ if ( have_posts() ) :
 			if ( ! empty( $message ) ) {
 
 				// Remove all but allowed tags.
-				$message = strip_tags( $message, '<a><ul><ol><li><em><strong><div><span><button><h2><h3><h4><h5><h6>' );
+				$message = strip_tags( $message, '<a><ul><ol><li><em><strong><div><span><button><h2><h3><h4><h5><h6><br>' );
 
 				echo ! empty( $message ) ? wpautop( $message ) : '';
 
