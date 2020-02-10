@@ -77,7 +77,7 @@ if ( function_exists( 'wpcampus_print_network_banner' ) ) {
 		</div>
 	</div>
 </aside>
-<div role="main" id="wpcampus-main">
+<main id="wpcampus-main">
 	<?php
 	/*<div id="wpc-online-details">
 		<div class="row">

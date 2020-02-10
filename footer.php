@@ -3,7 +3,7 @@
 				</div> <!-- .columns -->
 			</div> <!-- .row -->
 		</div><!--#wpcampus-content-->
-	</div> <!-- #wpcampus-main -->
+	</main> <!-- #wpcampus-main -->
 	<?php
 
 	if ( function_exists( 'wpcampus_print_mailchimp_signup' ) ) {

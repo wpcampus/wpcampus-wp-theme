@@ -127,7 +127,7 @@ $is_events_page = is_post_type_archive( 'tribe_events' ) || is_singular( 'tribe_
 	}
 
 	?>
-	<div role="main" id="wpcampus-main">
+	<main id="wpcampus-main">
 		<?php
 
 		if ( ! $is_front_page ) :
