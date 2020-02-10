@@ -4923,6 +4923,7 @@ body.wpc-banner-fixed #wpcampus-banner {
 .gform_wrapper.wpc-speaker-app_wrapper .gform_body {
     border: 0;
     padding: 0;
+    border-bottom: 2px solid #e4eaf4;
 }
 
 .gform_wrapper.wpc-speaker-app_wrapper ul.gform_fields li.gfield {
