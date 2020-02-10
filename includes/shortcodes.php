@@ -9,18 +9,22 @@ remove_filter( 'the_content', 'do_shortcode', 11 ); // AFTER wpautop()
 function wpcampus_strip_shortcode_space( $content ) {
 
 	// Clean it.
-	$content = strtr( $content, array(
-		"\n["       => '[',
-		"]\n"       => ']',
-		'<p>['      => '[',
-		']</p>'     => ']',
-		']<br>'     => ']',
-		']<br />'   => ']',
-	));
+	$content = strtr(
+		$content,
+		array(
+			"\n["     => '[',
+			"]\n"     => ']',
+			'<p>['    => '[',
+			']</p>'   => ']',
+			']<br>'   => ']',
+			']<br />' => ']',
+		)
+	);
 
 	// Return the content.
 	return do_shortcode( $content );
 }
+
 add_filter( 'the_content', 'wpcampus_strip_shortcode_space', 11 );
 
 /**
@@ -36,6 +40,7 @@ function wpcampus_process_columns_shortcode( $args, $content = null ) {
 	// Process for more levels of shortcode, wrap in row and return.
 	return '<div class="row">' . do_shortcode( $content ) . '</div>';
 }
+
 add_shortcode( 'columns', 'wpcampus_process_columns_shortcode' );
 
 /**
@@ -50,11 +55,11 @@ function wpcampus_process_col_shortcode( $args, $content = null ) {
 
 	// Process args.
 	$defaults = array(
-		'small'     => '12',
-		'medium'    => false,
-		'large'     => false,
+		'small'  => '12',
+		'medium' => false,
+		'large'  => false,
 	);
-	$args = wp_parse_args( $args, $defaults );
+	$args     = wp_parse_args( $args, $defaults );
 
 	// Setup column classes.
 	$column_classes = array();
@@ -73,6 +78,7 @@ function wpcampus_process_col_shortcode( $args, $content = null ) {
 
 	return '<div class="' . implode( ' ', $column_classes ) . ' columns">' . do_shortcode( $content ) . '</div>';
 }
+
 add_shortcode( 'col', 'wpcampus_process_col_shortcode' );
 
 /**
@@ -83,10 +89,10 @@ function wpcampus_process_data_shortcode( $args, $content = null ) {
 
 	// Process args.
 	$defaults = array(
-		'set'       => null,
-		'format'    => 'number', // Other options: percent, both
+		'set'    => null,
+		'format' => 'number', // Other options: percent, both
 	);
-	$args = wp_parse_args( $args, $defaults );
+	$args     = wp_parse_args( $args, $defaults );
 
 	// Build the content.
 	$content = null;
@@ -137,6 +143,7 @@ function wpcampus_process_data_shortcode( $args, $content = null ) {
 
 	return $content;
 }
+
 add_shortcode( 'wpcampus_data', 'wpcampus_process_data_shortcode' );
 
 function format_wpcampus_data_set( $count, $format = 'number' ) {
