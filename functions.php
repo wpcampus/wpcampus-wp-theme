@@ -745,49 +745,60 @@ function wpcampus_print_404() {
 /**
  * Print a specific contributor's profile.
  */
-function wpcampus_print_contributor( $user_id = 0 ) {
+function wpcampus_print_contributor( $user_id = 0, $display = true ) {
 
 	// Make sure we have a user ID.
-	if ( ! $user_id ) {
+	if ( ! $user_id && is_singular() ) {
 		$user_id = get_the_author_meta( 'ID' );
+	}
+
+	if ( empty( $user_id ) ) {
+		return '';
 	}
 
 	// Get display name
 	$author_name = get_the_author_meta( 'display_name', $user_id );
 
 	// Get thumbnail.
-	$author_thumbnail = get_avatar_url( $user_id, array(
-		'size' => '200',
-	));
+	$author_thumbnail = get_avatar_url(
+		$user_id,
+		array(
+			'size' => '200',
+		)
+	);
 
 	// Get other fields.
-	$author_desc = get_the_author_meta( 'description', $user_id );
-	$author_website = get_the_author_meta( 'url', $user_id );
-	$author_twitter = get_the_author_meta( 'twitter', $user_id );
-	$author_company = get_the_author_meta( 'company', $user_id );
+	$author_desc        = get_the_author_meta( 'description', $user_id );
+	$author_website     = get_the_author_meta( 'url', $user_id );
+	$author_twitter     = get_the_author_meta( 'twitter', $user_id );
+	$author_company     = get_the_author_meta( 'company', $user_id );
 	$author_company_pos = get_the_author_meta( 'company_position', $user_id );
+
+	if ( ! $display ) {
+		ob_start();
+	}
 
 	?>
 	<div class="wpcampus-contributor<?php echo $author_thumbnail ? ' has-thumbnail' : ''; ?>">
 		<div class="inside">
 			<h2 class="contributor-name"><?php
 
-			if ( ! is_author() ) :
-				?>
-				<a href="<?php echo esc_url( get_author_posts_url( $user_id ) ); ?>"><?php echo $author_name; ?></a>
+				if ( ! is_author() ) :
+					?>
+					<a href="<?php echo esc_url( get_author_posts_url( $user_id ) ); ?>"><?php echo $author_name; ?></a>
 				<?php
-			else :
-				echo $author_name;
-			endif;
+				else :
+					echo $author_name;
+				endif;
 
-			?></h2>
+				?></h2>
 			<?php
 
 			// Display author thumbnail.
 			if ( ! empty( $author_thumbnail ) ) :
 				?>
-				<img class="author-thumbnail" src="<?php echo $author_thumbnail; ?>" alt="" />
-				<?php
+				<img class="author-thumbnail" src="<?php echo $author_thumbnail; ?>" alt=""/>
+			<?php
 			endif;
 
 			// Build meta.
@@ -808,7 +819,7 @@ function wpcampus_print_contributor( $user_id = 0 ) {
 			if ( $author_twitter ) {
 
 				// Sanitize Twitter handle.
-				$author_twitter_handle = preg_replace( '/[^a-z0-9\_]/i', '', $author_twitter );
+				$author_twitter_handle       = preg_replace( '/[^a-z0-9\_]/i', '', $author_twitter );
 				$contributor_meta['twitter'] = '<a href="' . esc_url( 'https://twitter.com/' . $author_twitter_handle ) . '">@' . $author_twitter_handle . '</a>';
 			}
 
@@ -829,20 +840,24 @@ function wpcampus_print_contributor( $user_id = 0 ) {
 
 					?>
 				</div>
-				<?php
+			<?php
 			endif;
 
 			// Display author bio.
 			if ( ! empty( $author_desc ) ) :
 				?>
 				<p class="contributor-desc"><?php echo $author_desc; ?></p>
-				<?php
+			<?php
 			endif;
 
 			?>
 		</div>
 	</div>
 	<?php
+
+	if ( ! $display ) {
+		return ob_get_clean();
+	}
 }
 
 /**

@@ -170,3 +170,22 @@ function format_wpcampus_data_set( $count, $format = 'number' ) {
 			return $count;
 	}
 }
+
+function wpcampus_shortcode_wpcampus_print_contributor( $args ) {
+	$args = shortcode_atts(
+		[
+			'id'           => 0,
+			'current_user' => false,
+		],
+		$args,
+		'wpc_print_contributor'
+	);
+
+	if ( ! empty( $args['current_user'] ) ) {
+		$args['id'] = get_current_user_id();
+	}
+
+	return wpcampus_print_contributor( $args['id'], false );
+}
+
+add_shortcode( 'wpc_print_contributor', 'wpcampus_shortcode_wpcampus_print_contributor' );
