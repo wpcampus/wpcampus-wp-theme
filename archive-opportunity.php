@@ -10,7 +10,7 @@ add_action( 'wpcampus_before_articles', function() {
 
 if ( ! have_posts() ) :
 	?>
-	<p>There are no volunteer opportunities at this time.</p>
+	<p><?php _e( 'There are no specific volunteer opportunities at this time.', 'wpcampus' ); ?> If you have any questions, please do not hesitate to use <a href="/contact/">our contact form</a>.</p>
 	<?php
 else :
 
