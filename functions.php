@@ -193,7 +193,7 @@ add_filter( 'wpcampus_open_sans_font_weights', 'wpcampus_load_open_sans_weights'
  * Setup styles and scripts.
  */
 function wpcampus_enqueue_styles_scripts() {
-	$wpcampus_version = '2.4';
+	$wpcampus_version = '2.5';
 
 	// Get the directory.
 	$wpcampus_dir = trailingslashit( get_stylesheet_directory_uri() );

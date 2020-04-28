@@ -9,6 +9,14 @@ global $post;
 // Hide the admin bar.
 add_filter( 'show_admin_bar', '__return_false' );
 
+function wpcampus_content_only_assets() {
+
+	// Load the counter part to the iframe resizer.
+	wp_enqueue_script( 'wpc-iframe-resizer', trailingslashit( get_stylesheet_directory_uri() ) . 'assets/js/iframeResizer.contentWindow.min.js', array(), null );
+
+}
+add_action( 'wp_enqueue_scripts', 'wpcampus_content_only_assets', 20 );
+
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?> style="margin:0!important;padding:0!important;">

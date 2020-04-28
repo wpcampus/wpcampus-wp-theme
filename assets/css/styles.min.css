@@ -5682,15 +5682,26 @@ body.woocommerce h1.page-title {
     display: none;
 }
 
-body.page-template-template-speaker-app {
-    height: auto;
-}
-
 body.page-template-template-speaker-app,
 body.page-template-template-content-only {
     background: transparent;
+    height: auto;
     margin: 0;
     padding: 0;
+}
+
+body.page-template-template-speaker-app > *:first-child,
+body.page-template-template-content-only > *:first-child {
+    margin-top: 0;
+}
+
+body.page-template-template-speaker-app > *:last-child,
+body.page-template-template-content-only > *:last-child {
+    margin-bottom: 0;
+}
+
+body.page-template-template-speaker-app #loginform {
+    margin: 0;
 }
 
 body.header-minimal #wpcampus-hero {
