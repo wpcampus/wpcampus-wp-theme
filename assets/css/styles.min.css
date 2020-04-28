@@ -5810,3 +5810,38 @@ ul.button-list, ol.button-list {
     padding: 0;
     list-style: none;
 }
+
+.wpc-2020-research__question {
+    border: 1px solid #666;
+    padding: 2rem;
+    margin: 0 0 2rem;
+}
+
+.wpc-2020-research__question--graph {
+    display: grid;
+    grid-template-columns: 30% 1fr;
+    grid-column-gap: 1rem;
+}
+
+.wpc-2020-research__graph a {
+    display: block;
+}
+
+ul.wpc-2020-research__columns,
+ol.wpc-2020-research__columns {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+ul.wpc-2020-research__columns li,
+ol.wpc-2020-research__columns li {
+    width: 50%;
+}
+
+.wpc-2020-research__question > *:first-child {
+    margin-top: 0;
+}
+
+.wpc-2020-research__question > *:last-child {
+    margin-bottom: 0;
+}
