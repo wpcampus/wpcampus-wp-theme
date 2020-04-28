@@ -28,6 +28,24 @@ add_filter( 'show_admin_bar', '__return_false' );
 <body <?php body_class(); ?>>
 <?php
 
+function wpcampus_print_login_message( $post_id, $key ) {
+
+	$message = get_post_meta( $post_id, $key, true );
+	if ( empty( $message ) ) {
+		return;
+	}
+
+	// Remove all but allowed tags.
+	$message = strip_tags( $message, '<a><ul><ol><li><em><strong><div><span><button><h2><h3><h4><h5><h6><br>' );
+
+	if ( empty( $message ) ) {
+		return;
+	}
+
+	echo wpautop( $message );
+
+}
+
 if ( have_posts() ) :
 	while ( have_posts() ) :
 		the_post();
@@ -37,18 +55,17 @@ if ( have_posts() ) :
 
 		if ( ! $is_user_logged_in && $require_login ) :
 
-			// Display login message.
-			$message = get_post_meta( $post->ID, 'wpcampus_require_login_message', true );
-			if ( ! empty( $message ) ) {
+			wpcampus_print_login_message( $post->ID, 'wpcampus_require_login_message_pre' );
 
-				// Remove all but allowed tags.
-				$message = strip_tags( $message, '<a><ul><ol><li><em><strong><div><span><button><h2><h3><h4><h5><h6><br>' );
+			?>
+			<h2>Login to WPCampus</h2>
+			<?php
 
-				echo ! empty( $message ) ? wpautop( $message ) : '';
-
-			}
+			wpcampus_print_login_message( $post->ID, 'wpcampus_require_login_message' );
 
 			wp_login_form();
+
+			wpcampus_print_login_message( $post->ID, 'wpcampus_require_login_message_post' );
 
 		else :
 
